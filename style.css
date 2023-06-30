@@ -8,14 +8,38 @@ body {
     left: 232px;
 }
 
-.impressum {
+.impressum,
+.help {
     padding-left: 120px;
     padding-right: 16px;
 }
 
-.container-impressum {
+.container-impressum,
+.container-help {
     display: flex;
     justify-content: center;
+}
+
+/* help-html */
+
+.help h1 {
+    font-size: 61px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.help h2 {
+    font-size: 27px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.help p, .help ol {
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    line-height: 120%;
 }
 
 
@@ -31,9 +55,14 @@ body {
         padding-bottom: 120px;
     }
 
-    .impressum {
+    .impressum, .help {
         padding-left: 16px;
         text-align: center;
     }
+
+    ol {
+        text-align: left;
+    }
+
 
 }
