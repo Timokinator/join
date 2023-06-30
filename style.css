@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+}
+
+.container-content {
+    position: absolute;
+    top: 90px;
+    left: 232px;
+}
