@@ -85,6 +85,7 @@ body {
     font-size: 21px;
     line-height: 120%;
     padding-left: 120px;
+    font-family: "Inter", sans-serif;
 }
 
 .topbar-container-img {
@@ -96,4 +97,5 @@ body {
 
 .topbar-user-img {
     width: 64px;
+    padding-right: 36px;
 }
