@@ -36,7 +36,8 @@ body {
     line-height: 120%;
 }
 
-.help p, .help ol {
+.help p,
+.help ol {
     font-size: 16px;
     font-family: 'Inter', sans-serif;
     line-height: 120%;
@@ -44,8 +45,110 @@ body {
 
 
 
+.arrow-back {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+}
+
+.title-mobile {
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    line-height: 120%;
+    padding-left: 33px;
+    padding-top: 32px;
+}
+
+.headline-menu {
+    padding-left: 32px;
+    font-size: 61px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    line-height: 120%;
+}
 
 
+.container-headline-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.container-headline-summary span {
+    font-size: 27px;
+    font-family: 'Inter', sans-serif;
+    line-height: 120%;
+    color: #2A3647;
+}
+
+.title-headline-desktop {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.title-headline-mobile {
+    display: flex;
+    flex-direction: column-reverse;
+    padding-left: 32px;
+    align-items: flex-start;
+    gap: 24px;
+
+}
+
+
+/* Add Task page */
+
+.btn-create-mobile {
+    z-index: 2;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+}
+
+.btn-create-mobile button:hover {
+    cursor: pointer;
+}
+
+.btn-create-mobile button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    gap: 10px;
+    padding: 18px 10px;
+    background-color: #2A3647;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    line-height: 120%;
+    border-radius: 10px;
+    border: none;
+}
+
+
+
+
+
+
+
+/* Scaling */
+
+.scale_small:hover {
+    scale: 1.02;
+}
+
+.scale_big:hover {
+    scale: 1.05;
+}
+
+
+
+
+/* Responsive */
 
 
 @media (max-width: 850px) {
@@ -55,7 +158,24 @@ body {
         padding-bottom: 120px;
     }
 
-    .impressum, .help {
+    .container-headline-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .title-headline-desktop {
+        display: none;
+    }
+
+    .headline-menu {
+        font-size: 47px;
+        margin-bottom: 8px;
+        margin-top: 16px;
+    }
+
+    .impressum,
+    .help {
         padding-left: 16px;
         text-align: center;
     }
@@ -63,6 +183,20 @@ body {
     ol {
         text-align: left;
     }
+}
 
 
+@media (min-width: 851px) {
+    .title-mobile {
+        display: none;
+    }
+
+    .title-headline-mobile {
+        display: none;
+    }
+
+    .btn-create-mobile {
+        display: none;
+    }
+    
 }
