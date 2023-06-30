@@ -8,6 +8,15 @@ body {
     left: 232px;
 }
 
+.impressum {
+    padding-left: 120px;
+    padding-right: 16px;
+}
+
+.container-impressum {
+    display: flex;
+    justify-content: center;
+}
 
 
 
@@ -19,5 +28,12 @@ body {
     .container-content {
         left: 0;
         top: 104px;
+        padding-bottom: 120px;
     }
+
+    .impressum {
+        padding-left: 16px;
+        text-align: center;
+    }
+
 }

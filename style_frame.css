@@ -19,6 +19,7 @@ body {
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
     scroll-behavior: auto;
     z-index: 999;
+    position: fixed;
 }
 
 .logo_sidebar {
@@ -79,6 +80,8 @@ body {
     width: calc(100% - 232px);
     height: 90px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    z-index: 1;
 }
 
 
@@ -118,6 +121,7 @@ body {
     left: 0;
     width: 100%;
     box-sizing: border-box;
+    z-index: 1;
 }
 
 .container-mobile-links {
@@ -139,6 +143,11 @@ body {
     justify-content: space-between;
     padding: 20px 25px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1;
+    background-color: white;
 
 }
 
@@ -169,7 +178,4 @@ body {
     .topbar-mobile {
         display: none;
     }
-
-
-
 }
