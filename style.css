@@ -7,3 +7,17 @@ body {
     top: 90px;
     left: 232px;
 }
+
+
+
+
+
+
+
+
+@media (max-width: 850px) {
+    .container-content {
+        left: 0;
+        top: 104px;
+    }
+}
