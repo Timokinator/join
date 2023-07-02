@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join / Add Task</title>
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/style_addTask.css">
 </head>
 
 <body onload="includeHtml()">
@@ -21,7 +22,63 @@
             <span>Kanban Project Management Tool</span>
         </div>
         <h1 class="headline-menu">Add Task</h1>
+        <form class="form-add-task" onsubmit="return false">
+            <div class="left_side_desktop-add-task">
 
+                <div class="container-input">
+                    <span class="form-text-add-task">Title</span>
+                    <input class="inputfield-add-task" type="text" required placeholder="Enter a title" name="" id="">
+                </div>
+
+                <div class="container-input">
+                    <span class="form-text-add-task">Description</span>
+                    <textarea class="inputfield-add-task" maxlength="200" placeholder="Enter a description" name=""
+                        id=""></textarea>
+                </div>
+
+                <div class="container-input">
+                    <span class="form-text-add-task">Category</span>
+                    <select class="inputfield-add-task" type="text" required name="" id="">
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="sales">Sales</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="accounting">Accounting</option>
+                        <option value="development">Development</option>
+                        <option value="purchase">Purchase</option>
+                    </select>
+                </div>
+
+                <div class="container-input">
+                    <span class="form-text-add-task">Assigned to</span>
+                    <select class="inputfield-add-task" type="text" required name="" id="">
+                        <option value="" disabled selected>Select contacts</option>
+                        <option value="timo">Timo</option>
+                    </select>
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+
+            <img src="../assets/icons/vertical_line_addTask.svg" alt="">
+
+            <div class="right_side_desktop-add-task"></div>
+
+
+
+            <div class="btn-container-add-task">
+                <button>
+                    <span>Creat Task</span>
+
+                </button>
+
+            </div>
+        </form>
 
 
 
