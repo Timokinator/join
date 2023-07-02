@@ -5,25 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join / Contacts</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./stylecontact.css">
 </head>
-<body onload="includeHtml()">
+<body onload="includeHtml(); init()">
     <div w3-include-html="frame.html"></div>
+
+
+
     <div class="container-content">
-        Content
+
+        <div id="addContactCard" class="addContactSlideWrapper">
+            <div class="addContactLeft">
+                <img src="./assets/img/join_logo_bright.svg">
+                <div class="FS48pxbold">Add contact</div>
+                <div>Tasks are better with a team</div>
+                <span class="blue-line-v"></span>
+
+            </div>
+
+        
+
+            <div class="addContactRight">
+                <div class="addContactRight_left">
+                    <img src="./assets/img/logo_contact.svg">
+                </div>
+                <div>
+                    <img onclick="hideAddContactCard()" class="close_symbol" src="./assets/icons/icon_add_contact_X.svg">
+                    <form class="addContactRight_right">
+                        <input id="name" type="text" placeholder="Name" required>
+                        <input id="email" type="email" placeholder="Email" required>
+                        <input id="phone" type="tel"  placeholder="Phone" required>
+                            <div class="flex">
+                                <button onclick="hideAddContactCard()" class="cancel_btn">Cancel</button>
+                                <button onclick="addContact()"  class="create_btn">Create contact</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="editContactCard" class="editContactSlideWrapper">
+            <div class="editContactLeft">
+                <img src="./assets/img/join_logo_bright.svg">
+                <div class="FS48pxbold">Edit contact</div>
+                <span class="blue-line-v"></span>
+
+            </div>
+
+        
+
+            <div class="editContactRight">
+                <div class="editContactRight_left">
+                    <img src="./assets/img/logo_contact.svg">
+                </div>
+                <div id="editContactForm">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="contacts-big">
+            <div class="contacts-left">
+                <div id="contactsboxsmall"></div>
+            </div>
+
+            <div class="contacts-right">
+                <div class="subHeader">
+                    <div class="FS61-700">Contacts</div>
+                    <span class="blue-line-h"></span>
+                    <div class="FS27-400">Better with a team</div>
+                </div>
+
+                <div id="contactsboxbig">
+                    
+                </div>
+        
+                <div onclick="showAddContactCard ()" class="newContact">
+                    New contact <img src="./assets/icons/icon_add_contact.svg">
+                </div>
+            
+        </div>
     </div>
     
-
-
-
-
-
-
-
-
+</div>
 
 
 
 
     <script src="./script_frame.js"></script>
+    <script src="./script_contacts.js"></script>
 </body>
 </html>
+
