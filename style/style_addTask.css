@@ -179,7 +179,7 @@ option {
 
 .btn-plus-add-task {
     position: absolute;
-    bottom: 22px;
+    top: 48px;
     right: 8px;
 }
 
@@ -192,4 +192,10 @@ option {
 
 .pos-relative {
     position: relative;
+}
+
+.container-subtasks {
+    display: flex;
+    flex-direction: column;
+
 }

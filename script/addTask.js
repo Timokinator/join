@@ -1,4 +1,5 @@
 let tasks = [];
+let subtasks = [];
 
 
 function pushToArray(title, description, category, member, date, prio, subtasks, status) {
@@ -11,7 +12,7 @@ function pushToArray(title, description, category, member, date, prio, subtasks,
             'date': date,
             'prio': prio,
             'subtasks': subtasks,
-            'status': status    
+            'status': status
         }
     );
 };
@@ -22,14 +23,14 @@ async function safeTasks() {
 }
 
 async function loadTasks() {
-   tasks = JSON.parse(await getItem('task_array'));
+    tasks = JSON.parse(await getItem('task_array'));
 };
 
 
 function setPrioValue(prio) {
     let prioValue = document.getElementById('prio_hidden').value;
     prioValue = prio;
-    let selectedButton = document.getElementById('prio_btn_'+prio)
+    let selectedButton = document.getElementById('prio_btn_' + prio)
     resetPrioValue();
     selectedButton.classList.add('prio-selected')
 };
@@ -42,6 +43,36 @@ function resetPrioValue() {
 };
 
 
+function resetSubtaskArray() {
+    subtasks = [];
+    addSubtask();
+};
+
+
 function addSubtask() {
-    console.log('Test')
+    let content = document.getElementById('container_subtasks');
+    let subtask = document.getElementById('input_subtask');
+    subtasks.push(subtask.value);
+    subtask.value = '';
+
+    content.innerHTML = '';
+
+    for (let i = 0; i < subtasks.length; i++) {
+        const subtask = subtasks[i];
+
+        content.innerHTML += templateSubtasks(i);
+
+    }
+
+
+    console.log(subtasks)
+}
+
+
+function templateSubtasks(i) {
+    return /*html*/`
+        <div>
+            ${subtasks[i]}
+        </div>
+    `;
 }
