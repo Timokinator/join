@@ -40,3 +40,8 @@ function resetPrioValue() {
     document.getElementById('prio_btn_medium').classList.remove('prio-selected')
     document.getElementById('prio_btn_low').classList.remove('prio-selected')
 };
+
+
+function addSubtask() {
+    console.log('Test')
+}
