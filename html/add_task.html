@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../style/style_addTask.css">
 </head>
 
-<body onload="includeHtml()">
+<body onload="includeHtml(); loadTasks()">
     <div w3-include-html="frame.html"></div>
     <div class="btn-create-mobile">
         <button class="scale_small">
@@ -22,23 +22,23 @@
             <span>Kanban Project Management Tool</span>
         </div>
         <h1 class="headline-menu">Add Task</h1>
-        <form class="form-add-task" onsubmit="return false">
+        <form id="form_add_task" class="form-add-task" onsubmit="return false">
             <div class="left_side_desktop-add-task">
 
                 <div class="container-input">
                     <span class="form-text-add-task">Title</span>
-                    <input class="inputfield-add-task" type="text" required placeholder="Enter a title" name="" id="">
+                    <input class="inputfield-add-task" type="text" required placeholder="Enter a title" name="" id="title_form">
                 </div>
 
                 <div class="container-input">
                     <span class="form-text-add-task">Description</span>
                     <textarea class="inputfield-add-task" maxlength="200" placeholder="Enter a description" name=""
-                        id=""></textarea>
+                        id="description_form"></textarea>
                 </div>
 
                 <div class="container-input">
                     <span class="form-text-add-task">Category</span>
-                    <select class="inputfield-add-task" type="text" required name="" id="">
+                    <select class="inputfield-add-task" type="text" required name="" id="category_form">
                         <option value="" disabled selected>Select a category</option>
                         <option value="sales">Sales</option>
                         <option value="marketing">Marketing</option>
@@ -50,7 +50,7 @@
 
                 <div class="container-input">
                     <span class="form-text-add-task">Assigned to</span>
-                    <select class="inputfield-add-task" type="text" required name="" id="">
+                    <select class="inputfield-add-task" type="text" required name="" id="assignedTo_form">
                         <option value="" disabled selected>Select contacts</option>
                         <option value="timo">Timo</option>
                         <option value="filip">Filip</option>
@@ -67,7 +67,7 @@
 
                 <div class="container-input">
                     <span class="form-text-add-task">Due date</span>
-                    <input class="inputfield-add-task" type="date" required placeholder="dd/mm/yyyy" name="" id="">
+                    <input class="inputfield-add-task" type="date" required placeholder="dd/mm/yyyy" name="" id="dueDate_form">
                 </div>
 
                 <div class="container-input">
@@ -125,7 +125,7 @@
                     <img src="../assets/icons/icon_cross_dark.svg" alt="">
                 </button>
 
-                <button class="btn-create-task">
+                <button onclick="addTask()" class="btn-create-task">
                     <span>Creat Task</span>
                     <img src="../assets/icons/icon_check_bright.svg" alt="">
                 </button>

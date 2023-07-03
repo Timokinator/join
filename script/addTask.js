@@ -2,14 +2,14 @@ let tasks = [];
 let subtasks = [];
 
 
-function pushToArray(title, description, category, member, date, prio, subtasks, status) {
+function pushToArray(title, description, category, assignedTo, dueDate, prio, subtasks, status) {
     tasks.push(
         {
             'title': title,
             'description': description,
             'category': category,
-            'member': member,
-            'date': date,
+            'assignedTo': assignedTo,
+            'dueDate': dueDate,
             'prio': prio,
             'subtasks': subtasks,
             'status': status
@@ -20,7 +20,8 @@ function pushToArray(title, description, category, member, date, prio, subtasks,
 
 async function safeTasks() {
     await setItem('task_array', JSON.stringify(tasks));
-}
+};
+
 
 async function loadTasks() {
     tasks = JSON.parse(await getItem('task_array'));
@@ -28,8 +29,7 @@ async function loadTasks() {
 
 
 function setPrioValue(prio) {
-    let prioValue = document.getElementById('prio_hidden').value;
-    prioValue = prio;
+    document.getElementById('prio_hidden').value = prio;
     let selectedButton = document.getElementById('prio_btn_' + prio)
     resetPrioValue();
     selectedButton.classList.add('prio-selected')
@@ -49,31 +49,23 @@ function resetSubtaskArray() {
 };
 
 
-
-
-
-
-
 function addSubtask() {
-    let content = document.getElementById('container_subtasks');
     let subtask = document.getElementById('input_subtask');
     subtasks.push(subtask.value);
     subtask.value = '';
+    renderSubtasks();
+};
 
+
+function renderSubtasks() {
+    let content = document.getElementById('container_subtasks');
     content.innerHTML = '';
 
     for (let i = 0; i < subtasks.length; i++) {
         const subtask = subtasks[i];
-
         content.innerHTML += templateSubtasks(i);
-
-    }
-    console.log(subtasks)
-}
-
-
-
-
+    };
+};
 
 
 function templateSubtasks(i) {
@@ -87,6 +79,32 @@ function templateSubtasks(i) {
 
 
 function deleteSubtask(i) {
-    subtasks.splice(i,1);
+    subtasks.splice(i, 1);
+    renderSubtasks();
+};
 
-}
+
+async function addTask() {
+
+    let title = document.getElementById('title_form').value;
+    let description = document.getElementById('description_form').value;
+    let category = document.getElementById('category_form').value;
+    let assignedTo = document.getElementById('assignedTo_form').value;
+    let dueDate = document.getElementById('dueDate_form').value;
+    let prio = document.getElementById('prio_hidden').value;
+    let subtasks_task = subtasks;
+    let status = 'todo';
+
+    if (title != '' && category != '' && assignedTo != '' && dueDate != '') {
+        console.log('Test');
+        pushToArray(title, description, category, assignedTo, dueDate, prio, subtasks_task, status);
+        await safeTasks();
+    }
+
+    document.getElementById('form_add_task').reset();
+    resetPrioValue();
+    resetSubtaskArray();
+
+};
+
+
