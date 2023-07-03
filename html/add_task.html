@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join / Add Task</title>
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/style_addTask.css">
 </head>
 
 <body onload="includeHtml()">
@@ -21,7 +22,113 @@
             <span>Kanban Project Management Tool</span>
         </div>
         <h1 class="headline-menu">Add Task</h1>
+        <form class="form-add-task" onsubmit="return false">
+            <div class="left_side_desktop-add-task">
 
+                <div class="container-input">
+                    <span class="form-text-add-task">Title</span>
+                    <input class="inputfield-add-task" type="text" required placeholder="Enter a title" name="" id="">
+                </div>
+
+                <div class="container-input">
+                    <span class="form-text-add-task">Description</span>
+                    <textarea class="inputfield-add-task" maxlength="200" placeholder="Enter a description" name=""
+                        id=""></textarea>
+                </div>
+
+                <div class="container-input">
+                    <span class="form-text-add-task">Category</span>
+                    <select class="inputfield-add-task" type="text" required name="" id="">
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="sales">Sales</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="accounting">Accounting</option>
+                        <option value="development">Development</option>
+                        <option value="purchase">Purchase</option>
+                    </select>
+                </div>
+
+                <div class="container-input">
+                    <span class="form-text-add-task">Assigned to</span>
+                    <select class="inputfield-add-task" type="text" required name="" id="">
+                        <option value="" disabled selected>Select contacts</option>
+                        <option value="timo">Timo</option>
+                        <option value="filip">Filip</option>
+                        <option value="benjamin">Benjamin</option>
+
+                    </select>
+                </div>
+            </div>
+
+
+            <img src="../assets/icons/vertical_line_addTask.svg" alt="">
+
+            <div class="right_side_desktop-add-task">
+
+                <div class="container-input">
+                    <span class="form-text-add-task">Due date</span>
+                    <input class="inputfield-add-task" type="date" required placeholder="dd/mm/yyyy" name="" id="">
+                </div>
+
+                <div class="container-input">
+                    <span class="form-text-add-task">Prio</span>
+
+                    <div class="container-prio-btn-add-task">
+
+                        <div id="prio_btn_urgent" class="prio-btn-add-task" onclick="setPrioValue('urgent')">
+                            <span class="text-btn-prio-add-task">Urgent</span>
+                            <img src="../assets/icons/icon_prio_high.svg" alt="">
+                        </div>
+
+                        <div id="prio_btn_medium" class="prio-btn-add-task" onclick="setPrioValue('medium')">
+                            <span class="text-btn-prio-add-task">Medium</span>
+                            <img src="../assets/icons/icon_prio_medium.svg" alt="">
+                        </div>
+
+                        <div id="prio_btn_low" class="prio-btn-add-task" onclick="setPrioValue('low')">
+                            <span class="text-btn-prio-add-task">Low</span>
+                            <img src="../assets/icons/icon_prio_low.svg" alt="">
+                        </div>
+
+                        <input required id="prio_hidden" type="hidden" value="medium">
+                    </div>
+                </div>
+
+                <div class="container-input pos-relative">
+                    <span class="form-text-add-task">Subtasks</span>
+                    <input class="inputfield-add-task" type="text" placeholder="Add new subtask" name="" id="">
+                    <img onclick="addSubtask()" class="btn-plus-add-task" src="../assets/icons/icon_plus_dark.svg" alt="">
+                    <div class="container-subtasks" id="container_subtasks"></div>
+
+
+                </div>
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+            <div class="btn-container-add-task">
+                <button onclick="reset(); resetPrioValue()" id="btn_clear_task" type="button" for class="btn-clear">
+                    <span>Clear</span>
+                    <img src="../assets/icons/icon_cross_dark.svg" alt="">
+                </button>
+                
+                <button class="btn-create-task">
+                    <span>Creat Task</span>
+                    <img src="../assets/icons/icon_check_bright.svg" alt="">
+                </button>
+
+            </div>
+        </form>
 
 
 
