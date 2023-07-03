@@ -104,7 +104,7 @@ body {
 
 .btn-create-mobile {
     z-index: 2;
-    position: absolute;
+    position: fixed;
     right: 24px;
     top: 24px;
 }

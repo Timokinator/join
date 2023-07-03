@@ -138,7 +138,7 @@ option {
     justify-content: flex-end;
     gap: 16px;
     position: absolute;
-    bottom: 0px;
+    bottom: -75px;
     right: 0px;
     flex-wrap: wrap;
 }
