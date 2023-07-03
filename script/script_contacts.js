@@ -82,7 +82,7 @@ function renderContact (i) {
             <div class="flex align fdr">
                 <div class="flex align fdr">
                     <div class="FS21-400">Contact Information</div>
-                    <img src="./assets/icons/icon_edit_contact_pencil.svg">
+                    <img src="../assets/icons/icon_edit_contact_pencil.svg">
                     <div onclick="showEditContactCard (${i})" class="FS16-400 cursor">Edit Contact</div>
                 </div>
             </div>
@@ -125,7 +125,7 @@ function renderEditContact (i) {
     let phone = contacts[i]['Phone'];
 
     editContactForm.innerHTML +=`
-    <img onclick="hideEditContactCard()" class="close_symbol" src="./assets/icons/icon_add_contact_X.svg">
+    <img onclick="hideEditContactCard()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
                     <form class="editContactRight_right">
                         <input id="name" type="text" value="${name}" required>
                         <input id="email" type="email" value="${email}" required>
