@@ -199,3 +199,14 @@ option {
     flex-direction: column;
 
 }
+
+.text-subtask {
+    font-size: 21px;
+    font-family: 'Inter', sans-serif;
+    line-height: 120%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 4px 0;
+}

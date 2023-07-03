@@ -45,8 +45,13 @@ function resetPrioValue() {
 
 function resetSubtaskArray() {
     subtasks = [];
-    addSubtask();
+    document.getElementById('container_subtasks').innerHTML = '';
 };
+
+
+
+
+
 
 
 function addSubtask() {
@@ -63,16 +68,25 @@ function addSubtask() {
         content.innerHTML += templateSubtasks(i);
 
     }
-
-
     console.log(subtasks)
 }
 
 
+
+
+
+
 function templateSubtasks(i) {
     return /*html*/`
-        <div>
+        <div class="text-subtask">
             ${subtasks[i]}
+            <img onclick="deleteSubtask(${i})" id="delete_btn_subtasks${i}" src="../assets/icons/trash.png" alt="">
         </div>
     `;
+}
+
+
+function deleteSubtask(i) {
+    subtasks.splice(i,1);
+
 }
