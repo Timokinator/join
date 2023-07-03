@@ -1,17 +1,27 @@
 .left_side_desktop-add-task {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     gap: 32px;
+    width: 25vw;
 }
+
+.right_side_desktop-add-task {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 25vw;
+}
+
+
 
 
 .form-add-task {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     padding-left: 32px;
     gap: 64px;
-
+    max-width: fit-content;
 }
 
 .form-text-add-task {
@@ -73,4 +83,56 @@ option[value=""][disabled] {
 
 option {
     color: #000;
+}
+
+
+.container-prio-btn-add-task {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+
+}
+
+
+
+.prio-btn-add-task {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    border-radius: 10px;
+    background-color:  #FFF;
+    padding: 14px 14px;
+}
+
+.prio-btn-add-task:hover {
+    cursor: pointer;
+    scale: 1.03;
+}
+
+.prio-selected {
+    border: 3px solid rgb(1, 201, 1);
+    scale: 1.03;
+}
+
+
+
+.text-btn-prio-add-task {
+    font-size: 21px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+
+
+
+
+.btn-container-add-task {
+    position: absolute;
+    bottom: 32px;
+    right: 64px;
 }
