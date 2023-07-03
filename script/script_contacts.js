@@ -1,4 +1,4 @@
-let contacts = [ 
+let contacts = [
     {
         "Name": "Benjamin Tietz",
         "Email": "Benjamin-Tietz@bla.net",
@@ -22,7 +22,7 @@ let contacts = [
 ];
 
 function init() {
-    renderContacts ();
+    renderContacts();
 }
 
 function addContact() {
@@ -41,34 +41,34 @@ function addContact() {
     email.value = '';
     phone.value = '';
 
-    renderContact ();
-    renderContacts ();
+    renderContact();
+    renderContacts();
 }
 
-function hideAddContactCard () {
+function hideAddContactCard() {
     document.getElementById("addContactCard").style.display = "none";
 }
 
-function showAddContactCard () {
+function showAddContactCard() {
     document.getElementById("addContactCard").style.display = "flex";
 }
 
-function hideEditContactCard () {
+function hideEditContactCard() {
     document.getElementById("editContactCard").style.display = "none";
 }
 
-function showEditContactCard (i) {
+function showEditContactCard(i) {
     document.getElementById("editContactCard").style.display = "flex";
-    renderEditContact (i);
+    renderEditContact(i);
 }
 
-function renderContact (i) {
-    
+function renderContact(i) {
+
     contactsboxbig.innerHTML = '';
-    
-        let name = contacts[i]['Name'];
-        let email = contacts[i]['Email'];
-        let phone = contacts[i]['Phone'];
+
+    let name = contacts[i]['Name'];
+    let email = contacts[i]['Email'];
+    let phone = contacts[i]['Phone'];
 
     contactsboxbig.innerHTML += `
         <div class="contact_big flex juststart fdc">
@@ -92,8 +92,8 @@ function renderContact (i) {
             <div class="FS16-400">${phone}</div>
         `;
 }
-function renderContacts () {
-    contact = document.getElementById('contactsboxsmall');
+function renderContacts() {
+    let contact = document.getElementById('contactsboxsmall');
     contact = '';
 
     for (let i = 0; i < contacts.length; i++) {
@@ -117,14 +117,14 @@ function renderContacts () {
     }
 }
 
-function renderEditContact (i) {
+function renderEditContact(i) {
     editContactForm.innerHTML = '';
-    
+
     let name = contacts[i]['Name'];
     let email = contacts[i]['Email'];
     let phone = contacts[i]['Phone'];
 
-    editContactForm.innerHTML +=`
+    editContactForm.innerHTML += `
     <img onclick="hideEditContactCard()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
                     <form class="editContactRight_right">
                         <input id="name" type="text" value="${name}" required>
@@ -138,15 +138,15 @@ function renderEditContact (i) {
     `;
 }
 
-function deleteContact (i) {
+function deleteContact(i) {
     const removed = contacts.splice(i, 1);
-    
-    renderContacts ();
+
+    renderContacts();
 }
 
-function editContact (i) {
+function editContact(i) {
     const edit = contacts.splice(start, deleteCount, item1);
-    
-    renderContacts ();
+
+    renderContacts();
 }
 

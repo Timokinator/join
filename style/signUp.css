@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #F6F7F8;
+}
+
+.logoImg {
+    width: 100.034px;
+    height: 121.966px;
+    flex-shrink: 0;
+
+    position: fixed;
+    top: 80px;
+    left: 77px;
+}
