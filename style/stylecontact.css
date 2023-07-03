@@ -193,19 +193,19 @@ input {
 }
 
 #name {
-    background: url(./assets/icons/icon_add_contact_user.svg) no-repeat;
+    background: url(../assets/icons/icon_add_contact_user.svg) no-repeat;
     background-position:right;
     border-style: none;
     background-color: white;
 }
 #email {
-    background: url(./assets/icons/icon_add_contact_mail.svg) no-repeat;
+    background: url(../assets/icons/icon_add_contact_mail.svg) no-repeat;
     background-position: right;
     border-style: none;
     background-color: white;
 }
 #phone {
-    background: url(./assets/icons/icon_add_contact_phone.svg) no-repeat;
+    background: url(../assets/icons/icon_add_contact_phone.svg) no-repeat;
     background-position: right;
     border-style: none;
     background-color: white;
