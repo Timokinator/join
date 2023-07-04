@@ -85,11 +85,12 @@ function renderContact(i) {
         `;
 }
 async function renderContacts() {
-    await loadContacts();
-
     let contact = document.getElementById('contactsboxsmall');
     contact = '';
+    
+    await loadContacts();
 
+    
     for (let i = 0; i < contacts.length; i++) {
         const element = contacts[i];
         let name = contacts[i]['name'];
@@ -134,13 +135,14 @@ function renderEditContact(i) {
 }
 
 
-//**non-functional */
+
 function deleteContact(i) {
     contacts.splice(i, 1);
+    safeContacts();
     renderContacts();
-
 }
 
+//**non-functional */
 function editContact(i) {
     const edit = contacts.splice(start, deleteCount, item1);
 }
