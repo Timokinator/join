@@ -103,7 +103,7 @@ option {
     justify-content: space-around;
     gap: 10px;
     border-radius: 10px;
-    background-color:  #FFF;
+    background-color: #FFF;
     padding: 14px 14px;
     border: 1px solid #D1D1D1;
 }
@@ -143,7 +143,9 @@ option {
     flex-wrap: wrap;
 }
 
-.btn-create-task, .btn-clear {
+.btn-create-task,
+.btn-clear,
+.btn-clear-mobile {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -158,7 +160,19 @@ option {
     border: 1px solid #2A3647;
 }
 
-.btn-create-task:hover, .btn-clear:hover {
+.btn-clear-mobile {
+    position: fixed;
+    z-index: 2;
+    right: 155px;
+    top: 24px;
+    height: 56px;
+}
+
+
+
+.btn-create-task:hover,
+.btn-clear:hover,
+.btn-clear-mobile:hover {
     cursor: pointer;
     scale: 1.03;
 }
@@ -168,12 +182,14 @@ option {
     color: #FFF;
 }
 
-.btn-clear {
+.btn-clear,
+.btn-clear-mobile {
     background-color: #F6F7F8;
     font-weight: normal;
 }
 
-.btn-clear:focus {
+.btn-clear:focus,
+.btn-clear-mobile:focus {
     outline: none;
 }
 
@@ -209,4 +225,44 @@ option {
     align-items: center;
     gap: 16px;
     padding: 4px 0;
+}
+
+
+
+@media (max-width: 850px) {
+    .form-add-task {
+        flex-direction: column;
+        padding-left: 5vw;
+    }
+
+    .line-icon-add-task {
+        display: none;
+    }
+
+    .left_side_desktop-add-task,
+    .right_side_desktop-add-task {
+        width: 90vw;
+
+    }
+
+    .headline-menu,
+    .title-mobile {
+        padding-left: 5vw;
+    }
+
+    .btn-container-add-task {
+        display: none;
+    }
+
+
+
+}
+
+
+@media (min-width: 851px) {
+    .btn-clear-mobile {
+        display: none;
+    }
+
+
 }

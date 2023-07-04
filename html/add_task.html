@@ -11,12 +11,25 @@
 
 <body onload="includeHtml(); loadTasks()">
     <div w3-include-html="frame.html"></div>
-    <div class="btn-create-mobile">
+    
+    <div onclick="addTask()" class="btn-create-mobile">
         <button class="scale_small">
             <span>Create</span>
             <img src="../assets/icons/icon_check_bright.svg" alt="">
         </button>
+
     </div>
+
+    <button onclick="document.getElementById('form_add_task').reset(); resetPrioValue(); resetSubtaskArray()" id="btn_clear_task_mobile" type="button" for
+        class="btn-clear-mobile">
+        <span>Clear</span>
+        <img src="../assets/icons/icon_cross_dark.svg" alt="">
+    </button>
+
+
+
+
+
     <div class="container-content">
         <div class="title-mobile">
             <span>Kanban Project Management Tool</span>
@@ -27,7 +40,8 @@
 
                 <div class="container-input">
                     <span class="form-text-add-task">Title</span>
-                    <input class="inputfield-add-task" type="text" required placeholder="Enter a title" name="" id="title_form">
+                    <input class="inputfield-add-task" type="text" required placeholder="Enter a title" name=""
+                        id="title_form">
                 </div>
 
                 <div class="container-input">
@@ -61,13 +75,14 @@
             </div>
 
 
-            <img src="../assets/icons/vertical_line_addTask.svg" alt="">
+            <img class="line-icon-add-task" src="../assets/icons/vertical_line_addTask.svg" alt="">
 
             <div class="right_side_desktop-add-task">
 
                 <div class="container-input">
                     <span class="form-text-add-task">Due date</span>
-                    <input class="inputfield-add-task" type="date" required placeholder="dd/mm/yyyy" name="" id="dueDate_form">
+                    <input class="inputfield-add-task" type="date" required placeholder="dd/mm/yyyy" name=""
+                        id="dueDate_form">
                 </div>
 
                 <div class="container-input">
@@ -96,23 +111,14 @@
 
                 <div class="container-input pos-relative">
                     <span class="form-text-add-task">Subtasks</span>
-                    <input class="inputfield-add-task" maxlength="30" type="text" placeholder="Add new subtask" name="" id="input_subtask">
+                    <input class="inputfield-add-task" maxlength="30" type="text" placeholder="Add new subtask" name=""
+                        id="input_subtask">
                     <img onclick="addSubtask()" class="btn-plus-add-task" src="../assets/icons/icon_plus_dark.svg"
                         alt="">
                     <div class="container-subtasks" id="container_subtasks">
 
                     </div>
-
-
                 </div>
-
-
-
-
-
-
-
-
             </div>
 
 
@@ -120,7 +126,8 @@
 
 
             <div class="btn-container-add-task">
-                <button onclick="reset(); resetPrioValue(); resetSubtaskArray()" id="btn_clear_task" type="button" for class="btn-clear">
+                <button onclick="reset(); resetPrioValue(); resetSubtaskArray()" id="btn_clear_task" type="button" for
+                    class="btn-clear">
                     <span>Clear</span>
                     <img src="../assets/icons/icon_cross_dark.svg" alt="">
                 </button>

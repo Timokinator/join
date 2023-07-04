@@ -96,7 +96,6 @@ async function addTask() {
     let status = 'todo';
 
     if (title != '' && category != '' && assignedTo != '' && dueDate != '') {
-        console.log('Test');
         pushToArray(title, description, category, assignedTo, dueDate, prio, subtasks_task, status);
         await safeTasks();
     }
