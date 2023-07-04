@@ -144,8 +144,7 @@ option {
 }
 
 .btn-create-task,
-.btn-clear,
-.btn-clear-mobile {
+.btn-clear {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -160,19 +159,9 @@ option {
     border: 1px solid #2A3647;
 }
 
-.btn-clear-mobile {
-    position: fixed;
-    z-index: 2;
-    right: 155px;
-    top: 24px;
-    height: 56px;
-}
-
-
 
 .btn-create-task:hover,
-.btn-clear:hover,
-.btn-clear-mobile:hover {
+.btn-clear:hover {
     cursor: pointer;
     scale: 1.03;
 }
@@ -182,14 +171,12 @@ option {
     color: #FFF;
 }
 
-.btn-clear,
-.btn-clear-mobile {
+.btn-clear {
     background-color: #F6F7F8;
     font-weight: normal;
 }
 
-.btn-clear:focus,
-.btn-clear-mobile:focus {
+.btn-clear:focus {
     outline: none;
 }
 
@@ -251,18 +238,14 @@ option {
     }
 
     .btn-container-add-task {
-        display: none;
+        position: fixed;
+        z-index: 2;
+        right: 5vw;
+        height: 60px;
+        top: 21px;
     }
 
 
 
 }
 
-
-@media (min-width: 851px) {
-    .btn-clear-mobile {
-        display: none;
-    }
-
-
-}
