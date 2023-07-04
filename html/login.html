@@ -9,24 +9,29 @@
 </head>
 
 <body>
-
-    <div class="navigation">
-        <div><img src="/join/assets/img/join_logo_dark.svg" alt="" class="signUpBtnImg"></div>
+    <img src="/join/assets/icons/Button wo icon v1.svg" alt="" class="logoImg">
+   
         <div class="singUpNav">
+            <img src="/join/assets/img/join_logo_dark.svg" alt="" class="signUpBtnImg">
             <a href="/join/html/singUp.html" class="navSignUpLink">
                 <p>Not a Join user?</p>
             </a>
-            <img src="/join/assets/icons/Button wo icon v1.svg" alt="">
         </div>
-    </div>
+   
     <div id="logInContainer">
-        <form onsubmit="register(); return false;" id="register" >
-            <div>
-                <h1>Log In</h1>
-                <img src="/join/assets/icons/blueLine.svg" alt="">
+        <form onsubmit="register(); return false;" id="register">
+
+            <h1>Log In</h1>
+            <img src="/join/assets/icons/blueLine.svg" alt="">
+
+            <div class="emailBox">
+                <input type="email" id="email" required placeholder="Email">
+                <img src="../assets/icons/emailIcon.svg" alt="">
             </div>
-            <input type="email" id="email" required placeholder="Email">
-            <input type="password" id="password" required placeholder="Password">
+            <div class="passwordBox">
+                <input type="password" id="password" required placeholder="Password">
+                <img src="../assets/icons/padlockImg.svg" alt="">
+            </div>
             <div class="rememberMeContainer">
                 <div>
                     <input type="checkbox" name="RememberMe" id="RememberMe">
