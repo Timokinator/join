@@ -1,47 +1,39 @@
-let contacts = [
-    {
-        "Name": "Benjamin Tietz",
-        "Email": "Benjamin-Tietz@bla.net",
-        "Phone": "0123456789"
-    },
-    {
-        "Name": "Xenjamin Wietz",
-        "Email": "Benjamin-Tietz@bla.net",
-        "Phone": "0123456789"
-    },
-    {
-        "Name": "Eenjamin Kietz",
-        "Email": "Benjamin-Tietz@bla.net",
-        "Phone": "0123456789"
-    },
-    {
-        "Name": "Denjamin Lietz",
-        "Email": "Benjamin-Tietz@bla.net",
-        "Phone": "0123456789"
-    }
-];
+let contacts = [];
 
 function init() {
     renderContacts();
 }
 
-function addContact() {
-    let name = document.getElementById('name');
-    let email = document.getElementById('email');
-    let phone = document.getElementById('phone');
+function pushToArray(name, email, phone) {
+    contacts.push(
+        {
+            'name': name,
+            'email': email,
+            'phone': phone,
+        }
+    );
+};
 
-    let contact = {
-        "Name": name.value,
-        "Email": email.value,
-        "Phone": phone.value
-    };
-    contacts.push(contact);
-    console.log(contacts);
-    name.value = '';
-    email.value = '';
-    phone.value = '';
+async function safeContacts() {
+    await setItem('contact_array', JSON.stringify(contacts));
+};
 
-    renderContact();
+
+async function loadContacts() {
+    contacts = JSON.parse(await getItem('contact_array'));
+};
+
+async function addContact() {
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    let phone = document.getElementById('phone').value;
+
+    if (name != '' && email != '' && phone != '') {
+        console.log('Test');
+        pushToArray(name, email, phone);
+        await safeContacts();
+    }
+    document.getElementById('form_add_contact').reset();
     renderContacts();
 }
 
@@ -66,9 +58,9 @@ function renderContact(i) {
 
     contactsboxbig.innerHTML = '';
 
-    let name = contacts[i]['Name'];
-    let email = contacts[i]['Email'];
-    let phone = contacts[i]['Phone'];
+    let name = contacts[i]['name'];
+    let email = contacts[i]['email'];
+    let phone = contacts[i]['phone'];
 
     contactsboxbig.innerHTML += `
         <div class="contact_big flex juststart fdc">
@@ -92,15 +84,17 @@ function renderContact(i) {
             <div class="FS16-400">${phone}</div>
         `;
 }
-function renderContacts() {
+async function renderContacts() {
+    await loadContacts();
+
     let contact = document.getElementById('contactsboxsmall');
     contact = '';
 
     for (let i = 0; i < contacts.length; i++) {
         const element = contacts[i];
-        let name = contacts[i]['Name'];
-        let email = contacts[i]['Email'];
-        let phone = contacts[i]['Phone'];
+        let name = contacts[i]['name'];
+        let email = contacts[i]['email'];
+        let phone = contacts[i]['phone'];
 
         contactsboxsmall.innerHTML += `
     <div id="firstLetter"></div>
@@ -118,35 +112,37 @@ function renderContacts() {
 }
 
 function renderEditContact(i) {
+    editContactForm = document.getElementById('editContactForm')
     editContactForm.innerHTML = '';
 
-    let name = contacts[i]['Name'];
-    let email = contacts[i]['Email'];
-    let phone = contacts[i]['Phone'];
-
+    let name = contacts[i]['name'];
+    let email = contacts[i]['email'];
+    let phone = contacts[i]['phone'];
+    
     editContactForm.innerHTML += `
     <img onclick="hideEditContactCard()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
-                    <form class="editContactRight_right">
+                    <form id="form_edit_contact" class="editContactRight_right" onsubmit="return false">
                         <input id="name" type="text" value="${name}" required>
                         <input id="email" type="email" value="${email}" required>
                         <input id="phone" type="tel"  value="${phone}" required>
                             <div class="flex">
-                                <button onclick="deleteContact(${i})" class="cancel_btn">Delete</button>
-                                <button onclick="editContact(${i})"  class="create_btn">Save</button>
+                                <button onclick="deleteContact(${i})" class="delete_btn">Delete</button>
+                                <button onclick="editContact(${i})"  class="save_btn">Save</button>
                             </div>
                     </form>
     `;
 }
 
-function deleteContact(i) {
-    const removed = contacts.splice(i, 1);
 
+//**non-functional */
+function deleteContact(i) {
+    contacts.splice(i, 1);
     renderContacts();
+
 }
 
 function editContact(i) {
     const edit = contacts.splice(start, deleteCount, item1);
-
-    renderContacts();
 }
+//**non-functional */
 

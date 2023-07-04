@@ -31,7 +31,7 @@
                 </div>
                 <div>
                     <img onclick="hideAddContactCard()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
-                    <form class="addContactRight_right">
+                    <form id="form_add_contact" class="addContactRight_right" onsubmit="return false">
                         <input id="name" type="text" placeholder="Name" required>
                         <input id="email" type="email" placeholder="Email" required>
                         <input id="phone" type="tel"  placeholder="Phone" required>
@@ -94,6 +94,7 @@
 
     <script src="../script/script_frame.js"></script>
     <script src="../script/script_contacts.js"></script>
+    <script src="../script/storage.js"></script>
 </body>
 </html>
 
