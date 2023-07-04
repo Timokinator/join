@@ -242,10 +242,20 @@ option {
         z-index: 2;
         right: 5vw;
         height: 60px;
-        top: 21px;
+        top: 10px;
     }
 
+    .topbar-user-img-mobile {
+        display: none;
+    }
 
 
 }
 
+
+@media (max-width: 400px) {
+    .btn-container-add-task {
+        scale: 0.6;
+        right: -45px;
+    }
+}

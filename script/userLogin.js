@@ -1,5 +1,5 @@
-import {setItem} from '../script/storage.js';
-import {getItem} from '../script/storage.js';
+/* import {setItem} from '../script/storage.js';
+import {getItem} from '../script/storage.js'; */
 
 let users = [];
 

@@ -5,15 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="/join/style/landingPage.css">
+    <link rel="stylesheet" href="../style/landingPage.css">
 </head>
 
 <body>
-    <img src="/join/assets/icons/Button wo icon v1.svg" alt="" class="logoImg">
+    <img src="../assets/icons/Button wo icon v1.svg" alt="" class="logoImg">
    
-        <div class="singUpNav">
-            <img src="/join/assets/img/join_logo_dark.svg" alt="" class="signUpBtnImg">
-            <a href="/join/html/singUp.html" class="navSignUpLink">
+        <div class="signUpNav">
+            <img src="../assets/img/join_logo_dark.svg" alt="" class="signUpBtnImg">
+            <a href="../html/signUp.html" class="navSignUpLink">
                 <p>Not a Join user?</p>
             </a>
         </div>
@@ -22,7 +22,7 @@
         <form onsubmit="register(); return false;" id="register">
 
             <h1>Log In</h1>
-            <img src="/join/assets/icons/blueLine.svg" alt="">
+            <img src="../assets/icons/blueLine.svg" alt="">
 
             <div class="emailBox">
                 <input type="email" id="email" required placeholder="Email">
@@ -37,7 +37,7 @@
                     <input type="checkbox" name="RememberMe" id="RememberMe">
                     <label for="RememberMe">Remember me</label>
                 </div>
-                <a href="/join/html/forgetPassword.html" class="forgetPasswordLink">Forgot my password</a>
+                <a href="../html/forgetPassword.html" class="forgetPasswordLink">Forgot my password</a>
             </div>
             <div class="formBtnContainer">
                 <button onclick="logIn()" id="logInBtn">Log in</button>
@@ -46,7 +46,8 @@
         </form>
     </div>
 
-    <script src="/join/script/userLogin.js"></script>
+    <script src="../script/storage.js"></script>
+    <script src="../script/userLogin.js"></script>
 </body>
 
 </html>
