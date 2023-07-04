@@ -86,7 +86,7 @@ function renderContact(i) {
 }
 async function renderContacts() {
     let contact = document.getElementById('contactsboxsmall');
-    contact = '';
+    contact.innerHTML = '';
     
     await loadContacts();
 
@@ -99,7 +99,7 @@ async function renderContacts() {
 
         contactsboxsmall.innerHTML += `
     <div id="firstLetter"></div>
-        <div onclick="renderContact(${i})" id="${i}" class="contact_small flex just align">   
+        <div onclick="renderContact(${i})" id="${i}" class="contact_small flex align">   
             <div class="usercircle">BT</div>
         <div>    
             <div>
