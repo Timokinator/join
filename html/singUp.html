@@ -11,12 +11,28 @@
 <body>
     <div class="signUpContainer">
         <img src="/join/assets/img/join_logo_dark.svg" class="logoImg" alt="">
-        <form onclick="register()">
+        <form onsubmit="register(); return false;">
             <div>
-                
+                <h1>Sign up</h1>
+                <img src="../assets/icons/blueLine.svg" alt="" class="blueLineImg">
             </div>
+            <div class="nameBox">
+                <input type="text" id="inputName" placeholder="Name" required>
+                <img src="../assets/icons/userIcon.svg" alt="">
+            </div>
+            <div class="emailBox">
+                <input type="email" id="inputEmail" placeholder="Email" required>
+                <img src="../assets/icons/emailIcon.svg" alt="">
+            </div>
+            <div class="passwordBox">
+                <input type="password" id="inputPassword" placeholder="Password" required>
+                <img src="../assets/icons/padlockImg.svg" alt="">
+            </div>
+            <button type="submit">Sign up</button>
         </form>
     </div>
 </body>
+
+<script type="module" src="../script/userLogin.js"></script>
 
 </html>

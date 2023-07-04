@@ -38,10 +38,14 @@ body {
 
 }
 
-.navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 67px;
+.logoImg {
+    width: 100.034px;
+    height: 121.966px;
+    flex-shrink: 0;
+
+    position: fixed;
+    top: 80px;
+    left: 77px;
 }
 
 .singUpNav {
@@ -105,10 +109,9 @@ form h1 {
 }
 
 #email, #password {
-    display: flex;
+    
     width: 422px;
     padding: 13px 21px;
-    align-items: center;
     gap: 10px;
 
     border-radius: 10px;
@@ -125,17 +128,28 @@ form h1 {
     line-height: 120%;
 }
 
-#email {
-    background: url(/join/assets/icons/emailIcon.svg) no-repeat scroll 20px 10px;
-    background-position: right;
+.emailBox, .passwordBox {
+    position: relative;
 }
 
-#password {
-    background: url(/join/assets/icons/padlockImg.svg) no-repeat scroll 20px 10px;
-    background-position: right;
-    padding-right: 10px;
-
+.emailBox img {
+    position: absolute;
+    top: 17px;
+    right: 21px;
+    width: 20px;
+    height: 18px;
+    flex-shrink: 0;
 }
+
+.passwordBox img {
+    position: absolute;
+    top: 17px;
+    right: 22px;
+    width: 18px;
+    height: 21px;
+    flex-shrink: 0;
+}
+
 
 .rememberMeContainer {
     width: 335px;
