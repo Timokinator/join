@@ -99,7 +99,7 @@ async function renderContacts() {
 
         contactsboxsmall.innerHTML += `
     <div id="firstLetter"></div>
-        <div onclick="renderContact(${i})" id="${i}" class="contact_small flex align">   
+        <div onclick="renderContact(${i})" id="${i}" class="contact_small flex juststart align">   
             <div class="usercircle">BT</div>
         <div>    
             <div>
@@ -137,8 +137,14 @@ function renderEditContact(i) {
 
 
 function deleteContact(i) {
-    contacts.splice(i, 1);
+
+    if (i>10) {
+        contacts.splice(i, 1);
+    } else {
+        alert("For Testreasons we can´t delete a contact if there is only 10 or less available.");
+    }
     safeContacts();
+    contactsboxbig.innerHTML = '';
     renderContacts();
 }
 
