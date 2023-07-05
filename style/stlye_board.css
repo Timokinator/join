@@ -85,6 +85,7 @@ header {
     font-style: normal;
     font-weight: 700;
     line-height: 120%;
+    white-space: nowrap;
 }
 
 .btn-add-task-header-board:hover {
@@ -145,3 +146,56 @@ header {
     line-height: 120%;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive */
+
+
+
+@media (max-width: 1250px) {
+    .container-rows-board {
+        display: grid;
+        grid-template-columns: 50% 50%;
+
+    }
+
+    .row-status-board {
+        width: 100%;
+    }
+
+
+}
+
+
+@media (max-width: 1000px) {
+    .container-search-and-add-task {
+        scale: 0.75;
+    }
+
+}
+
+
+
+@media (max-width: 850px) {
+    .container-rows-board {
+        display: grid;
+        grid-template-columns: 100%;
+    }
+
+    .container-content {
+        width: 95%;
+    }
+
+}
