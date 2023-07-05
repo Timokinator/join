@@ -28,6 +28,11 @@ body {
     flex-shrink: 0;
 }
 
+.wrapper-sidebar {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
 
 .sidebar-menu {
     display: flex;
