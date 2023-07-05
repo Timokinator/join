@@ -227,29 +227,177 @@ header {
     line-height: 120%;
 }
 
+.single-task-details {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 125;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: auto;
+}
+
+.container-single-task {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    border-radius: 30px;
+    background-color: #FFF;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    color: black;
+    font-family: 'Inter', sans-serif;
+    width: 50%;
+    height: 55%;
+    padding: 50px;
+}
+
+.detail-task-category {
+    font-size: 27px;
+    line-height: 120%;
+}
+
+.detail-task-title {
+    font-size: 61px;
+    font-weight: 700;
+    padding: 24px 0;
+    line-height: 120%;
+    color: #2A3647;
+}
+
+.detail-task-description {
+    font-size: 21px;
+    line-height: 120%;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.detail-task-date {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 64px;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.detail-task-date span {
+    font-weight: 700;
+}
+
+.detail-task-prio {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 64px;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.detail-task-prio span {
+    font-weight: 700;
+}
+
+.test {
+    color: white;
+}
+
+.border-urgent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 8px 4px;
+    border: 3px solid red;
+    border-radius: 10px;
+}
+
+.border-medium {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 8px 4px;
+    border: 3px solid orange;
+    border-radius: 10px;
+}
+
+.border-low {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 8px 4px;
+    border: 3px solid green;
+    border-radius: 10px;
+}
+
+.detail-task-member {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 24px;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+
+.detail-task-member span {
+    font-weight: 700;
+}
+
+
+.detail-task-close-btn {
+    width: 40px;
+    position: absolute;
+    right: 24px;
+    top: 24px;
+}
+
+.detail-task-close-btn:hover {
+    cursor: pointer;
+    scale: 1.2;
+
+}
+
+
+
 
 /* Colors for category */
 
 .accounting {
-    background-color: blue ;
+    background-color: blue;
 }
 
 .sales {
-    background-color: green ;
+    background-color: green;
 }
 
 
 .marketing {
-    background-color: violet ;
+    background-color: violet;
 }
 
 
 .development {
-    background-color: orange ;
+    background-color: orange;
 }
 
 .purchase {
-    background-color: red ;
+    background-color: red;
 }
 
 
