@@ -8,18 +8,20 @@
     <link rel="stylesheet" href="../style/landingPage.css">
 </head>
 
-<body>
-    <img src="../assets/icons/Button wo icon v1.svg" alt="" class="logoImg">
-   
-        <div class="signUpNav">
-            <img src="../assets/img/join_logo_dark.svg" alt="" class="signUpBtnImg">
-            <a href="../html/signUp.html" class="navSignUpLink">
-                <p>Not a Join user?</p>
-            </a>
-        </div>
-   
+<body onload="getUsersInfo()">
+        <div class="msgBox visible">Du hast dich erfolgreich Registriert</div>
+    <img src="../assets/img/join_logo_dark.svg" alt="" class="logoImg">
+
+    <div class="signUpNav">
+        <a href="../html/signUp.html" class="navSignUpLink">
+            <p>Not a Join user?</p>
+        </a>
+        <a href="../html/signUp.html"><button>Sign up</button></a>
+    </div>
+
     <div id="logInContainer">
-        <form onsubmit="register(); return false;" id="register">
+
+        <form onsubmit="logIn(); return false;" id="register">
 
             <h1>Log In</h1>
             <img src="../assets/icons/blueLine.svg" alt="">
@@ -40,8 +42,8 @@
                 <a href="../html/forgetPassword.html" class="forgetPasswordLink">Forgot my password</a>
             </div>
             <div class="formBtnContainer">
-                <button onclick="logIn()" id="logInBtn">Log in</button>
-                <button onclick="guestLogIn()" id="guestLogInBtn">Guest Log In</button>
+                <button type="submit" id="logInBtn">Log in</button>
+                <button onclick="guestLogIn()" id="guestLogInBtn">Guest Log in</button>
             </div>
         </form>
     </div>

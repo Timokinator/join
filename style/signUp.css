@@ -18,6 +18,15 @@ body {
     left: 77px;
 }
 
+.arrowLeft {
+    width: 37px;
+    height: 37px;
+
+    position: absolute;
+    left: 31px;
+    top: 35px;
+}
+
 .signUpContainer {
     display: flex;
     justify-content: center;
@@ -99,4 +108,3 @@ form button {
     background: #2A3647;
     color: white;
 }
-
