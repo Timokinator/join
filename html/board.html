@@ -1,26 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join / Board</title>
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/stlye_board.css">
+
 </head>
+
 <body onload="includeHtml()">
     <div w3-include-html="frame.html"></div>
     <div class="container-content">
         <div class="title-mobile">
             <span>Kanban Project Management Tool</span>
         </div>
-        <h1 class="headline-menu">Board</h1>
+        <header>
+            <h1 class="headline-menu">Board</h1>
+            <div class="container-search-and-add-task">
+                <div class="buttons-right-side-header-board">
+                    <div class="container-input-board">
+                        <input class="search_input_board" placeholder="Find Task" type="text" name=""
+                            id="search_input_board">
+                        <div class="container-img-input-board">
+                            <img src="../assets/icons/icon_small_line_vertical.svg" alt="">
+                            <img onclick="findTask()" class="img-lens-board" src="../assets/icons/icon_lens.svg" alt="">
+                        </div>
+                    </div>
+
+                    <button class="btn-add-task-header-board">
+                        Add Task
+                        <img src="../assets/icons/icon_plus_bright.svg" alt="">
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </header>
 
 
 
     </div>
-    
+
 
 
     <script src="../script/script_frame.js"></script>
-    
+    <script src="../script/storage.js"></script>
+    <script src="../script/script_board.js"></script>
+    <script src="../script/addTask.js"></script>
+
+
 </body>
+
 </html>
