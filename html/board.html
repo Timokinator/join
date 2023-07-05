@@ -10,7 +10,7 @@
 
 </head>
 
-<body onload="includeHtml()">
+<body onload="includeHtml(); initBoard()">
     <div w3-include-html="frame.html"></div>
     <div class="container-content">
         <div class="title-mobile">
@@ -48,7 +48,7 @@
                     </button>
                 </div>
 
-                <div class="container-single-tasks-board" id="container_tasks-toDo_board">
+                <div class="container-single-tasks-board" id="container_tasks_board_todo">
 
                 </div>
 
@@ -65,6 +65,11 @@
                         <img class="" src="../assets/icons/icon_plus_dark.svg" alt="">
                     </button>
                 </div>
+
+                <div class="container-single-tasks-board" id="container_tasks_board_progress">
+
+                </div>
+
             </div>
 
 
@@ -76,6 +81,13 @@
                         <img class="" src="../assets/icons/icon_plus_dark.svg" alt="">
                     </button>
                 </div>
+
+
+                <div class="container-single-tasks-board" id="container_tasks_board_awaiting">
+
+                </div>
+
+
             </div>
 
 
@@ -87,6 +99,11 @@
                         <img class="" src="../assets/icons/icon_plus_dark.svg" alt="">
                     </button>
                 </div>
+
+                <div class="container-single-tasks-board" id="container_tasks_board_done">
+
+                </div>
+
             </div>
 
 
