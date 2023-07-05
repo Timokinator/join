@@ -46,13 +46,19 @@
 
                 <div class="container-input">
                     <span class="form-text-add-task">Assigned to</span>
-                    <select class="inputfield-add-task" type="text" required name="" id="assignedTo_form">
+                    <select oninput="addMember()" class="inputfield-add-task" type="text" required name="" id="assignedTo_form">
                         <option value="" disabled selected>Select contacts</option>
                         <option value="timo">Timo</option>
                         <option value="filip">Filip</option>
                         <option value="benjamin">Benjamin</option>
 
                     </select>
+
+                    <div class="selected-members-add-task" id="selected_members_add_task">
+                        
+                    </div>
+
+
                 </div>
             </div>
 
@@ -103,7 +109,7 @@
             </div>
 
             <div class="btn-container-add-task">
-                <button onclick="reset(); resetPrioValue(); resetSubtaskArray()" id="btn_clear_task" type="button" for
+                <button onclick="reset(); resetPrioValue(); resetSubtaskArray(); resetAssignedTo()" id="btn_clear_task" type="button" for
                     class="btn-clear">
                     <span>Clear</span>
                     <img src="../assets/icons/icon_cross_dark.svg" alt="">

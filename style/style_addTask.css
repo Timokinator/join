@@ -198,6 +198,32 @@ option {
     padding: 4px 0;
 }
 
+.selected-members-add-task {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+
+}
+
+
+.member-add-task {
+    border-radius: 10px;
+    padding: 8px;
+    background-color: rgb(49, 49, 176);
+    color: #FFF;
+}
+
+.member-add-task:hover {
+    cursor: pointer;
+    background-color: red;
+    background: url(../assets/icons/icon_cross_dark.svg);
+    background-position: center;
+    background-size: cover;
+    
+}
+
+
 
 
 /* Responsive */

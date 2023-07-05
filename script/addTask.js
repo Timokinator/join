@@ -1,5 +1,6 @@
 let tasks = [];
 let subtasks = [];
+let assignedTo = [];
 
 
 function pushToArray(title, description, category, assignedTo, dueDate, prio, subtasks, status) {
@@ -104,6 +105,49 @@ async function addTask() {
     resetPrioValue();
     resetSubtaskArray();
 
+};
+
+
+function addMember() {
+    let member = document.getElementById('assignedTo_form')
+
+    if (assignedTo.indexOf(member.value) == -1) {
+        assignedTo.push(member.value)
+    }
+
+    console.log(member.value);
+    console.log(assignedTo);
+    renderMembers();
+
+}
+
+function renderMembers() {
+    let content = document.getElementById('selected_members_add_task');
+    content.innerHTML = '';
+
+    for (let i = 0; i < assignedTo.length; i++) {
+        const member = assignedTo[i];
+        content.innerHTML += templateMembers(i);
+    };
+};
+
+function resetAssignedTo() {
+    assignedTo = [];
+    renderMembers();
+}
+
+function templateMembers(i) {
+    return /*html*/`
+      <div onclick=deleteMember(${i}) class="member-add-task">
+        <span>${assignedTo[i].slice(0,1).toUpperCase()}${assignedTo[i].slice(1)}</span>
+      </div>
+    `;
+};
+
+function deleteMember(i) {
+    assignedTo.splice(i,1);
+    renderMembers();
+    document.getElementById('assignedTo_form').value = '';
 };
 
 
