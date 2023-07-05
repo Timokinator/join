@@ -75,7 +75,7 @@ header {
     justify-content: center;
     align-items: center;
     gap: 12px;
-    padding: 18px 10px;
+    padding: 18px 12px;
     border-radius: 10px;
     border: 1px solid #2A3647;
     background-color: #2A3647;
@@ -90,4 +90,42 @@ header {
 .btn-add-task-header-board:hover {
     cursor: pointer;
     scale: 1.03;
+}
+
+.btn-plus-row-status-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    gap: 10px;
+    border-radius: 10px;
+    border: 2px solid #2A3647;
+}
+
+.btn-plus-row-status-board:hover {
+    cursor: pointer;
+    scale: 1.05;
+}
+
+.container-rows-board {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+}
+
+.row-status-board {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.headline-row-status-board {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
 }
