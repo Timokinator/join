@@ -216,7 +216,6 @@ option {
 
 .member-add-task:hover {
     cursor: pointer;
-    background-color: red;
     background: url(../assets/icons/icon_cross_dark.svg);
     background-position: center;
     background-size: cover;

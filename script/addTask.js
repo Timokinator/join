@@ -3,13 +3,13 @@ let subtasks = [];
 let assignedTo = [];
 
 
-function pushToArray(title, description, category, assignedTo, dueDate, prio, subtasks, status) {
+function pushToArray(title, description, category, member, dueDate, prio, subtasks, status) {
     tasks.push(
         {
             'title': title,
             'description': description,
             'category': category,
-            'assignedTo': assignedTo,
+            'assignedTo': member,
             'dueDate': dueDate,
             'prio': prio,
             'subtasks': subtasks,
@@ -76,7 +76,7 @@ function templateSubtasks(i) {
             <img onclick="deleteSubtask(${i})" id="delete_btn_subtasks${i}" src="../assets/icons/trash.png" alt="">
         </div>
     `;
-}
+};
 
 
 function deleteSubtask(i) {
@@ -86,25 +86,23 @@ function deleteSubtask(i) {
 
 
 async function addTask() {
-
     let title = document.getElementById('title_form').value;
     let description = document.getElementById('description_form').value;
     let category = document.getElementById('category_form').value;
-    let assignedTo = document.getElementById('assignedTo_form').value;
+    let member = assignedTo;
     let dueDate = document.getElementById('dueDate_form').value;
     let prio = document.getElementById('prio_hidden').value;
     let subtasks_task = subtasks;
     let status = 'todo';
 
     if (title != '' && category != '' && assignedTo != '' && dueDate != '') {
-        pushToArray(title, description, category, assignedTo, dueDate, prio, subtasks_task, status);
+        pushToArray(title, description, category, member, dueDate, prio, subtasks_task, status);
         await safeTasks();
     }
 
     document.getElementById('form_add_task').reset();
     resetPrioValue();
     resetSubtaskArray();
-
 };
 
 
@@ -115,15 +113,22 @@ function addMember() {
         assignedTo.push(member.value)
     }
 
-    console.log(member.value);
-    console.log(assignedTo);
     renderMembers();
+};
 
-}
 
 function renderMembers() {
     let content = document.getElementById('selected_members_add_task');
+    let deleteArea = document.getElementById('click_to_delete_text');
     content.innerHTML = '';
+
+    if (assignedTo.length > 0) {
+        deleteArea.innerHTML = /*html*/`
+            <span>Click to delete</span>
+        `;
+    } else {
+        deleteArea.innerHTML = '';
+    };
 
     for (let i = 0; i < assignedTo.length; i++) {
         const member = assignedTo[i];
@@ -131,21 +136,24 @@ function renderMembers() {
     };
 };
 
+
 function resetAssignedTo() {
     assignedTo = [];
     renderMembers();
-}
+};
+
 
 function templateMembers(i) {
     return /*html*/`
       <div onclick=deleteMember(${i}) class="member-add-task">
-        <span>${assignedTo[i].slice(0,1).toUpperCase()}${assignedTo[i].slice(1)}</span>
+        <span>${assignedTo[i].slice(0, 1).toUpperCase()}${assignedTo[i].slice(1)}</span>
       </div>
     `;
 };
 
+
 function deleteMember(i) {
-    assignedTo.splice(i,1);
+    assignedTo.splice(i, 1);
     renderMembers();
     document.getElementById('assignedTo_form').value = '';
 };
