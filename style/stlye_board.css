@@ -113,6 +113,9 @@ header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    gap: 32px;
+    padding-left: 32px;
+    padding-top: 48px;
 
 }
 
@@ -121,6 +124,8 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 4px;
+    width: 25%;
+    padding: 4px 8px;
 }
 
 .headline-row-status-board {
@@ -128,4 +133,15 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 8px;
+    width: 100%;
 }
+
+.headline-status-board {
+    color: #2A3647;
+    font-size: 21px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
