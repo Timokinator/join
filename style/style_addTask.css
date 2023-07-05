@@ -225,6 +225,15 @@ option {
 
 
 
+
+/* Colors for category */
+
+
+
+
+
+
+
 /* Responsive */
 
 @media (max-width: 850px) {
@@ -267,3 +276,6 @@ option {
         right: -45px;
     }
 }
+
+
+
