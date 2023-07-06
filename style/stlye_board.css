@@ -287,6 +287,7 @@ header {
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
+    white-space: nowrap;
 }
 
 .detail-task-date span {
@@ -372,6 +373,70 @@ header {
     scale: 1.2;
 
 }
+
+
+.detail-task-member-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 24px;
+
+}
+
+.container-initials-and-name-member-task-detail {
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    gap: 24px;
+}
+
+.img-member-task-detail {
+    width: 45px;
+}
+
+.container-delete-and-edit-task {
+    position: absolute;
+    right: 47px;
+    bottom: 61px;
+    display: flex;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    height: 50px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container-delete-task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFF;
+    height: 50px;
+    width: 50px;
+    border-radius: 10px 0 0 10px;
+    gap: 6px;
+}
+
+.container-edit-task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2A3647;
+    height: 50px;
+    width: 50px;
+    border-radius: 0 10px 10px 0;
+    gap: 6px;
+}
+
+.container-delete-task img:hover, .container-edit-task img:hover {
+    cursor: pointer;
+    scale: 1.2;
+}
+
+
+
 
 
 

@@ -11,3 +11,8 @@ async function includeHtml() {
         };
     };
 };
+
+
+function toSummary() {
+    window.location.href='../html/summary.html'
+};

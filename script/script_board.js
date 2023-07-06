@@ -121,6 +121,7 @@ function openTask(j) {
     content.classList.remove('d-none');
     content.innerHTML = templateDetailsTask(j);
     addPrioToDetailTask(j);
+    addMemberTaskDetail(j);
 
 };
 
@@ -172,11 +173,22 @@ function templateDetailsTask(j) {
 
             <div class="detail-task-member">
                 <span>Assigned to:</span>
-                <div id="detail_task_member"></div>                
+                <div class="detail-task-member-container" id="detail_task_member"></div>                
             </div>
 
             <img class="detail-task-close-btn" onclick="closeTaskDetail()" src="../assets/icons/icon_cross_dark.svg" alt="">
 
+            <div class="container-delete-and-edit-task">
+                <div class="container-delete-task">
+                    <img onclick="deleteTask(${j})" src="../assets/icons/icon_trash_dark.svg" alt="">
+                </div>
+
+                <div class="container-edit-task">
+                    <img onclick="editTask(${j})" src="../assets/icons/icon_pencil.svg" alt="">
+                </div>
+
+
+            </div>
 
         </div>
     `;
@@ -210,4 +222,42 @@ function addPrioToDetailTask(j) {
     };
 };
 
+
+function addMemberTaskDetail(j) {
+    let content = document.getElementById('detail_task_member');
+    content.innerHTML = '';
+
+    for (let k = 0; k < tasks[j]['assignedTo'].length; k++) {
+        const member = tasks[j]['assignedTo'][k];
+
+        content.innerHTML += renderMemberTaskDetail(member);
+        
+    }
+
+}
+
+// img muss noch ausgetauscht / gerendert werden wenn contacts fertig sind
+function renderMemberTaskDetail(member) {
+    return /*html*/`
+    <div class="container-initials-and-name-member-task-detail">
+        <img class="img-member-task-detail" src="../assets/img/logo_contact.svg" alt=""> 
+        <span>${member.slice(0, 1).toUpperCase()}${member.slice(1)}</span>
+    </div>
+
+
+    `;
+};
+
+
+async function deleteTask(j) {
+    tasks.splice(j, 1)
+    await safeTasks();
+    closeTaskDetail();
+    initBoard();
+};
+
+
+async function editTask(j) {
+    console.log('edit-function follows')
+}
 

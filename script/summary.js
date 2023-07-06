@@ -1,7 +1,9 @@
 let loggedInUser = [];
 let tasksInProgress = [];
 let tasksAwaitingFeedback = [];
-
+let tasksToDo = [];
+let tasksDone = [];
+let tasksUrgent = [];
 
 
 async function loadUserData() {
@@ -11,7 +13,7 @@ async function loadUserData() {
 
 
 function linkToBoardHTML() {
-    window.location.href = 'board.html'
+    window.location.href = '../html/board.html'
 };
 
 async function initSummary() {
@@ -52,6 +54,14 @@ function checkAndSortTasks() {
             tasksInProgress.push(task);
         } else if (task['status'] == 'feedback') {
             tasksAwaitingFeedback.push(task);
+        } else if (task['status'] == 'todo') {
+            tasksToDo.push(task);
+        } else if (task['status'] == 'done') {
+            tasksDone.push(task);
+        };
+
+        if (task['prio'] == 'urgent') {
+            tasksUrgent.push(task);
         };
     };
 };
