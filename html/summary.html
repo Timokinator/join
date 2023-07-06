@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join / Summary</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/summary.css">
 </head>
 
-<body onload="includeHtml()">
+<body onload="includeHtml(); loadUserData();">
     <div w3-include-html="frame.html"></div>
     <div class="container-content">
         <div class="title-mobile">
@@ -25,15 +25,52 @@
                 <span>Everything in a nutshell!</span>
             </div>
         </div>
+        <div class="progresContainer">
+            <div class="tasksBox">
+                <div class="tasksCounter tasks">
+                    <div class="innerTasksBox">
+                        <div class="tasksInBoar">5</div>
+                        <div class="tasksConten">Tasks in <br> Board</div>
+                    </div>
+                </div>
+                <div class="progresTasks tasks">
+                    <div class="innerTasksBox">
+                        <div class="tasksInProgres">2</div>
+                        <div class="tasksConten">Tasks in <br> Progress</div>
+                    </div>
+                </div>
+                <div class="feedbackBox tasks">
+                    <div class="innerTasksBox">
+                        <div class="awaitingTasks">2</div>
+                        <div class="tasksConten">Awaiting <br> Feedback</div>
+                    </div>
+                </div>
+            </div>
+            <div class="timeBox">
+                <div class="prioBox"></div>
+                <div class="dateBox"></div>
+            </div>
+            <div class="toDos">
+                <div class="currentToDo"></div>
+                <div class="finishedToDos"></div>
+            </div>
+        </div>
+        <!-- <div class="greetingContainer">
+            <h1>Good morning,<br><span>Sofia Müller</span></h1>
+        </div> -->
 
 
 
 
 
 
-
+        <script src="../script/storage.js"></script>
+        <script src="../script/userLogin.js"></script>
+        <script src="../script/addTask.js"></script>
+        <script src="../script/summary.js"></script>
 
     </div>
+
 
 
 

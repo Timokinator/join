@@ -298,3 +298,15 @@ checkbox {
     align-items: flex-start;
     gap: 35px;
 }
+
+.warningBox {
+    font-size: 20px;
+    color: red;
+    display: none;
+}
+
+.counter {
+    margin-top: -20px;
+    font-size: 20px;
+    color: red;
+}

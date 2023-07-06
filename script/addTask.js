@@ -31,16 +31,16 @@ async function loadTasks() {
 
 function setPrioValue(prio) {
     document.getElementById('prio_hidden').value = prio;
-    let selectedButton = document.getElementById('prio_btn_' + prio)
+    let selectedButton = document.getElementById('prio_btn_' + prio);
     resetPrioValue();
-    selectedButton.classList.add('prio-selected')
+    selectedButton.classList.add('prio-selected');
 };
 
 
 function resetPrioValue() {
-    document.getElementById('prio_btn_urgent').classList.remove('prio-selected')
-    document.getElementById('prio_btn_medium').classList.remove('prio-selected')
-    document.getElementById('prio_btn_low').classList.remove('prio-selected')
+    document.getElementById('prio_btn_urgent').classList.remove('prio-selected');
+    document.getElementById('prio_btn_medium').classList.remove('prio-selected');
+    document.getElementById('prio_btn_low').classList.remove('prio-selected');
 };
 
 
@@ -113,7 +113,7 @@ function addMember() {
         assignedTo.push(member.value)
     }
 
-    renderMembers();
+    renderMembers()
 };
 
 

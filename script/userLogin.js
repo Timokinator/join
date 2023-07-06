@@ -1,4 +1,5 @@
 let users = [];
+let currentUser = [];
 
 
 async function register() {
@@ -48,13 +49,36 @@ async function loadUsers() {
 }
 
 
-function logIn() {
+async function logIn() {
     let email = document.getElementById('email');
     let password = document.getElementById('password');
     let user = users.find(u => u.email == email.value && u.password == password.value);
     if (user) {
         console.log(user);
+        currentUser.push(user);
+        await setItem('user', JSON.stringify(user));
+        currentUser = JSON.parse(await getItem('users'));
+        console.log(currentUser);
     } else {
         console.warn('User nicht gefunden');
+        failedLogIn(email, password);
+    }
+}
+
+let counter = 0;
+
+function failedLogIn(email, password) {
+    let warningbox = document.querySelector('.warningBox');
+    let counterBox = document.querySelector('.counter');
+    if (counter < 3) {
+        warningbox.style.display = 'block';
+        counterBox.textContent = counter + 1 + `/3 Versuchen`;
+        counter++
+        email.value = '';
+        password.value = '';
+        console.log(counter);
+    } else {
+        window.location.href = 'forgetPassword.html';
+        counter = 0;
     }
 }
