@@ -1,7 +1,9 @@
 let contacts = [];
+let initials = [];
 
-function init() {
+async function init() {
     renderContacts();
+    
 }
 
 function pushToArray(name, email, phone) {
@@ -17,7 +19,6 @@ function pushToArray(name, email, phone) {
 async function safeContacts() {
     await setItem('contact_array', JSON.stringify(contacts));
 };
-
 
 async function loadContacts() {
     contacts = JSON.parse(await getItem('contact_array'));
@@ -62,11 +63,12 @@ function renderContact(i) {
     let name = contacts[i]['name'];
     let email = contacts[i]['email'];
     let phone = contacts[i]['phone'];
+    let initial = initials[i];
 
     contactsboxbig.innerHTML += `
         <div class="contact_big flex juststart fdc">
             <div class="flex align fdr">
-                <div class="usercircle">BT</div>
+                <div class="usercircle">${initial}</div>
                     <div class="flex juststart alignstart fdc">          
                         <div class="contactNameBig FS47-500">${name}</div>
                         <div class="FS16-400 lightblue cursor">+ Add Task</div>
@@ -97,11 +99,12 @@ async function renderContacts() {
         let name = contacts[i]['name'];
         let email = contacts[i]['email'];
         let phone = contacts[i]['phone'];
+        let initial = initials[i];
 
         contactsboxsmall.innerHTML += `
     <div id="firstLetter"></div>
         <div onclick="renderContact(${i})" id="${i}" class="contact_small flex juststart align">   
-            <div class="usercircle">BT</div>
+            <div class="usercircle">${initial}</div>
         <div>    
             <div>
                 <div class="contactNameBig FS32pxbold">${name}</div>
@@ -111,6 +114,7 @@ async function renderContacts() {
     <div>        
         `;
     }
+    extractInitials(contacts);
 }
 
 function renderEditContact(i) {
@@ -131,13 +135,16 @@ function renderEditContact(i) {
                                 <button onclick="deleteContact(${i})" class="delete_btn">Delete</button>
                                 <button onclick="editContact(${i})" class="save_btn">Save</button>
                             </div>
+                            <img class="icon-name-add-contact" src="../assets/icons/icon_add_contact_user.svg" alt="">
+                            <img class="icon-email-add-contact" src="../assets/icons/icon_add_contact_mail.svg" alt="">
+                            <img class="icon-phone-add-contact" src="../assets/icons/icon_add_contact_phone.svg" alt="">
                     </form>
     `;
 }
 
 function deleteContact(i) {
 
-    if (i>10) {
+    if (contacts.length < 9) {
         contacts.splice(i, 1);
     } else {
         alert("For Testreasons we can´t delete a contact if there is only 10 or less available.");
@@ -158,7 +165,7 @@ function createdContactSuccessfully() {
         , 2000);
 }
 
-// funktioniert nicht 100%ig, Eintrag im Array wird geändert, jedoch gleichzeit auch als neuer Eintrag angehängt
+
 async function editContact(i) {
     const nameInput = document.getElementById('edit-name');
     const emailInput = document.getElementById('edit-email');
@@ -178,11 +185,30 @@ async function editContact(i) {
     console.log(contacts);
 
   // Weitere Aktionen nach der Aktualisierung des Arrays ausführen
-    pushToArray(newName, newEmail, newPhone);
+    document.getElementById("editContactCard").style.display = "none";
     await safeContacts();
+    await loadContacts();
     renderContacts();
-    
 }
+
+function extractInitials(contacts) {
+    for (var i = 0; i < contacts.length; i++) {
+        var name = contacts[i].name;
+        var initialsString = '';
+        for (var j = 0; j < name.length; j++) {
+            var char = name[j];
+        if (char === char.toUpperCase()) {
+            initialsString += char;
+        }
+    }
+        initials.push(initialsString);
+    }
+    return initials;
+}
+
+
+
+
 
 
 
