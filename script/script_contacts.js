@@ -32,6 +32,7 @@ async function addContact() {
         console.log('Test');
         pushToArray(name, email, phone);
         await safeContacts();
+        createdContactSuccessfully();
     }
     document.getElementById('form_add_contact').reset();
     renderContacts();
@@ -123,18 +124,16 @@ function renderEditContact(i) {
     editContactForm.innerHTML += `
     <img onclick="hideEditContactCard()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
                     <form id="form_edit_contact" class="editContactRight_right" onsubmit="return false">
-                        <input id="name" type="text" value="${name}" required>
-                        <input id="email" type="email" value="${email}" required>
-                        <input id="phone" type="tel"  value="${phone}" required>
+                        <input id="edit-name" type="text" value="${name}" required>
+                        <input id="edit-email" type="email" value="${email}" required>
+                        <input id="edit-phone" type="tel"  value="${phone}" required>
                             <div class="flex">
                                 <button onclick="deleteContact(${i})" class="delete_btn">Delete</button>
-                                <button onclick="editContact(${i})"  class="save_btn">Save</button>
+                                <button onclick="editContact(${i})" class="save_btn">Save</button>
                             </div>
                     </form>
     `;
 }
-
-
 
 function deleteContact(i) {
 
@@ -148,9 +147,42 @@ function deleteContact(i) {
     renderContacts();
 }
 
-//**non-functional */
-function editContact(i) {
-    const edit = contacts.splice(start, deleteCount, item1);
+function createdContactSuccessfully() {
+    document.getElementById("addContactCard").style.display = "none";
+    document.getElementById('success').style.display = '';
+    document.getElementById('success').classList.add("animate-contact");
+
+    setTimeout(() => {
+        document.getElementById('success').style.display = 'none';
+    }
+        , 2000);
 }
-//**non-functional */
+
+// funktioniert nicht 100%ig, Eintrag im Array wird geändert, jedoch gleichzeit auch als neuer Eintrag angehängt
+async function editContact(i) {
+    const nameInput = document.getElementById('edit-name');
+    const emailInput = document.getElementById('edit-email');
+    const phoneInput = document.getElementById('edit-phone');
+
+    const newName = nameInput.value;
+    const newEmail = emailInput.value;
+    const newPhone = phoneInput.value;
+
+    // Aktualisiere den vorhandenen Eintrag im Array
+    contacts[i].name = newName;
+    contacts[i].email = newEmail;
+    contacts[i].phone = newPhone;
+
+    
+  // Optional: Zeige die aktualisierten Werte in der Konsole an
+    console.log(contacts);
+
+  // Weitere Aktionen nach der Aktualisierung des Arrays ausführen
+    pushToArray(newName, newEmail, newPhone);
+    await safeContacts();
+    renderContacts();
+    
+}
+
+
 

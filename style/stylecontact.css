@@ -304,6 +304,15 @@ input {
 }
 
 /*edit ContactSlider CSS*/
+#edit-name {
+    border-style: none;
+} 
+#edit-email {
+    border-style: none;
+}
+#edit-phone {
+    border-style: none;
+}
 .editContactSlideWrapper{
     position: fixed;
     left: 50%;
@@ -375,6 +384,30 @@ input {
 
 #editContactCard {
     display: none;
+}
+/*success popup CSS*/
+.success {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2A3647;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    width: 326px;
+    height: 74px;
+    z-index: 9999999;
+    color: white;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: 20%;
+}
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+.animate-contact {
+    animation: 4s fadeOut ease-in-out;
 }
 
 /*colors for User Circle CSS*/
