@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../style/summary.css">
 </head>
 
-<body onload="includeHtml(); loadUserData();">
+<body onload="includeHtml(); loadUserData(); initSummary()">
     <div w3-include-html="frame.html"></div>
     <div class="container-content">
         <div class="title-mobile">
@@ -26,24 +26,24 @@
                 <span>Everything in a nutshell!</span>
             </div>
         </div>
-        <div class="progresContainer">
+        <div class="progressContainer">
             <div class="tasksBox">
-                <div class="tasksCounter tasks">
+                <div onclick="linkToBoardHTML()" class="tasksCounter tasks">
                     <div class="innerTasksBox">
-                        <div class="tasksInBoar">5</div>
-                        <div class="tasksConten">Tasks in <br> Board</div>
+                        <div id="tasks_in_board" class="tasksInBoard">?</div>
+                        <div class="tasksContent">Tasks in <br> Board</div>
                     </div>
                 </div>
-                <div class="progresTasks tasks">
+                <div onclick="linkToBoardHTML()" class="progressTasks tasks">
                     <div class="innerTasksBox">
-                        <div class="tasksInProgres">2</div>
-                        <div class="tasksConten">Tasks in <br> Progress</div>
+                        <div id="tasks_in_progress" class="tasksInProgress">?</div>
+                        <div class="tasksContent">Tasks in <br> Progress</div>
                     </div>
                 </div>
-                <div class="feedbackBox tasks">
+                <div onclick="linkToBoardHTML()" class="feedbackBox tasks">
                     <div class="innerTasksBox">
-                        <div class="awaitingTasks">2</div>
-                        <div class="tasksConten">Awaiting <br> Feedback</div>
+                        <div id="awaiting_tasks" class="awaitingTasks">?</div>
+                        <div class="tasksContent">Awaiting <br> Feedback</div>
                     </div>
                 </div>
             </div>
@@ -65,10 +65,7 @@
 
 
 
-        <script src="../script/storage.js"></script>
-        <script src="../script/userLogin.js"></script>
-        <script src="../script/addTask.js"></script>
-        <script src="../script/summary.js"></script>
+       
 
     </div>
 
@@ -86,6 +83,9 @@
 
 
     <script src="../script/script_frame.js"></script>
+    <script src="../script/storage.js"></script>
+    <script src="../script/addTask.js"></script>
+    <script src="../script/summary.js"></script>
 </body>
 
 </html>
