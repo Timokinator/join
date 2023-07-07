@@ -20,6 +20,7 @@ async function initBoard() {
 };
 
 
+
 function renderTasksBoard() {
 
     for (let i = 0; i < stati.length; i++) {
@@ -229,7 +230,7 @@ function addMemberTaskDetail(j) {
         const member = tasks[j]['assignedTo'][k];
 
         content.innerHTML += renderMemberTaskDetail(member);
-        
+
     }
 
 }
@@ -296,7 +297,7 @@ function resetForm() {
 
 
 
-function templateFormAddTaskBoard(){
+function templateFormAddTaskBoard() {
     return /*html*/`
         <div class="container-formular-task-on-board" onclick="doNotClose(event)">
             <span class="title-formular-on-board">Add Task</span>
@@ -403,7 +404,7 @@ function templateFormAddTaskBoard(){
                         <img src="../assets/icons/icon_cross_dark.svg" alt="">
                     </button>
 
-                    <button onclick="addTask()" class="btn-create-task">
+                    <button onclick="addTask(); closeAddTaskBoardWithButton()" class="btn-create-task">
                         <span>Creat Task</span>
                         <img src="../assets/icons/icon_check_bright.svg" alt="">
                     </button>
@@ -411,5 +412,13 @@ function templateFormAddTaskBoard(){
                 </div>
             </form>
         </div>
+        
+    </div>   
     `;
+};
+
+
+function closeAddTaskBoardWithButton() {
+    let content = document.getElementById('container_add_new_task_from_button');
+    content.classList.add('d-none');
 };

@@ -577,4 +577,8 @@ header {
         width: 80vw;
     }
 
+    .container-single-task {
+        width: 80%;
+    }
+
 }

@@ -108,7 +108,6 @@ async function addTask() {
 
 function addMember() {
     let member = document.getElementById('assignedTo_form')
-
     if (assignedTo.indexOf(member.value) == -1) {
         assignedTo.push(member.value)
     }
