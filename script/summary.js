@@ -4,6 +4,7 @@ let tasksAwaitingFeedback = [];
 let tasksToDo = [];
 let tasksDone = [];
 let tasksUrgent = [];
+let tasksDates = [];
 
 
 async function loadUserData() {
@@ -23,6 +24,9 @@ async function initSummary() {
     loadTasksInProgress();
     loadTasksAwaitingFeedback();
     loadTasksUrgent();
+    loadTasksDueDates();
+    loadTasksToDo();
+    loadTasksDone();
 };
 
 
@@ -54,6 +58,26 @@ function loadTasksUrgent() {
 };
 
 
+function loadTasksDueDates () {
+    let content = document.getElementById('deadline_summary_date');
+    let dueDate = tasksDates[0];
+    content.innerHTML = dueDate;
+};
+
+function loadTasksToDo() {
+    let content = document.getElementById('summary_todo_text');
+    let amountTasks = tasksToDo.length;
+    content.innerHTML = amountTasks
+};
+
+
+function loadTasksDone() {
+    let content = document.getElementById('summary_done_text');
+    let amountTasks = tasksDone.length;
+    content.innerHTML = amountTasks
+};
+
+
 function checkAndSortTasks() {
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
@@ -71,6 +95,9 @@ function checkAndSortTasks() {
         if (task['prio'] == 'urgent') {
             tasksUrgent.push(task);
         };
+
+        tasksDates.push(task['dueDate']);
+        tasksDates.sort();
     };
 };
 
