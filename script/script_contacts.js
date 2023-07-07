@@ -8,12 +8,13 @@ async function init() {
     renderContacts();
 }
 // Function to push the entered contacts into the "contacts" array
-function pushToArray(name, email, phone) {
+function pushToArray(name, email, phone, color) {
     contacts.push(
         {
             'name': name,
             'email': email,
             'phone': phone,
+            'color': color,
         }
     );
 };
@@ -73,12 +74,13 @@ function renderContact(i) {
     let name = contacts[i]['name'];
     let email = contacts[i]['email'];
     let phone = contacts[i]['phone'];
+    let color = contacts[i]['color'];
     let initial = initials[i];
 
     contactsboxbig.innerHTML += `
         <div class="contact_big flex juststart fdc">
             <div class="flex align fdr">
-                <div class="usercircle">${initial}</div>
+                <div style="background-color:${color}" id="usercircle${i}" class="usercircle">${initial}</div>
                     <div class="flex juststart alignstart fdc">          
                         <div class="contactNameBig FS47-500">${name}</div>
                         <div class="FS16-400 lightblue cursor">+ Add Task</div>
@@ -111,12 +113,14 @@ async function renderContacts() {
         let name = contacts[i]['name'];
         let email = contacts[i]['email'];
         let phone = contacts[i]['phone'];
+        let color = contacts[i]['color'];
         let initial = initials[i];
+
 
         contactsboxsmall.innerHTML += `
     <div id="firstLetter"></div>
         <div onclick="renderContact(${i})" id="${i}" class="contact_small flex juststart align">   
-            <div class="usercircle">${initial}</div>
+            <div style="background-color:${color}" id="usercircle${i}" class="usercircle">${initial}</div>
         <div>    
             <div>
                 <div class="contactNameBig FS32pxbold">${name}</div>
@@ -125,6 +129,7 @@ async function renderContacts() {
         </div>
     <div>        
         `;
+    assignRandomColorToDiv(i)
     }
 }
 
@@ -220,6 +225,30 @@ async function extractInitials(contacts) {
     }
     return initials;
 }
+
+//Function generates random colors and assigns them to the "Usercircle" in which the initials are also there
+function assignRandomColorToDiv(i) {
+    // Generate random RGB values
+    var red = Math.floor(Math.random() * 256);
+    var green = Math.floor(Math.random() * 256);
+    var blue = Math.floor(Math.random() * 256);
+
+    // Convert RGB values to a color string
+    var color = "rgb(" + red + ", " + green + ", " + blue + ")";
+
+    // Select div container with id and set background color
+    var containerId = "usercircle" + i;
+    var container = document.getElementById(containerId);
+    container.style.backgroundColor = color;
+
+    // Farbwert dem entsprechenden Objekt im Array "contacts" zuordnen
+    contacts[i].color = color;
+
+    safeContacts();
+    loadContacts();
+}
+
+
 
 
 
