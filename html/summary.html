@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="container_summary_done_todo">
-                    <div class="container-summary-todo">
+                    <div onclick="linkToBoardHTML()" class="container-summary-todo">
                         <img src="../assets/icons/icon_pencil_summary_with_circle.svg" alt="">
 
                         <div class="container-summary-todo-amount-and-text">
@@ -79,7 +79,7 @@
                         </div>
                     </div>
 
-                    <div class="container-summary-done">
+                    <div onclick="linkToBoardHTML()" class="container-summary-done">
                         <img src="../assets/icons/icon_done_summary_with_circle.svg" alt="">
 
                         <div class="container-summary-done-amount-and-text">
@@ -93,7 +93,8 @@
 
 
             <div class="greetingContainer">
-                <h1>Good morning,<br><span>Sofia Müller</span></h1>
+                <span class="summary-good-morning">Good morning,<br><span id="summary_username"
+                        class="summary-username">Guest</span></span>
             </div>
 
 

@@ -23,11 +23,11 @@
             <div class="container-search-and-add-task">
                 <div class="buttons-right-side-header-board">
                     <div class="container-input-board">
-                        <input class="search_input_board" placeholder="Find Task" type="text" name=""
+                        <input onkeyup="searchTaskFromBoard()" class="search_input_board" placeholder="Find Task" type="text" name=""
                             id="search_input_board">
                         <div class="container-img-input-board">
                             <img src="../assets/icons/icon_small_line_vertical.svg" alt="">
-                            <img onclick="findTask()" class="img-lens-board" src="../assets/icons/icon_lens.svg" alt="">
+                            <img class="img-lens-board" src="../assets/icons/icon_lens.svg" alt="">
                         </div>
                     </div>
 

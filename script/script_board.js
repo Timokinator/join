@@ -22,31 +22,49 @@ async function initBoard() {
 
 
 function renderTasksBoard() {
+    let search = document.getElementById('search_input_board').value;
 
     for (let i = 0; i < stati.length; i++) {
         const status = stati[i];
-
         let content = document.getElementById('container_tasks_board_' + status);
         content.innerHTML = '';
 
-        for (let j = 0; j < tasks.length; j++) {
-            const task = tasks[j];
+        if (search == '') {
+            renderTasksBoardWithoutSearch(content, status);
+        } else {
+            renderTasksBoardWithSearch(content, status, search);
+        }
+    };
+};
 
-            if (task['status'] == status) {
 
+function renderTasksBoardWithSearch(content, status, search) {
+    console.log(search)
+
+    for (let j = 0; j < tasks.length; j++) {
+        const task = tasks[j];
+        if (task['status'] == status) {
+            if (task['title'].toLowerCase().includes(search) || task['description'].toLowerCase().includes(search)) {
                 content.innerHTML += templateSingleTask(task, j)
-
                 addMemberToSingleTask(task, j);
                 addPrioToSingleTask(task, j);
+            };
+        };
+    };
+};
 
-            }
 
+function renderTasksBoardWithoutSearch(content, status) {
+    for (let j = 0; j < tasks.length; j++) {
+        const task = tasks[j];
+        if (task['status'] == status) {
+            content.innerHTML += templateSingleTask(task, j);
+            addMemberToSingleTask(task, j);
+            addPrioToSingleTask(task, j);
+        };
+    };
+};
 
-        }
-
-    }
-
-}
 
 function templateSingleTask(task, j) {
     return /*html*/`
@@ -422,4 +440,9 @@ function closeAddTaskBoardWithButton() {
     content.classList.add('d-none');
 };
 
+
+function searchTaskFromBoard() {
+    let search = document.getElementById('search_input_board').value;
+    renderTasksBoard();
+};
 

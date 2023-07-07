@@ -58,11 +58,6 @@ header {
 
 }
 
-.img-lens-board:hover {
-    cursor: pointer;
-    scale: 1.1;
-}
-
 .buttons-right-side-header-board {
     display: flex;
     align-items: center;
