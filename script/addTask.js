@@ -73,7 +73,7 @@ function templateSubtasks(i) {
     return /*html*/`
         <div class="text-subtask">
             ${subtasks[i]}
-            <img onclick="deleteSubtask(${i})" id="delete_btn_subtasks${i}" src="../assets/icons/trash.png" alt="">
+            <img onclick="deleteSubtask(${i})" class="hover" id="delete_btn_subtasks${i}" src="../assets/icons/trash.png" alt="">
         </div>
     `;
 };

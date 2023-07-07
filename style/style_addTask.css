@@ -19,6 +19,7 @@
     padding-left: 32px;
     gap: 64px;
     max-width: fit-content;
+    position: relative;
 }
 
 .form-text-add-task {

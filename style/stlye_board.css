@@ -162,6 +162,7 @@ header {
     width: 100%;
 }
 
+
 .single-task {
     display: flex;
     justify-content: flex-start;
@@ -435,9 +436,51 @@ header {
     scale: 1.2;
 }
 
+.container-add-new-task-from-button {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 125;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: auto;
+}
+
+.container-formular-task-on-board {
+    background-color: white;
+    border-radius: 30px;
+    padding: 64px 72px 128px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 48px;
+}
+
+.btn-container-add-task-on-board {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    position: absolute;
+    bottom: -72px;
+    right: 0;
+
+}
 
 
-
+.title-formular-on-board {
+ padding-left: 32px;
+ font-size: 61px;
+ font-family: 'Inter', sans-serif;
+ font-style: normal;
+ font-weight: 700;
+ line-height: 120%;
+}
 
 
 
@@ -529,4 +572,9 @@ header {
     .container-single-tasks-board {
         padding-top: 32px;
     }
+
+    .container-formular-task-on-board {
+        width: 80vw;
+    }
+
 }
