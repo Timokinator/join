@@ -22,6 +22,7 @@ async function initSummary() {
     checkAndSortTasks();
     loadTasksInProgress();
     loadTasksAwaitingFeedback();
+    loadTasksUrgent();
 };
 
 
@@ -43,6 +44,13 @@ function loadTasksAwaitingFeedback() {
     let content = document.getElementById('awaiting_tasks');
     let amountTasks = tasksAwaitingFeedback.length;
     content.innerHTML = amountTasks;
+};
+
+
+function loadTasksUrgent() {
+    let content = document.getElementById('container_amount_urgent_number');
+    let amountTasks = tasksUrgent.length;
+    content.innerHTML = amountTasks
 };
 
 

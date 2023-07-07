@@ -17,7 +17,7 @@
     left: 355px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 35px;
+    gap: 36px;
 }
 
 .topbar-user-img {
@@ -91,8 +91,68 @@
 
 }
 
+.container-summary-urgent-date {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background-color: #FFF;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    padding: 28px 48px;
+    width: 100%;
 
+}
 
+.container-summary-urgent-date:hover {
+    cursor: pointer;
+    scale: 1.03;
+}
+
+.urgent-img-summary {
+    background: url(../assets/icons/icon_container_red_circle_urgent.svg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 24px;
+}
+
+.container-amount-urgent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.container-amount-urgent-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.container-urgent-amount-and-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.container-urgent-amount-and-text span {
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    color: #2A3647;
+}
 
 
 
