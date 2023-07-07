@@ -1,5 +1,6 @@
 let contacts = [];
 let initials = [];
+let sortedalphabetically = [];
 
 // Asynchronous function that initializes all necessary functions when loading the page
 async function init() {
@@ -17,17 +18,17 @@ function pushToArray(name, email, phone, color) {
             'color': color,
         }
     );
-};
+}
 
 // Asynchronous function to save all contacts from array "contacts" to remote storage
 async function safeContacts() {
     await setItem('contact_array', JSON.stringify(contacts));
-};
+}
 
 // Asynchronous function to load all contacts from the remote storage and assign them to the "contacts" array
 async function loadContacts() {
     contacts = JSON.parse(await getItem('contact_array'));
-};
+}
 
 // Asynchronous function to add a new contact to the "contacts" array
 async function addContact() {
@@ -106,9 +107,7 @@ function renderContact(i) {
 async function renderContacts() {
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
-    
-    await loadContacts();
-
+    await loadContacts();  
     
     for (let i = 0; i < contacts.length; i++) {
         const element = contacts[i];
@@ -248,6 +247,29 @@ function assignRandomColorToDiv(i) {
     contacts[i].color = color;
 }
 
+// function alphabetically sorts the "contacts" array by the first capital letter of the "name" field and pushes it into a new array named "sortedalphabetically"
+function sortContactsAlphabetically(contacts) {
+
+    // Sort the contacts by the first capital letter of the name
+    contacts.sort((a, b) => {
+        const nameA = a.name.charAt(0).toUpperCase();
+        const nameB = b.name.charAt(0).toUpperCase();
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
+    });
+  
+    // Add the sorted contacts to the "alphabeticallySorted" array
+    contacts.forEach(contact => {
+        sortedalphabetically.push(contact);
+    });
+  
+    return sortedalphabetically;
+  }
 
 
 

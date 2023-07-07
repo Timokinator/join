@@ -82,12 +82,16 @@
 
 }
 .contacts-left {
-    width: 453px;
+    min-width: 453px;
     height: calc(100vh - 90px);
-    overflow-y: scroll
+    box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
+    overflow-y: scroll;
+    background: #ffffff;
 }
 
 .contacts-right {
+    margin-top: 82px;
+    width: -webkit-fill-available;
     position: relative;
     background-color: rgb(246,247,248);
     display: block;
@@ -124,7 +128,6 @@
 .subHeader {
     width: 569px;
     height: 73px;
-    margin-top: calc(171px - 89px);
     margin-left: 100px;
     display: flex;
     justify-content: flex-start;
