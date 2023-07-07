@@ -52,7 +52,7 @@ function checkAndSortTasks() {
 
         if (task['status'] == 'progress') {
             tasksInProgress.push(task);
-        } else if (task['status'] == 'feedback') {
+        } else if (task['status'] == 'awaiting') {
             tasksAwaitingFeedback.push(task);
         } else if (task['status'] == 'todo') {
             tasksToDo.push(task);

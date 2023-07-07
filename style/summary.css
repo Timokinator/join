@@ -7,7 +7,7 @@
 @font-face {
     font-family: Inter;
     src: url(../assets/fonts/Inter/Inter-VariableFont_slnt\,wght.ttf);
-  }
+}
 
 .progressContainer {
     display: flex;
@@ -71,7 +71,9 @@
     line-height: 120%;
 }
 
-.tasksInBoard, .tasksInProgress, .awaitingTasks {
+.tasksInBoard,
+.tasksInProgress,
+.awaitingTasks {
     color: #000;
     text-align: center;
     font-family: Inter;
@@ -79,4 +81,83 @@
     font-style: normal;
     font-weight: 600;
     line-height: 120%;
+}
+
+.container_progress_and_welcome {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 64px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Responsive */
+
+
+@media (max-width: 1100px) {
+    .container_progress_and_welcome {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        padding-left: 32px;
+    }
+
+    .progressContainer {
+        padding-top: 0;
+        padding-left: 0;
+    }
+
+    .greetingContainer {
+        padding-top: 32px;
+    }
+
+}
+
+
+@media (max-width: 850px) {
+    .progressContainer {
+        width: 100%;
+    }
+
+    .tasksBox {
+        width: 100%;
+    }
+
+    .tasks {
+        width: 100%;
+        max-width: 170px;
+        min-width: 85px;
+        gap: 2px;
+    }
+
+    .container-content {
+        width: 90%;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+    .tasks {
+        scale: 0.9;
+        ;
+    }
+
+    .innerTasksBox {
+        scale: 0.8;
+    }
+
+    .tasksBox {
+        gap: 2px;
+    }
+
 }
