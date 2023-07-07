@@ -1,11 +1,13 @@
 let contacts = [];
 let initials = [];
 
+// Asynchronous function that initializes all necessary functions when loading the page
 async function init() {
+    await loadContacts();
+    await extractInitials(contacts);
     renderContacts();
-    
 }
-
+// Function to push the entered contacts into the "contacts" array
 function pushToArray(name, email, phone) {
     contacts.push(
         {
@@ -16,14 +18,17 @@ function pushToArray(name, email, phone) {
     );
 };
 
+// Asynchronous function to save all contacts from array "contacts" to remote storage
 async function safeContacts() {
     await setItem('contact_array', JSON.stringify(contacts));
 };
 
+// Asynchronous function to load all contacts from the remote storage and assign them to the "contacts" array
 async function loadContacts() {
     contacts = JSON.parse(await getItem('contact_array'));
 };
 
+// Asynchronous function to add a new contact to the "contacts" array
 async function addContact() {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
@@ -39,23 +44,28 @@ async function addContact() {
     renderContacts();
 }
 
+// Function hides "Contact Container"
 function hideAddContactCard() {
     document.getElementById("addContactCard").style.display = "none";
 }
 
+// Function shows "Contact Container"
 function showAddContactCard() {
     document.getElementById("addContactCard").style.display = "flex";
 }
 
+// Function hides "Edit Contact Container"
 function hideEditContactCard() {
     document.getElementById("editContactCard").style.display = "none";
 }
 
+// Function shows "Edit Contact Container"
 function showEditContactCard(i) {
     document.getElementById("editContactCard").style.display = "flex";
     renderEditContact(i);
 }
 
+// Function renders a specific contact in the detail view
 function renderContact(i) {
 
     contactsboxbig.innerHTML = '';
@@ -87,6 +97,8 @@ function renderContact(i) {
             <div class="FS16-400">${phone}</div>
         `;
 }
+
+// Asynchronous function renders all existing contacts
 async function renderContacts() {
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
@@ -114,9 +126,9 @@ async function renderContacts() {
     <div>        
         `;
     }
-    extractInitials(contacts);
 }
 
+// Function renders the "Edit Contact" container
 function renderEditContact(i) {
     editContactForm = document.getElementById('editContactForm')
     editContactForm.innerHTML = '';
@@ -142,8 +154,8 @@ function renderEditContact(i) {
     `;
 }
 
+// Function which deletes a specific contact in the array "contacts" at position [i].
 function deleteContact(i) {
-
     if (contacts.length < 9) {
         contacts.splice(i, 1);
     } else {
@@ -154,6 +166,7 @@ function deleteContact(i) {
     renderContacts();
 }
 
+// Function shows a popup for a certain time "created contact successfully"
 function createdContactSuccessfully() {
     document.getElementById("addContactCard").style.display = "none";
     document.getElementById('success').style.display = '';
@@ -165,7 +178,7 @@ function createdContactSuccessfully() {
         , 2000);
 }
 
-
+// Edit function Overwrites the values from the "contacts" array insofar as new data is entered
 async function editContact(i) {
     const nameInput = document.getElementById('edit-name');
     const emailInput = document.getElementById('edit-email');
@@ -175,23 +188,25 @@ async function editContact(i) {
     const newEmail = emailInput.value;
     const newPhone = phoneInput.value;
 
-    // Aktualisiere den vorhandenen Eintrag im Array
+    // Update the existing entry in the array
     contacts[i].name = newName;
     contacts[i].email = newEmail;
     contacts[i].phone = newPhone;
 
     
-  // Optional: Zeige die aktualisierten Werte in der Konsole an
+    // Optional: Display the updated values in the console
     console.log(contacts);
 
-  // Weitere Aktionen nach der Aktualisierung des Arrays ausführen
+    // Do more actions after array update
     document.getElementById("editContactCard").style.display = "none";
     await safeContacts();
     await loadContacts();
+    await extractInitials(contacts);
     renderContacts();
 }
 
-function extractInitials(contacts) {
+// Extracts the uppercase initials from the array "contacts"['name']
+async function extractInitials(contacts) {
     for (var i = 0; i < contacts.length; i++) {
         var name = contacts[i].name;
         var initialsString = '';
