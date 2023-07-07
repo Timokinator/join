@@ -296,7 +296,6 @@ function resetForm() {
 };
 
 
-
 function templateFormAddTaskBoard() {
     return /*html*/`
         <div class="container-formular-task-on-board" onclick="doNotClose(event)">
@@ -422,3 +421,5 @@ function closeAddTaskBoardWithButton() {
     let content = document.getElementById('container_add_new_task_from_button');
     content.classList.add('d-none');
 };
+
+
