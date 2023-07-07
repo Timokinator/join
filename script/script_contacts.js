@@ -40,6 +40,8 @@ async function addContact() {
         pushToArray(name, email, phone);
         await safeContacts();
         createdContactSuccessfully();
+        hideAddContactCard();
+
     }
     document.getElementById('form_add_contact').reset();
     renderContacts();
@@ -129,8 +131,8 @@ async function renderContacts() {
         </div>
     <div>        
         `;
-    assignRandomColorToDiv(i)
     }
+    extractInitials(contacts);
 }
 
 // Function renders the "Edit Contact" container
@@ -161,13 +163,14 @@ function renderEditContact(i) {
 
 // Function which deletes a specific contact in the array "contacts" at position [i].
 function deleteContact(i) {
-    if (contacts.length < 9) {
+    if (contacts.length > 9) {
         contacts.splice(i, 1);
     } else {
         alert("For Testreasons we can´t delete a contact if there is only 10 or less available.");
     }
-    safeContacts();
+    
     contactsboxbig.innerHTML = '';
+    hideEditContactCard();
     renderContacts();
 }
 
@@ -241,12 +244,10 @@ function assignRandomColorToDiv(i) {
     var container = document.getElementById(containerId);
     container.style.backgroundColor = color;
 
-    // Farbwert dem entsprechenden Objekt im Array "contacts" zuordnen
+    // Map the color value to the corresponding object in the "contacts" array
     contacts[i].color = color;
-
-    safeContacts();
-    loadContacts();
 }
+
 
 
 
