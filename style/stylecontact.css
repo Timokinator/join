@@ -21,6 +21,16 @@
     flex-direction: row;
 }
 
+.gap5 {
+    gap: 5px;
+}
+.gap6 {
+    gap: 6px;
+}
+.gap59 {
+    gap: 59px;
+}
+
 .cursor {
     cursor: pointer;
 }
@@ -69,6 +79,11 @@
     font-weight: 400;
 }
 
+.FS12-400 {
+    font-size: 12px;
+    font-weight: 400;
+}
+
 
 
 
@@ -82,6 +97,8 @@
 
 }
 .contacts-left {
+    display: flex;
+    justify-content: center;
     min-width: 453px;
     height: calc(100vh - 90px);
     box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
@@ -156,12 +173,20 @@
 
 }
 .contact_small {
+    display: block;
+    width: 357px;
+
+}
+
+.contact_small_content {
+    gap: 35px;
     padding: 15px 25px;
 }
-.contact_small a {
+
+.contact_small_content a {
     color: #29ABE2;
 }
-.contact_small:hover {
+.contact_small_content:hover {
     background-color:rgb(42,54,71);
     border-radius: 10px;
     color: white;
@@ -179,14 +204,27 @@
     text-align: center;
     font-size: 48px;
     color: white;
-    background-color: #FF7A00;
     width: 120px;
     height: 120px;
     border-radius: 70px;
-    border-style: solid white 3px;
+    border: solid white 3px;
+    margin-right: 54px;
+    margin-bottom: 21px;
+}
+.usercircle_small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+    width: 42px;
+    height: 42px;
+    border-radius: 70px;
+    border: solid white 3px;
     margin-left: 16px;
     margin-right: 16px;
-
 }
 /*Inputfields CSS*/
 

@@ -84,16 +84,18 @@ function renderContact(i) {
         <div class="contact_big flex juststart fdc">
             <div class="flex align fdr">
                 <div style="background-color:${color}" id="usercircle${i}" class="usercircle">${initial}</div>
-                    <div class="flex juststart alignstart fdc">          
+                    <div class="flex juststart alignstart fdc gap5">          
                         <div class="contactNameBig FS47-500">${name}</div>
                         <div class="FS16-400 lightblue cursor">+ Add Task</div>
                     </div>
             </div>
             <div class="flex align fdr">
-                <div class="flex align fdr">
+                <div class="flex align fdr gap59">
                     <div class="FS21-400">Contact Information</div>
-                    <img src="../assets/icons/icon_edit_contact_pencil.svg">
-                    <div onclick="showEditContactCard (${i})" class="FS16-400 cursor">Edit Contact</div>
+                    <div class="flex align fdr gap6 cursor">
+                        <img onclick="showEditContactCard (${i})" src="../assets/icons/icon_edit_contact_pencil.svg">
+                        <div onclick="showEditContactCard (${i})" class="FS16-400">Edit Contact</div>
+                    </div>
                 </div>
             </div>
             <p class="FS16-700">Email</p>
@@ -120,13 +122,13 @@ async function renderContacts() {
 
         contactsboxsmall.innerHTML += `
     <div id="firstLetter"></div>
-        <div onclick="renderContact(${i})" id="${i}" class="contact_small flex juststart align">   
-            <div style="background-color:${color}" id="usercircle${i}" class="usercircle">${initial}</div>
+        <div onclick="renderContact(${i})" id="${i}" class="contact_small_content flex juststart align">   
+            <div style="background-color:${color}" id="usercircle${i}" class="usercircle_small">${initial}</div>
         <div>    
             <div>
-                <div class="contactNameBig FS32pxbold">${name}</div>
+                <div class="FS21-400">${name}</div>
             <div>
-            <a href="mailto:${email}">${email}</a>
+            <a class="FS16-400" href="mailto:${email}">${email}</a>
         </div>
     <div>        
         `;
