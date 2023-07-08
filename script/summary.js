@@ -27,6 +27,7 @@ async function initSummary() {
     loadTasksDueDates();
     loadTasksToDo();
     loadTasksDone();
+    loadTasksGreeteng();
 };
 
 
@@ -58,7 +59,7 @@ function loadTasksUrgent() {
 };
 
 
-function loadTasksDueDates () {
+function loadTasksDueDates() {
     let content = document.getElementById('deadline_summary_date');
     let dueDate = tasksDates[0];
     content.innerHTML = dueDate;
@@ -77,10 +78,35 @@ function loadTasksDone() {
     content.innerHTML = amountTasks
 };
 
+function loadTasksGreeteng() {
+    implementCurrentTime();
+    let  mins = new Date().getMinutes();
+    if (mins == "00") {
+        implementCurrentTime();
+    }
+}
+
+setInterval(implementCurrentTime, 1000);
+
+function implementCurrentTime() {
+    let timeBox = document.getElementById('summary_username');
+let today = new Date();
+let dateHours = today.getHours();
+
+if (dateHours < 12) {
+    timeBox.innerHTML = 'Good Morning';
+}else if (dateHours < 18) {
+    timeBox.innerHTML = 'Hallo';
+}else if (dateHours < 24) {
+    timeBox.innerHTML = 'Good Evening';
+}
+}
+
+
 
 function checkAndSortTasks() {
     for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
+        let task = tasks[i];
 
         if (task['status'] == 'progress') {
             tasksInProgress.push(task);
