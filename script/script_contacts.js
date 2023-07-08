@@ -5,7 +5,7 @@ let sortedalphabetically = [];
 // Asynchronous function that initializes all necessary functions when loading the page
 async function init() {
     await loadContacts();
-    await extractInitials(contacts);
+    await extractInitials(sortedalphabetically);
     renderContacts();
 }
 // Function to push the entered contacts into the "contacts" array
@@ -35,17 +35,25 @@ async function addContact() {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
-
+    
     if (name != '' && email != '' && phone != '') {
-        console.log('Test');
         pushToArray(name, email, phone);
         await safeContacts();
         createdContactSuccessfully();
         hideAddContactCard();
 
+        // Index des neuen Kontakts im Array "contacts"
+        var newIndex = contacts.length - 1;
+
+        // Überprüfen, ob das Element mit der ID vorhanden ist, bevor die Farbe zugewiesen wird
+        var containerId = "usercircle" + newIndex;
+        var container = document.getElementById(containerId);
+        if (container) {
+            await assignRandomColorToDiv(newIndex);
+        }
     }
     document.getElementById('form_add_contact').reset();
-    renderContacts();
+    await init();
 }
 
 // Function hides "Contact Container"
@@ -71,7 +79,7 @@ function showEditContactCard(i) {
 
 // Function renders a specific contact in the detail view
 function renderContact(i) {
-
+    let contactsboxbig = document.getElementById('contactsboxbig');
     contactsboxbig.innerHTML = '';
 
     let name = contacts[i]['name'];
@@ -109,16 +117,18 @@ function renderContact(i) {
 async function renderContacts() {
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
-    await loadContacts();  
+    await loadContacts(); 
     
-    for (let i = 0; i < contacts.length; i++) {
-        const element = contacts[i];
-        let name = contacts[i]['name'];
-        let email = contacts[i]['email'];
-        let phone = contacts[i]['phone'];
-        let color = contacts[i]['color'];
+    sortedalphabetically = sortContactsAlphabetically(contacts);
+    extractInitials(sortedalphabetically);
+    
+    for (let i = 0; i < sortedalphabetically.length; i++) {
+        const element = sortedalphabetically[i];
+        let name = sortedalphabetically[i]['name'];
+        let email = sortedalphabetically[i]['email'];
+        let phone = sortedalphabetically[i]['phone'];
+        let color = sortedalphabetically[i]['color'];
         let initial = initials[i];
-
 
         contactsboxsmall.innerHTML += `
     <div id="firstLetter"></div>
@@ -133,7 +143,7 @@ async function renderContacts() {
     <div>        
         `;
     }
-    extractInitials(contacts);
+    extractInitials(sortedalphabetically);
 }
 
 // Function renders the "Edit Contact" container
@@ -163,16 +173,20 @@ function renderEditContact(i) {
 }
 
 // Function which deletes a specific contact in the array "contacts" at position [i].
-function deleteContact(i) {
+async function deleteContact(i) {
     if (contacts.length > 9) {
         contacts.splice(i, 1);
     } else {
         alert("For Testreasons we can´t delete a contact if there is only 10 or less available.");
     }
-    
+    let contactsboxbig = document.getElementById('contactsboxbig');
     contactsboxbig.innerHTML = '';
+    let contact = document.getElementById('contactsboxsmall');
+    contact.innerHTML = '';
+    await safeContacts();
+    await init();
     hideEditContactCard();
-    renderContacts();
+
 }
 
 // Function shows a popup for a certain time "created contact successfully"
@@ -210,28 +224,21 @@ async function editContact(i) {
     document.getElementById("editContactCard").style.display = "none";
     await safeContacts();
     await loadContacts();
-    await extractInitials(contacts);
+    await extractInitials(sortedalphabetically);
     renderContacts();
 }
 
 // Extracts the uppercase initials from the array "contacts"['name']
-async function extractInitials(contacts) {
-    for (var i = 0; i < contacts.length; i++) {
-        var name = contacts[i].name;
-        var initialsString = '';
-        for (var j = 0; j < name.length; j++) {
-            var char = name[j];
-        if (char === char.toUpperCase()) {
-            initialsString += char;
-        }
-    }
-        initials.push(initialsString);
-    }
-    return initials;
+function extractInitials(sortedContacts) {
+    initials = sortedContacts.map(contact => {
+        const name = contact.name;
+        const initialsString = name.match(/[A-Z]/g).join('');
+        return initialsString;
+    });
 }
 
 //Function generates random colors and assigns them to the "Usercircle" in which the initials are also there
-function assignRandomColorToDiv(i) {
+async function assignRandomColorToDiv(i) {
     // Generate random RGB values
     var red = Math.floor(Math.random() * 256);
     var green = Math.floor(Math.random() * 256);
@@ -245,8 +252,10 @@ function assignRandomColorToDiv(i) {
     var container = document.getElementById(containerId);
     container.style.backgroundColor = color;
 
-    // Map the color value to the corresponding object in the "contacts" array
+    // Update the corresponding contact object in the "contacts" array
     contacts[i].color = color;
+
+    await safeContacts();
 }
 
 // function alphabetically sorts the "contacts" array by the first capital letter of the "name" field and pushes it into a new array named "sortedalphabetically"
@@ -264,14 +273,14 @@ function sortContactsAlphabetically(contacts) {
         }
         return 0;
     });
-  
+
     // Add the sorted contacts to the "alphabeticallySorted" array
     contacts.forEach(contact => {
         sortedalphabetically.push(contact);
     });
-  
+
     return sortedalphabetically;
-  }
+}
 
 
 
