@@ -90,7 +90,7 @@
 .contacts-left {
     display: flex;
     justify-content: center;
-    min-width: 453px;
+    width: 30vw;
     height: calc(100vh - 90px);
     box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
     overflow-y: scroll;
@@ -99,11 +99,12 @@
 
 .contacts-right {
     margin-top: 82px;
-    width: -webkit-fill-available;
+    min-width: 70vw;
     position: relative;
     background-color: rgb(246,247,248);
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
 }
 
 .newContactContainer {
@@ -129,7 +130,7 @@
     border-radius: 8px;
     position: absolute;
     bottom: 67px;
-    right: 52px;
+    right: 352px;
 }
 .contacts-big {
     display: flex;
@@ -184,10 +185,21 @@
     color: white;
     cursor: pointer;
 }
+.contact_big_container {
+}
 
 .contact_big {
     margin-left: 100px;
     margin-top: 16px;
+    position: relative;
+    left: 0;
+    top: 0;
+    animation-name: slideInFromRight2;
+    animation-duration: 500ms;   
+}
+@keyframes slideInFromRight2 {
+    0%   {left: 150%; top:0;}
+    100% {left: 0; top:0;}
 }
 .usercircle {
     display: flex;
@@ -293,7 +305,7 @@ input {
     height: 594px;
     z-index: 1000;
     animation-name: slideInFromRight;
-    animation-duration: 2s;   
+    animation-duration: 500ms;   
 }
 @keyframes slideInFromRight {
     0%   {left: 150%; top:0;}
@@ -392,11 +404,15 @@ input {
     height: 594px;
     z-index: 1000;
     animation-name: slideInFromRight;
-    animation-duration: 2s;   
+    animation-duration: 500ms;
 }
 @keyframes slideInFromRight {
     0%   {left: 150%; top:0;}
     100% {left: 0; top:0;}
+}
+            slideOutToRight {
+    0%   {left: 0%; top:0;}
+    100% {left: 150%; top:0;}
 }
 .editContactLeft {
     color: white;
@@ -480,5 +496,66 @@ input {
     from {opacity: 1;}
     to {opacity: 0;}
 }
+
+/* Responsive */
+@media (max-width: 1250px) {
+    .subHeader {
+        margin-left:10px;
+    }
+    .contact_big {
+        margin-left:10px;
+    }
+    .contacts-left {
+        width: 25vw;
+    }
+    .contacts-right {
+        width: 75vw;
+    }
+    .contact_small_content{
+        gap:0;
+    }
+    .usercircle {
+        margin-right: 8px;
+    }
+        
+}
+
+
+
+
+@media (max-width: 1050px) {
+    .contacts-left {
+        width: 100vw;
+        justify-content: flex-start;
+        margin-left: 8px;
+    }
+    .contacts-right {
+        display: none;
+    }
+    .newContact {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        color: white;
+        padding: 5px 10px 5px 10px;
+        gap: 8px;
+        border: none;
+        font-weight: 700;
+        font-size: 24px;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        width: 197px;
+        height: 53px;
+        background: #2A3647;
+        border-radius: 8px;
+        position: absolute;
+        bottom: 67px;
+        right: 352px;
+    }
+}
+
+
+
+
 
 
