@@ -1,6 +1,7 @@
 let contacts = [];
 let initials = [];
 let sortedalphabetically = [];
+let letters = [];
 
 // Asynchronous function that initializes all necessary functions when loading the page
 async function init() {
@@ -8,6 +9,24 @@ async function init() {
     await extractInitials(sortedalphabetically);
     renderContacts();
 }
+
+// Asynchronous function that refreshes the page
+async function refresh() {
+    let contactsboxbig = document.getElementById('contactsboxbig');
+    contactsboxbig.innerHTML = '';
+    let contact = document.getElementById('contactsboxsmall');
+    contact.innerHTML = '';
+
+    initials = [];
+    sortedalphabetically = [];
+
+    await safeContacts();
+    await loadContacts();
+    await extractInitials(sortedalphabetically);
+    renderContacts();
+}
+
+
 // Function to push the entered contacts into the "contacts" array
 function pushToArray(name, email, phone, color) {
     contacts.push(
@@ -36,49 +55,51 @@ async function addContact() {
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
     
+    sortedalphabetically = [];
+
     if (name != '' && email != '' && phone != '') {
         pushToArray(name, email, phone);
         await safeContacts();
         createdContactSuccessfully();
         hideAddContactCard();
-
-        // Index des neuen Kontakts im Array "contacts"
-        var newIndex = contacts.length - 1;
-
-        // Überprüfen, ob das Element mit der ID vorhanden ist, bevor die Farbe zugewiesen wird
-        var containerId = "usercircle" + newIndex;
-        var container = document.getElementById(containerId);
-        if (container) {
-            await assignRandomColorToDiv(newIndex);
-        }
     }
     document.getElementById('form_add_contact').reset();
-    await init();
+    await refresh();
 }
 
 // Function hides "Contact Container"
 function hideAddContactCard() {
     document.getElementById("addContactCard").style.display = "none";
+    document.getElementById("overlay_add_contact").style.display = "none";
 }
 
 // Function shows "Contact Container"
 function showAddContactCard() {
     document.getElementById("addContactCard").style.display = "flex";
+    document.getElementById("overlay_add_contact").style.display = "flex";
 }
 
 // Function hides "Edit Contact Container"
 function hideEditContactCard() {
     document.getElementById("editContactCard").style.display = "none";
+    document.getElementById("overlay_add_contact").style.display = "none";
 }
 
 // Function shows "Edit Contact Container"
 function showEditContactCard(i) {
+    document.getElementById("overlay_edit_contact").style.display = "flex";
     document.getElementById("editContactCard").style.display = "flex";
     renderEditContact(i);
 }
 
+// Function closes Overlay from "ADD-/EDIT Contact Container"
+function closeOverlay() {
+    document.getElementById("overlay_add_contact").style.display = "none";
+    document.getElementById("overlay_edit_contact").style.display = "none";
+}
 // Function renders a specific contact in the detail view
 function renderContact(i) {
+    document.getElementById("contactsboxbig").style.display = "flex";
     let contactsboxbig = document.getElementById('contactsboxbig');
     contactsboxbig.innerHTML = '';
 
@@ -117,6 +138,7 @@ function renderContact(i) {
 async function renderContacts() {
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
+
     await loadContacts(); 
     
     sortedalphabetically = sortContactsAlphabetically(contacts);
@@ -127,11 +149,21 @@ async function renderContacts() {
         let name = sortedalphabetically[i]['name'];
         let email = sortedalphabetically[i]['email'];
         let phone = sortedalphabetically[i]['phone'];
-        let color = sortedalphabetically[i]['color'];
         let initial = initials[i];
+        let color = sortedalphabetically[i].color; // Get the color from the sortedalphabetically array
+        const firstLetter = sortedalphabetically[i]['name'].charAt(0);
+        if (!letters.includes(firstLetter)) {
+            letters.push(firstLetter);
+        }
+        
 
-        contactsboxsmall.innerHTML += `
-    <div id="firstLetter"></div>
+        if (!color) {
+          color = assignRandomColorToDiv(i); // Assign a random color if no color is present
+          sortedalphabetically[i].color = color; // Update the color in the sortedalphabetically array
+        }
+
+
+        contact.innerHTML += `
         <div onclick="renderContact(${i})" id="${i}" class="contact_small_content flex juststart align">   
             <div style="background-color:${color}" id="usercircle${i}" class="usercircle_small">${initial}</div>
         <div>    
@@ -139,11 +171,9 @@ async function renderContacts() {
                 <div class="FS21-400">${name}</div>
             <div>
             <a class="FS16-400" href="mailto:${email}">${email}</a>
-        </div>
-    <div>        
+        </div>       
         `;
     }
-    extractInitials(sortedalphabetically);
 }
 
 // Function renders the "Edit Contact" container
@@ -162,8 +192,8 @@ function renderEditContact(i) {
                         <input id="edit-email" type="email" value="${email}" required>
                         <input id="edit-phone" type="tel"  value="${phone}" required>
                             <div class="flex">
-                                <button onclick="deleteContact(${i})" class="delete_btn">Delete</button>
-                                <button onclick="editContact(${i})" class="save_btn">Save</button>
+                                <button onclick="deleteContact(${i});closeOverlay()" class="delete_btn">Delete</button>
+                                <button onclick="editContact(${i});closeOverlay()" class="save_btn">Save</button>
                             </div>
                             <img class="icon-name-add-contact" src="../assets/icons/icon_add_contact_user.svg" alt="">
                             <img class="icon-email-add-contact" src="../assets/icons/icon_add_contact_mail.svg" alt="">
@@ -179,12 +209,9 @@ async function deleteContact(i) {
     } else {
         alert("For Testreasons we can´t delete a contact if there is only 10 or less available.");
     }
-    let contactsboxbig = document.getElementById('contactsboxbig');
-    contactsboxbig.innerHTML = '';
-    let contact = document.getElementById('contactsboxsmall');
-    contact.innerHTML = '';
-    await safeContacts();
-    await init();
+
+    sortedalphabetically = [];
+    await refresh();
     hideEditContactCard();
 
 }
@@ -222,10 +249,7 @@ async function editContact(i) {
 
     // Do more actions after array update
     document.getElementById("editContactCard").style.display = "none";
-    await safeContacts();
-    await loadContacts();
-    await extractInitials(sortedalphabetically);
-    renderContacts();
+    await refresh();
 }
 
 // Extracts the uppercase initials from the array "contacts"['name']
@@ -237,26 +261,25 @@ function extractInitials(sortedContacts) {
     });
 }
 
-//Function generates random colors and assigns them to the "Usercircle" in which the initials are also there
-async function assignRandomColorToDiv(i) {
-    // Generate random RGB values
-    var red = Math.floor(Math.random() * 256);
-    var green = Math.floor(Math.random() * 256);
-    var blue = Math.floor(Math.random() * 256);
-
-    // Convert RGB values to a color string
-    var color = "rgb(" + red + ", " + green + ", " + blue + ")";
-
-    // Select div container with id and set background color
-    var containerId = "usercircle" + i;
-    var container = document.getElementById(containerId);
-    container.style.backgroundColor = color;
-
-    // Update the corresponding contact object in the "contacts" array
-    contacts[i].color = color;
-
-    await safeContacts();
-}
+// Function to assign a random color to a div container based on the contact index
+function assignRandomColorToDiv(i) {
+    // Check if the contact already has a color assigned
+    if (!contacts[i].color) {
+      // Generate random RGB values
+      var red = Math.floor(Math.random() * 256);
+      var green = Math.floor(Math.random() * 256);
+      var blue = Math.floor(Math.random() * 256);
+  
+      // Convert RGB values to a color string
+      var color = "rgb(" + red + ", " + green + ", " + blue + ")";
+  
+      // Update the corresponding contact object in the "contacts" array with the color
+      contacts[i].color = color;
+    }
+  
+    // Return the assigned color
+    return contacts[i].color;
+  }
 
 // function alphabetically sorts the "contacts" array by the first capital letter of the "name" field and pushes it into a new array named "sortedalphabetically"
 function sortContactsAlphabetically(contacts) {
@@ -281,12 +304,5 @@ function sortContactsAlphabetically(contacts) {
 
     return sortedalphabetically;
 }
-
-
-
-
-
-
-
 
 
