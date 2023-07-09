@@ -9,7 +9,6 @@ let tasksDates = [];
 
 async function loadUserData() {
     loggedInUser = JSON.parse(await getItem('users'));
-    console.log(loggedInUser);
 };
 
 
@@ -28,6 +27,7 @@ async function initSummary() {
     loadTasksToDo();
     loadTasksDone();
     loadTasksGreeteng();
+    loadLoagedInUser();
 };
 
 
@@ -80,27 +80,38 @@ function loadTasksDone() {
 
 function loadTasksGreeteng() {
     implementCurrentTime();
-    let  mins = new Date().getMinutes();
-    if (mins == "00") {
-        implementCurrentTime();
+    setInterval(implementCurrentTime, 60000);
+}
+
+
+function implementCurrentTime() {
+    let timeBox = document.querySelector('.summary-good-morning');
+    let today = new Date();
+    let dateHours = today.getHours();
+
+    if (dateHours >= 0 && dateHours < 12) {
+        timeBox.innerHTML = 'Good Morning, ';
+    }
+    if (dateHours >= 12 && dateHours < 18) {
+        timeBox.innerHTML = 'Good day, ';
+    }
+    if (dateHours >= 18 && dateHours <= 24) {
+        timeBox.innerHTML = 'Good Evening, ';
+    }
+
+}
+
+async function loadLoagedInUser() {
+    let currentUser = await (loggedInUser[0]['name']);
+    let userBox = document.getElementById('summary_username');
+
+    if (currentUser != null) {
+        userBox.innerHTML = currentUser;
+    } else {
+        console.warn('User not Found');
     }
 }
 
-setInterval(implementCurrentTime, 1000);
-
-function implementCurrentTime() {
-    let timeBox = document.getElementById('summary_username');
-let today = new Date();
-let dateHours = today.getHours();
-
-if (dateHours < 12) {
-    timeBox.innerHTML = 'Good Morning';
-}else if (dateHours < 18) {
-    timeBox.innerHTML = 'Hallo';
-}else if (dateHours < 24) {
-    timeBox.innerHTML = 'Good Evening';
-}
-}
 
 
 
