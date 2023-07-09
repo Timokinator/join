@@ -264,7 +264,7 @@
 /* Responsive */
 
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
     .container_progress_and_welcome {
         flex-direction: column-reverse;
         align-items: flex-start;
@@ -282,7 +282,7 @@
 }
 
 
-@media (max-width: 850px) {
+@media (max-width: 1050px) {
     .progressContainer {
         width: 100%;
     }
