@@ -186,7 +186,7 @@ function renderEditContact(i) {
     let phone = contacts[i]['phone'];
     
     editContactForm.innerHTML += `
-    <img onclick="hideEditContactCard()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
+    <img onclick="hideEditContactCard();closeOverlay()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
                     <form id="form_edit_contact" class="editContactRight_right" onsubmit="return false">
                         <input id="edit-name" type="text" value="${name}" required>
                         <input id="edit-email" type="email" value="${email}" required>

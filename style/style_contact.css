@@ -234,6 +234,10 @@ input {
     margin-left: 390px;
 }
 
+.close_symbol:hover {
+    -webkit-transform: scale(1.25);
+}
+
 .icon-name-add-contact {
     position: absolute;
     width: 24px;
@@ -258,13 +262,13 @@ input {
 
 /*addContactSlider CSS*/
 #name {
-    border-style: none;
+    border-style: solid;
 } 
 #email {
-    border-style: none;
+    border-style: solid;
 }
 #phone {
-    border-style: none;
+    border-style: solid;
 }
 .overlay_add_contact {
     height: 100vh;
@@ -311,7 +315,7 @@ input {
 }    
 .addContactRight {
     position: relative;
-    background-color: gray;
+    background-color: white;
     display: flex;
     width: calc(1212px - 463px);
     height: 594px;
@@ -331,12 +335,12 @@ input {
     font-weight: 200;
     border: #2A3647 solid 2px;
     border-radius: 10px;
-    padding: 18px 10px;
-    border-style: none;
+    padding: 14px 8px;
 }
 .cancel_btn:hover {
     color: #29ABE2;
     border: #29ABE2 solid 2px;
+    padding: 14px 8px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .create_btn{
@@ -357,13 +361,13 @@ input {
 
 /*edit ContactSlider CSS*/
 #edit-name {
-    border-style: none;
+    border-style: solid;
 } 
 #edit-email {
-    border-style: none;
+    border-style: solid;
 }
 #edit-phone {
-    border-style: none;
+    border-style: solid;
 }
 .overlay_edit_contact {
     height: 100vh;
@@ -408,7 +412,7 @@ input {
     border-bottom-left-radius: 30px;
 }    
 .editContactRight {
-    background-color: gray;
+    background-color: white;
     display: flex;
     width: calc(1212px - 463px);
     height: 594px;
@@ -428,12 +432,12 @@ input {
     font-weight: 200;
     border: #2A3647 solid 2px;
     border-radius: 10px;
-    padding: 18px 10px;
-    border-style: none;
+    padding: 14px 8px;
 }
 .delete_btn:hover {
     color: #29ABE2;
     border: #29ABE2 solid 2px;
+    padding: 14px 8px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .save_btn{
