@@ -230,6 +230,16 @@
     margin-left: 16px;
     margin-right: 16px;
 }
+.letter-container {
+    margin-top: 16px;
+    font-size: 21px;
+    font-weight: 400;
+}
+hr {
+    margin: 17px;
+    border: 1px solid #d1d1d1;
+    border-radius: 3px;
+}
 /*Inputfields CSS*/
 
 input {
@@ -553,7 +563,6 @@ input {
         right: 352px;
     }
 }
-
 
 
 

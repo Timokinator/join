@@ -139,40 +139,62 @@ async function renderContacts() {
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
 
-    await loadContacts(); 
-    
+    await loadContacts();
+
     sortedalphabetically = sortContactsAlphabetically(contacts);
     extractInitials(sortedalphabetically);
-    
+
+    const letters = [];
+
     for (let i = 0; i < sortedalphabetically.length; i++) {
         const element = sortedalphabetically[i];
-        let name = sortedalphabetically[i]['name'];
-        let email = sortedalphabetically[i]['email'];
-        let phone = sortedalphabetically[i]['phone'];
+        let name = element['name'];
+        let email = element['email'];
+        let phone = element['phone'];
         let initial = initials[i];
-        let color = sortedalphabetically[i].color; // Get the color from the sortedalphabetically array
-        const firstLetter = sortedalphabetically[i]['name'].charAt(0);
+        let color = element.color;
+
+        const firstLetter = name.charAt(0).toUpperCase();
+
         if (!letters.includes(firstLetter)) {
-            letters.push(firstLetter);
+        letters.push(firstLetter);
+
+        const containerId = `letter${firstLetter}`;
+        const container = document.createElement('div');
+        container.id = containerId;
+        contact.appendChild(container);
+
+        const letterContainer = document.createElement('div');
+        letterContainer.className = 'letter-container';
+        letterContainer.innerHTML = firstLetter;
+        letterContainer.innerHTML += '<hr>';
+        container.appendChild(letterContainer);
         }
-        
 
         if (!color) {
-          color = assignRandomColorToDiv(i); // Assign a random color if no color is present
-          sortedalphabetically[i].color = color; // Update the color in the sortedalphabetically array
+        color = assignRandomColorToDiv(i);
+        element.color = color;
         }
 
+        const containerId = `letter${firstLetter}`;
+        const container = document.getElementById(containerId);
 
-        contact.innerHTML += `
-        <div onclick="renderContact(${i})" id="${i}" class="contact_small_content flex juststart align">   
-            <div style="background-color:${color}" id="usercircle${i}" class="usercircle_small">${initial}</div>
-        <div>    
-            <div>
-                <div class="FS21-400">${name}</div>
+        const contactDiv = document.createElement('div');
+        contactDiv.onclick = function () {
+        renderContact(i);
+    };
+        contactDiv.id = i;
+        contactDiv.className = 'contact_small_content flex juststart align';
+        contactDiv.innerHTML = `
+        <div style="background-color:${color}" id="usercircle${i}" class="usercircle_small">${initial}</div>
+        <div>
+            <div class="FS21-400">${name}</div>
             <div>
             <a class="FS16-400" href="mailto:${email}">${email}</a>
-        </div>       
-        `;
+            </div>
+        </div>`;
+        container.appendChild(contactDiv);
+        container.classList.add('letterbox');
     }
 }
 
@@ -255,11 +277,12 @@ async function editContact(i) {
 // Extracts the uppercase initials from the array "contacts"['name']
 function extractInitials(sortedContacts) {
     initials = sortedContacts.map(contact => {
-        const name = contact.name;
-        const initialsString = name.match(/[A-Z]/g).join('');
-        return initialsString;
+      const name = contact.name;
+      const matches = name.match(/[A-Z]/g);
+      const initialsString = matches ? matches.join('') : '';
+      return initialsString;
     });
-}
+  }
 
 // Function to assign a random color to a div container based on the contact index
 function assignRandomColorToDiv(i) {
@@ -304,5 +327,4 @@ function sortContactsAlphabetically(contacts) {
 
     return sortedalphabetically;
 }
-
 
