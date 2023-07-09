@@ -509,7 +509,7 @@ header {
 
 
 
-@media (max-width: 1250px) {
+@media (max-width: 1350px) {
     .container-rows-board {
         display: grid;
         grid-template-columns: 50% 50%;
@@ -526,7 +526,7 @@ header {
 }
 
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
     .container-search-and-add-task {
         scale: 0.75;
     }
@@ -534,7 +534,7 @@ header {
 
 
 
-@media (max-width: 850px) {
+@media (max-width: 1050px) {
     .container-rows-board {
         display: grid;
         grid-template-columns: 100%;
@@ -566,6 +566,7 @@ header {
 
     .container-single-tasks-board {
         padding-top: 32px;
+        align-items: flex-start;
     }
 
     .container-formular-task-on-board {
@@ -575,5 +576,7 @@ header {
     .container-single-task {
         width: 80%;
     }
+
+
 
 }

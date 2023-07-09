@@ -154,7 +154,7 @@ body {
 /* Responsive */
 
 
-@media (max-width: 850px) {
+@media (max-width: 1050px) {
     .container-content {
         left: 0;
         top: 104px;
@@ -189,7 +189,7 @@ body {
 }
 
 
-@media (min-width: 851px) {
+@media (min-width: 1051px) {
     .title-mobile {
         display: none;
     }

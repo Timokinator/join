@@ -237,10 +237,10 @@ option {
 
 /* Responsive */
 
-@media (max-width: 850px) {
+@media (max-width: 1050px) {
     .form-add-task {
         flex-direction: column;
-        padding-left: 5vw;
+        padding-left: 32px;
     }
 
     .line-icon-add-task {
@@ -255,7 +255,7 @@ option {
 
     .headline-menu,
     .title-mobile {
-        padding-left: 5vw;
+        padding-left: 32px;
     }
 
     .btn-container-add-task {
