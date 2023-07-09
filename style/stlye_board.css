@@ -168,6 +168,7 @@ header {
     border-radius: 30px;
     padding: 16px;
     gap: 16px;
+    box-sizing: border-box;
 }
 
 .single-task:hover {
@@ -235,6 +236,7 @@ header {
     justify-content: space-around;
     align-items: center;
     overflow: auto;
+    
 }
 
 .container-single-task {
@@ -252,7 +254,28 @@ header {
     width: 50%;
     height: 55%;
     padding: 50px;
+    animation: slideTaskInFromTop 0.5s ease-in-out;
 }
+
+@keyframes slideTaskInFromTop {
+    from {
+        transform: translateX(150%);
+      }
+    
+      to {
+        transform: translateX(0%);
+      }
+}
+
+
+.slide-out {
+animation: slideTaskInFromTop 0.5s reverse;
+
+
+}
+
+
+
 
 .detail-task-category {
     font-size: 27px;
@@ -382,7 +405,7 @@ header {
 .container-initials-and-name-member-task-detail {
     display: flex;
     align-items: center;
-    justify-content:flex-start;
+    justify-content: flex-start;
     gap: 24px;
 }
 
@@ -426,7 +449,8 @@ header {
     gap: 6px;
 }
 
-.container-delete-task img:hover, .container-edit-task img:hover {
+.container-delete-task img:hover,
+.container-edit-task img:hover {
     cursor: pointer;
     scale: 1.2;
 }
@@ -469,12 +493,12 @@ header {
 
 
 .title-formular-on-board {
- padding-left: 32px;
- font-size: 61px;
- font-family: 'Inter', sans-serif;
- font-style: normal;
- font-weight: 700;
- line-height: 120%;
+    padding-left: 32px;
+    font-size: 61px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
 }
 
 

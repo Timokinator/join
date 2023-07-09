@@ -132,8 +132,9 @@ function addPrioToSingleTask(task, j) {
 
 
 function openTask(j) {
-    closeTaskDetail();
     addCloseWithEscape();
+    const containerSlideOut = document.getElementById('container_single_task_details')
+    containerSlideOut.classList.remove('slide-out')
     const content = document.getElementById('container_single_task_details');
     content.innerHTML = '';
     content.classList.remove('d-none');
@@ -144,10 +145,29 @@ function openTask(j) {
 
 
 function closeTaskDetail() {
-    const content = document.getElementById('container_single_task_details');
-    content.innerHTML = '';
-    content.classList.add('d-none');
+    slideOutTask();
+   
+    setTimeout(function() {clearHtmlSingleTask()}, 400);
+    
+
 };
+
+function clearHtmlSingleTask() {
+    const content = document.getElementById('container_single_task_details');
+    content.classList.add('d-none'); 
+    content.innerHTML = '';
+};
+
+
+
+function slideOutTask() {
+    const containerSlideOut = document.getElementById('container_single_task_details')
+    containerSlideOut.classList.add('slide-out')
+
+}
+
+
+
 
 function addCloseWithEscape() { //adds the possibility to close the details with the escape-key
     window.addEventListener('keydown', function (event) {
