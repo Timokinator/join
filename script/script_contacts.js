@@ -69,7 +69,9 @@ async function addContact() {
 
 // Function hides "Contact Container"
 function hideAddContactCard() {
-    document.getElementById("addContactCard").style.display = "none";
+    var element = document.getElementById("addContactCard");
+    element.classList.add("slideoutclass");
+    
     document.getElementById("overlay_add_contact").style.display = "none";
 }
 
@@ -200,12 +202,17 @@ async function renderContacts() {
 
 // Function renders the "Edit Contact" container
 function renderEditContact(i) {
-    editContactForm = document.getElementById('editContactForm')
+    editContactForm = document.getElementById('editContactForm');
     editContactForm.innerHTML = '';
 
     let name = contacts[i]['name'];
     let email = contacts[i]['email'];
     let phone = contacts[i]['phone'];
+    let initial = initials[i];
+    let color = contacts[i]['color'];
+
+    editContactRight_left = document.getElementById('editContactRight_left');
+    editContactRight_left.innerHTML +=`<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact">${initial}</div>`;
     
     editContactForm.innerHTML += `
     <img onclick="hideEditContactCard();closeOverlay()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
@@ -277,32 +284,30 @@ async function editContact(i) {
 // Extracts the uppercase initials from the array "contacts"['name']
 function extractInitials(sortedContacts) {
     initials = sortedContacts.map(contact => {
-      const name = contact.name;
-      const matches = name.match(/[A-Z]/g);
-      const initialsString = matches ? matches.join('') : '';
-      return initialsString;
+        const name = contact.name;
+        const matches = name.match(/[A-Z]/g);
+        const initialsString = matches ? matches.join('') : '';
+        return initialsString;
     });
-  }
+}
 
-// Function to assign a random color to a div container based on the contact index
 function assignRandomColorToDiv(i) {
     // Check if the contact already has a color assigned
     if (!contacts[i].color) {
-      // Generate random RGB values
-      var red = Math.floor(Math.random() * 256);
-      var green = Math.floor(Math.random() * 256);
-      var blue = Math.floor(Math.random() * 256);
-  
-      // Convert RGB values to a color string
-      var color = "rgb(" + red + ", " + green + ", " + blue + ")";
-  
+      // Generate random HSL values with fixed saturation and lightness ranges
+      var hue = Math.floor(Math.random() * 361); // Random hue between 0 and 360
+      var saturation = Math.floor(Math.random() * 51) + 50; // Random saturation between 50 and 100
+      var lightness = Math.floor(Math.random() * 26) + 35; // Random lightness between 35 and 60
+    
+      // Convert HSL values to a color string
+        var color = "hsl(" + hue + ", " + saturation + "%, " + lightness + "%)";
+    
       // Update the corresponding contact object in the "contacts" array with the color
-      contacts[i].color = color;
+        contacts[i].color = color;
     }
-  
     // Return the assigned color
     return contacts[i].color;
-  }
+}
 
 // function alphabetically sorts the "contacts" array by the first capital letter of the "name" field and pushes it into a new array named "sortedalphabetically"
 function sortContactsAlphabetically(contacts) {
@@ -327,4 +332,5 @@ function sortContactsAlphabetically(contacts) {
 
     return sortedalphabetically;
 }
+
 

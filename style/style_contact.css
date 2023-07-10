@@ -215,6 +215,19 @@
     margin-right: 54px;
     margin-bottom: 21px;
 }
+.usercircle_edit_contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 48px;
+    color: white;
+    width: 120px;
+    height: 120px;
+    border-radius: 70px;
+    border: solid white 3px;
+    margin-bottom: 21px;
+}
 .usercircle_small {
     display: flex;
     justify-content: center;
@@ -264,22 +277,22 @@ input {
     position: absolute;
     width: 24px;
     height: 24px;
-    top: 195px;
-    right: 120px;
+    top: 150px;
+    right: 100px;
 }
 .icon-email-add-contact {
     position: absolute;
     width: 24px;
     height: 24px;
-    top: 265px;
-    right: 120px;
+    top: 250px;
+    right: 100px;
 }
 .icon-phone-add-contact {
     position: absolute;
     width: 24px;
     height: 24px;
-    top: 330px;
-    right: 120px;
+    top: 345px;
+    right: 100px;
 }
 
 /*addContactSlider CSS*/
@@ -345,10 +358,12 @@ input {
     align-items: center;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
+    gap: 32px;
 }
 .addContactRight_right {
     display: flex;
     flex-direction: column;
+    gap: 32px;
 }
 
 .cancel_btn {
@@ -446,6 +461,7 @@ input {
     align-items: center;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
+    gap: 32px;
 }
 .editContactRight_right {
     display: flex;
