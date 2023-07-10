@@ -212,6 +212,7 @@ function renderEditContact(i) {
     let color = contacts[i]['color'];
 
     editContactRight_left = document.getElementById('editContactRight_left');
+    editContactRight_left.innerHTML = '';
     editContactRight_left.innerHTML +=`<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact">${initial}</div>`;
     
     editContactForm.innerHTML += `
