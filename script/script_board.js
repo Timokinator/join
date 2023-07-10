@@ -16,6 +16,7 @@ function findTask() {
 async function initBoard() {
     await loadTasks();
     renderTasksBoard();
+    await loadContacts();
 
 };
 
@@ -138,6 +139,7 @@ function openTask(j) {
     const content = document.getElementById('container_single_task_details');
     content.innerHTML = '';
     content.classList.remove('d-none');
+    content.classList.add('slide-in');
     content.innerHTML = templateDetailsTask(j);
     addPrioToDetailTask(j);
     addMemberTaskDetail(j);
@@ -146,10 +148,7 @@ function openTask(j) {
 
 function closeTaskDetail() {
     slideOutTask();
-   
     setTimeout(function() {clearHtmlSingleTask()}, 400);
-    
-
 };
 
 function clearHtmlSingleTask() {
@@ -162,8 +161,7 @@ function clearHtmlSingleTask() {
 
 function slideOutTask() {
     const containerSlideOut = document.getElementById('container_single_task_details')
-    containerSlideOut.classList.add('slide-out')
-
+    containerSlideOut.classList.add('slide-out');
 }
 
 
@@ -305,9 +303,8 @@ function addNewTask() {
     content.classList.remove('d-none');
     addCloseTaskWithEscape();
     content.innerHTML = templateFormAddTaskBoard()
-
-
-}
+    loadContactsToForm();    
+};
 
 
 function addCloseTaskWithEscape() { //adds the possibility to close the details with the escape-key
@@ -371,11 +368,6 @@ function templateFormAddTaskBoard() {
                         <span class="form-text-add-task">Assigned to</span>
                         <select oninput="addMember()" class="inputfield-add-task" type="text" required name=""
                             id="assignedTo_form">
-                            <option value="" disabled selected>Select contacts</option>
-                            <option value="timo">Timo</option>
-                            <option value="filip">Filip</option>
-                            <option value="benjamin">Benjamin</option>
-
                         </select>
 
                         <div class="" id="click_to_delete_text"></div>
@@ -441,8 +433,8 @@ function templateFormAddTaskBoard() {
                         <img src="../assets/icons/icon_cross_dark.svg" alt="">
                     </button>
 
-                    <button onclick="addTask(); closeAddTaskBoardWithButton()" class="btn-create-task">
-                        <span>Creat Task</span>
+                    <button onclick="addTaskAndCloseForm()" class="btn-create-task">
+                        <span>Create Task</span>
                         <img src="../assets/icons/icon_check_bright.svg" alt="">
                     </button>
 
@@ -455,14 +447,44 @@ function templateFormAddTaskBoard() {
 };
 
 
+function addTaskAndCloseForm() {
+    addTask();
+    setTimeout(function() {closeAddTaskBoardWithButton()}, 1);
+};
+
+
+
+
 function closeAddTaskBoardWithButton() {
     let content = document.getElementById('container_add_new_task_from_button');
     content.classList.add('d-none');
 };
 
 
+
 function searchTaskFromBoard() {
     let search = document.getElementById('search_input_board').value;
     renderTasksBoard();
+};
+
+
+function loadContactsToForm() {
+    let content = document.getElementById('assignedTo_form');
+    content.innerHTML = /*html*/`
+     <option value="" disabled selected>Select contacts</option>   
+    `;
+
+    for (let i = 0; i < contacts.length; i++) {
+        const contact = contacts[i];
+
+        content.innerHTML += templateMembersChose(contact);
+    };
+};
+
+
+function templateMembersChose(contact) {
+    return /*html*/`
+        <option value="${contact['name']}">${contact['name']}</option>
+    `;
 };
 

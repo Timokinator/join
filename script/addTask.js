@@ -3,7 +3,7 @@ let subtasks = [];
 let assignedTo = [];
 
 
-function pushToArray(title, description, category, member, dueDate, prio, subtasks, status) {
+function pushTaskToArray(title, description, category, member, dueDate, prio, subtasks, status) {
     tasks.push(
         {
             'title': title,
@@ -24,9 +24,39 @@ async function safeTasks() {
 };
 
 
+async function initAddTask() {
+    await loadTasks();
+    await loadContacts();
+    await loadContactsToForm();
+
+};
+
+
 async function loadTasks() {
     tasks = JSON.parse(await getItem('task_array'));
 };
+
+
+function loadContactsToForm() {
+    let content = document.getElementById('assignedTo_form');
+    content.innerHTML = /*html*/`
+     <option value="" disabled selected>Select contacts</option>   
+    `;
+
+    for (let i = 0; i < contacts.length; i++) {
+        const contact = contacts[i];
+
+        content.innerHTML += templateMembersChose(contact);
+    };
+};
+
+
+function templateMembersChose(contact) {
+    return /*html*/`
+        <option value="${contact['name']}">${contact['name']}</option>
+    `;
+};
+
 
 
 function setPrioValue(prio) {
@@ -96,9 +126,9 @@ async function addTask() {
     let status = 'todo';
 
     if (title != '' && category != '' && assignedTo != '' && dueDate != '') {
-        pushToArray(title, description, category, member, dueDate, prio, subtasks_task, status);
+        pushTaskToArray(title, description, category, member, dueDate, prio, subtasks_task, status);
         await safeTasks();
-    }
+    };
 
     document.getElementById('form_add_task').reset();
     resetPrioValue();

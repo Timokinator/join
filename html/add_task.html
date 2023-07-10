@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../style/style_addTask.css">
 </head>
 
-<body onload="includeHtml(); loadTasks()">
+<body onload="includeHtml(); initAddTask()">
     <div w3-include-html="frame.html"></div>
 
     <div class="container-content">
@@ -48,11 +48,6 @@
                     <span class="form-text-add-task">Assigned to</span>
                     <select oninput="addMember()" class="inputfield-add-task" type="text" required name=""
                         id="assignedTo_form">
-                        <option value="" disabled selected>Select contacts</option>
-                        <option value="timo">Timo</option>
-                        <option value="filip">Filip</option>
-                        <option value="benjamin">Benjamin</option>
-
                     </select>
 
                     <div class="" id="click_to_delete_text"></div>
@@ -119,7 +114,7 @@
                 </button>
 
                 <button onclick="addTask()" class="btn-create-task">
-                    <span>Creat Task</span>
+                    <span>Create Task</span>
                     <img src="../assets/icons/icon_check_bright.svg" alt="">
                 </button>
 
@@ -130,6 +125,7 @@
     <script src="../script/script_frame.js"></script>
     <script src="../script/storage.js"></script>
     <script src="../script/addTask.js"></script>
+    <script src="../script/script_contacts.js"></script>
 </body>
 
 </html>
