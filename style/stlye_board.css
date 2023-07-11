@@ -467,7 +467,7 @@ header {
     z-index: 125;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
     overflow: auto;
 }
 
@@ -480,6 +480,7 @@ header {
     justify-content: center;
     align-items: flex-start;
     gap: 48px;
+    margin-top: 5%;
 }
 
 .btn-container-add-task-on-board {
@@ -561,6 +562,15 @@ header {
 
 @media (max-width: 1050px) {
 
+    .title-formular-on-board {
+        padding-left: 0;
+    }
+
+    .container-add-new-task-from-button {
+    
+    }
+
+    
     .form-add-task {
         max-width: 90%;
         width: 800px;
@@ -622,8 +632,18 @@ header {
 
     .container-single-task {
         width: 80%;
+
     }
 
 
 
+}
+
+
+@media (max-width: 500px) {
+    .btn-container-add-task-on-board {
+        scale: 0.7;
+        right: -55px;
+        white-space: nowrap;
+    }
 }

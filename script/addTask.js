@@ -1,6 +1,8 @@
 let tasks = [];
 let subtasks = [];
 let assignedTo = [];
+let contactsForm = [];
+
 
 
 function pushTaskToArray(title, description, category, member, dueDate, prio, subtasks, status) {
@@ -19,6 +21,21 @@ function pushTaskToArray(title, description, category, member, dueDate, prio, su
 };
 
 
+function pushInitialsToContactsForm() {
+    for (let i = 0; i < initials.length; i++) {
+        const initial = initials[i];
+        const contact = contacts[i];
+
+        contactsForm.push({
+            'initial': initial,
+            'contact': contact
+        })
+    };
+};
+
+
+
+
 async function safeTasks() {
     await setItem('task_array', JSON.stringify(tasks));
 };
@@ -28,7 +45,7 @@ async function initAddTask() {
     await loadTasks();
     await loadContacts();
     await loadContactsToForm();
-
+    pushInitialsToContactsForm();
 };
 
 
@@ -138,12 +155,58 @@ async function addTask() {
 
 function addMember() {
     let member = document.getElementById('assignedTo_form')
-    if (assignedTo.indexOf(member.value) == -1) {
+    for (let i = 0; i < contactsForm.length; i++) {
+        const contact = contactsForm[i];
+
+        if (member.value == contactsForm[i]['contact']['name'] && assignedTo.length > 0) {
+            for (let k = 0; k < assignedTo.length; k++) {
+                const assigned = assignedTo[k];
+
+                if (assigned['name'] != member.value) {
+                    assignedTo.push({
+                        'name': contactsForm[i]['contact']['name'],
+                        'initials': contactsForm[i]['initial']
+                    })
+                }
+
+
+                
+            }
+
+        } else if (member.value == contactsForm[i]['contact']['name']) {
+            assignedTo.push({
+                'name': contactsForm[i]['contact']['name'],
+                'initials': contactsForm[i]['initial']
+            })
+        };
+   
+   
+   
+    }
+
+
+
+
+
+    renderMembers()
+};
+
+
+
+
+
+/* Backup function
+
+function addMember() {
+    let member = document.getElementById('assignedTo_form')
+        if (assignedTo.indexOf(member.value) == -1) {
         assignedTo.push(member.value)
     }
 
     renderMembers()
 };
+ */
+
 
 
 function renderMembers() {
@@ -170,6 +233,11 @@ function resetAssignedTo() {
     assignedTo = [];
     renderMembers();
 };
+
+
+
+
+
 
 
 function templateMembers(i) {
