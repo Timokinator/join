@@ -17,7 +17,9 @@ async function initBoard() {
     await loadTasks();
     renderTasksBoard();
     await loadContacts();
-
+    pushColorToArrayAssignedTo();
+    pushMemberToArrayAssignedTo();
+    pushMemberToArrayAssignedTo();
 };
 
 
@@ -102,13 +104,12 @@ function addMemberToSingleTask(task, j) {
         const member = task['assignedTo'][k];
 
         content.innerHTML += /*html*/`
-            <div class="single-task-member-member">
-                ${task['assignedTo'][k].slice(0, 1).toUpperCase()}${task['assignedTo'][k].slice(1)}
+            <div style="background-color: ${task['colors'][k]}" class="single-task-member-member">
+                ${task['initials'][k]}
             </div>
         `;
     };
 };
-
 
 
 function addPrioToSingleTask(task, j) {
@@ -447,17 +448,8 @@ function templateFormAddTaskBoard() {
 
 function addTaskAndCloseForm() {
     addTask();
-    // setTimeout(function() {closeAddTaskBoardWithButton()}, 1);
+    setTimeout(function() {location.reload()}, 200);
 };
-
-
-
-
-function closeAddTaskBoardWithButton() {
-    let content = document.getElementById('container_add_new_task_from_button');
-    content.classList.add('d-none');
-};
-
 
 
 function searchTaskFromBoard() {

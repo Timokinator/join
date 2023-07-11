@@ -198,16 +198,20 @@ header {
     align-items: center;
     justify-content: flex-start;
     gap: 2px;
+    flex-wrap: wrap;
 }
 
 .single-task-member-member {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10%;
+    border-radius: 100%;
     background-color: cadetblue;
     color: white;
-    padding: 8px;
+    padding: 12px;
+    height: 16px;
+    width: 16px;
+
 }
 
 .category {
@@ -565,19 +569,13 @@ header {
     .title-formular-on-board {
         padding-left: 0;
     }
-
-    .container-add-new-task-from-button {
-    
-    }
-
-    
+ 
     .form-add-task {
         max-width: 90%;
         width: 800px;
         padding-left: 0;
         gap: 0;
     }
-
 
     .container-search-and-add-task {
         scale: 0.75;

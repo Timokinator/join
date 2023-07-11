@@ -1,11 +1,14 @@
 let tasks = [];
 let subtasks = [];
 let assignedTo = [];
+let assignedToInitials = [];
+let assignedToColors = [];
 let contactsForm = [];
+let memberAssignedTo = [];
+let colorsAssignedTo = [];
 
 
-
-function pushTaskToArray(title, description, category, member, dueDate, prio, subtasks, status) {
+function pushTaskToArray(title, description, category, member, dueDate, prio, subtasks, status, colors, initialsMembers) {
     tasks.push(
         {
             'title': title,
@@ -15,24 +18,30 @@ function pushTaskToArray(title, description, category, member, dueDate, prio, su
             'dueDate': dueDate,
             'prio': prio,
             'subtasks': subtasks,
-            'status': status
+            'status': status,
+            'initials': initialsMembers,
+            'colors': colors,
         }
     );
 };
 
 
-function pushInitialsToContactsForm() {
-    for (let i = 0; i < initials.length; i++) {
-        const initial = initials[i];
+function pushMemberToArrayAssignedTo() {
+    for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
-
-        contactsForm.push({
-            'initial': initial,
-            'contact': contact
-        })
+        
+        memberAssignedTo.push(contact['name'])
     };
 };
 
+
+function pushColorToArrayAssignedTo() {
+    for (let i = 0; i < contacts.length; i++) {
+        const contact = contacts[i];
+
+        colorsAssignedTo.push(contact['color']);
+    };
+};
 
 
 
@@ -45,7 +54,8 @@ async function initAddTask() {
     await loadTasks();
     await loadContacts();
     await loadContactsToForm();
-    pushInitialsToContactsForm();
+    pushMemberToArrayAssignedTo();
+    pushColorToArrayAssignedTo();
 };
 
 
@@ -141,72 +151,40 @@ async function addTask() {
     let prio = document.getElementById('prio_hidden').value;
     let subtasks_task = subtasks;
     let status = 'todo';
+    let colors = assignedToColors;
+    let initialsMembers = assignedToInitials;
+
 
     if (title != '' && category != '' && assignedTo != '' && dueDate != '') {
-        pushTaskToArray(title, description, category, member, dueDate, prio, subtasks_task, status);
+        pushTaskToArray(title, description, category, member, dueDate, prio, subtasks_task, status, colors, initialsMembers);
         await safeTasks();
     };
 
     document.getElementById('form_add_task').reset();
     resetPrioValue();
     resetSubtaskArray();
+    resetAssignedTo();
 };
 
 
 function addMember() {
     let member = document.getElementById('assignedTo_form')
-    for (let i = 0; i < contactsForm.length; i++) {
-        const contact = contactsForm[i];
-
-        if (member.value == contactsForm[i]['contact']['name'] && assignedTo.length > 0) {
-            for (let k = 0; k < assignedTo.length; k++) {
-                const assigned = assignedTo[k];
-
-                if (assigned['name'] != member.value) {
-                    assignedTo.push({
-                        'name': contactsForm[i]['contact']['name'],
-                        'initials': contactsForm[i]['initial']
-                    })
-                }
-
-
-                
-            }
-
-        } else if (member.value == contactsForm[i]['contact']['name']) {
-            assignedTo.push({
-                'name': contactsForm[i]['contact']['name'],
-                'initials': contactsForm[i]['initial']
-            })
-        };
-   
-   
-   
-    }
-
-
-
-
-
-    renderMembers()
-};
-
-
-
-
-
-/* Backup function
-
-function addMember() {
-    let member = document.getElementById('assignedTo_form')
+    for (let i = 0; i < memberAssignedTo.length; i++) {
+        const assignedMember = memberAssignedTo[i];
+        
         if (assignedTo.indexOf(member.value) == -1) {
-        assignedTo.push(member.value)
-    }
+            assignedTo.push(member.value);
+            assignedToInitials.push(initials[memberAssignedTo.indexOf(member.value)]);
+            assignedToColors.push(colorsAssignedTo[memberAssignedTo.indexOf(member.value)]);
+        }
 
+    }
+/* 
+    assignedTo.sort();
+    assignedToInitials.sort();
+    assignedToColors.sort(); */
     renderMembers()
 };
- */
-
 
 
 function renderMembers() {
@@ -242,8 +220,8 @@ function resetAssignedTo() {
 
 function templateMembers(i) {
     return /*html*/`
-      <div onclick=deleteMember(${i}) class="member-add-task">
-        <span>${assignedTo[i].slice(0, 1).toUpperCase()}${assignedTo[i].slice(1)}</span>
+      <div style="background-color: ${assignedToColors[i]}" onclick=deleteMember(${i}) class="member-add-task">
+        <span>${assignedToInitials[i]}</span>
       </div>
     `;
 };
@@ -251,8 +229,8 @@ function templateMembers(i) {
 
 function deleteMember(i) {
     assignedTo.splice(i, 1);
+    assignedToColors.splice(i, 1);
+    assignedToInitials.splice(i, 1);
     renderMembers();
     document.getElementById('assignedTo_form').value = '';
 };
-
-
