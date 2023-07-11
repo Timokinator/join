@@ -236,7 +236,7 @@ header {
     justify-content: space-around;
     align-items: center;
     overflow: auto;
-    
+
 }
 
 .container-single-task {
@@ -262,16 +262,16 @@ header {
 @keyframes slideTaskInFromTop {
     from {
         transform: translateX(150%);
-      }
-    
-      to {
+    }
+
+    to {
         transform: translateX(0%);
-      }
+    }
 }
 
 
 .slide-out {
-animation: slideTaskInFromTop 0.5s reverse;
+    animation: slideTaskInFromTop 0.5s reverse;
 
 
 }
@@ -504,6 +504,11 @@ animation: slideTaskInFromTop 0.5s reverse;
 }
 
 
+.form-add-task {
+    padding-left: 0;
+}
+
+
 
 /* Colors for category */
 
@@ -531,6 +536,8 @@ animation: slideTaskInFromTop 0.5s reverse;
 
 
 
+
+
 /* Responsive */
 
 
@@ -553,14 +560,25 @@ animation: slideTaskInFromTop 0.5s reverse;
 
 
 @media (max-width: 1050px) {
+
+    .form-add-task {
+        max-width: 90%;
+        width: 800px;
+        padding-left: 0;
+        gap: 0;
+    }
+
+
     .container-search-and-add-task {
         scale: 0.75;
     }
-}
 
+    .left_side_desktop-add-task,
+    .right_side_desktop-add-task {
+        width: 100%;
+        gap: 8px;
+    }
 
-
-@media (max-width: 1050px) {
     .container-rows-board {
         display: grid;
         grid-template-columns: 100%;
@@ -571,7 +589,7 @@ animation: slideTaskInFromTop 0.5s reverse;
     }
 
     .single-task {
-        width: 95%;
+        width: 100%;
     }
 
     header {
@@ -596,7 +614,10 @@ animation: slideTaskInFromTop 0.5s reverse;
     }
 
     .container-formular-task-on-board {
-        width: 80vw;
+        width: 80%;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 16px 104px 16px;
     }
 
     .container-single-task {

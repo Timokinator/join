@@ -375,8 +375,6 @@ function templateFormAddTaskBoard() {
                         <div class="selected-members-add-task" id="selected_members_add_task">
 
                         </div>
-
-
                     </div>
                 </div>
 
@@ -449,7 +447,7 @@ function templateFormAddTaskBoard() {
 
 function addTaskAndCloseForm() {
     addTask();
-    setTimeout(function() {closeAddTaskBoardWithButton()}, 1);
+    // setTimeout(function() {closeAddTaskBoardWithButton()}, 1);
 };
 
 
