@@ -102,13 +102,12 @@ function addMemberToSingleTask(task, j) {
         const member = task['assignedTo'][k];
 
         content.innerHTML += /*html*/`
-            <div class="single-task-member-member">
-                ${task['assignedTo'][k].slice(0, 1).toUpperCase()}${task['assignedTo'][k].slice(1)}
+            <div style="background-color: ${task['colors'][k]}" class="single-task-member-member">
+                ${task['initials'][k]}
             </div>
         `;
     };
 };
-
 
 
 function addPrioToSingleTask(task, j) {
@@ -375,8 +374,6 @@ function templateFormAddTaskBoard() {
                         <div class="selected-members-add-task" id="selected_members_add_task">
 
                         </div>
-
-
                     </div>
                 </div>
 
