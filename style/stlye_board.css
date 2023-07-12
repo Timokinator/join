@@ -155,6 +155,13 @@ header {
     gap: 32px;
     padding-top: 64px;
     width: 100%;
+    min-height: 300px;
+    border-radius: 30px;
+}
+
+
+.highlight {
+    background-color: #9ee2a5;
 }
 
 
@@ -191,6 +198,7 @@ header {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    gap: 16px;
 }
 
 .single-task-member {
@@ -210,7 +218,8 @@ header {
     padding: 12px;
     height: 16px;
     width: 16px;
-
+    border: 1px solid white;
+    margin-right: -16px;
 }
 
 .category {
@@ -260,8 +269,6 @@ header {
     animation: slideTaskInFromTop 0.5s ease-in-out;
 }
 
-
-
 @keyframes slideTaskInFromTop {
     from {
         transform: translateX(150%);
@@ -275,11 +282,15 @@ header {
 
 .slide-out {
     animation: slideTaskInFromTop 0.5s reverse;
-
-
 }
 
+.font-size-16 {
+    font-size: 16px;
+}
 
+.font-weight-400 {
+    font-weight: 400 !important;
+}
 
 
 .detail-task-category {

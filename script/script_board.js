@@ -1,5 +1,5 @@
 let stati = ['todo', 'progress', 'awaiting', 'done'];
-
+let currentDraggedElement;
 
 
 
@@ -71,7 +71,7 @@ function renderTasksBoardWithoutSearch(content, status) {
 
 function templateSingleTask(task, j) {
     return /*html*/`
-        <div class="single-task" onclick="openTask(${j})">
+        <div draggable="true" class="single-task" onclick="openTask(${j})" ondragstart="startDragging(${j})">
             <div class="${task['category']} category">
                 ${task['category'].slice(0, 1).toUpperCase()}${task['category'].slice(1)}
             </div>
@@ -104,9 +104,7 @@ function addMemberToSingleTask(task, j) {
         const member = task['assignedTo'][k];
 
         content.innerHTML += /*html*/`
-            <div style="background-color: ${task['colors'][k]}" class="single-task-member-member">
-                ${task['initials'][k]}
-            </div>
+            <div style="background-color: ${task['colors'][k]}" class="single-task-member-member">${task['initials'][k]}</div>
         `;
     };
 };
@@ -276,10 +274,8 @@ function addMemberTaskDetail(j) {
 function renderMemberTaskDetail(member, k, j) {
     return /*html*/`
     <div class="container-initials-and-name-member-task-detail">
-        <div style="background-color: ${tasks[j]['colors'][k]}" class="single-task-member-member">
-                ${tasks[j]['initials'][k]}
-        </div> 
-        <span>${member.slice(0, 1).toUpperCase()}${member.slice(1)}</span>
+        <div style="background-color: ${tasks[j]['colors'][k]}" class="font-size-16 single-task-member-member">${tasks[j]['initials'][k]}</div> 
+        <span class="font-weight-400">${member.slice(0, 1).toUpperCase()}${member.slice(1)}</span>
     </div>
     `;
 };
@@ -478,3 +474,31 @@ function templateMembersChose(contact) {
     `;
 };
 
+
+function startDragging(j) {
+    currentDraggedElement = j;    
+};
+
+
+function allowDrop(ev) {
+    ev.preventDefault();
+};
+
+
+function moveTaskTo(status) {
+    tasks[currentDraggedElement]['status'] = status;
+    safeTasks();
+    document.getElementById('container_tasks_board_' + status).classList.remove('highlight');
+    renderTasksBoard();
+}
+
+function highlight(status) {
+    let container = document.getElementById('container_tasks_board_' + status);
+    container.classList.add('highlight');
+};
+
+
+function unsetHighlight(status) {
+    let container = document.getElementById('container_tasks_board_' + status);
+    container.classList.remove('highlight');
+}
