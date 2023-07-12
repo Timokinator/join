@@ -17,7 +17,9 @@ async function initBoard() {
     await loadTasks();
     renderTasksBoard();
     await loadContacts();
-
+    pushColorToArrayAssignedTo();
+    pushMemberToArrayAssignedTo();
+    pushMemberToArrayAssignedTo();
 };
 
 
@@ -446,17 +448,8 @@ function templateFormAddTaskBoard() {
 
 function addTaskAndCloseForm() {
     addTask();
-    setTimeout(function() {closeAddTaskBoardWithButton()}, 1);
+    setTimeout(function() {location.reload()}, 200);
 };
-
-
-
-
-function closeAddTaskBoardWithButton() {
-    let content = document.getElementById('container_add_new_task_from_button');
-    content.classList.add('d-none');
-};
-
 
 
 function searchTaskFromBoard() {
