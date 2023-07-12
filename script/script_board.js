@@ -149,12 +149,12 @@ function openTask(j) {
 
 function closeTaskDetail() {
     slideOutTask();
-    setTimeout(function() {clearHtmlSingleTask()}, 400);
+    setTimeout(function () { clearHtmlSingleTask() }, 400);
 };
 
 function clearHtmlSingleTask() {
     const content = document.getElementById('container_single_task_details');
-    content.classList.add('d-none'); 
+    content.classList.add('d-none');
     content.innerHTML = '';
 };
 
@@ -266,21 +266,21 @@ function addMemberTaskDetail(j) {
     for (let k = 0; k < tasks[j]['assignedTo'].length; k++) {
         const member = tasks[j]['assignedTo'][k];
 
-        content.innerHTML += renderMemberTaskDetail(member);
+        content.innerHTML += renderMemberTaskDetail(member, k, j);
 
     }
 
 }
 
 // img muss noch ausgetauscht / gerendert werden wenn contacts fertig sind
-function renderMemberTaskDetail(member) {
+function renderMemberTaskDetail(member, k, j) {
     return /*html*/`
     <div class="container-initials-and-name-member-task-detail">
-        <img class="img-member-task-detail" src="../assets/img/logo_contact.svg" alt=""> 
+        <div style="background-color: ${tasks[j]['colors'][k]}" class="single-task-member-member">
+                ${tasks[j]['initials'][k]}
+        </div> 
         <span>${member.slice(0, 1).toUpperCase()}${member.slice(1)}</span>
     </div>
-
-
     `;
 };
 
@@ -304,7 +304,7 @@ function addNewTask() {
     content.classList.remove('d-none');
     addCloseTaskWithEscape();
     content.innerHTML = templateFormAddTaskBoard()
-    loadContactsToForm();    
+    loadContactsToForm();
 };
 
 
@@ -448,7 +448,7 @@ function templateFormAddTaskBoard() {
 
 function addTaskAndCloseForm() {
     addTask();
-    setTimeout(function() {location.reload()}, 200);
+    setTimeout(function () { location.reload() }, 200);
 };
 
 
