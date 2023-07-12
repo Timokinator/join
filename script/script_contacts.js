@@ -111,7 +111,7 @@ function renderContact(i) {
     let color = contacts[i]['color'];
     let initial = initials[i];
 
-    contactsboxbig.innerHTML += `
+    contactsboxbig.innerHTML += html`
         <div class="contact_big flex juststart fdc">
             <div class="flex align fdr">
                 <div style="background-color:${color}" id="usercircle${i}" class="usercircle">${initial}</div>

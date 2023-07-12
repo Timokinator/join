@@ -7,9 +7,6 @@ let tasksUrgent = [];
 let tasksDates = [];
 
 
-async function loadUserData() {
-    loggedInUser = JSON.parse(await getItem('users'));
-};
 
 
 function linkToBoardHTML() {
@@ -27,6 +24,11 @@ async function initSummary() {
     loadTasksToDo();
     loadTasksDone();
     loadTasksGreeteng();
+    await loadUserData();
+};
+
+async function loadUserData() {
+    loggedInUser = JSON.parse(await getItem('user'));
     loadLoagedInUser();
 };
 
@@ -101,14 +103,15 @@ function implementCurrentTime() {
 
 }
 
-async function loadLoagedInUser() {
-    let currentUser = await (loggedInUser[0]['name']);
+ async function loadLoagedInUser() {
+    let currentUser = await  loggedInUser.name;
+    console.log(currentUser);
     let userBox = document.getElementById('summary_username');
 
     if (currentUser != null) {
-        userBox.innerHTML = currentUser;
+        userBox.innerHTML = currentUser.charAt(0).toUpperCase() + currentUser.slice(1);
     } else {
-        console.warn('User not Found');
+        userBox.innerHTML = 'Guest';
     }
 }
 
