@@ -42,13 +42,11 @@ function pushToArray(name, email, phone, color) {
 // Asynchronous function to save all contacts from array "contacts" to remote storage
 async function safeContacts() {
     await setItem('contact_array', JSON.stringify(contacts));
-    await setItem('initials_array', JSON.stringify(initials));
 }
 
 // Asynchronous function to load all contacts from the remote storage and assign them to the "contacts" array
 async function loadContacts() {
     contacts = JSON.parse(await getItem('contact_array'));
-    initials = JSON.parse(await getItem('initials_array'));
 }
 
 // Asynchronous function to add a new contact to the "contacts" array
@@ -113,7 +111,7 @@ function renderContact(i) {
     let color = contacts[i]['color'];
     let initial = initials[i];
 
-    contactsboxbig.innerHTML += `
+    contactsboxbig.innerHTML += html`
         <div class="contact_big flex juststart fdc">
             <div class="flex align fdr">
                 <div style="background-color:${color}" id="usercircle${i}" class="usercircle">${initial}</div>
@@ -171,12 +169,8 @@ async function renderContacts() {
         const letterContainer = document.createElement('div');
         letterContainer.className = 'letter-container';
         letterContainer.innerHTML = firstLetter;
+        letterContainer.innerHTML += '<hr>';
         container.appendChild(letterContainer);
-
-        const letterdevide = document.createElement('div');
-        letterdevide.className = 'letter-devide';
-        letterdevide.innerHTML = '<hr>';
-        container.appendChild(letterdevide);
         }
 
         if (!color) {
@@ -193,7 +187,7 @@ async function renderContacts() {
     };
         contactDiv.id = i;
         contactDiv.className = 'contact_small_content flex juststart align';
-        contactDiv.innerHTML =/*html*/`
+        contactDiv.innerHTML = `
         <div style="background-color:${color}" id="usercircle${i}" class="usercircle_small">${initial}</div>
         <div>
             <div class="FS21-400">${name}</div>
@@ -221,7 +215,7 @@ function renderEditContact(i) {
     editContactRight_left.innerHTML = '';
     editContactRight_left.innerHTML +=`<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact">${initial}</div>`;
     
-    editContactForm.innerHTML +=/*html*/`
+    editContactForm.innerHTML += `
     <img onclick="hideEditContactCard();closeOverlay()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
                     <form id="form_edit_contact" class="editContactRight_right" onsubmit="return false">
                         <input id="edit-name" type="text" value="${name}" required>
@@ -298,7 +292,6 @@ function extractInitials(sortedContacts) {
     });
 }
 
-// Function assignes random Color to Usercircle
 function assignRandomColorToDiv(i) {
     // Check if the contact already has a color assigned
     if (!contacts[i].color) {

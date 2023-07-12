@@ -198,20 +198,16 @@ header {
     align-items: center;
     justify-content: flex-start;
     gap: 2px;
-    flex-wrap: wrap;
 }
 
 .single-task-member-member {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 100%;
+    border-radius: 10%;
     background-color: cadetblue;
     color: white;
-    padding: 12px;
-    height: 16px;
-    width: 16px;
-
+    padding: 8px;
 }
 
 .category {
@@ -240,7 +236,7 @@ header {
     justify-content: space-around;
     align-items: center;
     overflow: auto;
-
+    
 }
 
 .container-single-task {
@@ -266,16 +262,16 @@ header {
 @keyframes slideTaskInFromTop {
     from {
         transform: translateX(150%);
-    }
-
-    to {
+      }
+    
+      to {
         transform: translateX(0%);
-    }
+      }
 }
 
 
 .slide-out {
-    animation: slideTaskInFromTop 0.5s reverse;
+animation: slideTaskInFromTop 0.5s reverse;
 
 
 }
@@ -471,7 +467,7 @@ header {
     z-index: 125;
     display: flex;
     justify-content: space-around;
-    align-items: flex-start;
+    align-items: center;
     overflow: auto;
 }
 
@@ -484,7 +480,6 @@ header {
     justify-content: center;
     align-items: flex-start;
     gap: 48px;
-    margin-top: 5%;
 }
 
 .btn-container-add-task-on-board {
@@ -506,11 +501,6 @@ header {
     font-style: normal;
     font-weight: 700;
     line-height: 120%;
-}
-
-
-.form-add-task {
-    padding-left: 0;
 }
 
 
@@ -541,8 +531,6 @@ header {
 
 
 
-
-
 /* Responsive */
 
 
@@ -565,28 +553,14 @@ header {
 
 
 @media (max-width: 1050px) {
-
-    .title-formular-on-board {
-        padding-left: 0;
-    }
- 
-    .form-add-task {
-        max-width: 90%;
-        width: 800px;
-        padding-left: 0;
-        gap: 0;
-    }
-
     .container-search-and-add-task {
         scale: 0.75;
     }
+}
 
-    .left_side_desktop-add-task,
-    .right_side_desktop-add-task {
-        width: 100%;
-        gap: 8px;
-    }
 
+
+@media (max-width: 1050px) {
     .container-rows-board {
         display: grid;
         grid-template-columns: 100%;
@@ -597,7 +571,7 @@ header {
     }
 
     .single-task {
-        width: 100%;
+        width: 95%;
     }
 
     header {
@@ -622,26 +596,13 @@ header {
     }
 
     .container-formular-task-on-board {
-        width: 80%;
-        align-items: center;
-        gap: 16px;
-        padding: 16px 16px 104px 16px;
+        width: 80vw;
     }
 
     .container-single-task {
         width: 80%;
-
     }
 
 
 
-}
-
-
-@media (max-width: 500px) {
-    .btn-container-add-task-on-board {
-        scale: 0.7;
-        right: -55px;
-        white-space: nowrap;
-    }
 }

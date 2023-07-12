@@ -16,7 +16,6 @@ function findTask() {
 async function initBoard() {
     await loadTasks();
     renderTasksBoard();
-    await loadContacts();
 
 };
 
@@ -106,12 +105,13 @@ function addMemberToSingleTask(task, j) {
         const member = task['assignedTo'][k];
 
         content.innerHTML += /*html*/`
-            <div style="background-color: ${task['colors'][k]}" class="single-task-member-member">
-                ${task['initials'][k]}
+            <div class="single-task-member-member">
+                ${task['assignedTo'][k].slice(0, 1).toUpperCase()}${task['assignedTo'][k].slice(1)}
             </div>
         `;
     };
 };
+
 
 
 function addPrioToSingleTask(task, j) {
@@ -367,6 +367,8 @@ function templateFormAddTaskBoard() {
                         <div class="selected-members-add-task" id="selected_members_add_task">
 
                         </div>
+
+
                     </div>
                 </div>
 
@@ -435,14 +437,6 @@ function templateFormAddTaskBoard() {
     </div>   
     `;
 };
-
-
-function addTaskAndCloseForm() {
-    addTask();
-    setTimeout(function() {closeAddTaskBoardWithButton()}, 1);
-};
-
-
 
 
 function closeAddTaskBoardWithButton() {

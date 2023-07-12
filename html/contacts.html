@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    <!-- Static HTML - Edit Contact -->
+        <!-- Static HTML - Edit Contact -->
     <div onclick="closeOverlay()" id="overlay_edit_contact" class="overlay_edit_contact" style="display: none;">
         <div onclick="event.stopPropagation()" id="editContactCard" class="editContactSlideWrapper">
             <div class="editContactLeft">
@@ -55,8 +55,8 @@
                 <span class="blue-line-v"></span>
             </div>
             <div class="editContactRight">
-                <div class="editContactRight_left">
-                    <img src="../assets/img/logo_contact.svg">
+                <div id="editContactRight_left" class="editContactRight_left">
+                    
                 </div>
                 <div id="editContactForm"></div>
             </div>
@@ -65,12 +65,6 @@
         <!-- Static HTML -Contacts Container -->
         <div class="contacts-big">
             <div class="contacts-left">
-                <!-- Static HTML - hidden add Contact MOBILE Btn -->
-                <div class ="newContactContainer">
-                    <div onclick="showAddContactCardMobile ()" class="newContactMobile">
-                        New contact <img src="../assets/icons/icon_add_contact.svg">
-                    </div>
-                </div>
                 <div id="contactsboxsmall" class="contact_small"></div>
             </div> 
             <div class="contacts-right">
