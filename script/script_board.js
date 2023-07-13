@@ -211,19 +211,19 @@ function templateDetailsTask(j) {
             </div>
 
             <img class="detail-task-close-btn" onclick="closeTaskDetail()" src="../assets/icons/icon_cross_dark.svg" alt="">
+            <div class="container-container-delete-and-edit-task">
+                <div class="container-delete-and-edit-task">
+                    <div class="container-delete-task">
+                        <img onclick="deleteTask(${j})" src="../assets/icons/icon_trash_dark.svg" alt="">
+                    </div>
 
-            <div class="container-delete-and-edit-task">
-                <div class="container-delete-task">
-                    <img onclick="deleteTask(${j})" src="../assets/icons/icon_trash_dark.svg" alt="">
+                    <div class="container-edit-task">
+                        <img onclick="editTask(${j})" src="../assets/icons/icon_pencil.svg" alt="">
+                    </div>
+
+
                 </div>
-
-                <div class="container-edit-task">
-                    <img onclick="editTask(${j})" src="../assets/icons/icon_pencil.svg" alt="">
-                </div>
-
-
             </div>
-
         </div>
     `;
 };
@@ -286,11 +286,6 @@ async function deleteTask(j) {
     await safeTasks();
     closeTaskDetail();
     initBoard();
-};
-
-
-async function editTask(j) {
-    console.log('edit-function follows')
 };
 
 
@@ -444,7 +439,7 @@ function templateFormAddTaskBoard() {
 
 function addTaskAndCloseForm() {
     addTask();
-    setTimeout(function () { location.reload() }, 200);
+    // setTimeout(function () { location.reload() }, 200);
 };
 
 
@@ -502,3 +497,211 @@ function unsetHighlight(status) {
     let container = document.getElementById('container_tasks_board_' + status);
     container.classList.remove('highlight');
 }
+
+
+function closeEditTask() {
+    let content = document.getElementById('container_background_edit_task');
+    content.classList.add('d-none');
+
+
+}
+
+
+async function editTask(j) {
+    closeTaskDetail();
+    editTaskAddCloseWithEscape();
+    let content = document.getElementById('container_background_edit_task');
+    content.classList.remove('d-none');
+    content.innerHTML = '';
+    content.innerHTML = templateEditTask(j);
+    loadContactsToForm();
+    renderMemberEditTask(j);
+    //set category
+
+
+
+    //load prio
+
+    //load subtasks
+
+
+
+};
+
+
+
+function renderMemberEditTask(j) {
+    let content = document.getElementById('selected_members_add_task');
+    let deleteArea = document.getElementById('click_to_delete_text');
+    content.innerHTML = '';
+
+    if (tasks[j]['assignedTo'].length > 0) {
+        deleteArea.innerHTML = /*html*/`
+            <span>Click to delete</span>
+        `;
+    } else {
+        deleteArea.innerHTML = '';
+    };
+
+    for (let i = 0; i < tasks[j]['assignedTo'].length; i++) {
+        const member = tasks[j]['assignedTo'][i];
+        content.innerHTML += templateMembersEditTask(i, j);
+    };
+}
+
+
+function templateMembersEditTask(i, j) {
+    return /*html*/`
+      <div style="background-color: ${tasks[j]['colors'][i]}" onclick=deleteMemberEditTask(${i},${j}) class="member-add-task">
+        <span>${tasks[j]['initials'][i]}</span>
+      </div>
+    `;
+};
+
+
+function deleteMemberEditTask(i, j) {
+    tasks[j]['assignedTo'].splice(i, 1);
+    tasks[j]['colors'].splice(i, 1);
+    tasks[j]['initials'].splice(i, 1);
+    
+    renderMemberEditTask(j);
+    document.getElementById('assignedTo_form').value = '';
+};
+
+
+function addMemberEditTask(j) {
+    let member = document.getElementById('assignedTo_form')
+    for (let i = 0; i < tasks[j]['assignedTo'].length; i++) {
+        const assignedMember = memberAssignedTo[i];
+        
+        if (tasks[j]['assignedTo'].indexOf(member.value) == -1) {
+            tasks[j]['assignedTo'].push(member.value);
+            tasks[j]['initials'].push(initials[memberAssignedTo.indexOf(member.value)]);
+            tasks[j]['colors'].push(colorsAssignedTo[memberAssignedTo.indexOf(member.value)]);
+        };
+    };
+    renderMemberEditTask(j);
+};
+
+
+function editTaskAddCloseWithEscape() { //adds the possibility to close the edit task with the escape-key
+    window.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            closeEditTask();
+        };
+    });
+};
+
+
+function templateEditTask(j) {
+    return /*html*/`
+      <div class="container-formular-task-on-board" onclick="doNotClose(event)">
+            <span class="title-formular-on-board">Edit Task</span>
+
+            <form id="form_add_task" class="form-add-task" onsubmit="return false">
+
+                <div class="left_side_desktop-add-task">
+
+                    <div class="container-input">
+                        <span class="form-text-add-task">Title</span>
+                        <input value="${tasks[j]['title']}" class="inputfield-add-task" type="text" required placeholder="Enter a title" name=""
+                            id="title_form">
+                    </div>
+
+                    <div class="container-input">
+                        <span class="form-text-add-task">Description</span>
+                        <textarea class="inputfield-add-task" maxlength="200" placeholder="Enter a description" name=""
+                            id="description_form">${tasks[j]['description']}</textarea>
+                    </div>
+
+                    <div class="container-input">
+                        <span class="form-text-add-task">Category</span>
+                        <select class="inputfield-add-task" type="text" required name="" id="category_form">
+                            <option value="" disabled selected>Select a category</option>
+                            <option class="sales" value="sales">Sales</option>
+                            <option class="marketing" value="marketing">Marketing</option>
+                            <option class="accounting" value="accounting">Accounting</option>
+                            <option class="development" value="development">Development</option>
+                            <option class="purchase" value="purchase">Purchase</option>
+                        </select>
+                    </div>
+
+                    <div class="container-input">
+                        <span class="form-text-add-task">Assigned to</span>
+                        <select oninput="addMemberEditTask(${j})" class="inputfield-add-task" type="text" required name=""
+                            id="assignedTo_form">
+                        </select>
+
+                        <div class="" id="click_to_delete_text"></div>
+
+                        <div class="selected-members-add-task" id="selected_members_add_task">
+
+                        </div>
+                    </div>
+                </div>
+
+                <img class="line-icon-add-task" src="../assets/icons/vertical_line_addTask.svg" alt="">
+
+                <div class="right_side_desktop-add-task">
+
+                    <div class="container-input">
+                        <span class="form-text-add-task">Due date</span>
+                        <input value="${tasks[j]['dueDate']}" class="inputfield-add-task" type="date" required placeholder="dd/mm/yyyy" name=""
+                            id="dueDate_form">
+                    </div>
+
+                    <div class="container-input">
+                        <span class="form-text-add-task">Prio</span>
+
+                        <div class="container-prio-btn-add-task">
+
+                            <div id="prio_btn_urgent" class="prio-btn-add-task" onclick="setPrioValue('urgent')">
+                                <span class="text-btn-prio-add-task">Urgent</span>
+                                <img src="../assets/icons/icon_prio_high.svg" alt="">
+                            </div>
+
+                            <div id="prio_btn_medium" class="prio-btn-add-task" onclick="setPrioValue('medium')">
+                                <span class="text-btn-prio-add-task">Medium</span>
+                                <img src="../assets/icons/icon_prio_medium.svg" alt="">
+                            </div>
+
+                            <div id="prio_btn_low" class="prio-btn-add-task" onclick="setPrioValue('low')">
+                                <span class="text-btn-prio-add-task">Low</span>
+                                <img src="../assets/icons/icon_prio_low.svg" alt="">
+                            </div>
+
+                            <input required id="prio_hidden" type="hidden" value="medium">
+                        </div>
+                    </div>
+
+                    <div class="container-input pos-relative">
+                        <span class="form-text-add-task">Subtasks</span>
+                        <input class="inputfield-add-task" maxlength="30" type="text" placeholder="Add new subtask"
+                            name="" id="input_subtask">
+                        <img onclick="addSubtask()" class="btn-plus-add-task" src="../assets/icons/icon_plus_dark.svg"
+                            alt="">
+                        <div class="container-subtasks" id="container_subtasks">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-container-add-task-on-board">
+                    <button onclick="reset(); resetPrioValue(); resetSubtaskArray(); resetAssignedTo()"
+                        id="btn_clear_task" type="button" for class="btn-clear">
+                        <span>Clear</span>
+                        <img src="../assets/icons/icon_cross_dark.svg" alt="">
+                    </button>
+
+                    <button onclick="addTaskAndCloseForm()" class="btn-create-task">
+                        <span>Safe Changes</span>
+                        <img src="../assets/icons/icon_check_bright.svg" alt="">
+                    </button>
+
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    `;
+};

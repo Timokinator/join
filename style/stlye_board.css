@@ -267,6 +267,7 @@ header {
     height: 55%;
     padding: 50px;
     animation: slideTaskInFromTop 0.5s ease-in-out;
+    overflow: auto;
 }
 
 @keyframes slideTaskInFromTop {
@@ -429,10 +430,16 @@ header {
     width: 45px;
 }
 
+.container-container-delete-and-edit-task {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+
+}
+
+
 .container-delete-and-edit-task {
-    position: absolute;
-    right: 47px;
-    bottom: 61px;
     display: flex;
     border: 1px solid #2A3647;
     border-radius: 10px;
@@ -548,6 +555,24 @@ header {
 .purchase {
     background-color: red;
 }
+
+
+/* edit task */
+
+.container-background-edit-task {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 125;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    overflow: auto;
+}
+
 
 
 
