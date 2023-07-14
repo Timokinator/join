@@ -699,22 +699,22 @@ function templateEditTask(j) {
 
                         <div class="container-prio-btn-add-task">
 
-                            <div id="prio_btn_urgent" class="prio-btn-add-task" onclick="setPrioValue('urgent')">
+                            <div id="prio_btn_urgent" class="prio-btn-add-task" onclick="setPrioValueEditTask(${j},'urgent')">
                                 <span class="text-btn-prio-add-task">Urgent</span>
                                 <img src="../assets/icons/icon_prio_high.svg" alt="">
                             </div>
 
-                            <div id="prio_btn_medium" class="prio-btn-add-task" onclick="setPrioValue('medium')">
+                            <div id="prio_btn_medium" class="prio-btn-add-task" onclick="setPrioValueEditTask(${j},'medium')">
                                 <span class="text-btn-prio-add-task">Medium</span>
                                 <img src="../assets/icons/icon_prio_medium.svg" alt="">
                             </div>
 
-                            <div id="prio_btn_low" class="prio-btn-add-task" onclick="setPrioValue('low')">
+                            <div id="prio_btn_low" class="prio-btn-add-task" onclick="setPrioValueEditTask(${j},'low')">
                                 <span class="text-btn-prio-add-task">Low</span>
                                 <img src="../assets/icons/icon_prio_low.svg" alt="">
                             </div>
 
-                            <input required id="prio_hidden" type="hidden" value="medium">
+                            <!-- not needed: <input required id="prio_hidden" type="hidden" value="medium"> -->
                         </div>
                     </div>
 
@@ -751,8 +751,27 @@ function templateEditTask(j) {
 };
 
 
-function safeChangesEditTask(j) {
+function setPrioValueEditTask(j, prio) {
+    tasks[j]['prio'] = prio;
+    let selectedButton = document.getElementById('prio_btn_' + prio);
+    resetPrioValue();
+    selectedButton.classList.add('prio-selected');
+};
+
+
+async function safeChangesEditTask(j) {
+    let category = document.getElementById('category_form');
+    let description = document.getElementById('description_form');
+    let dueDate = document.getElementById('dueDate_form');
+    let title = document.getElementById('title_form');
     
+    tasks[j]['category'] = category.value;
+    tasks[j]['description'] = description.value;
+    tasks[j]['dueDate'] = dueDate.value;
+    tasks[j]['title'] = title.value;
 
+    await safeTasks();
 
-}
+    closeEditTask();
+    initBoard();
+};
