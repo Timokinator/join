@@ -509,6 +509,7 @@ function closeEditTask() {
 
 async function editTask(j) {
     closeTaskDetail();
+    await loadTasks();
     editTaskAddCloseWithEscape();
     let content = document.getElementById('container_background_edit_task');
     content.classList.remove('d-none');
@@ -617,7 +618,7 @@ function templateEditTask(j) {
                     <div class="container-input">
                         <span class="form-text-add-task">Category</span>
                         <select class="inputfield-add-task" type="text" required name="" id="category_form">
-                            <option value="" disabled selected>Select a category</option>
+                            <option value="${tasks[j]['category']}"disabled selected>${tasks[j]['category'].slice(0, 1).toUpperCase()}${tasks[j]['category'].slice(1)}</option>
                             <option class="sales" value="sales">Sales</option>
                             <option class="marketing" value="marketing">Marketing</option>
                             <option class="accounting" value="accounting">Accounting</option>
@@ -687,13 +688,13 @@ function templateEditTask(j) {
                 </div>
 
                 <div class="btn-container-add-task-on-board">
-                    <button onclick="reset(); resetPrioValue(); resetSubtaskArray(); resetAssignedTo()"
+                    <button onclick="editTask(${j})"
                         id="btn_clear_task" type="button" for class="btn-clear">
-                        <span>Clear</span>
+                        <span>Reset</span>
                         <img src="../assets/icons/icon_cross_dark.svg" alt="">
                     </button>
 
-                    <button onclick="addTaskAndCloseForm()" class="btn-create-task">
+                    <button onclick="" class="btn-create-task">
                         <span>Safe Changes</span>
                         <img src="../assets/icons/icon_check_bright.svg" alt="">
                     </button>
