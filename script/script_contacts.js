@@ -70,17 +70,25 @@ async function addContact() {
 }
 
 // Function hides "Contact Container"
-function hideAddContactCard() {
-    var element = document.getElementById("addContactCard");
-    element.classList.add("slideoutclass");
-    
+function hideAddContactCard() {     
     document.getElementById("overlay_add_contact").style.display = "none";
+}
+
+// Function hides "MOBILE Contact Container"
+function hideMobileAddContactCard() {     
+    document.getElementById("overlay_add_contact_mobile").style.display = "none";
 }
 
 // Function shows "Contact Container"
 function showAddContactCard() {
     document.getElementById("addContactCard").style.display = "flex";
     document.getElementById("overlay_add_contact").style.display = "flex";
+}
+
+// Function shows "MOBILE Contact Container"
+function showMobileAddContactCard() {
+    document.getElementById("addContactCard_mobile").style.display = "flex";
+    document.getElementById("overlay_add_contact_mobile").style.display = "flex";
 }
 
 // Function hides "Edit Contact Container"
@@ -101,6 +109,11 @@ function closeOverlay() {
     document.getElementById("overlay_add_contact").style.display = "none";
     document.getElementById("overlay_edit_contact").style.display = "none";
 }
+
+// Function whiches hides mobile detail view of a contact
+function hideMobileContactView() {
+    document.getElementById("contacts-right-mobile").style.display = "none";
+}
 // Function renders a specific contact in the detail view
 function renderContact(i) {
     document.getElementById("contactsboxbig").style.display = "flex";
@@ -113,7 +126,7 @@ function renderContact(i) {
     let color = contacts[i]['color'];
     let initial = initials[i];
 
-    contactsboxbig.innerHTML += `
+    contactsboxbig.innerHTML +=/*html*/`
         <div class="contact_big flex juststart fdc">
             <div class="flex align fdr">
                 <div style="background-color:${color}" id="usercircle${i}" class="usercircle">${initial}</div>
@@ -135,6 +148,43 @@ function renderContact(i) {
             <a class="FS16-400 lightblue" href="mailto:${email}">${email}</a>
             <p class="FS16-700">Phone</p>
             <div class="FS16-400">${phone}</div>
+        `;
+}
+
+// Function renders a specific contact in the MOBILE detail view
+function renderContactMobile(i) {
+    document.getElementById("contacts-right-mobile").style.display = "block";
+    let contactsboxbigmobile = document.getElementById('contactsboxbigmobile');
+    contactsboxbigmobile.innerHTML = '';
+
+    let name = contacts[i]['name'];
+    let email = contacts[i]['email'];
+    let phone = contacts[i]['phone'];
+    let color = contacts[i]['color'];
+    let initial = initials[i];
+
+    contactsboxbigmobile.innerHTML +=/*html*/`
+        <div class="contact_big_mobile flex juststart fdc">
+            <div class="flex align fdr">
+                <div style="background-color:${color}" id="usercircle${i}" class="usercircle">${initial}</div>
+                    <div class="flex juststart alignstart fdc gap5">          
+                        <div class="contactNameBig FS47-500">${name}</div>
+                        <div class="FS16-400 lightblue cursor">+ Add Task</div>
+                    </div>
+            </div>
+            <div class="flex align fdr">
+                <div class="flex align fdr gap59">
+                    <div class="FS21-400">Contact Information</div>
+                </div>
+            </div>
+            <p class="FS16-700">Email</p>
+            <a class="FS16-400 lightblue" href="mailto:${email}">${email}</a>
+            <p class="FS16-700">Phone</p>
+            <div class="FS16-400">${phone}</div>
+            <div class="icon_container">
+                <div onclick="deleteContact(${i})" class="trash-container"><img class="icon_mobile_Trashcan"src="../assets/icons/icon_contact_trashcan.svg"></div>
+                <div class="pencil-container"><img class="icon_mobile_Pencil" src="../assets/icons/icon_contact_pencil_white.svg"><div>
+            </div>
         `;
 }
 
@@ -189,7 +239,7 @@ async function renderContacts() {
 
         const contactDiv = document.createElement('div');
         contactDiv.onclick = function () {
-        renderContact(i);
+        renderContact(i), renderContactMobile(i);
     };
         contactDiv.id = i;
         contactDiv.className = 'contact_small_content flex juststart align';
@@ -224,9 +274,9 @@ function renderEditContact(i) {
     editContactForm.innerHTML +=/*html*/`
     <img onclick="hideEditContactCard();closeOverlay()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
                     <form id="form_edit_contact" class="editContactRight_right" onsubmit="return false">
-                        <input id="edit-name" type="text" value="${name}" required>
-                        <input id="edit-email" type="email" value="${email}" required>
-                        <input id="edit-phone" type="tel"  value="${phone}" required>
+                        <input class="inputDesktop" id="edit-name" type="text" value="${name}" required>
+                        <input class="inputDesktop" id="edit-email" type="email" value="${email}" required>
+                        <input class="inputDesktop" id="edit-phone" type="tel"  value="${phone}" required>
                             <div class="flex">
                                 <button onclick="deleteContact(${i});closeOverlay()" class="delete_btn">Delete</button>
                                 <button onclick="editContact(${i});closeOverlay()" class="save_btn">Save</button>
