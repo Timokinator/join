@@ -23,7 +23,6 @@ async function initBoard() {
 };
 
 
-
 function renderTasksBoard() {
     let search = document.getElementById('search_input_board').value;
 
@@ -96,6 +95,7 @@ function templateSingleTask(task, j) {
     `;
 };
 
+
 function addMemberToSingleTask(task, j) {
     let content = document.getElementById('single_task_member' + j)
     content.innerHTML = '';
@@ -150,6 +150,7 @@ function closeTaskDetail() {
     setTimeout(function () { clearHtmlSingleTask() }, 400);
 };
 
+
 function clearHtmlSingleTask() {
     const content = document.getElementById('container_single_task_details');
     content.classList.add('d-none');
@@ -157,13 +158,10 @@ function clearHtmlSingleTask() {
 };
 
 
-
 function slideOutTask() {
     const containerSlideOut = document.getElementById('container_single_task_details')
     containerSlideOut.classList.add('slide-out');
-}
-
-
+};
 
 
 function addCloseWithEscape() { //adds the possibility to close the details with the escape-key
@@ -268,9 +266,9 @@ function addMemberTaskDetail(j) {
 
     }
 
-}
+};
 
-// img muss noch ausgetauscht / gerendert werden wenn contacts fertig sind
+
 function renderMemberTaskDetail(member, k, j) {
     return /*html*/`
     <div class="container-initials-and-name-member-task-detail">
@@ -485,7 +483,8 @@ function moveTaskTo(status) {
     safeTasks();
     document.getElementById('container_tasks_board_' + status).classList.remove('highlight');
     renderTasksBoard();
-}
+};
+
 
 function highlight(status) {
     let container = document.getElementById('container_tasks_board_' + status);
@@ -496,15 +495,13 @@ function highlight(status) {
 function unsetHighlight(status) {
     let container = document.getElementById('container_tasks_board_' + status);
     container.classList.remove('highlight');
-}
+};
 
 
 function closeEditTask() {
     let content = document.getElementById('container_background_edit_task');
     content.classList.add('d-none');
-
-
-}
+};
 
 
 async function editTask(j) {
@@ -517,18 +514,64 @@ async function editTask(j) {
     content.innerHTML = templateEditTask(j);
     loadContactsToForm();
     renderMemberEditTask(j);
-    //set category
-
-
-
-    //load prio
-
+    setPrioEditTask(j);
+    loadSubtasksEditTask(j);
     //load subtasks
-
-
 
 };
 
+
+function loadSubtasksEditTask(j) {
+    let content = document.getElementById('container_subtasks');
+    content.innerHTML = '';
+
+    for (let i = 0; i < tasks[j]['subtasks'].length; i++) {
+        const subtask = tasks[j]['subtasks'][i];
+        content.innerHTML += templateSubtasksEditTask(j, i);
+    };
+};
+
+
+function templateSubtasksEditTask(j, i) {
+    return /*html*/`
+    <div class="text-subtask">
+    ${tasks[j]['subtasks'][i]}
+    <img onclick="deleteSubtaskEditTask(${j},${i})" class="hover" id="delete_btn_subtasks${i}" src="../assets/icons/trash.png" alt="">
+</div>
+`;
+};
+
+
+function deleteSubtaskEditTask(j, i) {
+    tasks[j]['subtasks'].splice(i, 1);
+    loadSubtasksEditTask(j);
+};
+
+
+function addSubtaskEditTask(j) {
+    let subtask = document.getElementById('input_subtask');
+    tasks[j]['subtasks'].push(subtask.value);
+    subtask.value = '';
+    renderSubtasksEditTask(j);
+};
+
+
+function renderSubtasksEditTask(j) {
+    let content = document.getElementById('container_subtasks');
+    content.innerHTML = '';
+
+    for (let i = 0; i < tasks[j]['subtasks'].length; i++) {
+        const subtask = tasks[j]['subtasks'][i];
+        content.innerHTML += templateSubtasksEditTask(j, i);
+    };
+};
+
+
+function setPrioEditTask(j) {
+    let selectedPrio = tasks[j]['prio'];
+    let prioToselect = document.getElementById('prio_btn_'+selectedPrio);
+    prioToselect.classList.add('prio-selected');
+};
 
 
 function renderMemberEditTask(j) {
@@ -548,7 +591,7 @@ function renderMemberEditTask(j) {
         const member = tasks[j]['assignedTo'][i];
         content.innerHTML += templateMembersEditTask(i, j);
     };
-}
+};
 
 
 function templateMembersEditTask(i, j) {
@@ -629,7 +672,7 @@ function templateEditTask(j) {
 
                     <div class="container-input">
                         <span class="form-text-add-task">Assigned to</span>
-                        <select oninput="addMemberEditTask(${j})" class="inputfield-add-task" type="text" required name=""
+                        <select oninput="addMemberEditTask(${j})" class="inputfield-add-task" type="text" name=""
                             id="assignedTo_form">
                         </select>
 
@@ -679,7 +722,7 @@ function templateEditTask(j) {
                         <span class="form-text-add-task">Subtasks</span>
                         <input class="inputfield-add-task" maxlength="30" type="text" placeholder="Add new subtask"
                             name="" id="input_subtask">
-                        <img onclick="addSubtask()" class="btn-plus-add-task" src="../assets/icons/icon_plus_dark.svg"
+                        <img onclick="addSubtaskEditTask(${j})" class="btn-plus-add-task" src="../assets/icons/icon_plus_dark.svg"
                             alt="">
                         <div class="container-subtasks" id="container_subtasks">
 
@@ -694,7 +737,7 @@ function templateEditTask(j) {
                         <img src="../assets/icons/icon_cross_dark.svg" alt="">
                     </button>
 
-                    <button onclick="" class="btn-create-task">
+                    <button onclick="safeChangesEditTask(${j})" class="btn-create-task">
                         <span>Safe Changes</span>
                         <img src="../assets/icons/icon_check_bright.svg" alt="">
                     </button>
@@ -706,3 +749,10 @@ function templateEditTask(j) {
     </div>
     `;
 };
+
+
+function safeChangesEditTask(j) {
+    
+
+
+}
