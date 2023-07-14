@@ -5,11 +5,7 @@ let currentDraggedElement;
 
 function findTask() {
     let search = document.getElementById('search_input_board');
-
-
-    console.log(search.value)
     search.value = '';
-
 };
 
 
@@ -41,8 +37,6 @@ function renderTasksBoard() {
 
 
 function renderTasksBoardWithSearch(content, status, search) {
-    console.log(search)
-
     for (let j = 0; j < tasks.length; j++) {
         const task = tasks[j];
         if (task['status'] == status) {

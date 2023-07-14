@@ -29,7 +29,7 @@ function pushTaskToArray(title, description, category, member, dueDate, prio, su
 function pushMemberToArrayAssignedTo() {
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
-        
+
         memberAssignedTo.push(contact['name'])
     };
 };
@@ -158,12 +158,14 @@ async function addTask() {
     if (title != '' && category != '' && assignedTo != '' && dueDate != '') {
         pushTaskToArray(title, description, category, member, dueDate, prio, subtasks_task, status, colors, initialsMembers);
         await safeTasks();
-    };
 
-    document.getElementById('form_add_task').reset();
-    resetPrioValue();
-    resetSubtaskArray();
-    resetAssignedTo();
+        document.getElementById('form_add_task').reset();
+        resetPrioValue();
+        resetSubtaskArray();
+        resetAssignedTo();
+        resetAssignedToArrays();
+        taskAddedPopUp();
+    };
 };
 
 
@@ -171,18 +173,14 @@ function addMember() {
     let member = document.getElementById('assignedTo_form')
     for (let i = 0; i < memberAssignedTo.length; i++) {
         const assignedMember = memberAssignedTo[i];
-        
+
         if (assignedTo.indexOf(member.value) == -1) {
             assignedTo.push(member.value);
             assignedToInitials.push(initials[memberAssignedTo.indexOf(member.value)]);
             assignedToColors.push(colorsAssignedTo[memberAssignedTo.indexOf(member.value)]);
         }
 
-    }
-/* 
-    assignedTo.sort();
-    assignedToInitials.sort();
-    assignedToColors.sort(); */
+    };
     renderMembers()
 };
 
@@ -213,9 +211,23 @@ function resetAssignedTo() {
 };
 
 
+function resetAssignedToArrays() {
+    resetAssignedTo();
+    resetSubtaskArray();
+    resetPrioValue();
+    resetAssignedToInitials();
+    resetAssignedToColors();
+};
 
 
+function resetAssignedToInitials() {
+    assignedToInitials = [];
+};
 
+
+function resetAssignedToColors() {
+    assignedToColors = [];
+};
 
 
 function templateMembers(i) {
@@ -234,3 +246,25 @@ function deleteMember(i) {
     renderMembers();
     document.getElementById('assignedTo_form').value = '';
 };
+
+
+function taskAddedPopUp() {
+    let popup = document.getElementById('container_pop_up_add_task');
+    popup.innerHTML = templatePopUpTaskAdded();
+    popup.classList.remove('d-none');
+
+    setTimeout(() => {
+        popup.classList.add('d-none');
+    }, 2000);
+};
+
+
+function templatePopUpTaskAdded() {
+    return /*html*/`
+        <div class="pop-up-task-added" id="pop_up_task_added">
+                <span class="pop-up-task-added-text">Task added to board</span>
+                <img class="pop-up-task-added-img" src="../assets/icons/icon_sidebar_board.svg" alt="">
+        </div>
+    `;
+};
+

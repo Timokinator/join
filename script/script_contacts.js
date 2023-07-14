@@ -8,7 +8,7 @@ async function init() {
     await loadContacts();
     await extractInitials(sortedalphabetically);
     renderContacts();
-}
+};
 
 // Asynchronous function that refreshes the page
 async function refresh() {
@@ -24,7 +24,7 @@ async function refresh() {
     await loadContacts();
     await extractInitials(sortedalphabetically);
     renderContacts();
-}
+};
 
 
 // Function to push the entered contacts into the "contacts" array
