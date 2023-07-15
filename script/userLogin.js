@@ -52,17 +52,11 @@ async function loadUsers() {
 async function logIn() {
     let email = document.getElementById('email');
     let password = document.getElementById('password');
-<<<<<<< HEAD
-    
 
-    let user = users.find(u => u.email == email.value && u.password == password.value);
-    if (user && navigator.onLine) {
-=======
     let user = users.find(u => u.email == email.value && u.password == password.value);
     if (user) {
         console.log(user);
         currentUser.push(user);
->>>>>>> a678ec0495fd691cad955ee40c5fcab15a9a0bca
         await setItem('user', JSON.stringify(user));
         currentUser = JSON.parse(await getItem('users'));
         console.log(currentUser);
