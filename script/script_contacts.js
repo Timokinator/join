@@ -403,6 +403,7 @@ async function editContact(i) {
     contacts[i].email = newEmail;
     contacts[i].phone = newPhone;
 
+
     // Do more actions after array update
     document.getElementById("editContactCard").style.display = "none";
     await refresh();

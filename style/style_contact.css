@@ -100,8 +100,8 @@
 .contacts-left {
     display: flex;
     justify-content: center;
-    width: 30vw;
-    height: calc(100vh - 90px);
+    width: calc(30vw -116px);
+    height: 91vh;
     box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
     overflow-y: scroll;
     background: #ffffff;
@@ -109,7 +109,7 @@
 
 .contacts-right {
     margin-top: 82px;
-    min-width: 70vw;
+    width: 70vw;
     position: relative;
     background-color: rgb(246,247,248);
     display: flex;
@@ -919,7 +919,7 @@ hr {
 
 
 /* Responsive */
-@media (max-width: 1250px) {
+@media only screen and (max-width: 1250px) {
     .subHeader {
         margin-left:10px;
         width: 469px;
@@ -947,17 +947,20 @@ hr {
 }
 
 
-@media (min-width: 1050px) {
+@media only screen and (min-width: 1050px) {
     .newContactMobile {
         display: none;
     }
     .contacts-left {
         align-items: flex-start;
     }
+    .contacts-right-mobile {
+        display: none;
+    }
 }
 
 
-@media (max-width: 1050px) {
+@media only screen and (max-width: 1050px) {
     .contacts-left {
         display: flex;
         flex-direction: column;
@@ -987,8 +990,6 @@ hr {
     .subHeader {
         flex-direction: column;
     }
-    
-
 }
 
 

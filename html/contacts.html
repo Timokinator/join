@@ -106,7 +106,7 @@
     </div>
         <!-- Static HTML -Contacts Container -->
         <div class="contacts-big">
-            <div class="contacts-left">
+            <div id="contacts-left" class="contacts-left">
                 <!-- Static HTML - hidden add Contact MOBILE Btn -->
                 <div class ="newContactContainer">
                     <div onclick="showMobileAddContactCard ()" class="newContactMobile">
@@ -115,19 +115,6 @@
                 </div>
                 <div id="contactsboxsmall" class="contact_small"></div>
             </div> 
-            <div class="contacts-right">
-                <div class="subHeader">
-                    <div class="FS61-700">Contacts</div>
-                    <span class="blue-line-h"></span>
-                    <div class="FS27-400">Better with a team</div>
-                </div>
-                    <div id="contactsboxbig" class="contact_big_container"></div>
-                <div class ="newContactContainer">
-                    <div onclick="showAddContactCard ()" class="newContact">
-                        New contact <img src="../assets/icons/icon_add_contact.svg">
-                    </div>
-                </div> 
-            </div>
             <!-- Static HTML - hidden Detail Contact MOBILE Container -->
             <div id="contacts-right-mobile" class="contacts-right-mobile" style="display: none;">
                 <div>Kanban Project Management Tool</div>
@@ -143,6 +130,20 @@
                     <div id="contactsboxbigmobile" class="contact_big_container"></div>
                 </div>
             </div>
+            <div class="contacts-right">
+                <div class="subHeader">
+                    <div class="FS61-700">Contacts</div>
+                    <span class="blue-line-h"></span>
+                    <div class="FS27-400">Better with a team</div>
+                </div>
+                    <div id="contactsboxbig" class="contact_big_container"></div>
+                <div class ="newContactContainer">
+                    <div onclick="showAddContactCard ()" class="newContact">
+                        New contact <img src="../assets/icons/icon_add_contact.svg">
+                    </div>
+                </div> 
+            </div>
+            
             <!-- Static HTML - add Contact Container -->
                 <div class ="newContactContainer">
                     <div id="addContactBtn" onclick="showAddContactCard ()" class="newContact">
