@@ -37,6 +37,7 @@ function pushToArray(name, email, phone, color) {
             'color': color,
         }
     );
+    safeContacts();
 }
 
 // Asynchronous function to save all contacts from array "contacts" to remote storage
@@ -67,6 +68,7 @@ async function addContact() {
     }
     document.getElementById('form_add_contact').reset();
     await refresh();
+    safeContacts();
 }
 
 // Asynchronous function to add a new contact from the Mobile Version to the "contacts" array
@@ -427,6 +429,7 @@ function assignRandomColorToDiv(i) {
     }
     // Return the assigned color
     return contacts[i].color;
+    safeContacts();
 }
 
 // function alphabetically sorts the "contacts" array by the first capital letter of the "name" field and pushes it into a new array named "sortedalphabetically"
