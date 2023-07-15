@@ -107,7 +107,7 @@
             </div>
 
             <div class="btn-container-add-task">
-                <button onclick="reset(); resetAssignedTo(); resetSubtaskArray(); resetPrioValue() " id="btn_clear_task"
+                <button onclick="reset(); resetAssignedToArrays()" id="btn_clear_task"
                     type="button" for class="btn-clear">
                     <span>Clear</span>
                     <img src="../assets/icons/icon_cross_dark.svg" alt="">
@@ -120,6 +120,13 @@
 
             </div>
         </form>
+
+        <div class="container-pop-up-add-task d-none" id="container_pop_up_add_task">
+            
+        </div>
+
+
+
     </div>
 
     <script src="../script/script_frame.js"></script>

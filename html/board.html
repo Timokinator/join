@@ -50,7 +50,7 @@
                     </button>
                 </div>
 
-                <div class="container-single-tasks-board" id="container_tasks_board_todo">
+                <div ondrop="moveTaskTo('todo')" ondragleave="unsetHighlight('todo')" ondragover="allowDrop(event); highlight('todo')" class="container-single-tasks-board" id="container_tasks_board_todo">
 
                 </div>
             </div>
@@ -64,7 +64,7 @@
                     </button>
                 </div>
 
-                <div class="container-single-tasks-board" id="container_tasks_board_progress">
+                <div ondrop="moveTaskTo('progress')" ondragleave="unsetHighlight('progress')" ondragover="allowDrop(event); highlight('progress')" class="container-single-tasks-board" id="container_tasks_board_progress">
 
                 </div>
             </div>
@@ -79,7 +79,7 @@
                     </button>
                 </div>
 
-                <div class="container-single-tasks-board" id="container_tasks_board_awaiting">
+                <div ondrop="moveTaskTo('awaiting')" ondragleave="unsetHighlight('awaiting')" ondragover="allowDrop(event); highlight('awaiting')" class="container-single-tasks-board" id="container_tasks_board_awaiting">
                 </div>
             </div>
 
@@ -91,7 +91,7 @@
                     </button>
                 </div>
 
-                <div class="container-single-tasks-board" id="container_tasks_board_done"></div>
+                <div ondrop="moveTaskTo('done')" ondragleave="unsetHighlight('done')" ondragover="allowDrop(event); highlight('done')" class="container-single-tasks-board" id="container_tasks_board_done"></div>
 
 
 
@@ -110,6 +110,15 @@
         id="container_add_new_task_from_button">
        
     </div>
+
+
+    <!-- Edit Task container-->
+
+    <div onclick="closeEditTask()" class="container-background-edit-task d-none" id="container_background_edit_task">
+
+
+    </div>
+
 
 
 

@@ -45,6 +45,11 @@
     font-weight: 700;
 }
 
+.FS20-400 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
 .FS27-400 {
     font-size: 27px;
     font-weight: 400;
@@ -53,6 +58,11 @@
 .FS47-500 {
     font-size: 47px;
     font-weight: 500;
+}
+
+.FS47-700 {
+    font-size: 47px;
+    font-weight: 700;
 }
 
 .FS16-400 {
@@ -203,8 +213,6 @@
     color: white;
     cursor: pointer;
 }
-.contact_big_container {
-}
 
 .contact_big {
     margin-left: 100px;
@@ -274,7 +282,7 @@ hr {
 }
 /*Inputfields CSS*/
 
-input {
+.inputDesktop {
     width: 380px;
     height: 25px;
     border-radius: 10px;
@@ -312,6 +320,37 @@ input {
     height: 24px;
     top: 345px;
     right: 100px;
+}
+
+.icon_mobile_Trashcan {
+    width: 32px;
+    height 32px;
+}
+
+.icon_mobile_Pencil {
+    height: 31px;
+}
+/*Mobile Version Icons CSS*/
+.icon-name-add-contact_mobile {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 125px;
+    right: 20px;
+}
+.icon-email-add-contact_mobile {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 230px;
+    right: 20px;
+}
+.icon-phone-add-contact_mobile {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 330px;
+    right: 20px;
 }
 
 /*addContactSlider CSS*/
@@ -542,6 +581,168 @@ input {
     from {opacity: 1;}
     to {opacity: 0;}
 }
+/*MOBILE detail Contact View CSS*/
+.contact_big_mobile {
+    margin-left: 100px;
+    margin-top: 100px;
+    position: relative;
+    left: 0;
+    top: 0;
+    animation-name: slideInFromRight2;
+    animation-duration: 500ms;   
+}
+@keyframes slideInFromRight2 {
+    0%   {left: 150%; top:0;}
+    100% {left: 0; top:0;}
+}
+
+.icon_container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 24px;
+}
+
+.pencil-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #2A3647;
+    border-radius: 10px;
+    gap: 6px;
+}
+
+.trash-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    border: solid;
+    border-radius: 10px;
+    border-color: #2A3647;
+    border-width: 1px;
+}
+
+
+/*MOBILE add Contact Slider  CSS*/
+#name_mobile {
+    border-style: solid;
+    max-width: 327px;
+    height: 41px;
+} 
+#email_mobile {
+    border-style: solid;
+    max-width: 327px;
+    height: 41px;
+}
+#phone_mobile {
+    border-style: solid;
+    max-width: 327px;
+    height: 41px;
+}
+.overlay_add_contact_mobile {
+    height: 100vh;
+    width: 100vw;
+    top: -105px;
+    left: 0;
+    position: absolute;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.addContactSlideWrapperMobile{
+    position: relative;
+    left: 0;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 374px;
+    height: 761px;
+    z-index: 1000;
+    animation-name: slideInFromBottom;
+    animation-duration: 500ms;   
+}
+@keyframes slideInFromBottom {
+    0%   {left: 0; top:1000px;}
+    100% {left: 0; top:0;}
+}
+
+.addContactTopMobile {
+    color: white;
+    display: flex;
+    width: 374px;
+    height: 351px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #2A3647;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}    
+.addContactBottomMobile {
+    position: relative;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 374px;
+    height: calc(761px - 351px);
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.addContactBottom {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.create_btn_mobile{
+    width: 212px;
+    height: 51px;
+    margin-top: 10px;
+    margin-left: 16px;
+    font-size: 21px;
+    font-weight: 700;
+    color: white;
+    background-color: rgb(42,54,71);
+    border-radius: 10px;
+    padding: 18px 10px;
+    border-style: none;
+}
+.create_btn_mobile:hover {
+    background: #29ABE2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.inputMobile {
+    width: 327px;
+    height: 41px;
+    border-radius: 10px;
+    padding: 13px 21px 13px 21px;
+    padding: 10px;
+}
+
+.close_symbol_mobile {
+    height: 21.65px;
+    width: 21.65px;
+    margin-left: 358px;
+    
+}
+
+.close_symbol:hover {
+    -webkit-transform: scale(1.25);
+}
+
+/*edit MOBILE ContactSlider CSS*/
+
 
 /* Responsive */
 @media (max-width: 1250px) {
@@ -594,9 +795,23 @@ input {
     .contacts-right {
         display: none;
     }
+    .contacts-right-mobile {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgb(246,247,248);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
     .newContactMobile {
         margin-top: 16px;
         margin-left: 100px;
+    }
+    .subHeader {
+        flex-direction: column;
     }
     
 
