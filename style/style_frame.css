@@ -112,7 +112,12 @@ body {
 
 .topbar-user-img {
     width: 64px;
-    padding-right: 36px;
+    margin-right: 36px;
+}
+
+.topbar-user-img:hover {
+    cursor: pointer;
+    scale: 1.03;
 }
 
 .d-none {
@@ -170,10 +175,51 @@ body {
     width: 64px;
 }
 
+.topbar-user-img-mobile:hover {
+    cursor: pointer;
+    scale: 1.03;
+}
+
 .hover:hover {
     cursor: pointer;
     scale: 1.05;
 }
+
+.submenu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    gap: 12px;
+    padding: 24px;
+    background-color: #2A3647;
+    border-radius: 20px 0 20px 20px;
+}
+
+.submenu a {
+    color: #CDCDCD;
+    font-size: 28px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    text-decoration: none;
+}
+
+.submenu a:hover {
+    cursor: pointer;
+    scale: 1.05;
+}
+
+
+
+.container-submenu-user {
+    position: fixed;
+    top: 16px;
+    right: 32px;
+    z-index: 999;
+}
+
 
 
 @media (max-width: 1050px) {
