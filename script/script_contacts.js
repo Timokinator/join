@@ -124,6 +124,19 @@ function showEditContactCard(i) {
     renderEditContact(i);
 }
 
+// Function hides MOBILE Version of "Edit Contact Container"
+function hideMobileEditContactCard() {
+    document.getElementById("editContactCard_mobile").style.display = "none";
+    document.getElementById("overlay_edit_contact_mobile").style.display = "none";
+}
+
+// Function shows MOBILE Version of "Edit Contact Container"
+function showMobileEditContactCard(i) {
+    document.getElementById("overlay_edit_contact_mobile").style.display = "flex";
+    document.getElementById("editContactCard_mobile").style.display = "flex";
+    renderEditContactMobile(i);
+}
+
 // Function closes Overlay from "ADD-/EDIT Contact Container"
 function closeOverlay() {
     document.getElementById("overlay_add_contact").style.display = "none";
@@ -132,7 +145,6 @@ function closeOverlay() {
 
 // Function closes Overlay from MOBILE version of "ADD-/EDIT Contact Container"
 function closeOverlayMobile() {
-
     document.getElementById("overlay_add_contact_mobile").style.display = "none";
     document.getElementById("overlay_edit_contact_mobile").style.display = "none";
 }
@@ -214,7 +226,7 @@ function renderContactMobile(i) {
             <div class="FS16-400">${phone}</div>
             <div class="icon_container">
                 <div onclick="deleteContact(${i})" class="trash-container"><img class="icon_mobile_Trashcan"src="../assets/icons/icon_contact_trashcan.svg"></div>
-                <div onclick="renderEditContactMobile(${i})" class="pencil-container"><img class="icon_mobile_Pencil" src="../assets/icons/icon_contact_pencil_white.svg"><div>
+                <div onclick="showMobileEditContactCard(${i})" class="pencil-container"><img class="icon_mobile_Pencil" src="../assets/icons/icon_contact_pencil_white.svg"><div>
             </div>
         `;
 }
@@ -321,7 +333,7 @@ function renderEditContact(i) {
 
 // Function renders the MOBILE "Edit Contact" container
 function renderEditContactMobile(i) {
-    editContactForm = document.getElementById('editContactForm');
+    editContactForm = document.getElementById('editContactForm_mobile');
     editContactForm.innerHTML = '';
 
     let name = contacts[i]['name'];
@@ -330,16 +342,16 @@ function renderEditContactMobile(i) {
     let initial = initials[i];
     let color = contacts[i]['color'];
 
-    editContactRight_left = document.getElementById('editContactRight_left');
+    editContactRight_left = document.getElementById('editContactRight_mobile_usercircle');
     editContactRight_left.innerHTML = '';
     editContactRight_left.innerHTML +=`<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact">${initial}</div>`;
     
     editContactForm.innerHTML +=/*html*/`
     <img onclick="hideEditContactCard();closeOverlay()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
-                    <form id="form_edit_contact" class="editContactRight_right" onsubmit="return false">
-                        <input class="inputDesktop" id="edit-name" type="text" value="${name}" required>
-                        <input class="inputDesktop" id="edit-email" type="email" value="${email}" required>
-                        <input class="inputDesktop" id="edit-phone" type="tel"  value="${phone}" required>
+                    <form id="form_edit_contact_mobile" class="editContactRight_right" onsubmit="return false">
+                        <input class="inputMobile" id="edit-name" type="text" value="${name}" required>
+                        <input class="inputMobile" id="edit-email" type="email" value="${email}" required>
+                        <input class="inputMobile" id="edit-phone" type="tel"  value="${phone}" required>
                             <div class="flex">
                                 <button onclick="deleteContact(${i});closeOverlay()" class="delete_btn">Delete</button>
                                 <button onclick="editContact(${i});closeOverlay()" class="save_btn">Save</button>
