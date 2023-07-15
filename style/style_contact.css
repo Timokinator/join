@@ -235,6 +235,8 @@
     0%   {left: 150%; top:0;}
     100% {left: 0; top:0;}
 }
+
+/*Usercicle CSS*/
 .usercircle {
     display: flex;
     justify-content: center;
@@ -277,6 +279,7 @@
     margin-left: 16px;
     margin-right: 16px;
 }
+/*Fisrst Letter Container CSS*/
 .letter-container {
     margin-left: 55px;
     margin-top: 16px;
@@ -330,14 +333,6 @@ hr {
     right: 100px;
 }
 
-.icon_mobile_Trashcan {
-    width: 32px;
-    height 32px;
-}
-
-.icon_mobile_Pencil {
-    height: 31px;
-}
 /*Mobile Version Icons CSS*/
 .icon-name-add-contact_mobile {
     position: absolute;
@@ -361,6 +356,41 @@ hr {
     right: 35px;
 }
 
+.icon-name-edit-contact-mobile {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 80px;
+    right: 40px;
+}
+.icon-email-edit-contact-mobile {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 160px;
+    right: 40px;
+}
+.icon-phone-edit-contact-mobile {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 240px;
+    right: 40px;
+}
+.icon_mobile_Trashcan {
+    width: 32px;
+    height: 32px;
+}
+.icon_mobile_Trashcan:hover {
+    cursor: pointer;
+}
+
+.icon_mobile_Pencil {
+    height: 31px;
+}
+.icon_mobile_Pencil:hover {
+    cursor: pointer;
+}
 /*addContactSlider CSS*/
 #name {
     border-style: solid;
@@ -544,6 +574,7 @@ hr {
     border: #29ABE2 solid 2px;
     padding: 14px 8px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
 }
 .save_btn{
     margin-top: 10px;
@@ -559,6 +590,7 @@ hr {
 .save_btn:hover {
     background: #29ABE2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
 }
 
 #editContactCard {
@@ -587,7 +619,6 @@ hr {
 }
 /*MOBILE detail Contact View CSS*/
 .contact_big_mobile {
-    margin-left: 100px;
     margin-top: 100px;
     position: relative;
     left: 0;
@@ -629,7 +660,15 @@ hr {
     border-color: #2A3647;
     border-width: 1px;
 }
+.contactDetailMobileBackImg {
+    width: 24px;
+    height: 24px;
+}
 
+.contactDetailMobileBackImg:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.25);
+}
 
 /*MOBILE add Contact Slider  CSS*/
 #name_mobile {
@@ -830,10 +869,18 @@ hr {
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
 }
-.editContactRight_right {
+.editContactBottomMobileDown {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 60px;
+}
+
+.btn_mobile_edit_contact {
+    display: flex;
+    justify-content: center;
 }
 
 .delete_btn {

@@ -344,21 +344,20 @@ function renderEditContactMobile(i) {
 
     editContactRight_left = document.getElementById('editContactRight_mobile_usercircle');
     editContactRight_left.innerHTML = '';
-    editContactRight_left.innerHTML +=`<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact">${initial}</div>`;
+    editContactRight_left.innerHTML +=`<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact addContactImg">${initial}</div>`;
     
     editContactForm.innerHTML +=/*html*/`
-    <img onclick="hideEditContactCard();closeOverlay()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
-                    <form id="form_edit_contact_mobile" class="editContactRight_right" onsubmit="return false">
+                    <form id="form_edit_contact_mobile" class="editContactBottomMobileDown" onsubmit="return false">
                         <input class="inputMobile" id="edit-name" type="text" value="${name}" required>
                         <input class="inputMobile" id="edit-email" type="email" value="${email}" required>
                         <input class="inputMobile" id="edit-phone" type="tel"  value="${phone}" required>
-                            <div class="flex">
-                                <button onclick="deleteContact(${i});closeOverlay()" class="delete_btn">Delete</button>
-                                <button onclick="editContact(${i});closeOverlay()" class="save_btn">Save</button>
+                            <div class="btn_mobile_edit_contact">
+                                <button onclick="deleteContact(${i});closeOverlayMobile()" class="delete_btn">Delete</button>
+                                <button onclick="editContact(${i});closeOverlayMobile()" class="save_btn">Save</button>
                             </div>
-                            <img class="icon-name-add-contact" src="../assets/icons/icon_add_contact_user.svg" alt="">
-                            <img class="icon-email-add-contact" src="../assets/icons/icon_add_contact_mail.svg" alt="">
-                            <img class="icon-phone-add-contact" src="../assets/icons/icon_add_contact_phone.svg" alt="">
+                            <img class="icon-name-edit-contact-mobile" src="../assets/icons/icon_add_contact_user.svg" alt="">
+                            <img class="icon-email-edit-contact-mobile" src="../assets/icons/icon_add_contact_mail.svg" alt="">
+                            <img class="icon-phone-edit-contact-mobile" src="../assets/icons/icon_add_contact_phone.svg" alt="">
                     </form>
     `;
 }
@@ -404,13 +403,10 @@ async function editContact(i) {
     contacts[i].email = newEmail;
     contacts[i].phone = newPhone;
 
-    
-    // Optional: Display the updated values in the console
-    console.log(contacts);
-
     // Do more actions after array update
     document.getElementById("editContactCard").style.display = "none";
     await refresh();
+    hideMobileContactView();
 }
 
 // Extracts the uppercase initials from the array "contacts"['name']

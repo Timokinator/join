@@ -94,8 +94,9 @@
     <div onclick="closeOverlayMobile()" id="overlay_edit_contact_mobile" class="overlay_edit_contact_mobile" style="display: none;">
         <div onclick="event.stopPropagation()" id="editContactCard_mobile" class="editContactSlideWrapperMobile">
             <div class="editContactTopMobile">
+                <img onclick="hideMobileEditContactCard();closeOverlayMobile()" class="close_symbol_mobile" src="../assets/icons/icon_add_contact_X_white.svg">
                 <div class="FS47-700">Edit contact</div>
-                <span class="blue-line-v"></span>
+                <span class="blue-line-v-mobile"></span>
             </div>
             <div class="editContactBottomMobile">
                 <div id="editContactRight_mobile_usercircle"></div>
@@ -127,16 +128,21 @@
                     </div>
                 </div> 
             </div>
-            <!-- Static HTML - hidden add Contact MOBILE add Contact Container -->
+            <!-- Static HTML - hidden Detail Contact MOBILE Container -->
             <div id="contacts-right-mobile" class="contacts-right-mobile" style="display: none;">
                 <div>Kanban Project Management Tool</div>
-                <div class="subHeader">
-                    <img onclick="hideMobileContactView ()" src="../assets/icons/icon_arrow_left.svg">
-                    <div class="FS61-700">Contacts</div>
-                    <div class="FS27-400">Better with a team</div>
-                    <span class="blue-line-v"></span>
-                </div>
+                <div class="subHeaderMobile">
+                    <div class="flex">
+                        <div>
+                            <div class="FS47-700">Contacts</div>
+                            <div class="FS20-400">Better with a team</div>
+                            <span class="blue-line-v-mobile"></span>
+                        </div>
+                        <img class="contactDetailMobileBackImg" onclick="hideMobileContactView ()" src="../assets/icons/icon_arrow_left.svg">
+                    </div>
                     <div id="contactsboxbigmobile" class="contact_big_container"></div>
+                </div>
+            </div>
             <!-- Static HTML - add Contact Container -->
                 <div class ="newContactContainer">
                     <div id="addContactBtn" onclick="showAddContactCard ()" class="newContact">
