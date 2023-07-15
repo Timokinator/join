@@ -17,12 +17,12 @@ async function refresh() {
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
 
-    initials = [];
+    
     sortedalphabetically = [];
-
+    await extractInitials(sortedalphabetically);
     await safeContacts();
     await loadContacts();
-    await extractInitials(sortedalphabetically);
+    
     renderContacts();
 };
 
@@ -339,13 +339,14 @@ async function editContact(i) {
 }
 
 // Extracts the uppercase initials from the array "contacts"['name']
-function extractInitials(sortedContacts) {
+async function extractInitials(sortedContacts) {
     initials = sortedContacts.map(contact => {
         const name = contact.name;
         const matches = name.match(/[A-Z]/g);
         const initialsString = matches ? matches.join('') : '';
         return initialsString;
     });
+    safeContacts();
 }
 
 // Function assignes random Color to Usercircle
