@@ -21,7 +21,7 @@
             <div class="addContactLeft">
                 <img src="../assets/img/join_logo_bright.svg">
                 <div class="FS48pxbold">Add contact</div>
-                <div>Tasks are better with a team</div>
+                <div>Tasks are better with a team!</div>
                 <span class="blue-line-v"></span>
             </div>
         <div class="addContactRight">
@@ -47,26 +47,26 @@
         </div>
     </div>
     <!-- Static HTML - Add Contact MOBILE -->
-    <div onclick="closeOverlay()" id="overlay_add_contact_mobile" class="overlay_add_contact_mobile" style="display: none;">
+    <div onclick="closeOverlayMobile()" id="overlay_add_contact_mobile" class="overlay_add_contact_mobile" style="display: none;">
         <div onclick="event.stopPropagation()" id="addContactCard_mobile" class="addContactSlideWrapperMobile">
             <div class="addContactTopMobile">
                 <img onclick="hideMobileAddContactCard()" class="close_symbol_mobile" src="../assets/icons/icon_add_contact_X_white.svg">
                 <div class="FS47-700">Add contact</div>
-                <div class="FS20-400">Tasks are better with a team</div>
-                <span class="blue-line-v"></span>
+                <div class="FS20-400">Tasks are better with a team!</div>
+                <span class="blue-line-v-mobile"></span>
             </div>
         <div class="addContactBottomMobile">
                 <div class="addContactBottom">
-                    <img src="../assets/img/logo_contact.svg">
+                    <img class="addContactImg" src="../assets/img/logo_contact.svg">
                 </div>
                 <div>
-                    <form id="form_add_contact" class="addContactBottom" onsubmit="return false">
+                    <form id="form_add_contact_mobile" class="addContactBottom" onsubmit="return false">
                         <input class="inputMobile" id="name_mobile" type="text" placeholder="Name" required>
                         <input class="inputMobile" id="email_mobile" type="email" placeholder="Email" required>
                         <input class="inputMobile" id="phone_mobile" type="tel"  placeholder="Phone" required>
                             
                                 
-                                <button onclick="addContact()"  class="create_btn_mobile">Create contact</button>
+                                <button onclick="addContactMobile()"  class="create_btn_mobile">Create contact<img src="../assets/icons/icon_add_contact_mobile_check.svg"></button>
                             
                             <img class="icon-name-add-contact_mobile" src="../assets/icons/icon_add_contact_user.svg" alt="">
                             <img class="icon-email-add-contact_mobile" src="../assets/icons/icon_add_contact_mail.svg" alt="">
@@ -78,20 +78,32 @@
     </div>
     <!-- Static HTML - Edit Contact -->
     <div onclick="closeOverlay()" id="overlay_edit_contact" class="overlay_edit_contact" style="display: none;">
-    <div onclick="event.stopPropagation()" id="editContactCard" class="editContactSlideWrapper">
-        <div class="editContactLeft">
-            <img src="../assets/img/join_logo_bright.svg">
-            <div class="FS48pxbold">Edit contact</div>
-            <span class="blue-line-v"></span>
-        </div>
-        <div class="editContactRight">
-            <div id="editContactRight_left" class="editContactRight_left">
-                
+        <div onclick="event.stopPropagation()" id="editContactCard" class="editContactSlideWrapper">
+            <div class="editContactLeft">
+                <img src="../assets/img/join_logo_bright.svg">
+                <div class="FS48pxbold">Edit contact</div>
+                <span class="blue-line-v"></span>
             </div>
-            <div id="editContactForm"></div>
+            <div class="editContactRight">
+                <div id="editContactRight_left" class="editContactRight_left"></div>
+                <div id="editContactForm"></div>
+            </div>
         </div>
     </div>
-</div>
+    <!-- Static HTML - MOBILE Edit Contact -->
+    <div onclick="closeOverlayMobile()" id="overlay_edit_contact_mobile" class="overlay_edit_contact_mobile" style="display: none;">
+        <div onclick="event.stopPropagation()" id="editContactCard_mobile" class="editContactSlideWrapperMobile">
+            <div class="editContactTopMobile">
+                <img src="../assets/img/join_logo_bright.svg">
+                <div class="FS48pxbold">Edit contact</div>
+                <span class="blue-line-v"></span>
+            </div>
+            <div class="editContactBottomMobile">
+                <div id="editContactRight_left"></div>
+                <div id="editContactForm"></div>
+            </div>
+        </div>
+    </div>
         <!-- Static HTML -Contacts Container -->
         <div class="contacts-big">
             <div class="contacts-left">
@@ -116,7 +128,7 @@
                     </div>
                 </div> 
             </div>
-            <!-- Static HTML - hidden add Contact MOBILE Btn -->
+            <!-- Static HTML - hidden add Contact MOBILE add Contact Container -->
             <div id="contacts-right-mobile" class="contacts-right-mobile" style="display: none;">
                 <div>Kanban Project Management Tool</div>
                 <div class="subHeader">
@@ -128,7 +140,7 @@
                     <div id="contactsboxbigmobile" class="contact_big_container"></div>
             <!-- Static HTML - add Contact Container -->
                 <div class ="newContactContainer">
-                    <div onclick="showAddContactCard ()" class="newContact">
+                    <div id="addContactBtn" onclick="showAddContactCard ()" class="newContact">
                         New contact <img src="../assets/icons/icon_add_contact.svg">
                     </div>
                 </div> 

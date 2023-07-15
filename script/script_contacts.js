@@ -69,6 +69,24 @@ async function addContact() {
     await refresh();
 }
 
+// Asynchronous function to add a new contact from the Mobile Version to the "contacts" array
+async function addContactMobile() {
+    let name = document.getElementById('name_mobile').value;
+    let email = document.getElementById('email_mobile').value;
+    let phone = document.getElementById('phone_mobile').value;
+    
+    sortedalphabetically = [];
+
+    if (name != '' && email != '' && phone != '') {
+        pushToArray(name, email, phone);
+        await safeContacts();
+        createdContactSuccessfully();
+        hideMobileAddContactCard();
+    }
+    document.getElementById('form_add_contact_mobile').reset();
+    await refresh();
+}
+
 // Function hides "Contact Container"
 function hideAddContactCard() {     
     document.getElementById("overlay_add_contact").style.display = "none";
@@ -110,9 +128,17 @@ function closeOverlay() {
     document.getElementById("overlay_edit_contact").style.display = "none";
 }
 
+// Function closes Overlay from MOBILE version of "ADD-/EDIT Contact Container"
+function closeOverlayMobile() {
+
+    document.getElementById("overlay_add_contact_mobile").style.display = "none";
+    document.getElementById("overlay_edit_contact_mobile").style.display = "none";
+}
+
 // Function whiches hides mobile detail view of a contact
 function hideMobileContactView() {
     document.getElementById("contacts-right-mobile").style.display = "none";
+    document.getElementById("contactsboxsmall").style.display = "block";
 }
 // Function renders a specific contact in the detail view
 function renderContact(i) {
@@ -154,6 +180,9 @@ function renderContact(i) {
 // Function renders a specific contact in the MOBILE detail view
 function renderContactMobile(i) {
     document.getElementById("contacts-right-mobile").style.display = "block";
+    
+    document.getElementById("addContactBtn").style.display = "none";
+    
     let contactsboxbigmobile = document.getElementById('contactsboxbigmobile');
     contactsboxbigmobile.innerHTML = '';
 
@@ -183,7 +212,7 @@ function renderContactMobile(i) {
             <div class="FS16-400">${phone}</div>
             <div class="icon_container">
                 <div onclick="deleteContact(${i})" class="trash-container"><img class="icon_mobile_Trashcan"src="../assets/icons/icon_contact_trashcan.svg"></div>
-                <div class="pencil-container"><img class="icon_mobile_Pencil" src="../assets/icons/icon_contact_pencil_white.svg"><div>
+                <div onclick="renderEditContactMobile(${i})" class="pencil-container"><img class="icon_mobile_Pencil" src="../assets/icons/icon_contact_pencil_white.svg"><div>
             </div>
         `;
 }
@@ -288,6 +317,38 @@ function renderEditContact(i) {
     `;
 }
 
+// Function renders the MOBILE "Edit Contact" container
+function renderEditContactMobile(i) {
+    editContactForm = document.getElementById('editContactForm');
+    editContactForm.innerHTML = '';
+
+    let name = contacts[i]['name'];
+    let email = contacts[i]['email'];
+    let phone = contacts[i]['phone'];
+    let initial = initials[i];
+    let color = contacts[i]['color'];
+
+    editContactRight_left = document.getElementById('editContactRight_left');
+    editContactRight_left.innerHTML = '';
+    editContactRight_left.innerHTML +=`<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact">${initial}</div>`;
+    
+    editContactForm.innerHTML +=/*html*/`
+    <img onclick="hideEditContactCard();closeOverlay()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
+                    <form id="form_edit_contact" class="editContactRight_right" onsubmit="return false">
+                        <input class="inputDesktop" id="edit-name" type="text" value="${name}" required>
+                        <input class="inputDesktop" id="edit-email" type="email" value="${email}" required>
+                        <input class="inputDesktop" id="edit-phone" type="tel"  value="${phone}" required>
+                            <div class="flex">
+                                <button onclick="deleteContact(${i});closeOverlay()" class="delete_btn">Delete</button>
+                                <button onclick="editContact(${i});closeOverlay()" class="save_btn">Save</button>
+                            </div>
+                            <img class="icon-name-add-contact" src="../assets/icons/icon_add_contact_user.svg" alt="">
+                            <img class="icon-email-add-contact" src="../assets/icons/icon_add_contact_mail.svg" alt="">
+                            <img class="icon-phone-add-contact" src="../assets/icons/icon_add_contact_phone.svg" alt="">
+                    </form>
+    `;
+}
+
 // Function which deletes a specific contact in the array "contacts" at position [i].
 async function deleteContact(i) {
     if (contacts.length > 9) {
@@ -299,7 +360,7 @@ async function deleteContact(i) {
     sortedalphabetically = [];
     await refresh();
     hideEditContactCard();
-
+    hideMobileContactView();
 }
 
 // Function shows a popup for a certain time "created contact successfully"
