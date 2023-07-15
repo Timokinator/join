@@ -97,6 +97,7 @@ function hideAddContactCard() {
 // Function hides "MOBILE Contact Container"
 function hideMobileAddContactCard() {     
     document.getElementById("overlay_add_contact_mobile").style.display = "none";
+    document.getElementById("contacts-left").style.position = "initial";
 }
 
 // Function shows "Contact Container"
@@ -109,6 +110,7 @@ function showAddContactCard() {
 function showMobileAddContactCard() {
     document.getElementById("addContactCard_mobile").style.display = "flex";
     document.getElementById("overlay_add_contact_mobile").style.display = "flex";
+    document.getElementById("contacts-left").style.position = "fixed";
 }
 
 // Function hides "Edit Contact Container"
@@ -121,6 +123,7 @@ function hideEditContactCard() {
 function showEditContactCard(i) {
     document.getElementById("overlay_edit_contact").style.display = "flex";
     document.getElementById("editContactCard").style.display = "flex";
+    document.getElementById("contacts-left").style.position = "fixed";
     renderEditContact(i);
 }
 
@@ -128,6 +131,7 @@ function showEditContactCard(i) {
 function hideMobileEditContactCard() {
     document.getElementById("editContactCard_mobile").style.display = "none";
     document.getElementById("overlay_edit_contact_mobile").style.display = "none";
+    document.getElementById("contacts-left").style.position = "initial";
 }
 
 // Function shows MOBILE Version of "Edit Contact Container"
@@ -147,12 +151,14 @@ function closeOverlay() {
 function closeOverlayMobile() {
     document.getElementById("overlay_add_contact_mobile").style.display = "none";
     document.getElementById("overlay_edit_contact_mobile").style.display = "none";
+    document.getElementById("contacts-left").style.position = "initial";
 }
 
 // Function whiches hides mobile detail view of a contact
 function hideMobileContactView() {
     document.getElementById("contacts-right-mobile").style.display = "none";
     document.getElementById("contactsboxsmall").style.display = "block";
+    document.getElementById("contacts-left").style.position = "initial";
 }
 // Function renders a specific contact in the detail view
 function renderContact(i) {
@@ -193,10 +199,13 @@ function renderContact(i) {
 
 // Function renders a specific contact in the MOBILE detail view
 function renderContactMobile(i) {
-    document.getElementById("contacts-right-mobile").style.display = "block";
+
+    if (matchMedia('only screen and (max-width: 1050px)').matches) {
+        document.getElementById("contacts-right-mobile").style.display = "block";
+      }
     
     document.getElementById("addContactBtn").style.display = "none";
-    
+    document.getElementById("contacts-left-wrapper").style.position = "fixed";
     let contactsboxbigmobile = document.getElementById('contactsboxbigmobile');
     contactsboxbigmobile.innerHTML = '';
 

@@ -110,7 +110,9 @@
 .contacts-right {
     margin-top: 82px;
     width: 70vw;
-    position: relative;
+    position: absolute;
+    top: 0px;
+    left: 380px;
     background-color: rgb(246,247,248);
     display: flex;
     flex-direction: column;
@@ -139,7 +141,7 @@
     background: #2A3647;
     border-radius: 8px;
     position: absolute;
-    bottom: 67px;
+    bottom: -250px;
     right: 352px;
 }
 
@@ -404,7 +406,7 @@ hr {
 .overlay_add_contact {
     height: 100vh;
     width: 100vw;
-    top: auto;
+    top: -90px;
     left: -230px;
     right: 0;
     bottom: 0;
@@ -505,7 +507,7 @@ hr {
 .overlay_edit_contact {
     height: 100vh;
     width: 100vw;
-    top: auto;
+    top: -90px;
     left: -230px;
     right: 0;
     bottom: 0;
@@ -664,7 +666,13 @@ hr {
     width: 24px;
     height: 24px;
 }
-
+.contacts-right-mobile {
+    margin-top: 82px;
+    width: 100vw;
+    background-color: rgb(246,247,248);
+    position: absolute;
+    z-index: 1200;
+}
 .contactDetailMobileBackImg:hover {
     cursor: pointer;
     -webkit-transform: scale(1.25);
@@ -822,7 +830,7 @@ hr {
     top: -105px;
     left: 0;
     position: absolute;
-    z-index: 999;
+    z-index: 1200;
     background: rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
@@ -955,7 +963,7 @@ hr {
         align-items: flex-start;
     }
     .contacts-right-mobile {
-        display: none;
+        display:none;
     }
 }
 
@@ -974,9 +982,9 @@ hr {
     }
     .contacts-right-mobile {
         width: 100vw;
-        height: 90vh;
+        height: 92vh;
         position: absolute;
-        top: 0;
+        top: -77px;
         left: 0;
         background-color: rgb(246,247,248);
         display: flex;
