@@ -68,7 +68,6 @@ async function logIn() {
     
 
     let user = users.find(u => u.email == email.value && u.password == password.value);
-    if (user) {
     if (user && navigator.onLine) {
         await setItem('user', JSON.stringify(user));
         currentUser = JSON.parse(await getItem('user'));
