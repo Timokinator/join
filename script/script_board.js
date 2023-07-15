@@ -281,12 +281,12 @@ async function deleteTask(j) {
 };
 
 
-function addNewTask() {
+function addNewTask(stati) {
     let content = document.getElementById('container_add_new_task_from_button');
     content.innerHTML = '';
     content.classList.remove('d-none');
     addCloseTaskWithEscape();
-    content.innerHTML = templateFormAddTaskBoard()
+    content.innerHTML = templateFormAddTaskBoard(stati)
     loadContactsToForm();
 };
 
@@ -315,7 +315,7 @@ function resetForm() {
 };
 
 
-function templateFormAddTaskBoard() {
+function templateFormAddTaskBoard(stati) {
     return /*html*/`
         <div class="container-formular-task-on-board" onclick="doNotClose(event)">
             <span class="title-formular-on-board">Add Task</span>
@@ -415,7 +415,7 @@ function templateFormAddTaskBoard() {
                         <img src="../assets/icons/icon_cross_dark.svg" alt="">
                     </button>
 
-                    <button onclick="addTaskAndCloseForm()" class="btn-create-task">
+                    <button onclick="addTaskAndCloseForm('${stati}')" class="btn-create-task">
                         <span>Create Task</span>
                         <img src="../assets/icons/icon_check_bright.svg" alt="">
                     </button>
@@ -429,8 +429,9 @@ function templateFormAddTaskBoard() {
 };
 
 
-function addTaskAndCloseForm() {
-    addTask();
+async function addTaskAndCloseForm(status) {
+    await addTask(status);
+    initBoard();
     // setTimeout(function () { location.reload() }, 200);
 };
 

@@ -142,7 +142,7 @@ function deleteSubtask(i) {
 };
 
 
-async function addTask() {
+async function addTask(setStatus) {
     let title = document.getElementById('title_form').value;
     let description = document.getElementById('description_form').value;
     let category = document.getElementById('category_form').value;
@@ -150,7 +150,7 @@ async function addTask() {
     let dueDate = document.getElementById('dueDate_form').value;
     let prio = document.getElementById('prio_hidden').value;
     let subtasks_task = subtasks;
-    let status = 'todo';
+    let status = setStatus;
     let colors = assignedToColors;
     let initialsMembers = assignedToInitials;
 
