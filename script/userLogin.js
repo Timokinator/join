@@ -65,9 +65,11 @@ async function loadUsers(){
 async function logIn() {
     let email = document.getElementById('email');
     let password = document.getElementById('password');
+    
 
     let user = users.find(u => u.email == email.value && u.password == password.value);
     if (user) {
+    if (user && navigator.onLine) {
         await setItem('user', JSON.stringify(user));
         currentUser = JSON.parse(await getItem('user'));
         window.location.href = 'summary.html';

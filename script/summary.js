@@ -83,6 +83,7 @@ function loadTasksDone() {
 function loadTasksGreeteng() {
     implementCurrentTime();
     setInterval(implementCurrentTime, 60000);
+    setInterval(logOffUser, 1000);
 }
 
 
@@ -103,9 +104,8 @@ function implementCurrentTime() {
 
 }
 
- async function loadLoagedInUser() {
-    let currentUser = await  loggedInUser.name;
-    console.log(currentUser);
+async function loadLoagedInUser() {
+    let currentUser = await loggedInUser.name;
     let userBox = document.getElementById('summary_username');
 
     if (currentUser != null) {
@@ -113,6 +113,13 @@ function implementCurrentTime() {
     } else {
         userBox.innerHTML = 'Guest';
     }
+}
+
+
+async function logOffUser() {
+    let currentUser = await loggedInUser.name;
+    let deleteUser = navigator.onLine;
+    
 }
 
 
