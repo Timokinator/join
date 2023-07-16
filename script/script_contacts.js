@@ -100,7 +100,7 @@ function hideMobileAddContactCard() {
     document.getElementById("contacts-left").style.position = "initial";
 }
 
-// Function shows "Contact Container"
+// Function shows "Add Contact Container"
 function showAddContactCard() {
     document.getElementById("addContactCard").style.display = "flex";
     document.getElementById("overlay_add_contact").style.display = "flex";
@@ -110,7 +110,10 @@ function showAddContactCard() {
 function showMobileAddContactCard() {
     document.getElementById("addContactCard_mobile").style.display = "flex";
     document.getElementById("overlay_add_contact_mobile").style.display = "flex";
-    document.getElementById("contacts-left").style.position = "fixed";
+    if (matchMedia('only screen and (max-width: 1050px)').matches) {
+        document.getElementById("contacts-left").style.position = "fixed";
+      }
+    
 }
 
 // Function hides "Edit Contact Container"
@@ -123,7 +126,9 @@ function hideEditContactCard() {
 function showEditContactCard(i) {
     document.getElementById("overlay_edit_contact").style.display = "flex";
     document.getElementById("editContactCard").style.display = "flex";
-    document.getElementById("contacts-left").style.position = "fixed";
+    if (matchMedia('only screen and (max-width: 1050px)').matches) {
+        document.getElementById("contacts-left").style.position = "fixed";
+      }
     renderEditContact(i);
 }
 
@@ -158,6 +163,7 @@ function closeOverlayMobile() {
 function hideMobileContactView() {
     document.getElementById("contacts-right-mobile").style.display = "none";
     document.getElementById("contactsboxsmall").style.display = "block";
+    document.getElementById("contacts-left-wrapper").style.position = "initial";
     document.getElementById("contacts-left").style.position = "initial";
 }
 // Function renders a specific contact in the detail view
@@ -173,7 +179,7 @@ function renderContact(i) {
     let initial = initials[i];
 
     contactsboxbig.innerHTML +=/*html*/`
-        <div class="contact_big flex juststart fdc">
+        <div class="contact_big">
             <div class="flex align fdr">
                 <div style="background-color:${color}" id="usercircle${i}" class="usercircle">${initial}</div>
                     <div class="flex juststart alignstart fdc gap5">          
@@ -201,11 +207,10 @@ function renderContact(i) {
 function renderContactMobile(i) {
 
     if (matchMedia('only screen and (max-width: 1050px)').matches) {
+        document.getElementById("contacts-left").style.position = "fixed";
+        document.getElementById("addContactBtn").style.display = "none";
         document.getElementById("contacts-right-mobile").style.display = "block";
-      }
-    
-    document.getElementById("addContactBtn").style.display = "none";
-    document.getElementById("contacts-left-wrapper").style.position = "fixed";
+      }
     let contactsboxbigmobile = document.getElementById('contactsboxbigmobile');
     contactsboxbigmobile.innerHTML = '';
 
@@ -218,15 +223,15 @@ function renderContactMobile(i) {
     contactsboxbigmobile.innerHTML +=/*html*/`
         <div class="contact_big_mobile flex juststart fdc">
             <div class="flex align fdr">
-                <div style="background-color:${color}" id="usercircle${i}" class="usercircle">${initial}</div>
+                <div style="background-color:${color}" id="usercircle${i}" class="usercircle_Mobile">${initial}</div>
                     <div class="flex juststart alignstart fdc gap5">          
-                        <div class="contactNameBig FS47-500">${name}</div>
+                        <div class="FS36-400">${name}</div>
                         <div class="FS16-400 lightblue cursor">+ Add Task</div>
                     </div>
             </div>
             <div class="flex align fdr">
                 <div class="flex align fdr gap59">
-                    <div class="FS21-400">Contact Information</div>
+                    <div class="FS20-400">Contact Information</div>
                 </div>
             </div>
             <p class="FS16-700">Email</p>
