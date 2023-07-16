@@ -10,7 +10,6 @@ async function init() {
     await extractInitials(sortedalphabetically);
     renderContacts();
     measureBrowserWidth();
-
 }
 
 // Asynchronous function that refreshes the page
@@ -20,12 +19,10 @@ async function refresh() {
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
 
-    
     sortedalphabetically = [];
     await extractInitials(sortedalphabetically);
     await safeContacts();
     await loadContacts();
-    
     renderContacts();
 }
 
@@ -212,7 +209,7 @@ function renderContactMobile(i) {
         document.getElementById("contacts-left").style.position = "fixed";
         document.getElementById("addContactBtn").style.display = "none";
         document.getElementById("contacts-right-mobile").style.display = "block";
-      }
+    }
     let contactsboxbigmobile = document.getElementById('contactsboxbigmobile');
     contactsboxbigmobile.innerHTML = '';
 
@@ -251,7 +248,7 @@ function renderContactMobile(i) {
 async function renderContacts() {
     if (matchMedia('only screen and (max-width: 1050px)').matches) {
         document.getElementById("contacts-right-wrapper").style.display = "none";
-      }
+    }
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
 
@@ -388,7 +385,6 @@ async function deleteContact(i) {
     } else {
         alert("For Testreasons we can´t delete a contact if there is only 10 or less available.");
     }
-
     sortedalphabetically = [];
     await refresh();
     hideEditContactCard();
@@ -400,11 +396,9 @@ function createdContactSuccessfully() {
     document.getElementById("addContactCard").style.display = "none";
     document.getElementById('success').style.display = '';
     document.getElementById('success').classList.add("animate-contact");
-
-    setTimeout(() => {
-        document.getElementById('success').style.display = 'none';
+    setTimeout(() => {document.getElementById('success').style.display = 'none';
     }
-        , 2000);
+, 2000);
 }
 
 // Edit function Overwrites the values from the "contacts" array insofar as new data is entered
@@ -421,7 +415,6 @@ async function editContact(i) {
     contacts[i].name = newName;
     contacts[i].email = newEmail;
     contacts[i].phone = newPhone;
-
 
     // Do more actions after array update
     document.getElementById("editContactCard").style.display = "none";
@@ -480,7 +473,6 @@ function sortContactsAlphabetically(contacts) {
     contacts.forEach(contact => {
         sortedalphabetically.push(contact);
     });
-
     return sortedalphabetically;
 }
 
@@ -501,13 +493,11 @@ function measureBrowserWidth() {
             hideEditContactCard();
         } 
     }
-    
     // Function to initialize the check and continuous monitoring
     function initWidthMonitoring() {
         checkWidth();
         window.addEventListener('resize', checkWidth);
     }
-    
     // Start monitoring the browser width
     initWidthMonitoring();
 }
