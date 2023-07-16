@@ -4,8 +4,8 @@ let currentUser = [];
 
 
 async function loadSavedUsers() {
-    if(users != null) {
-    users = JSON.parse(await getItem('users'));
+    if (users != null) {
+        users = JSON.parse(await getItem('users'));
     }
 }
 
@@ -26,7 +26,7 @@ async function register() {
     resetForm(userName, email, password);
 
     users = JSON.parse(await getItem('users'));
-    
+
     window.location.href = 'login.html?msg=Du hast dich erfolgreich registriert';
 }
 
@@ -39,17 +39,27 @@ function resetForm(userName, email, password) {
 function loadLogInHTML() {
     const urlParams = new URLSearchParams(window.location.search);
     const msg = urlParams.get('msg');
+    const password = urlParams.get('password');
+    let msgBox = document.querySelector('.msgBox');
+    
     if (msg) {
-        let msgBox = document.querySelector('.msgBox');
         msgBox.classList.remove('visible');
-    }else {
-        let msgBox = document.querySelector('.msgBox');
+        msgBox.innerHTML = 'Du hast dich erfolgreich Registriert';
+    } else {
         msgBox.classList.add('visible');
     }
+
+    if (password) {
+        msgBox.classList.remove('visible');
+        msgBox.innerHTML = 'Du hast dein Password erfolgreich zurückgesetzt';
+    } else {
+        msgBox.classList.add('visible');
+    }
+
 }
 
 
-async function init(){
+async function init() {
     loadUsers();
 }
 
@@ -63,10 +73,10 @@ async function getUserData() {
     loadUsers();
 }
 
-async function loadUsers(){
+async function loadUsers() {
     try {
         users = JSON.parse(await getItem('users'));
-    } catch(e){
+    } catch (e) {
         console.error('Loading error:', e);
     }
 }
@@ -112,16 +122,32 @@ function failedLogIn(email, password) {
 }
 
 
- async function sendEmail() {
+async function sendEmail() {
     let forgotEmail = document.getElementById('email');
     let hidenBox = document.querySelector('.forgotPasswordBox');
     let user = await users.find(u => u.email == forgotEmail.value);
-    if(user == undefined) {
+    if (user == undefined) {
         console.log('user nicht gefunden');
         hidenBox.style.display = 'block';
     } else {
         window.location.href = 'resetPassword.html'
         console.log(user);
+    }
+}
+
+
+function resetPassword() {
+    let newPassword = document.getElementById('newPassword').value;
+    let confirmPassword = document.getElementById('confirmPassword').value;
+
+    if (newPassword == confirmPassword) {
+        window.location.href = 'login.html?password=dein Password wurde erfolgreich zurueckgesetzt';
+        newPassword.value = '';
+        confirmPassword.value = '';
+    } else {
+        document.querySelector('.resetBox').style.display = 'block';
+        newPassword.value = '';
+        confirmPassword.value = '';
     }
 }
 
