@@ -246,9 +246,7 @@ function renderContactMobile(i) {
 
 // Asynchronous function renders all existing contacts
 async function renderContacts() {
-    if (matchMedia('only screen and (max-width: 1050px)').matches) {
-        document.getElementById("contacts-right-wrapper").style.display = "none";
-    }
+    
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
 
