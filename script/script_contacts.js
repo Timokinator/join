@@ -183,7 +183,7 @@ function renderContact(i) {
                 <div style="background-color:${color}" id="usercircle${i}" class="usercircle">${initial}</div>
                     <div class="flex juststart alignstart fdc gap5">          
                         <div class="contactNameBig FS47-500">${name}</div>
-                        <div class="FS16-400 lightblue cursor">+ Add Task</div>
+                        <div onclick="addNewTaskFromContacts(${i},'todo')" class="FS16-400 lightblue cursor">+ Add Task</div>
                     </div>
             </div>
             <div class="flex align fdr">
@@ -225,7 +225,7 @@ function renderContactMobile(i) {
                 <div style="background-color:${color}" id="usercircle${i}" class="usercircle_Mobile">${initial}</div>
                     <div class="flex juststart alignstart fdc gap5">          
                         <div class="FS36-400">${name}</div>
-                        <div class="FS16-400 lightblue cursor">+ Add Task</div>
+                        <div onclick="addNewTaskFromContacts(${i},'todo')" class="FS16-400 lightblue cursor">+ Add Task</div>
                     </div>
             </div>
             <div class="flex align fdr">
@@ -502,5 +502,12 @@ function measureBrowserWidth() {
 }
 
 
+/*Code for add task from contacts */
 
+function addNewTaskFromContacts(i, stati) {
+    console.log(i);
+    console.log(stati);
+    console.log(initials[i]);
+    addNewTask(stati);
+};
 
