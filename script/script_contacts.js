@@ -247,6 +247,9 @@ function renderContactMobile(i) {
 
 // Asynchronous function renders all existing contacts
 async function renderContacts() {
+    if (matchMedia('only screen and (max-width: 1050px)').matches) {
+        document.getElementById("contacts-right-wrapper").style.display = "none";
+      }
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
 
@@ -329,7 +332,7 @@ function renderEditContact(i) {
     editContactRight_left.innerHTML +=`<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact">${initial}</div>`;
     
     editContactForm.innerHTML +=/*html*/`
-    <img onclick="hideEditContactCard();closeOverlay()" class="close_symbol" src="../assets/icons/icon_add_contact_X.svg">
+    <img onclick="hideEditContactCard();closeOverlay()" class="close_symbol_edit" src="../assets/icons/icon_add_contact_X.svg">
                     <form id="form_edit_contact" class="editContactRight_right" onsubmit="return false">
                         <input class="inputDesktop" id="edit-name" type="text" value="${name}" required>
                         <input class="inputDesktop" id="edit-email" type="email" value="${email}" required>

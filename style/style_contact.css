@@ -130,7 +130,7 @@
     position: relative;
     display: flex;
     justify-content: flex-end;
-    left: 900px;
+    left: 0px;
 }
 
 .newContact {
@@ -200,7 +200,7 @@
     height: 0px;
     border: 3px solid #29ABE2;
     border-radius: 20px;
-    margin-right: 80px;
+    margin-right: 215px;
 }
 
 .blue-line-v-mobile {
@@ -310,7 +310,7 @@
     margin-left: 16px;
     margin-right: 16px;
 }
-/*Fisrst Letter Container CSS*/
+/*First Letter Container CSS*/
 .letter-container {
     margin-left: 55px;
     margin-top: 16px;
@@ -331,39 +331,60 @@ hr {
     margin-top: 8px;
     padding: 16px;
 }
-
+/*Add-/Edit Contact CSS*/
 .close_symbol {
+    top: 25px;
+    left: 250px;
+    position: absolute;
     height: 21.65px;
     width: 21.65px;
     margin-left: 390px;
 }
 
 .close_symbol:hover {
-    -webkit-transform: scale(1.25);
+    transform: scale(1.25);
+}
+
+.close_symbol_edit {
+    top: 25px;
+    left: 710px;
+    position: absolute;
+    height: 21.65px;
+    width: 21.65px;
+    margin-left: 390px;
+}
+
+.close_symbol_edit:hover {
+    transform: scale(1.25);
 }
 
 .icon-name-add-contact {
     position: absolute;
     width: 24px;
     height: 24px;
-    top: 150px;
+    top: 135px;
     right: 100px;
 }
 .icon-email-add-contact {
     position: absolute;
     width: 24px;
     height: 24px;
-    top: 250px;
+    top: 235px;
     right: 100px;
 }
 .icon-phone-add-contact {
     position: absolute;
     width: 24px;
     height: 24px;
-    top: 345px;
+    top: 335px;
     right: 100px;
 }
-
+.joinLogo {
+    width:55px;
+    position: absolute;
+    top: 180px;
+    left: 80px;
+}
 /*Mobile Version Icons CSS*/
 .icon-name-add-contact_mobile {
     position: absolute;
@@ -706,7 +727,7 @@ hr {
 }
 .contactDetailMobileBackImg:hover {
     cursor: pointer;
-    -webkit-transform: scale(1.25);
+    transform: scale(1.25);
 }
 
 /*MOBILE add Contact Slider  CSS*/
@@ -729,7 +750,7 @@ hr {
     height: 100vh;
     width: 100vw;
     top: 0;
-    left: 0;
+    left: 0px;
     position: fixed;
     z-index: 999;
     background: rgba(0, 0, 0, 0.3);
@@ -835,7 +856,7 @@ hr {
 }
 
 .close_symbol_mobile:hover {
-    -webkit-transform: scale(1.25);
+    transform: scale(1.25);
 }
 
 /*edit MOBILE ContactSlider CSS*/
@@ -859,7 +880,7 @@ hr {
         height: 100vh;
         width: 100vw;
         top: 0;
-        left: 0;
+        left: 0px;
         position: fixed;
         z-index: 1220;
         background: rgba(0, 0, 0, 0.3);
@@ -979,8 +1000,29 @@ hr {
     .usercircle {
         margin-right: 8px;
     }
-        
+    .addContactSlideWrapper {
+        width: 1050px;
+    }
+    .editContactSlideWrapper {
+        width: 1050px;
+    }
+    .icon-name-add-contact {
+        right: 50px;
+    }
+    .icon-email-add-contact {
+        right: 50px;
+    }
+    .icon-phone-add-contact {
+        right: 50px;
+    }
+    .close_symbol {
+        left: 200px;
+    }
+    .close_symbol_edit {
+        left: 600px;
+    }
 }
+
 
 
 @media only screen and (min-width: 1050px) {
@@ -993,6 +1035,9 @@ hr {
     .contacts-right-mobile {
         display:none;
     }
+    .contacts-right {
+        display: initial;
+    }
 }
 
 
@@ -1003,17 +1048,17 @@ hr {
         justify-content: center;
         align-items: center;
         width: 100vw;
-        height: auto;
+        height: 100%;
     }
     .contacts-right {
         display: none;
     }
     .contacts-right-mobile {
         width: 100vw;
-        height: 87vh;
+        height: 100%;
         position: fixed;
         top: 20px;
-        left: -34px;
+        left: -33px;
         background-color: rgb(246,247,248);
         display: flex;
         flex-direction: column;
@@ -1026,9 +1071,17 @@ hr {
     .subHeader {
         flex-direction: column;
     }
+    .container-content {
+        left: 0;
+        top: 104px;
+        padding-bottom: 80px;
+    }
 }
 
 @media only screen and (max-width: 400px) {
+    .contacts-right {
+        display: none;
+    }
     .addContactTopMobile {
         height: 250px;
         width: 340px;
@@ -1040,7 +1093,7 @@ hr {
         height: 250px;
         width: 340px;
     }
-    .ContactBottomMobile {
+    .editContactBottomMobile {
         width: 340px;
     }
     .close_symbol_mobile {
@@ -1050,7 +1103,7 @@ hr {
     .inputMobile {
         width: 290px;
     }
+    .addContactImg {
+        right: 100px;
+    }
 }
-
-
-
