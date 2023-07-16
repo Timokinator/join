@@ -626,6 +626,7 @@ header {
     .container-rows-board {
         display: grid;
         grid-template-columns: 100%;
+        padding: 0;
     }
 
     .container-content {
@@ -641,10 +642,6 @@ header {
         justify-content: flex-start;
         align-items: flex-start;
         gap: 24px;
-    }
-
-    .btn-add-task-header-board {
-        display: none;
     }
 
     .container-search-and-add-task {
@@ -665,10 +662,15 @@ header {
     }
 
     .container-single-task {
-        width: 80%;
-
+        width: 95%;
+        padding: 24px 8px;
+        gap: 8px;
+        height: 85%;
     }
 
+    .detail-task-title {
+        font-size: 36px;
+    }
 
 
 }
@@ -680,4 +682,18 @@ header {
         right: -55px;
         white-space: nowrap;
     }
+
+    .buttons-right-side-header-board {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
 }
+
+@media (max-width: 350px) {
+    .container-search-and-add-task {
+        padding-left: 4px;
+    }
+}
+

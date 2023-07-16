@@ -302,9 +302,9 @@ option {
     .btn-container-add-task {
         position: fixed;
         z-index: 2;
-        right: 5vw;
+        right: 100px;
         height: 60px;
-        top: 10px;
+        top: 20px;
     }
 
     .container-pop-up-add-task {
@@ -313,13 +313,18 @@ option {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .btn-container-add-task {
         scale: 0.6;
-        right: -45px;
+        right: 32px;
+        top: 16px;
     }
 }
 
-
+@media (max-width: 364px) {
+    .btn-container-add-task {
+        top: -5px;
+    }
+}
 
 
