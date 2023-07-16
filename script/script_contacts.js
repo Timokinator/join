@@ -246,7 +246,6 @@ function renderContactMobile(i) {
 
 // Asynchronous function renders all existing contacts
 async function renderContacts() {
-    
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
 
@@ -485,10 +484,12 @@ function measureBrowserWidth() {
             hideMobileAddContactCard();
             hideMobileEditContactCard();
             hideMobileContactView();
+            document.getElementById("contacts-right-wrapper").style.display = "initial";
         } 
         if (browserWidth <= maxWidth) {
             hideAddContactCard();
             hideEditContactCard();
+            document.getElementById("contacts-right-wrapper").style.display = "none";
         } 
     }
     // Function to initialize the check and continuous monitoring
