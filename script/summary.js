@@ -7,11 +7,6 @@ let tasksUrgent = [];
 let tasksDates = [];
 
 
-async function loadUserData() {
-    loggedInUser = JSON.parse(await getItem('users'));
-};
-
-
 function linkToBoardHTML() {
     window.location.href = '../html/board.html'
 };
@@ -27,8 +22,14 @@ async function initSummary() {
     loadTasksToDo();
     loadTasksDone();
     loadTasksGreeteng();
+    loadUserData();
+};
+
+async function loadUserData() {
+    loggedInUser = JSON.parse(await getItem('users'));
     loadLoagedInUser();
 };
+
 
 
 function loadTasksInBoard() {
@@ -81,7 +82,6 @@ function loadTasksDone() {
 function loadTasksGreeteng() {
     implementCurrentTime();
     setInterval(implementCurrentTime, 60000);
-    setInterval(logOffUser, 1000);
 }
 
 
@@ -102,25 +102,29 @@ function implementCurrentTime() {
 
 }
 
+newUser = [];
+
 async function loadLoagedInUser() {
-    let currentUser = await loggedInUser.name;
+
+    let currentUser = await loggedInUser;
+    currentUser = currentUser.splice(currentUser.length - 1,1);
+    newUser.push(currentUser);
+    let blanewUser = currentUser[0]['name'];
 
     let userBox = document.getElementById('summary_username');
 
-    if (currentUser != null) {
-        userBox.innerHTML = currentUser;
+    if (blanewUser) {
+        userBox.innerHTML = blanewUser;
     } else {
-        console.warn('User not Found');
+        userBox.innerHTML = 'Guest';
     }
-}
 
-
-async function logOffUser() {
-    let currentUser = await loggedInUser.name;
-    let deleteUser = navigator.onLine;
     
 }
 
+window.addEventListener("offline", (event) => {
+    newUser = [];
+  });
 
 
 
