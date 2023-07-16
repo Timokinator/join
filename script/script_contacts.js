@@ -3,12 +3,15 @@ let initials = [];
 let sortedalphabetically = [];
 let letters = [];
 
+
 // Asynchronous function that initializes all necessary functions when loading the page
 async function init() {
     await loadContacts();
     await extractInitials(sortedalphabetically);
     renderContacts();
-};
+    measureBrowserWidth();
+
+}
 
 // Asynchronous function that refreshes the page
 async function refresh() {
@@ -24,7 +27,7 @@ async function refresh() {
     await loadContacts();
     
     renderContacts();
-};
+}
 
 
 // Function to push the entered contacts into the "contacts" array
@@ -112,14 +115,13 @@ function showMobileAddContactCard() {
     document.getElementById("overlay_add_contact_mobile").style.display = "flex";
     if (matchMedia('only screen and (max-width: 1050px)').matches) {
         document.getElementById("contacts-left").style.position = "fixed";
-      }
-    
+    }
 }
 
 // Function hides "Edit Contact Container"
 function hideEditContactCard() {
     document.getElementById("editContactCard").style.display = "none";
-    document.getElementById("overlay_add_contact").style.display = "none";
+    document.getElementById("overlay_edit_contact").style.display = "none";
 }
 
 // Function shows "Edit Contact Container"
@@ -128,7 +130,7 @@ function showEditContactCard(i) {
     document.getElementById("editContactCard").style.display = "flex";
     if (matchMedia('only screen and (max-width: 1050px)').matches) {
         document.getElementById("contacts-left").style.position = "fixed";
-      }
+    }
     renderEditContact(i);
 }
 
@@ -481,5 +483,35 @@ function sortContactsAlphabetically(contacts) {
 
     return sortedalphabetically;
 }
+
+// Function which continuously measures the browser width and fades in and out elements from 1050px wide
+function measureBrowserWidth() {
+    const maxWidth = 1050; 
+    
+    function checkWidth() {
+        const browserWidth = window.innerWidth;
+    
+        if (browserWidth >= maxWidth) {
+            hideMobileAddContactCard();
+            hideMobileEditContactCard();
+            hideMobileContactView();
+        } 
+        if (browserWidth <= maxWidth) {
+            hideAddContactCard();
+            hideEditContactCard();
+        } 
+    }
+    
+    // Function to initialize the check and continuous monitoring
+    function initWidthMonitoring() {
+        checkWidth();
+        window.addEventListener('resize', checkWidth);
+    }
+    
+    // Start monitoring the browser width
+    initWidthMonitoring();
+}
+
+
 
 

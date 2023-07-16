@@ -1038,7 +1038,6 @@ hr {
     .contacts-right {
         display: initial;
     }
-    
 }
 
 
@@ -1076,12 +1075,6 @@ hr {
         left: 0;
         top: 104px;
         padding-bottom: 80px;
-    }
-    .overlay_add_contact {
-        z-index: -100;
-    }
-    .overlay_edit_contact {
-        z-index: -100;
     }
 }
 
