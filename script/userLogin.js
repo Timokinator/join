@@ -9,6 +9,7 @@ async function loadSavedUsers() {
     }
 }
 
+
 async function register() {
     let userName = document.getElementById('inputName');
     let email = document.getElementById('inputEmail');
@@ -26,7 +27,6 @@ async function register() {
 
     users = JSON.parse(await getItem('users'));
     
-
     window.location.href = 'login.html?msg=Du hast dich erfolgreich registriert';
 }
 
@@ -72,8 +72,6 @@ async function loadUsers(){
 }
 
 
-
-
 /**
  * This function search for User Data and than tried with that data to log in in to JOIN
  * @date 7/15/2023 - 9:37:56 AM
@@ -114,16 +112,15 @@ function failedLogIn(email, password) {
 }
 
 
- function sendEmail() {
-    let forgetEmail = document.getElementById('forgetEmail');
-    let hidenBox = Document.querySelector('.forgotPasswordBox');
-    let user =  users.find(u => u.email == forgetEmail.value );
-    console.log(users);
+ async function sendEmail() {
+    let forgotEmail = document.getElementById('email');
+    let hidenBox = document.querySelector('.forgotPasswordBox');
+    let user = await users.find(u => u.email == forgotEmail.value);
     if(user == undefined) {
         console.log('user nicht gefunden');
         hidenBox.style.display = 'block';
-
     } else {
+        window.location.href = 'resetPassword.html'
         console.log(user);
     }
 }
