@@ -28,7 +28,6 @@ async function register() {
     
 
     window.location.href = 'login.html?msg=Du hast dich erfolgreich registriert';
-    loadLogInHTML();
 }
 
 function resetForm(userName, email, password) {
@@ -37,16 +36,16 @@ function resetForm(userName, email, password) {
     userName.value = '';
 }
 
-
-
 function loadLogInHTML() {
     const urlParams = new URLSearchParams(window.location.search);
-    const msg = urlParams.get(msg);
+    const msg = urlParams.get('msg');
     if (msg) {
         let msgBox = document.querySelector('.msgBox');
         msgBox.classList.remove('visible');
+    }else {
+        let msgBox = document.querySelector('.msgBox');
+        msgBox.classList.add('visible');
     }
-
 }
 
 

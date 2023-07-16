@@ -243,7 +243,6 @@ checkbox {
     width: 400px;
     height: 100px;
     background-color: #2A3647;
-    position: absolute;
     top: 10%;
     right: 50%;
     transform: translate(50%, -50%);
@@ -259,9 +258,6 @@ checkbox {
     font-weight: 700;
     line-height: 120%;
     color: #FFF;
-    opacity: 1;
-    opacity: 1;
-    animation: fadeInOut 3s forwards;
 }
 
 .visible {
@@ -269,28 +265,7 @@ checkbox {
     pointer-events: none;
 }
 
-@keyframes fadeInOut {
-    0% {
-        opacity: 1;
-    }
 
-    25% {
-        opacity: 0.75;
-    }
-
-    50% {
-        opacity: 0.5;
-    }
-
-    75% {
-        opacity: 0.25;
-    }
-
-    100% {
-        opacity: 0;
-        pointer-events: none;
-    }
-}
 
 .formBtnContainer {
     display: flex;

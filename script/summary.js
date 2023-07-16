@@ -30,6 +30,10 @@ async function loadUserData() {
     loadLoagedInUser();
 };
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 
 
 function loadTasksInBoard() {
@@ -108,13 +112,16 @@ async function loadLoagedInUser() {
 
     let currentUser = await loggedInUser;
     currentUser = currentUser.splice(currentUser.length - 1,1);
+    if(!newUser.includes(currentUser)){
     newUser.push(currentUser);
-    let blanewUser = currentUser[0]['name'];
+    }
+    let logedInUser = currentUser[0]['name'];
+    console.log(logedInUser);
 
     let userBox = document.getElementById('summary_username');
 
-    if (blanewUser) {
-        userBox.innerHTML = blanewUser;
+    if (logedInUser) {
+        userBox.innerHTML =capitalizeFirstLetter(logedInUser) ;
     } else {
         userBox.innerHTML = 'Guest';
     }
