@@ -31,6 +31,10 @@
     gap: 59px;
 }
 
+.ml16 {
+    margin-left: 16px;
+}
+
 .cursor {
     cursor: pointer;
 }
@@ -947,6 +951,9 @@ hr {
     background: #29ABE2;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+.subHeaderMobile{
+    margin-left: 16px;
+}
 
 #editContactCard {
     display: none;
@@ -1006,7 +1013,7 @@ hr {
         height: 87vh;
         position: fixed;
         top: 20px;
-        left: -30px;
+        left: -34px;
         background-color: rgb(246,247,248);
         display: flex;
         flex-direction: column;
@@ -1021,8 +1028,29 @@ hr {
     }
 }
 
-
-
+@media only screen and (max-width: 400px) {
+    .addContactTopMobile {
+        height: 250px;
+        width: 340px;
+    }
+    .addContactBottomMobile {
+        width: 340px;
+    }
+    .editContactTopMobile {
+        height: 250px;
+        width: 340px;
+    }
+    .ContactBottomMobile {
+        width: 340px;
+    }
+    .close_symbol_mobile {
+        margin-bottom: 200px;
+        margin-left: 280px;
+    }
+    .inputMobile {
+        width: 290px;
+    }
+}
 
 
 
