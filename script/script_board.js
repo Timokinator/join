@@ -432,7 +432,7 @@ function templateFormAddTaskBoard(stati) {
 async function addTaskAndCloseForm(status) {
     await addTask(status);
     initBoard();
-    // setTimeout(function () { location.reload() }, 200);
+    setTimeout(function () { closeAddTaskBoard() }, 200);
 };
 
 
@@ -511,8 +511,6 @@ async function editTask(j) {
     renderMemberEditTask(j);
     setPrioEditTask(j);
     loadSubtasksEditTask(j);
-    //load subtasks
-
 };
 
 
