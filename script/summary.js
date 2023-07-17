@@ -1,4 +1,5 @@
 let logedInUser = [];
+let logedInUserInitials = [];
 let tasksInProgress = [];
 let tasksAwaitingFeedback = [];
 let tasksToDo = [];
@@ -35,17 +36,30 @@ async function loadUserData() {
     logedInUser = JSON.parse(await getItem('user'));
     let currentUser = logedInUser.name;
 
-    console.log(currentUser);
-
     let userBox = document.getElementById('summary_username');
 
-    if (logedInUser) {
+    if (currentUser) {
         userBox.innerHTML = capitalizeFirstLetter(currentUser);
     } else {
         userBox.innerHTML = 'Guest';
     }
-    
+
+    if (currentUser != null) {
+        getInitials(currentUser);
+    }
 };
+
+
+function getInitials(currentUser) {
+    const names = currentUser.split(' ');
+    const initials = names.map(name => name.charAt(0).toUpperCase());
+    logedInUserInitials.push(initials);
+    console.log(logedInUserInitials);
+
+}
+
+
+
 
 
 

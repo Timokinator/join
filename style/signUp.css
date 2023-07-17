@@ -136,3 +136,36 @@ form button {
     background: #2A3647;
     color: white;
 }
+
+@media only screen and (max-width: 425px) {
+    .logoImg {
+        top: 37;
+        left: 38;
+        width: 64px;
+        height: 78.031px;
+    }
+
+    form {
+        display: flex;
+        width: 396px;
+        padding: 35px 0px;
+        flex-direction: column;
+        align-items: center;
+        gap: 35px;
+    }
+
+    form h1 {
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 47px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        /* 56.4px */
+    }
+
+    form input {
+        width: 100%;
+    }
+}
