@@ -1,4 +1,4 @@
-let loggedInUser = [];
+let logedInUser = [];
 let tasksInProgress = [];
 let tasksAwaitingFeedback = [];
 let tasksToDo = [];
@@ -25,14 +25,27 @@ async function initSummary() {
     loadUserData();
 };
 
-async function loadUserData() {
-    loggedInUser = JSON.parse(await getItem('users'));
-    loadLoagedInUser();
-};
 
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+async function loadUserData() {
+    logedInUser = [];
+    logedInUser = JSON.parse(await getItem('user'));
+    let currentUser = logedInUser.name;
+
+    console.log(currentUser);
+
+    let userBox = document.getElementById('summary_username');
+
+    if (logedInUser) {
+        userBox.innerHTML = capitalizeFirstLetter(currentUser);
+    } else {
+        userBox.innerHTML = 'Guest';
+    }
+    
+};
 
 
 
@@ -110,10 +123,10 @@ newUser = [];
 
 async function loadLoagedInUser() {
 
-    let currentUser = await loggedInUser;
-    currentUser = currentUser.splice(currentUser.length - 1,1);
-    if(!newUser.includes(currentUser)){
-    newUser.push(currentUser);
+    let currentUser = logedInUser['name'];
+    console.log(logedInUser);
+    if (!newUser.includes(currentUser)) {
+        newUser.push(currentUser);
     }
     let logedInUser = currentUser[0]['name'];
     console.log(logedInUser);
@@ -121,17 +134,17 @@ async function loadLoagedInUser() {
     let userBox = document.getElementById('summary_username');
 
     if (logedInUser) {
-        userBox.innerHTML =capitalizeFirstLetter(logedInUser) ;
+        userBox.innerHTML = capitalizeFirstLetter(logedInUser);
     } else {
         userBox.innerHTML = 'Guest';
     }
 
-    
+
 }
 
-window.addEventListener("offline", (event) => {
-    newUser = [];
-  });
+// window.addEventListener("offline", (event) => {
+//     newUser = [];
+// });
 
 
 

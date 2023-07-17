@@ -1,6 +1,7 @@
 
 let users = [];
 let currentUser = [];
+let guestUser = [];
 
 
 async function loadSavedUsers() {
@@ -118,6 +119,18 @@ function failedLogIn(email, password) {
     } else {
         window.location.href = 'forgetPassword.html';
         counter = 0;
+    }
+}
+
+async function guestLogIn() {
+    if(guestUser != null) {
+        currentUser = JSON.parse(await getItem('user'));
+        guestUser.push(currentUser);
+        guestUser = [];
+        await setItem('user', JSON.stringify(guestUser));
+        window.location.href = 'summary.html';
+    } else {
+        window.location.href = 'summary.html';
     }
 }
 
