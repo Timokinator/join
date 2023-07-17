@@ -247,10 +247,12 @@ checkbox {
     top: 10%;
     right: 50%;
     transform: translate(50%, -50%);
+    text-align: center;
 
     display: flex;
     justify-content: center;
     align-items: center;
+   
 
     border-radius: 8px;
     font-size: 21px;
