@@ -507,21 +507,17 @@ function measureBrowserWidth() {
 /*Code for add task from contacts */
 
 function addNewTaskFromContacts(i, stati) {
-    console.log(i);
-    console.log(stati);
-    console.log(initials[i]);
     memberAssignedTo = [];
     colorsAssignedTo = [];
     assignedTo = [];
     assignedToInitials = [];
     assignedToColors = [];
+    assignedTo.push(contacts[i]['name']);
+    assignedToInitials.push(initials[i]);
+    assignedToColors.push(contacts[i]['color']);
     pushColorToArrayAssignedTo();
     pushMemberToArrayAssignedTo();
     addNewTask(stati);
+    renderMembers();
 };
 
-
-// async function addTaskAndCloseForm(status) {
-//     await addTask(status);
-//     setTimeout(function () { closeAddTaskBoard() }, 200);
-// };
