@@ -15,7 +15,6 @@ async function initBoard() {
     await loadContacts();
     pushColorToArrayAssignedTo();
     pushMemberToArrayAssignedTo();
-    pushMemberToArrayAssignedTo();
 };
 
 
@@ -431,7 +430,9 @@ function templateFormAddTaskBoard(stati) {
 
 async function addTaskAndCloseForm(status) {
     await addTask(status);
-    initBoard();
+    if (window.location['pathname'].includes('board') == true) {
+        initBoard();
+    };
     setTimeout(function () { closeAddTaskBoard() }, 200);
 };
 
@@ -464,7 +465,7 @@ function templateMembersChose(contact) {
 
 
 function startDragging(j) {
-    currentDraggedElement = j;    
+    currentDraggedElement = j;
 };
 
 
@@ -562,7 +563,7 @@ function renderSubtasksEditTask(j) {
 
 function setPrioEditTask(j) {
     let selectedPrio = tasks[j]['prio'];
-    let prioToselect = document.getElementById('prio_btn_'+selectedPrio);
+    let prioToselect = document.getElementById('prio_btn_' + selectedPrio);
     prioToselect.classList.add('prio-selected');
 };
 
@@ -600,7 +601,7 @@ function deleteMemberEditTask(i, j) {
     tasks[j]['assignedTo'].splice(i, 1);
     tasks[j]['colors'].splice(i, 1);
     tasks[j]['initials'].splice(i, 1);
-    
+
     renderMemberEditTask(j);
     document.getElementById('assignedTo_form').value = '';
 };
@@ -610,7 +611,7 @@ function addMemberEditTask(j) {
     let member = document.getElementById('assignedTo_form')
     for (let i = 0; i < tasks[j]['assignedTo'].length; i++) {
         const assignedMember = memberAssignedTo[i];
-        
+
         if (tasks[j]['assignedTo'].indexOf(member.value) == -1) {
             tasks[j]['assignedTo'].push(member.value);
             tasks[j]['initials'].push(initials[memberAssignedTo.indexOf(member.value)]);
@@ -757,7 +758,7 @@ async function safeChangesEditTask(j) {
     let description = document.getElementById('description_form');
     let dueDate = document.getElementById('dueDate_form');
     let title = document.getElementById('title_form');
-    
+
     tasks[j]['category'] = category.value;
     tasks[j]['description'] = description.value;
     tasks[j]['dueDate'] = dueDate.value;

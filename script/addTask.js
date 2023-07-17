@@ -207,6 +207,8 @@ function renderMembers() {
 
 function resetAssignedTo() {
     assignedTo = [];
+    assignedToColors = [];
+    assignedToInitials = [];
     renderMembers();
 };
 

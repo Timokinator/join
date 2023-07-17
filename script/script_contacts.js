@@ -8,6 +8,7 @@ let letters = [];
 async function init() {
     await loadContacts();
     await extractInitials(sortedalphabetically);
+    await loadTasks(); // loads tasks for this page
     renderContacts();
     measureBrowserWidth();
 }
@@ -57,7 +58,7 @@ async function addContact() {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
-    
+
     sortedalphabetically = [];
 
     if (name != '' && email != '' && phone != '') {
@@ -76,7 +77,7 @@ async function addContactMobile() {
     let name = document.getElementById('name_mobile').value;
     let email = document.getElementById('email_mobile').value;
     let phone = document.getElementById('phone_mobile').value;
-    
+
     sortedalphabetically = [];
 
     if (name != '' && email != '' && phone != '') {
@@ -90,12 +91,12 @@ async function addContactMobile() {
 }
 
 // Function hides "Contact Container"
-function hideAddContactCard() {     
+function hideAddContactCard() {
     document.getElementById("overlay_add_contact").style.display = "none";
 }
 
 // Function hides "MOBILE Contact Container"
-function hideMobileAddContactCard() {     
+function hideMobileAddContactCard() {
     document.getElementById("overlay_add_contact_mobile").style.display = "none";
     document.getElementById("contacts-left").style.position = "initial";
 }
@@ -267,27 +268,27 @@ async function renderContacts() {
         const firstLetter = name.charAt(0).toUpperCase();
 
         if (!letters.includes(firstLetter)) {
-        letters.push(firstLetter);
+            letters.push(firstLetter);
 
-        const containerId = `letter${firstLetter}`;
-        const container = document.createElement('div');
-        container.id = containerId;
-        contact.appendChild(container);
+            const containerId = `letter${firstLetter}`;
+            const container = document.createElement('div');
+            container.id = containerId;
+            contact.appendChild(container);
 
-        const letterContainer = document.createElement('div');
-        letterContainer.className = 'letter-container';
-        letterContainer.innerHTML = firstLetter;
-        container.appendChild(letterContainer);
+            const letterContainer = document.createElement('div');
+            letterContainer.className = 'letter-container';
+            letterContainer.innerHTML = firstLetter;
+            container.appendChild(letterContainer);
 
-        const letterdevide = document.createElement('div');
-        letterdevide.className = 'letter-devide';
-        letterdevide.innerHTML = '<hr>';
-        container.appendChild(letterdevide);
+            const letterdevide = document.createElement('div');
+            letterdevide.className = 'letter-devide';
+            letterdevide.innerHTML = '<hr>';
+            container.appendChild(letterdevide);
         }
 
         if (!color) {
-        color = assignRandomColorToDiv(i);
-        element.color = color;
+            color = assignRandomColorToDiv(i);
+            element.color = color;
         }
 
         const containerId = `letter${firstLetter}`;
@@ -295,8 +296,8 @@ async function renderContacts() {
 
         const contactDiv = document.createElement('div');
         contactDiv.onclick = function () {
-        renderContact(i), renderContactMobile(i);
-    };
+            renderContact(i), renderContactMobile(i);
+        };
         contactDiv.id = i;
         contactDiv.className = 'contact_small_content flex juststart align';
         contactDiv.innerHTML =/*html*/`
@@ -325,8 +326,8 @@ function renderEditContact(i) {
 
     editContactRight_left = document.getElementById('editContactRight_left');
     editContactRight_left.innerHTML = '';
-    editContactRight_left.innerHTML +=`<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact">${initial}</div>`;
-    
+    editContactRight_left.innerHTML += `<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact">${initial}</div>`;
+
     editContactForm.innerHTML +=/*html*/`
     <img onclick="hideEditContactCard();closeOverlay()" class="close_symbol_edit" src="../assets/icons/icon_add_contact_X.svg">
                     <form id="form_edit_contact" class="editContactRight_right" onsubmit="return false">
@@ -357,8 +358,8 @@ function renderEditContactMobile(i) {
 
     editContactRight_left = document.getElementById('editContactRight_mobile_usercircle');
     editContactRight_left.innerHTML = '';
-    editContactRight_left.innerHTML +=`<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact addContactImg">${initial}</div>`;
-    
+    editContactRight_left.innerHTML += `<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact addContactImg">${initial}</div>`;
+
     editContactForm.innerHTML +=/*html*/`
                     <form id="form_edit_contact_mobile" class="editContactBottomMobileDown" onsubmit="return false">
                         <input class="inputMobile" id="edit-name" type="text" value="${name}" required>
@@ -393,9 +394,10 @@ function createdContactSuccessfully() {
     document.getElementById("addContactCard").style.display = "none";
     document.getElementById('success').style.display = '';
     document.getElementById('success').classList.add("animate-contact");
-    setTimeout(() => {document.getElementById('success').style.display = 'none';
+    setTimeout(() => {
+        document.getElementById('success').style.display = 'none';
     }
-, 2000);
+        , 2000);
 }
 
 // Edit function Overwrites the values from the "contacts" array insofar as new data is entered
@@ -434,15 +436,15 @@ async function extractInitials(sortedContacts) {
 function assignRandomColorToDiv(i) {
     // Check if the contact already has a color assigned
     if (!contacts[i].color) {
-      // Generate random HSL values with fixed saturation and lightness ranges
-      var hue = Math.floor(Math.random() * 361); // Random hue between 0 and 360
-      var saturation = Math.floor(Math.random() * 51) + 50; // Random saturation between 50 and 100
-      var lightness = Math.floor(Math.random() * 26) + 35; // Random lightness between 35 and 60
-    
-      // Convert HSL values to a color string
+        // Generate random HSL values with fixed saturation and lightness ranges
+        var hue = Math.floor(Math.random() * 361); // Random hue between 0 and 360
+        var saturation = Math.floor(Math.random() * 51) + 50; // Random saturation between 50 and 100
+        var lightness = Math.floor(Math.random() * 26) + 35; // Random lightness between 35 and 60
+
+        // Convert HSL values to a color string
         var color = "hsl(" + hue + ", " + saturation + "%, " + lightness + "%)";
-    
-      // Update the corresponding contact object in the "contacts" array with the color
+
+        // Update the corresponding contact object in the "contacts" array with the color
         contacts[i].color = color;
     }
     // Return the assigned color
@@ -475,22 +477,22 @@ function sortContactsAlphabetically(contacts) {
 
 // Function which continuously measures the browser width and fades in and out elements from 1050px wide
 function measureBrowserWidth() {
-    const maxWidth = 1050; 
-    
+    const maxWidth = 1050;
+
     function checkWidth() {
         const browserWidth = window.innerWidth;
-    
+
         if (browserWidth >= maxWidth) {
             hideMobileAddContactCard();
             hideMobileEditContactCard();
             hideMobileContactView();
             document.getElementById("contacts-right-wrapper").style.display = "initial";
-        } 
+        }
         if (browserWidth <= maxWidth) {
             hideAddContactCard();
             hideEditContactCard();
             document.getElementById("contacts-right-wrapper").style.display = "none";
-        } 
+        }
     }
     // Function to initialize the check and continuous monitoring
     function initWidthMonitoring() {
@@ -508,6 +510,18 @@ function addNewTaskFromContacts(i, stati) {
     console.log(i);
     console.log(stati);
     console.log(initials[i]);
+    memberAssignedTo = [];
+    colorsAssignedTo = [];
+    assignedTo = [];
+    assignedToInitials = [];
+    assignedToColors = [];
+    pushColorToArrayAssignedTo();
+    pushMemberToArrayAssignedTo();
     addNewTask(stati);
 };
 
+
+// async function addTaskAndCloseForm(status) {
+//     await addTask(status);
+//     setTimeout(function () { closeAddTaskBoard() }, 200);
+// };
