@@ -491,6 +491,7 @@ header {
     justify-content: space-around;
     align-items: flex-start;
     overflow: auto;
+    z-index: 1500;
 }
 
 .container-formular-task-on-board {
