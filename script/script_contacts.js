@@ -512,11 +512,12 @@ function addNewTaskFromContacts(i, stati) {
     assignedTo = [];
     assignedToInitials = [];
     assignedToColors = [];
-    assignedTo.push([contacts[i]['name']]);
-    assignedToInitials.push([initials[i]]);
+    assignedTo.push(contacts[i]['name']);
+    assignedToInitials.push(initials[i]);
     assignedToColors.push(contacts[i]['color']);
     pushColorToArrayAssignedTo();
     pushMemberToArrayAssignedTo();
     addNewTask(stati);
+    renderMembers();
 };
 
