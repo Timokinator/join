@@ -259,9 +259,6 @@ checkbox {
     font-weight: 700;
     line-height: 120%;
     color: #FFF;
-    opacity: 1;
-    opacity: 1;
-    animation: fadeInOut 3s forwards;
 }
 
 .visible {
