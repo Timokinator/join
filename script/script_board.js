@@ -84,9 +84,58 @@ function templateSingleTask(task, j) {
                 <div class="single-task-member" id="single_task_member${j}"></div>
                 <div class="single-task-prio" id="single-task-prio${j}"></div>
             </div>
+
+            <div onclick="doNotClose(event)" class="change-status-mobile">
+                <span>Change status</span>
+                   <img onclick="changeStatusClick(${j},'up')" class="img-btn-status-up" src="../assets/icons/icon_arrow_down.png" alt="">
+                   <img onclick="changeStatusClick(${j},'down')" class="img-btn-status-down" src="../assets/icons/icon_arrow_down.png" alt="">
+            </div>
         </div>
     `;
 };
+
+
+async function changeStatusClick(j, direction) {
+
+    let oldStatus = tasks[j]['status'];
+
+    if (oldStatus == 'todo') {
+        if (direction == 'up') {
+            newStatus = 'todo';
+        } else {
+            newStatus = 'progress';
+        };
+    } else if (oldStatus == 'progress') {
+        if (direction == 'up') {
+            newStatus = 'todo';
+        } else {
+            newStatus = 'awaiting';
+        };
+    } else if (oldStatus == 'awaiting') {
+        if (direction == 'up') {
+            newStatus = 'progress';
+        } else {
+            newStatus = 'done';
+        };
+    } else if (oldStatus == 'done') {
+        if (direction == 'up') {
+            newStatus = 'awaiting';
+        } else {
+            newStatus = 'done'
+        };
+    };
+    
+    tasks[j]['status'] = newStatus;
+    await safeTasks();
+    initBoard();
+};
+
+
+
+
+
+
+
 
 
 function addMemberToSingleTask(task, j) {
