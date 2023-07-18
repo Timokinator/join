@@ -504,6 +504,7 @@ header {
     align-items: flex-start;
     gap: 48px;
     margin-top: 5%;
+    position: relative;
 }
 
 .btn-container-add-task-on-board {
@@ -720,6 +721,11 @@ header {
         align-items: flex-start;
         gap: 16px;
     }
+
+    .title-formular-on-board {
+        font-size: 32px;
+    }
+
 
 }
 

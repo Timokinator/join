@@ -366,6 +366,9 @@ function resetForm() {
 function templateFormAddTaskBoard(stati) {
     return /*html*/`
         <div class="container-formular-task-on-board" onclick="doNotClose(event)">
+
+            <img onclick="closeAddTaskBoard()" src="../assets/icons/icon_cross_dark.svg" alt class="detail-task-close-btn">
+
             <span class="title-formular-on-board">Add Task</span>
 
             <form id="form_add_task" class="form-add-task" onsubmit="return false">
@@ -683,6 +686,9 @@ function editTaskAddCloseWithEscape() { //adds the possibility to close the edit
 function templateEditTask(j) {
     return /*html*/`
       <div class="container-formular-task-on-board" onclick="doNotClose(event)">
+            
+            <img onclick="closeEditTask()" src="../assets/icons/icon_cross_dark.svg" alt="" class="detail-task-close-btn">
+      
             <span class="title-formular-on-board">Edit Task</span>
 
             <form id="form_add_task" class="form-add-task" onsubmit="return false">
