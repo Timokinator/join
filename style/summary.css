@@ -294,20 +294,29 @@
 
     .tasks {
         width: 100%;
-        max-width: 170px;
+        max-width: 350px;
         min-width: 85px;
         gap: 2px;
     }
 
     .container-content {
-        width: 90%;
+        width: 100% !important;
+        padding-left: 8px;
+        padding-right: 8px;
+
     }
 
     .container-headline-summary {
         margin-bottom: 8px;
     }
 
+    .container_progress_and_welcome {
+        padding-left: 0;
+    }
 
+    .greetingContainer {
+        padding-left: 32px;
+    }
 
 }
 
@@ -333,5 +342,22 @@
     .container-headline-summary {
         margin-bottom: 24px;
     }
+
+    .container-summary-done img, .container-summary-todo img {
+        width: 32px;
+    }
+
+    .container-summary-done, .container-summary-todo {
+        padding: 14px 8px;
+    }
+
+    .container_summary_done_todo {
+        gap: 8px;
+    }
+
+    .container-summary-urgent-date {
+        padding: 14px 24px;
+    }
+
 
 }
