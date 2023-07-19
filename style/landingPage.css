@@ -46,7 +46,7 @@ body {
 }
 
 .signUpNav {
-    position: absolute;
+    position: fixed;
     top: 67px;
     right: 114px;
     display: inline-flex;
@@ -90,7 +90,8 @@ body {
 
 #register {
     display: flex;
-    width: 652px;
+    width: 95%;
+    max-width: 650px;
     padding: 35px 0px;
     flex-direction: column;
     align-items: center;
@@ -303,7 +304,19 @@ checkbox {
 
 
 @media (max-width: 1050px) {
-    
+    .signUpNav {
+        bottom: 64px;
+        right: 0;
+        left: 0;
+        top: unset;
+        justify-content: center;
+    }
 
+    .logoImg {
+        width: 64px;
+        height: 78px;
+        top: 37px;
+        left: 38px;
+    }
 
 }
