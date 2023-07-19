@@ -10,13 +10,13 @@
 
 <body onload="getUsersInfo(); loadLogInHTML()">
     <div class="msgBox visible"></div>
-    <img src="../assets/img/join_logo_dark.svg" alt="" class="logoImg">
+    <img onclick="location.reload()" src="../assets/img/join_logo_dark.svg" alt="" class="logoImg hover">
 
     <div class="signUpNav">
         <a href="../html/signUp.html" class="navSignUpLink">
-            <p>Not a Join user?</p>
+            <p class="hover">Not a Join user?</p>
         </a>
-        <a href="../html/signUp.html"><button>Sign up</button></a>
+        <a href="../html/signUp.html"><button class="hover">Sign up</button></a>
     </div>
 
     <div id="logInContainer">
@@ -40,11 +40,11 @@
                     <input type="checkbox" name="RememberMe" id="RememberMe">
                     <label for="RememberMe">Remember me</label>
                 </div>
-                <a href="../html/forgetPassword.html" class="forgetPasswordLink">Forgot my password</a>
+                <a href="../html/forgetPassword.html" class="forgetPasswordLink hover">Forgot my password</a>
             </div>
             <div class="formBtnContainer">
-                <button type="submit" id="logInBtn">Log in</button>
-                <button onclick="guestLogIn()" id="guestLogInBtn">Guest Log in</button>
+                <button class="hover" type="submit" id="logInBtn">Log in</button>
+                <button class="hover" onclick="guestLogIn()" type="button" id="guestLogInBtn">Guest Log in</button>
             </div>
         </form>
     </div>
