@@ -14,21 +14,30 @@ async function loadSavedUsers() {
 async function register() {
     let userName = document.getElementById('inputName');
     let email = document.getElementById('inputEmail');
-    let password = document.getElementById('inputPassword');
+    let password = document.getElementById('inputPassword').value;
+    let confirmPassword = document.querySelector('.confirmPasswordBox').value;
+
+    if(password === confirmPassword) {
+        users.push({
+            email: email.value,
+            password: password,
+            name: userName.value
+        })
+    
+        await setItem('users', JSON.stringify(users));
+        resetForm(userName, email, password);
+        users = JSON.parse(await getItem('users'));
+        window.location.href = 'login.html?msg=Du hast dich erfolgreich registriert';
+    }else {
+        alert("Password and confirm password don't match!");
+        password.value = '';
+        confirmPassword.value = '';
+        return;
+    }
 
 
-    users.push({
-        email: email.value,
-        password: password.value,
-        name: userName.value
-    })
 
-    await setItem('users', JSON.stringify(users));
-    resetForm(userName, email, password);
-
-    users = JSON.parse(await getItem('users'));
-
-    window.location.href = 'login.html?msg=Du hast dich erfolgreich registriert';
+    
 }
 
 function resetForm(userName, email, password) {

@@ -44,19 +44,30 @@ async function loadUserData() {
         userBox.innerHTML = 'Guest';
     }
 
-    if (currentUser != null) {
-        getInitials(currentUser);
-    }
+    // if (currentUser != null) {
+    //     getInitials(currentUser);
+    // }
 };
 
 
-function getInitials(currentUser) {
-    const names = currentUser.split(' ');
-    const initials = names.map(name => name.charAt(0).toUpperCase());
-    logedInUserInitials.push(initials);
-    console.log(logedInUserInitials);
+// function getInitials(currentUser) {
+//     const names = currentUser.split(' ');
+//     const initials = names.map(name => name.charAt(0).toUpperCase());
+//     const newInitials = initials.join(' ');
+//     logedInUserInitials.push(newInitials);
+//     loadUserInitials();
+// }
 
-}
+// async function loadUserInitials() {
+//     let box = document.querySelector('.initialsBox');
+//     box.innerHTML = '';
+    
+//     for (let i = 0; i < logedInUserInitials.length; i++) {
+//         const element = logedInUserInitials[i];
+//         box.innerHTML =  `<span>${element}</span>`;
+        
+//     }
+// }
 
 
 

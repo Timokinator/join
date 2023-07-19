@@ -81,6 +81,15 @@ body {
 
 }
 
+.initialsBox {
+    color: lightblue;
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: 32px;
+    font-family: Inerit;
+}
+
+
 .topbar {
     display: flex;
     align-items: center;
