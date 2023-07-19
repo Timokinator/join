@@ -3,45 +3,75 @@ let currentDraggedElement;
 
 
 
+/**
+ * Clears the search input field on the board.
+ */
 function findTask() {
     let search = document.getElementById('search_input_board');
     search.value = '';
 };
 
-
+/**
+ * Asynchronously initializes the board.
+ * Loads tasks from storage, renders tasks on the board, and loads contacts.
+ * Pushes colors and member names to the assignedTo array.
+ */
 async function initBoard() {
-    await loadTasks();
-    renderTasksBoard();
-    await loadContacts();
-    pushColorToArrayAssignedTo();
-    pushMemberToArrayAssignedTo();
+    await loadTasks(); // Load tasks from storage.
+    renderTasksBoard(); // Render tasks on the board.
+    await loadContacts(); // Load contacts from storage.
+    pushColorToArrayAssignedTo(); // Push colors to the assignedTo array.
+    pushMemberToArrayAssignedTo(); // Push member names to the assignedTo array.
 };
 
 
+/**
+ * Renders tasks on the board based on the search query and task status.
+ */
 function renderTasksBoard() {
+    // Get the value of the search input field.
     let search = document.getElementById('search_input_board').value;
 
+    // Loop through all task statuses (defined in the 'stati' array).
     for (let i = 0; i < stati.length; i++) {
-        const status = stati[i];
-        let content = document.getElementById('container_tasks_board_' + status);
-        content.innerHTML = '';
+        const status = stati[i]; // Get the current task status.
 
+        // Get the container element for the current status on the board.
+        let content = document.getElementById('container_tasks_board_' + status);
+        content.innerHTML = ''; // Clear the container's content.
+
+        // Check if there is no search query entered by the user.
         if (search == '') {
+            // If there's no search query, render tasks without filtering.
             renderTasksBoardWithoutSearch(content, status);
         } else {
+            // If there's a search query, render tasks with filtering based on the query.
             renderTasksBoardWithSearch(content, status, search);
         }
     };
 };
 
 
+/**
+ * Renders tasks on the board based on the provided search query and status.
+ *
+ * @param {Element} content - The container element to render the tasks in.
+ * @param {string} status - The status of the tasks to display (e.g., 'todo', 'progress', etc.).
+ * @param {string} search - The search query used to filter the tasks based on title or description.
+ */
 function renderTasksBoardWithSearch(content, status, search) {
     for (let j = 0; j < tasks.length; j++) {
         const task = tasks[j];
         if (task['status'] == status) {
+            // Check if the current task's title or description includes the search query (case-insensitive).
             if (task['title'].toLowerCase().includes(search) || task['description'].toLowerCase().includes(search)) {
-                content.innerHTML += templateSingleTask(task, j)
+                // If the search query matches, render the single task.
+                content.innerHTML += templateSingleTask(task, j);
+
+                // Add the member assigned to the task and their initials.
                 addMemberToSingleTask(task, j);
+
+                // Add the priority (prio) indicator to the single task.
                 addPrioToSingleTask(task, j);
             };
         };
@@ -49,10 +79,20 @@ function renderTasksBoardWithSearch(content, status, search) {
 };
 
 
+/**
+ * Renders all tasks belonging to a specific status on the board without any search filtering.
+ *
+ * @param {Element} content - The container element for the current status on the board.
+ * @param {string} status - The task status to be rendered.
+ */
 function renderTasksBoardWithoutSearch(content, status) {
+    // Loop through all tasks.
     for (let j = 0; j < tasks.length; j++) {
         const task = tasks[j];
+
+        // Check if the task belongs to the specified status.
         if (task['status'] == status) {
+            // If the task belongs to the status, render the task on the board.
             content.innerHTML += templateSingleTask(task, j);
             addMemberToSingleTask(task, j);
             addPrioToSingleTask(task, j);
@@ -61,6 +101,13 @@ function renderTasksBoardWithoutSearch(content, status) {
 };
 
 
+/**
+ * Generates the HTML template for rendering a single task on the board.
+ *
+ * @param {Object} task - The task object containing task information.
+ * @param {number} j - The index of the task in the tasks array.
+ * @returns {string} The HTML template for the single task.
+ */
 function templateSingleTask(task, j) {
     return /*html*/`
         <div draggable="true" class="single-task" onclick="openTask(${j})" ondragstart="startDragging(${j})">
@@ -95,56 +142,65 @@ function templateSingleTask(task, j) {
 };
 
 
-async function changeStatusClick(j, direction) {
 
+/**
+ * Asynchronously changes the status of a task and updates the board.
+ *
+ * @param {number} j - The index of the task in the tasks array.
+ * @param {string} direction - The direction of status change ('up' or 'down').
+ * @returns {Promise<void>} A Promise that resolves after the task status has been updated and the board is reinitialized.
+ */
+async function changeStatusClick(j, direction) {
     let oldStatus = tasks[j]['status'];
+    let newStatus;
 
     if (oldStatus == 'todo') {
         if (direction == 'up') {
             newStatus = 'todo';
         } else {
             newStatus = 'progress';
-        };
+        }
     } else if (oldStatus == 'progress') {
         if (direction == 'up') {
             newStatus = 'todo';
         } else {
             newStatus = 'awaiting';
-        };
+        }
     } else if (oldStatus == 'awaiting') {
         if (direction == 'up') {
             newStatus = 'progress';
         } else {
             newStatus = 'done';
-        };
+        }
     } else if (oldStatus == 'done') {
         if (direction == 'up') {
             newStatus = 'awaiting';
         } else {
             newStatus = 'done'
-        };
-    };
-    
+        }
+    }
+
     tasks[j]['status'] = newStatus;
-    await safeTasks();
-    initBoard();
+    await safeTasks(); // Save the updated tasks to storage.
+    initBoard(); // Reinitialize the board to reflect the changes.
 };
 
 
-
-
-
-
-
-
-
+/**
+ * Adds member information to a single task on the board.
+ *
+ * @param {object} task - The task object to which members will be added.
+ * @param {number} j - The index of the task in the tasks array.
+ */
 function addMemberToSingleTask(task, j) {
-    let content = document.getElementById('single_task_member' + j)
+    let content = document.getElementById('single_task_member' + j);
     content.innerHTML = '';
 
+    // Loop through all assigned members for the task.
     for (let k = 0; k < task['assignedTo'].length; k++) {
         const member = task['assignedTo'][k];
 
+        // Add a member element with their initials and background color to the task.
         content.innerHTML += /*html*/`
             <div style="background-color: ${task['colors'][k]}" class="single-task-member-member">${task['initials'][k]}</div>
         `;
@@ -152,11 +208,17 @@ function addMemberToSingleTask(task, j) {
 };
 
 
+/**
+ * Adds priority information to a single task on the board.
+ *
+ * @param {object} task - The task object to which priority will be added.
+ * @param {number} j - The index of the task in the tasks array.
+ */
 function addPrioToSingleTask(task, j) {
     let content = document.getElementById('single-task-prio' + j);
-
     content.innerHTML = '';
 
+    // Check the priority of the task and add the corresponding icon.
     if (task['prio'] == 'urgent') {
         content.innerHTML += /*html*/`
             <img src="../assets/icons/icon_prio_high.svg" alt="">
@@ -171,6 +233,7 @@ function addPrioToSingleTask(task, j) {
         `;
     };
 };
+
 
 
 function openTask(j) {
