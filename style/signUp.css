@@ -137,13 +137,74 @@ form button {
     color: white;
 }
 
-@media only screen and (max-width: 425px) {
+
+
+
+
+@media only screen and (max-width: 1050px) {
     .logoImg {
-        top: 37;
-        left: 38;
+        position: fixed;
+        top: 37px;
+        left: 38px;
         width: 64px;
         height: 78.031px;
     }
+
+    form h1 {
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 47px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        /* 56.4px */
+    }
+
+    form input {
+        display: flex;
+        padding: 12px 21px;
+        align-items: center;
+        gap: 10px;
+        align-self: stretch;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .logoImg {
+        position: fixed;
+        top: 37px;
+        left: 38px;
+        width: 64px;
+        height: 78.031px;
+    }
+
+    form h1 {
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 47px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        /* 56.4px */
+    }
+
+    form input {
+        display: flex;
+        padding: 12px 21px;
+        align-items: center;
+        gap: 10px;
+        align-self: stretch;
+    }
+
+    form {
+        width: 95%;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+
 
     form {
         display: flex;
@@ -152,7 +213,10 @@ form button {
         flex-direction: column;
         align-items: center;
         gap: 35px;
+        margin-left: 5%;
+        margin-right: 5%;
     }
+
 
     form h1 {
         color: #000;

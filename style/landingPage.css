@@ -269,7 +269,7 @@ checkbox {
 }
 
 .visible {
-    visibility:hidden;
+    visibility: hidden;
     pointer-events: none;
 }
 
@@ -312,11 +312,67 @@ checkbox {
         justify-content: center;
     }
 
+    h1 {
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 47px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        /* 56.4px */
+    }
+
     .logoImg {
         width: 64px;
         height: 78px;
         top: 37px;
         left: 38px;
+    }
+
+
+
+    #register {
+        display: flex;
+        width: 396px;
+        padding: 32px 0px;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+    }
+
+    .inputBox {
+        display: flex;
+        width: 364px;
+        height: 152px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+    }
+
+    #email, #password {
+        width: 100%;
+        display: flex;
+        padding: 12px 21px;
+        align-items: center;
+        gap: 10px;
+        align-self: stretch;
+    }
+
+    .rememberMeContainer {
+        display: flex;
+        width: 327px;
+        padding: 0px 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .formBtnContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 21px;
     }
 
 }
