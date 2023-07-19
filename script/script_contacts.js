@@ -3,8 +3,9 @@ let initials = [];
 let sortedalphabetically = [];
 let letters = [];
 
-
-// Asynchronous function that initializes all necessary functions when loading the page
+/**
+ * Asynchronous function that initializes all necessary functions when loading the page
+ */
 async function init() {
     await loadContacts();
     await extractInitials(sortedalphabetically);
@@ -12,23 +13,27 @@ async function init() {
     renderContacts();
     measureBrowserWidth();
 }
-
-// Asynchronous function that refreshes the page
+/**
+ * Asynchronous function that refreshes the page
+ */
 async function refresh() {
     let contactsboxbig = document.getElementById('contactsboxbig');
     contactsboxbig.innerHTML = '';
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
-
     sortedalphabetically = [];
     await extractInitials(sortedalphabetically);
     await safeContacts();
     await loadContacts();
     renderContacts();
 }
-
-
-// Function to push the entered contacts into the "contacts" array
+/**
+ * Function to push the entered contacts into the "contacts" array
+ * @param {string} name - This is the name of an existing contact
+ * @param {string} email - This is the email of an existing contact
+ * @param {number} phone - This is the phone number of an existing contact
+ * @param {string} color - - This is the color which gets assigned to an existing contact
+ */
 function pushToArray(name, email, phone, color) {
     contacts.push(
         {
@@ -40,20 +45,23 @@ function pushToArray(name, email, phone, color) {
     );
     safeContacts();
 }
-
-// Asynchronous function to save all contacts from array "contacts" to remote storage
+/**
+ * Asynchronous function to save all contacts from array "contacts" to remote storage
+ */
 async function safeContacts() {
     await setItem('contact_array', JSON.stringify(contacts));
     await setItem('initials_array', JSON.stringify(initials));
 }
-
-// Asynchronous function to load all contacts from the remote storage and assign them to the "contacts" array
+/**
+ * Asynchronous function to load all contacts from the remote storage and assign them to the "contacts" array
+ */
 async function loadContacts() {
     contacts = JSON.parse(await getItem('contact_array'));
     initials = JSON.parse(await getItem('initials_array'));
 }
-
-// Asynchronous function to add a new contact to the "contacts" array
+/**
+ * Asynchronous function to add a new contact to the "contacts" array
+ */
 async function addContact() {
     let name = document.getElementById('name').value;
     let email = document.getElementById('email').value;
@@ -71,8 +79,9 @@ async function addContact() {
     await refresh();
     safeContacts();
 }
-
-// Asynchronous function to add a new contact from the Mobile Version to the "contacts" array
+/**
+ * Asynchronous function to add a new contact from the Mobile Version to the "contacts" array
+ */
 async function addContactMobile() {
     let name = document.getElementById('name_mobile').value;
     let email = document.getElementById('email_mobile').value;
@@ -89,25 +98,29 @@ async function addContactMobile() {
     document.getElementById('form_add_contact_mobile').reset();
     await refresh();
 }
-
-// Function hides "Contact Container"
+/**
+ * Function hides "Contact Container"
+ */
 function hideAddContactCard() {
     document.getElementById("overlay_add_contact").style.display = "none";
 }
-
-// Function hides "MOBILE Contact Container"
+/**
+ * Function hides "MOBILE Contact Container"
+ */
 function hideMobileAddContactCard() {
     document.getElementById("overlay_add_contact_mobile").style.display = "none";
     document.getElementById("contacts-left").style.position = "initial";
 }
-
-// Function shows "Add Contact Container"
+/**
+ * Function shows "Add Contact Container"
+ */
 function showAddContactCard() {
     document.getElementById("addContactCard").style.display = "flex";
     document.getElementById("overlay_add_contact").style.display = "flex";
 }
-
-// Function shows "MOBILE Contact Container"
+/**
+ * Function shows "MOBILE Contact Container"
+ */
 function showMobileAddContactCard() {
     document.getElementById("addContactCard_mobile").style.display = "flex";
     document.getElementById("overlay_add_contact_mobile").style.display = "flex";
@@ -115,14 +128,17 @@ function showMobileAddContactCard() {
         document.getElementById("contacts-left").style.position = "fixed";
     }
 }
-
-// Function hides "Edit Contact Container"
+/**
+ * Function hides "Edit Contact Container"
+ */
 function hideEditContactCard() {
     document.getElementById("editContactCard").style.display = "none";
     document.getElementById("overlay_edit_contact").style.display = "none";
 }
-
-// Function shows "Edit Contact Container"
+/**
+ * Function shows "Edit Contact Container"
+ * @param {number} i - This is the index of an existing contact
+ */
 function showEditContactCard(i) {
     document.getElementById("overlay_edit_contact").style.display = "flex";
     document.getElementById("editContactCard").style.display = "flex";
@@ -131,42 +147,51 @@ function showEditContactCard(i) {
     }
     renderEditContact(i);
 }
-
-// Function hides MOBILE Version of "Edit Contact Container"
+/**
+ * Function hides MOBILE Version of "Edit Contact Container"
+ */
 function hideMobileEditContactCard() {
     document.getElementById("editContactCard_mobile").style.display = "none";
     document.getElementById("overlay_edit_contact_mobile").style.display = "none";
     document.getElementById("contacts-left").style.position = "initial";
 }
-
-// Function shows MOBILE Version of "Edit Contact Container"
+/**
+ * Function shows MOBILE Version of "Edit Contact Container"
+ * @param {number} i - This is the index of an existing contact
+ */
 function showMobileEditContactCard(i) {
     document.getElementById("overlay_edit_contact_mobile").style.display = "flex";
     document.getElementById("editContactCard_mobile").style.display = "flex";
     renderEditContactMobile(i);
 }
-
-// Function closes Overlay from "ADD-/EDIT Contact Container"
+/**
+ * Function closes Overlay from "ADD-/EDIT Contact Container"
+ */
 function closeOverlay() {
     document.getElementById("overlay_add_contact").style.display = "none";
     document.getElementById("overlay_edit_contact").style.display = "none";
 }
-
-// Function closes Overlay from MOBILE version of "ADD-/EDIT Contact Container"
+/**
+ * Function closes Overlay from MOBILE version of "ADD-/EDIT Contact Container"
+ */
 function closeOverlayMobile() {
     document.getElementById("overlay_add_contact_mobile").style.display = "none";
     document.getElementById("overlay_edit_contact_mobile").style.display = "none";
     document.getElementById("contacts-left").style.position = "initial";
 }
-
-// Function whiches hides mobile detail view of a contact
+/**
+ * Function whiches hides mobile detail view of a contact
+ */
 function hideMobileContactView() {
     document.getElementById("contacts-right-mobile").style.display = "none";
     document.getElementById("contactsboxsmall").style.display = "block";
     document.getElementById("contacts-left-wrapper").style.position = "initial";
     document.getElementById("contacts-left").style.position = "initial";
 }
-// Function renders a specific contact in the detail view
+/**
+ * Function renders a specific contact in the detail view
+ * @param {number} i - This is the index of an existing contact
+ */
 function renderContact(i) {
     document.getElementById("contactsboxbig").style.display = "flex";
     let contactsboxbig = document.getElementById('contactsboxbig');
@@ -202,8 +227,10 @@ function renderContact(i) {
             <div class="FS16-400">${phone}</div>
         `;
 }
-
-// Function renders a specific contact in the MOBILE detail view
+/**
+ * Function renders a specific contact in the MOBILE detail view
+ * @param {number} i - This is the index of an existing contact
+ */
 function renderContactMobile(i) {
 
     if (matchMedia('only screen and (max-width: 1050px)').matches) {
@@ -244,8 +271,9 @@ function renderContactMobile(i) {
             </div>
         `;
 }
-
-// Asynchronous function renders all existing contacts
+/**
+ * Asynchronous function renders all existing contacts
+ */
 async function renderContacts() {
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
@@ -312,8 +340,10 @@ async function renderContacts() {
         container.classList.add('letterbox');
     }
 }
-
-// Function renders the "Edit Contact" container
+/**
+ * Function renders the "Edit Contact" container
+ * @param {number} i - This is the index of an existing contact
+ */
 function renderEditContact(i) {
     editContactForm = document.getElementById('editContactForm');
     editContactForm.innerHTML = '';
@@ -344,8 +374,10 @@ function renderEditContact(i) {
                     </form>
     `;
 }
-
-// Function renders the MOBILE "Edit Contact" container
+/**
+ *  Function renders the MOBILE "Edit Contact" container
+ * @param {number} i - This is the index of an existing contact
+ */
 function renderEditContactMobile(i) {
     editContactForm = document.getElementById('editContactForm_mobile');
     editContactForm.innerHTML = '';
@@ -375,8 +407,10 @@ function renderEditContactMobile(i) {
                     </form>
     `;
 }
-
-// Function which deletes a specific contact in the array "contacts" at position [i].
+/**
+ * Function which deletes a specific contact in the array "contacts" at position [i].
+ * @param {number} i - This is the index of an existing contact
+ */
 async function deleteContact(i) {
     if (contacts.length > 9) {
         contacts.splice(i, 1);
@@ -388,8 +422,9 @@ async function deleteContact(i) {
     hideEditContactCard();
     hideMobileContactView();
 }
-
-// Function shows a popup for a certain time "created contact successfully"
+/**
+ * Function shows a popup for a certain time "created contact successfully"
+ */
 function createdContactSuccessfully() {
     document.getElementById("addContactCard").style.display = "none";
     document.getElementById('success').style.display = '';
@@ -399,8 +434,10 @@ function createdContactSuccessfully() {
     }
         , 2000);
 }
-
-// Edit function Overwrites the values from the "contacts" array insofar as new data is entered
+/**
+ * Edit function Overwrites the values from the "contacts" array insofar as new data is entered
+ * @param {number} i - This is the index of an existing contact 
+ */
 async function editContact(i) {
     const nameInput = document.getElementById('edit-name');
     const emailInput = document.getElementById('edit-email');
@@ -420,8 +457,10 @@ async function editContact(i) {
     await refresh();
     hideMobileContactView();
 }
-
-// Extracts the uppercase initials from the array "contacts"['name']
+/**
+ * Extracts the uppercase initials from the array "contacts"['name']
+ * @param {Array} sortedContacts - This is the sorted Contacts Array
+ */
 async function extractInitials(sortedContacts) {
     initials = sortedContacts.map(contact => {
         const name = contact.name;
@@ -431,8 +470,11 @@ async function extractInitials(sortedContacts) {
     });
     safeContacts();
 }
-
-// Function assignes random Color to Usercircle
+/**
+ * Function assignes random Color to Usercircle
+ * @param {number} i - This is the index of an existing contact 
+ * @returns - Returns the randomly generated color and assignes it to the Array "contacts"
+ */
 function assignRandomColorToDiv(i) {
     // Check if the contact already has a color assigned
     if (!contacts[i].color) {
@@ -451,8 +493,11 @@ function assignRandomColorToDiv(i) {
     return contacts[i].color;
     safeContacts();
 }
-
-// function alphabetically sorts the "contacts" array by the first capital letter of the "name" field and pushes it into a new array named "sortedalphabetically"
+/**
+ * function alphabetically sorts the "contacts" array by the first capital letter of the "name" field and pushes it into a new array named "sortedalphabetically"
+ * @param {Array} contacts - This is the "contacts Array"
+ * @returns - Return -1 & 1 is used to alphabetically sort the contacts inside the "contacts" Array
+ */
 function sortContactsAlphabetically(contacts) {
 
     // Sort the contacts by the first capital letter of the name
@@ -474,8 +519,9 @@ function sortContactsAlphabetically(contacts) {
     });
     return sortedalphabetically;
 }
-
-// Function which continuously measures the browser width and fades in and out elements from 1050px wide
+/**
+ * Function which continuously measures the browser width and fades in and out elements from 1050px wide
+ */
 function measureBrowserWidth() {
     const maxWidth = 1050;
 
@@ -502,10 +548,11 @@ function measureBrowserWidth() {
     // Start monitoring the browser width
     initWidthMonitoring();
 }
-
-
-/*Code for add task from contacts */
-
+/**
+ * Function wich let you add task from contacts
+ * @param {number} i - This is the index of an existing contact 
+ * @param {*} stati 
+ */
 function addNewTaskFromContacts(i, stati) {
     memberAssignedTo = [];
     colorsAssignedTo = [];
