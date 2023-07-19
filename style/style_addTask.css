@@ -235,6 +235,7 @@ option {
     bottom: 50%;
     right: 30%;
     left: 30%;
+    z-index: 2000;
 }
 
 
