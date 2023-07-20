@@ -1,17 +1,71 @@
+/**
+ * An array to store tasks.
+ * @type {Array}
+ */
 let tasks = [];
+
+/**
+ * An array to store subtasks.
+ * @type {Array}
+ */
 let subtasks = [];
+
+/**
+ * An array to store assigned members.
+ * @type {Array}
+ */
 let assignedTo = [];
+
+/**
+ * An array to store initials of logged-in users.
+ * @type {Array}
+ */
 let logedInUserInitials2 = [];
+
+/**
+ * An array to store initials of assigned members.
+ * @type {Array}
+ */
 let assignedToInitials = [];
+
+/**
+ * An array to store colors of assigned members.
+ * @type {Array}
+ */
 let assignedToColors = [];
+
+/**
+ * An array to store contacts for the form.
+ * @type {Array}
+ */
 let contactsForm = [];
+
+/**
+ * An array to store assigned members for a task.
+ * @type {Array}
+ */
 let memberAssignedTo = [];
+
+/**
+ * An array to store colors of assigned members for a task.
+ * @type {Array}
+ */
 let colorsAssignedTo = [];
 
-
-// Funktion zum Hinzufügen einer Aufgabe in das tasks-Array
+/**
+ * Function to add a task to the tasks array.
+ * @param {string} title - The title of the task.
+ * @param {string} description - The description of the task.
+ * @param {string} category - The category of the task.
+ * @param {Array} member - The members assigned to the task.
+ * @param {string} dueDate - The due date of the task.
+ * @param {string} prio - The priority of the task.
+ * @param {Array} subtasks - The subtasks of the task.
+ * @param {string} status - The status of the task.
+ * @param {Array} colors - The colors of assigned members.
+ * @param {Array} initialsMembers - The initials of assigned members.
+ */
 function pushTaskToArray(title, description, category, member, dueDate, prio, subtasks, status, colors, initialsMembers) {
-    // Die übergebenen Daten in einem Objekt speichern und in das tasks-Array pushen
     tasks.push({
         'title': title,
         'description': description,
@@ -26,106 +80,121 @@ function pushTaskToArray(title, description, category, member, dueDate, prio, su
     });
 };
 
-// Funktion zum Hinzufügen der Mitglieder in das memberAssignedTo-Array
+/**
+ * Function to add members to the memberAssignedTo array.
+ */
 function pushMemberToArrayAssignedTo() {
-    // Alle Mitglieder aus dem contacts-Array in das memberAssignedTo-Array pushen
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
         memberAssignedTo.push(contact['name']);
     };
 };
 
-// Funktion zum Hinzufügen der Farben in das colorsAssignedTo-Array
+/**
+ * Function to add colors to the colorsAssignedTo array.
+ */
 function pushColorToArrayAssignedTo() {
-    // Alle Farben aus dem contacts-Array in das colorsAssignedTo-Array pushen
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
         colorsAssignedTo.push(contact['color']);
     };
 };
 
-// Funktion zum Speichern des tasks-Arrays in Local Storage
+/**
+ * Asynchronous function to save the tasks array to Local Storage.
+ */
 async function safeTasks() {
     await setItem('task_array', JSON.stringify(tasks));
 };
 
-// Funktion zum Initialisieren des Hinzufügens einer Aufgabe
+/**
+ * Asynchronous function to initialize adding a task.
+ */
 async function initAddTask() {
-    // Aufgaben und Kontakte laden
     await loadTasks();
     await loadContacts();
-    // Kontakte in die Form hinzufügen
     await loadContactsToForm();
-    // Mitglieder in das memberAssignedTo-Array hinzufügen
     pushMemberToArrayAssignedTo();
-    // Farben in das colorsAssignedTo-Array hinzufügen
     pushColorToArrayAssignedTo();
     loadUserData();
-
 };
 
-// Funktion zum Laden der Aufgaben aus dem Local Storage
+/**
+ * Asynchronous function to load tasks from Local Storage.
+ */
 async function loadTasks() {
     tasks = JSON.parse(await getItem('task_array'));
 };
 
-// Funktion zum Laden der Kontakte in das Formular
+/**
+ * Function to load contacts into the form.
+ */
 function loadContactsToForm() {
-    // Das Formular leeren und die Optionen für Kontakte erstellen
     let content = document.getElementById('assignedTo_form');
     content.innerHTML = /*html*/`
         <option value="" disabled selected>Select contacts</option>
     `;
 
-    // Alle Kontakte durchlaufen und Optionen für das Formular erstellen
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
         content.innerHTML += templateMembersChose(contact);
     };
 };
 
-// Funktion zur Erstellung des HTML-Templates für die Optionen der Mitglieder im Formular
+/**
+ * Function to create the HTML template for the members' options in the form.
+ * @param {Object} contact - The contact object.
+ * @returns {string} - The HTML template for the member option.
+ */
 function templateMembersChose(contact) {
     return /*html*/`
         <option value="${contact['name']}">${contact['name']}</option>
     `;
 };
 
-// Funktion zur Festlegung des Prioritätswerts
+/**
+ * Function to set the priority value.
+ * @param {string} prio - The priority value.
+ */
 function setPrioValue(prio) {
-    // Den Wert des Prioritätshidden-Inputs setzen und das ausgewählte Button-Design anpassen
     document.getElementById('prio_hidden').value = prio;
     let selectedButton = document.getElementById('prio_btn_' + prio);
     resetPrioValue();
     selectedButton.classList.add('prio-selected');
 };
 
-// Funktion zum Zurücksetzen des Prioritätswerts
+
+/**
+ * Function to reset the priority value.
+ */
 function resetPrioValue() {
-    // Das ausgewählte Button-Design für die Priorität zurücksetzen
     document.getElementById('prio_btn_urgent').classList.remove('prio-selected');
     document.getElementById('prio_btn_medium').classList.remove('prio-selected');
     document.getElementById('prio_btn_low').classList.remove('prio-selected');
 };
 
-// Funktion zum Zurücksetzen des subtasks-Arrays und des zugehörigen Containers
+/**
+ * Function to reset the subtask array and its container.
+ */
 function resetSubtaskArray() {
     subtasks = [];
     document.getElementById('container_subtasks').innerHTML = '';
 };
 
-// Funktion zum Hinzufügen eines neuen Subtasks
+/**
+ * Function to add a new subtask.
+ */
 function addSubtask() {
-    // Den eingegebenen Subtask zum subtasks-Array hinzufügen und das Rendering aktualisieren
     let subtask = document.getElementById('input_subtask');
     subtasks.push(subtask.value);
     subtask.value = '';
     renderSubtasks();
 };
 
-// Funktion zum Rendern der Subtasks
+/**
+ * Function to render the subtasks.
+ */
 function renderSubtasks() {
-    // Den Container für Subtasks leeren und jedes Subtask-Element rendern
     let content = document.getElementById('container_subtasks');
     content.innerHTML = '';
 
@@ -135,7 +204,11 @@ function renderSubtasks() {
     };
 };
 
-// Funktion zum Erstellen des HTML-Templates für ein Subtask-Element
+/**
+ * Function to create the HTML template for a subtask element.
+ * @param {number} i - The index of the subtask.
+ * @returns {string} - The HTML template for the subtask element.
+ */
 function templateSubtasks(i) {
     return /*html*/`
         <div class="text-subtask">
@@ -145,16 +218,20 @@ function templateSubtasks(i) {
     `;
 };
 
-// Funktion zum Löschen eines Subtasks
+/**
+ * Function to delete a subtask.
+ * @param {number} i - The index of the subtask to be deleted.
+ */
 function deleteSubtask(i) {
-    // Den Subtask aus dem subtasks-Array entfernen und das Rendering aktualisieren
     subtasks.splice(i, 1);
     renderSubtasks();
 };
 
-// Funktion zum Hinzufügen einer Aufgabe
+/**
+ * Function to add a task.
+ * @param {string} setStatus - The status of the task.
+ */
 async function addTask(setStatus) {
-    // Die Informationen aus dem Formular abrufen
     let title = document.getElementById('title_form').value;
     let description = document.getElementById('description_form').value;
     let category = document.getElementById('category_form').value;
@@ -166,7 +243,6 @@ async function addTask(setStatus) {
     let colors = assignedToColors;
     let initialsMembers = assignedToInitials;
 
-    // Überprüfen, ob die Pflichtfelder ausgefüllt sind, und die Aufgabe hinzufügen
     if (title != '' && category != '' && assignedTo != '' && dueDate != '') {
         pushTaskToArray(title, description, category, member, dueDate, prio, subtasks_task, status, colors, initialsMembers);
         await safeTasks();
@@ -180,7 +256,10 @@ async function addTask(setStatus) {
     };
 };
 
-// Funktion zum Hinzufügen eines Mitglieds
+
+/**
+ * Function to add a member.
+ */
 function addMember() {
     let member = document.getElementById('assignedTo_form');
 
@@ -188,7 +267,6 @@ function addMember() {
         const assignedMember = memberAssignedTo[i];
 
         if (assignedTo.indexOf(member.value) == -1) {
-            // Das ausgewählte Mitglied in die assignedTo-Arrays hinzufügen
             assignedTo.push(member.value);
             assignedToInitials.push(initials[memberAssignedTo.indexOf(member.value)]);
             assignedToColors.push(colorsAssignedTo[memberAssignedTo.indexOf(member.value)]);
@@ -197,9 +275,10 @@ function addMember() {
     renderMembers()
 };
 
-// Funktion zum Rendern der Mitglieder
+/**
+ * Function to render the selected members.
+ */
 function renderMembers() {
-    // Den Container für die ausgewählten Mitglieder leeren und jedes Mitglied rendern
     let content = document.getElementById('selected_members_add_task');
     let deleteArea = document.getElementById('click_to_delete_text');
     content.innerHTML = '';
@@ -218,7 +297,9 @@ function renderMembers() {
     };
 };
 
-// Funktion zum Zurücksetzen der ausgewählten Mitglieder
+/**
+ * Function to reset the selected members.
+ */
 function resetAssignedTo() {
     assignedTo = [];
     assignedToColors = [];
@@ -226,7 +307,9 @@ function resetAssignedTo() {
     renderMembers();
 };
 
-// Funktion zum Zurücksetzen der Arrays für die ausgewählten Mitglieder, Subtasks und Prioritäten
+/**
+ * Function to reset the arrays for the selected members, subtasks, and priorities.
+ */
 function resetAssignedToArrays() {
     resetAssignedTo();
     resetSubtaskArray();
@@ -235,17 +318,25 @@ function resetAssignedToArrays() {
     resetAssignedToColors();
 };
 
-// Funktion zum Zurücksetzen der initialsMembers-Array
+/**
+ * Function to reset the initialsMembers array.
+ */
 function resetAssignedToInitials() {
     assignedToInitials = [];
 };
 
-// Funktion zum Zurücksetzen der colors-Array
+/**
+ * Function to reset the colors array.
+ */
 function resetAssignedToColors() {
     assignedToColors = [];
 };
 
-// Funktion zum Erstellen des HTML-Templates für die ausgewählten Mitglieder
+/**
+ * Function to create the HTML template for the selected members.
+ * @param {number} i - The index of the selected member.
+ * @returns {string} - The HTML template for the selected member element.
+ */
 function templateMembers(i) {
     return /*html*/`
       <div style="background-color: ${assignedToColors[i]}" onclick=deleteMember(${i}) class="member-add-task">
@@ -254,9 +345,11 @@ function templateMembers(i) {
     `;
 };
 
-// Funktion zum Löschen eines Mitglieds
+/**
+ * Function to delete a member.
+ * @param {number} i - The index of the member to be deleted.
+ */
 function deleteMember(i) {
-    // Das Mitglied aus den assignedTo-Arrays entfernen und das Rendering aktualisieren
     assignedTo.splice(i, 1);
     assignedToColors.splice(i, 1);
     assignedToInitials.splice(i, 1);
@@ -264,7 +357,9 @@ function deleteMember(i) {
     document.getElementById('assignedTo_form').value = '';
 };
 
-// Funktion zum Anzeigen eines Pop-up-Benachrichtigung, dass die Aufgabe hinzugefügt wurde
+/**
+ * Function to display a pop-up notification that the task has been added.
+ */
 function taskAddedPopUp() {
     let popup = document.getElementById('container_pop_up_add_task');
     popup.innerHTML = templatePopUpTaskAdded();
@@ -275,7 +370,10 @@ function taskAddedPopUp() {
     }, 2000);
 };
 
-// Funktion zum Erstellen des HTML-Templates für das Pop-up
+/**
+ * Function to create the HTML template for the pop-up notification.
+ * @returns {string} - The HTML template for the pop-up notification.
+ */
 function templatePopUpTaskAdded() {
     return /*html*/`
         <div class="pop-up-task-added" id="pop_up_task_added">
@@ -285,16 +383,23 @@ function templatePopUpTaskAdded() {
     `;
 };
 
+/**
+ * Function to capitalize the first letter of a string.
+ * @param {string} string - The input string.
+ * @returns {string} - The input string with the first letter capitalized.
+ */
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/**
+ * Asynchronous function to load user data.
+ */
 async function loadUserData() {
     logedInUser = [];
     logedInUser = JSON.parse(await getItem('user'));
     let currentUser = logedInUser.name;
     console.log(currentUser);
-
 
     let userBox = document.querySelector('.userInitials');
 
@@ -311,8 +416,11 @@ async function loadUserData() {
     }
 };
 
-
-    function getInitials(currentUser) {
+/**
+ * Function to get the initials of the current user.
+ * @param {string} currentUser - The current user's name.
+ */
+function getInitials(currentUser) {
     const names = currentUser.split(' ');
     const initials = names.map(name => name.charAt(0).toUpperCase());
 
@@ -323,16 +431,19 @@ async function loadUserData() {
     loadUserInitials();
 }
 
+/**
+ * Asynchronous function to load the user initials.
+ */
 async function loadUserInitials() {
     let box = document.querySelector('.userInitials');
     box.innerHTML = '';
     
-    if(logedInUserInitials2 != null) {
+    if (logedInUserInitials2 != null) {
         for (let i = 0; i < logedInUserInitials2.length; i++) {
             const element = logedInUserInitials2[i];
-            box.innerHTML =  `<span>${element}</span>`;   
+            box.innerHTML =  `<span>${element}</span>`;
         }
     } else {
-        box.innerHTML =  `<span>G</span>`; 
-    }
-}
+        box.innerHTML =  `<span>G</span>`;
+    };
+};

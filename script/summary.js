@@ -1,17 +1,61 @@
+/**
+ * Array to store the logged-in user's data.
+ * @type {Array}
+ */
 let logedInUser = [];
+
+/**
+ * Array to store the logged-in user's initials.
+ * @type {Array}
+ */
 let logedInUserInitials = [];
+
+/**
+ * Array to store tasks that are in progress.
+ * @type {Array}
+ */
 let tasksInProgress = [];
+
+/**
+ * Array to store tasks awaiting feedback.
+ * @type {Array}
+ */
 let tasksAwaitingFeedback = [];
+
+/**
+ * Array to store tasks that are yet to be done.
+ * @type {Array}
+ */
 let tasksToDo = [];
+
+/**
+ * Array to store tasks that are already done.
+ * @type {Array}
+ */
 let tasksDone = [];
+
+/**
+ * Array to store tasks with an urgent priority.
+ * @type {Array}
+ */
 let tasksUrgent = [];
+
+/**
+ * Array to store tasks' due dates.
+ * @type {Array}
+ */
 let tasksDates = [];
 
-
+/**
+ * Redirects to the board HTML page.
+ */
 function linkToBoardHTML() {
-    window.location.href = '../html/board.html'
+    window.location.href = '../html/board.html';
 };
 
+/**
+ * Initializes the summary view by loading tasks and user data.
+ */
 async function initSummary() {
     await loadTasks();
     loadTasksInBoard();
@@ -26,11 +70,18 @@ async function initSummary() {
     loadUserData();
 };
 
-
+/**
+ * Capitalizes the first letter of a string.
+ * @param {string} string - The input string.
+ * @returns {string} - The input string with the first letter capitalized.
+ */
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+/**
+ * Loads the logged-in user's data and displays the username on the summary view.
+ */
 async function loadUserData() {
     logedInUser = [];
     logedInUser = JSON.parse(await getItem('user'));
@@ -51,8 +102,11 @@ async function loadUserData() {
     }
 };
 
-
-    function getInitials(currentUser) {
+/**
+ * Extracts initials from the current user's name and stores them.
+ * @param {string} currentUser - The current user's name.
+ */
+function getInitials(currentUser) {
     const names = currentUser.split(' ');
     const initials = names.map(name => name.charAt(0).toUpperCase());
 
@@ -63,78 +117,97 @@ async function loadUserData() {
     loadUserInitials();
 }
 
+/**
+ * Loads the logged-in user's initials and displays them on the summary view.
+ */
 async function loadUserInitials() {
     let box = document.querySelector('.userInitials');
     box.innerHTML = '';
-    
-    if(logedInUserInitials != null) {
+
+    if (logedInUserInitials != null) {
         for (let i = 0; i < logedInUserInitials.length; i++) {
             const element = logedInUserInitials[i];
-            box.innerHTML =  `<span>${element}</span>`;   
+            box.innerHTML = `<span>${element}</span>`;
         }
     } else {
-        box.innerHTML =  `<span>G</span>`; 
+        box.innerHTML = `<span>G</span>`;
     }
 }
 
-
-
-
-
-
+/**
+ * Loads the total number of tasks and displays it on the board.
+ */
 function loadTasksInBoard() {
     let content = document.getElementById('tasks_in_board');
     let amountTasks = tasks.length;
     content.innerHTML = amountTasks;
 };
 
-
+/**
+ * Loads the number of tasks in progress and displays it on the summary view.
+ */
 function loadTasksInProgress() {
     let content = document.getElementById('tasks_in_progress');
     let amountTasks = tasksInProgress.length;
     content.innerHTML = amountTasks;
 };
 
-
+/**
+ * Loads the number of tasks awaiting feedback and displays it on the summary view.
+ */
 function loadTasksAwaitingFeedback() {
     let content = document.getElementById('awaiting_tasks');
     let amountTasks = tasksAwaitingFeedback.length;
     content.innerHTML = amountTasks;
 };
 
-
+/**
+ * Loads the number of tasks with an urgent priority and displays it on the summary view.
+ */
 function loadTasksUrgent() {
     let content = document.getElementById('container_amount_urgent_number');
     let amountTasks = tasksUrgent.length;
-    content.innerHTML = amountTasks
+    content.innerHTML = amountTasks;
 };
 
-
+/**
+ * Loads the due date of the first task and displays it on the summary view.
+ */
 function loadTasksDueDates() {
     let content = document.getElementById('deadline_summary_date');
     let dueDate = tasksDates[0];
     content.innerHTML = dueDate;
 };
 
+/**
+ * Loads the number of tasks to be done and displays it on the summary view.
+ */
 function loadTasksToDo() {
     let content = document.getElementById('summary_todo_text');
     let amountTasks = tasksToDo.length;
-    content.innerHTML = amountTasks
+    content.innerHTML = amountTasks;
 };
 
-
+/**
+ * Loads the number of tasks already done and displays it on the summary view.
+ */
 function loadTasksDone() {
     let content = document.getElementById('summary_done_text');
     let amountTasks = tasksDone.length;
-    content.innerHTML = amountTasks
+    content.innerHTML = amountTasks;
 };
 
+/**
+ * Loads the greeting message and updates it every minute.
+ */
 function loadTasksGreeteng() {
     implementCurrentTime();
     setInterval(implementCurrentTime, 60000);
 }
 
-
+/**
+ * Implements the current time greeting message based on the hour of the day.
+ */
 function implementCurrentTime() {
     let timeBox = document.querySelector('.summary-good-morning');
     let today = new Date();
@@ -149,13 +222,18 @@ function implementCurrentTime() {
     if (dateHours >= 18 && dateHours <= 24) {
         timeBox.innerHTML = 'Good Evening, ';
     }
-
 }
 
-newUser = [];
+/**
+ * Array to store unique logged-in users.
+ * @type {Array}
+ */
+let newUser = [];
 
+/**
+ * Loads the logged-in user's data and updates the user box.
+ */
 async function loadLoagedInUser() {
-
     let currentUser = logedInUser['name'];
     console.log(logedInUser);
     if (!newUser.includes(currentUser)) {
@@ -171,16 +249,15 @@ async function loadLoagedInUser() {
     } else {
         userBox.innerHTML = 'Guest';
     }
-
-
 }
 
 // window.addEventListener("offline", (event) => {
 //     newUser = [];
 // });
 
-
-
+/**
+ * Checks the status and priority of tasks and sorts them into appropriate arrays.
+ */
 function checkAndSortTasks() {
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
@@ -203,7 +280,3 @@ function checkAndSortTasks() {
         tasksDates.sort();
     };
 };
-
-
-
-

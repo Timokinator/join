@@ -50,7 +50,6 @@ form {
     flex-direction: column;
     align-items: center;
     gap: 35px;
-
     border-radius: 30px;
     background: var(--white, #FFF);
 
@@ -75,7 +74,7 @@ form input {
     padding: 13px 21px;
     align-items: center;
     gap: 10px;
-
+    color: black;
     border-radius: 10px;
     border: 1px solid var(--style, #D1D1D1);
     background: #FFF;
@@ -86,7 +85,7 @@ form input {
 }
 
 form input {
-    color: var(--style, #D1D1D1);
+    color: black;
 
     /* Version 2/t6 */
     font-size: 21px;
