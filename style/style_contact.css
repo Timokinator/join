@@ -105,11 +105,12 @@
     display: flex;
     justify-content: center;
     width: 25vw;
-    height: 91vh;
+    height: 100%;
     box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
     overflow-y: scroll;
     background: #ffffff;
 }
+
 .contacts-right-wrapper {
     position: relative;
     margin-left: 16px;

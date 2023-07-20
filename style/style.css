@@ -202,4 +202,9 @@ body {
         display: none;
     }
     
+    .container-content {
+        height: calc(100vh - 90px);
+
+    }
+
 }
