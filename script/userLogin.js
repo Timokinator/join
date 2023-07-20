@@ -17,18 +17,18 @@ async function register() {
     let password = document.getElementById('inputPassword').value;
     let confirmPassword = document.querySelector('.confirmPasswordBox').value;
 
-    if(password === confirmPassword) {
+    if (password === confirmPassword) {
         users.push({
             email: email.value,
             password: password,
             name: userName.value
         })
-    
+
         await setItem('users', JSON.stringify(users));
         resetForm(userName, email, password);
         users = JSON.parse(await getItem('users'));
         window.location.href = 'login.html?msg=Du hast dich erfolgreich registriert';
-    }else {
+    } else {
         alert("Password and confirm password don't match!");
         password.value = '';
         confirmPassword.value = '';
@@ -37,7 +37,7 @@ async function register() {
 
 
 
-    
+
 }
 
 function resetForm(userName, email, password) {
@@ -51,7 +51,7 @@ function loadLogInHTML() {
     const msg = urlParams.get('msg');
     const password = urlParams.get('password');
     let msgBox = document.querySelector('.msgBox');
-    
+
     if (msg) {
         msgBox.classList.remove('visible');
         msgBox.innerHTML = 'Du hast dich erfolgreich Registriert';
@@ -132,7 +132,7 @@ function failedLogIn(email, password) {
 }
 
 async function guestLogIn() {
-    if(guestUser != null) {
+    if (guestUser != null) {
         currentUser = JSON.parse(await getItem('user'));
         guestUser.push(currentUser);
         guestUser = [];

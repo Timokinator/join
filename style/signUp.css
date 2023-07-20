@@ -136,7 +136,10 @@ form button {
     color: white;
 }
 
-
+form button:hover {
+    cursor: pointer;
+    scale: 1.03;
+}
 
 
 
