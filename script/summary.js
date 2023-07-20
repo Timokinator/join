@@ -67,10 +67,13 @@ async function loadUserInitials() {
     let box = document.querySelector('.userInitials');
     box.innerHTML = '';
     
-    for (let i = 0; i < logedInUserInitials.length; i++) {
-        const element = logedInUserInitials[i];
-        box.innerHTML =  `<span>${element}</span>`;
-        
+    if(logedInUserInitials != null) {
+        for (let i = 0; i < logedInUserInitials.length; i++) {
+            const element = logedInUserInitials[i];
+            box.innerHTML =  `<span>${element}</span>`;   
+        }
+    } else {
+        box.innerHTML =  `<span>G</span>`; 
     }
 }
 

@@ -2,6 +2,8 @@ let contacts = [];
 let initials = [];
 let sortedalphabetically = [];
 let letters = [];
+let logedInUserInitials3 = [];
+
 
 /**
  * Asynchronous function that initializes all necessary functions when loading the page
@@ -12,6 +14,7 @@ async function init() {
     await loadTasks(); // loads tasks for this page
     renderContacts();
     measureBrowserWidth();
+    loadUserData();
 }
 /**
  * Asynchronous function that refreshes the page
@@ -567,4 +570,57 @@ function addNewTaskFromContacts(i, stati) {
     addNewTask(stati);
     renderMembers();
 };
+
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+async function loadUserData() {
+    logedInUser = [];
+    logedInUser = JSON.parse(await getItem('user'));
+    let currentUser = logedInUser.name;
+    console.log(currentUser);
+
+
+    let userBox = document.querySelector('.userInitials');
+
+    if (currentUser) {
+        userBox.innerHTML = capitalizeFirstLetter(currentUser);
+    } else {
+        userBox.innerHTML = 'Guest';
+    }
+
+    if (currentUser != null) {
+        getInitials(currentUser);
+    } else {
+        iniGuest();
+    }
+};
+
+
+    function getInitials(currentUser) {
+    const names = currentUser.split(' ');
+    const initials = names.map(name => name.charAt(0).toUpperCase());
+
+    const newInitials = initials.join(' ');
+    const withoutSpaces = newInitials.replace(/\s/g, '');
+
+    logedInUserInitials3.push(withoutSpaces);
+    loadUserInitials();
+}
+
+async function loadUserInitials() {
+    let box = document.querySelector('.userInitials');
+    box.innerHTML = '';
+    
+    if(logedInUserInitials3 != null) {
+        for (let i = 0; i < logedInUserInitials3.length; i++) {
+            const element = logedInUserInitials3[i];
+            box.innerHTML =  `<span>${element}</span>`;   
+        }
+    } else {
+        box.innerHTML =  `<span>G</span>`; 
+    }
+}
 

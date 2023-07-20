@@ -1,5 +1,6 @@
 let stati = ['todo', 'progress', 'awaiting', 'done'];
 let currentDraggedElement;
+let logedInUserInitials4 = [];
 
 
 
@@ -22,6 +23,7 @@ async function initBoard() {
     await loadContacts(); // Load contacts from storage.
     pushColorToArrayAssignedTo(); // Push colors to the assignedTo array.
     pushMemberToArrayAssignedTo(); // Push member names to the assignedTo array.
+    loadUserData();
 };
 
 
@@ -887,3 +889,56 @@ async function safeChangesEditTask(j) {
     closeEditTask();
     initBoard();
 };
+
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+async function loadUserData() {
+    logedInUser = [];
+    logedInUser = JSON.parse(await getItem('user'));
+    let currentUser = logedInUser.name;
+    console.log(currentUser);
+
+
+    let userBox = document.querySelector('.userInitials');
+
+    if (currentUser) {
+        userBox.innerHTML = capitalizeFirstLetter(currentUser);
+    } else {
+        userBox.innerHTML = 'Guest';
+    }
+
+    if (currentUser != null) {
+        getInitials(currentUser);
+    } else {
+        iniGuest();
+    }
+};
+
+
+    function getInitials(currentUser) {
+    const names = currentUser.split(' ');
+    const initials = names.map(name => name.charAt(0).toUpperCase());
+
+    const newInitials = initials.join(' ');
+    const withoutSpaces = newInitials.replace(/\s/g, '');
+
+    logedInUserInitials4.push(withoutSpaces);
+    loadUserInitials();
+}
+
+async function loadUserInitials() {
+    let box = document.querySelector('.userInitials');
+    box.innerHTML = '';
+    
+    if(logedInUserInitials4 != null) {
+        for (let i = 0; i < logedInUserInitials4.length; i++) {
+            const element = logedInUserInitials4[i];
+            box.innerHTML =  `<span>${element}</span>`;   
+        }
+    } else {
+        box.innerHTML =  `<span>G</span>`; 
+    }
+}

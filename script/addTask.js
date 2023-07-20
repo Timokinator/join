@@ -1,6 +1,7 @@
 let tasks = [];
 let subtasks = [];
 let assignedTo = [];
+let logedInUserInitials2 = [];
 let assignedToInitials = [];
 let assignedToColors = [];
 let contactsForm = [];
@@ -59,6 +60,8 @@ async function initAddTask() {
     pushMemberToArrayAssignedTo();
     // Farben in das colorsAssignedTo-Array hinzufügen
     pushColorToArrayAssignedTo();
+    loadUserData();
+
 };
 
 // Funktion zum Laden der Aufgaben aus dem Local Storage
@@ -281,3 +284,55 @@ function templatePopUpTaskAdded() {
         </div>
     `;
 };
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+async function loadUserData() {
+    logedInUser = [];
+    logedInUser = JSON.parse(await getItem('user'));
+    let currentUser = logedInUser.name;
+    console.log(currentUser);
+
+
+    let userBox = document.querySelector('.userInitials');
+
+    if (currentUser) {
+        userBox.innerHTML = capitalizeFirstLetter(currentUser);
+    } else {
+        userBox.innerHTML = 'Guest';
+    }
+
+    if (currentUser != null) {
+        getInitials(currentUser);
+    } else {
+        iniGuest();
+    }
+};
+
+
+    function getInitials(currentUser) {
+    const names = currentUser.split(' ');
+    const initials = names.map(name => name.charAt(0).toUpperCase());
+
+    const newInitials = initials.join(' ');
+    const withoutSpaces = newInitials.replace(/\s/g, '');
+
+    logedInUserInitials2.push(withoutSpaces);
+    loadUserInitials();
+}
+
+async function loadUserInitials() {
+    let box = document.querySelector('.userInitials');
+    box.innerHTML = '';
+    
+    if(logedInUserInitials2 != null) {
+        for (let i = 0; i < logedInUserInitials2.length; i++) {
+            const element = logedInUserInitials2[i];
+            box.innerHTML =  `<span>${element}</span>`;   
+        }
+    } else {
+        box.innerHTML =  `<span>G</span>`; 
+    }
+}
