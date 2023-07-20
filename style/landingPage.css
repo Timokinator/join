@@ -170,6 +170,14 @@ form h1 {
     flex-shrink: 0;
 }
 
+.inputBox {
+    display: flex;
+    height: 152px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+}
+
 
 .rememberMeContainer {
     width: 335px;
@@ -202,7 +210,7 @@ checkbox {
     text-decoration: none;
 
     /* Version 2/body */
-    font-size: 16px;
+    font-size: 18px;
     font-family: Inter;
     font-style: normal;
     font-weight: 400;
@@ -351,28 +359,61 @@ checkbox {
     }
 
     #email, #password {
-        width: 100%;
         display: flex;
         padding: 12px 21px;
         align-items: center;
         gap: 10px;
         align-self: stretch;
+        width: 364px;
+    }
+
+    .loginTitle {
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 47px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 120%;
+        margin-bottom: -23px;
+        /* 56.4px */
     }
 
     .rememberMeContainer {
         display: flex;
         width: 327px;
         padding: 0px 16px;
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: flex-start;
         gap: 16px;
+        margin-left: -40px;
     }
 
     .formBtnContainer {
+        margin-top: 20px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: 21px;
+    }
+
+    .inputBox {
+        display: flex;
+        width: 364px;
+        height: 152px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+    }
+
+    #logInBtn, #guestLogInBtn {
+        display: flex;
+        width: 180px;
+        height: 51px;
+        padding: 4px 0px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
     }
 
 }

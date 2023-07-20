@@ -119,6 +119,26 @@ body {
     gap: 26px;
 }
 
+.userInitialsbox {
+    margin-right: 12px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 3px solid #2A3647;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.userInitials {
+    font-weight: bold;
+    font-size: 24px;
+    flex-shrink: 0;
+    font-family: Inter;
+    color: #29ABE2;
+}
+
 .topbar-user-img {
     width: 64px;
     margin-right: 36px;

@@ -44,30 +44,35 @@ async function loadUserData() {
         userBox.innerHTML = 'Guest';
     }
 
-    // if (currentUser != null) {
-    //     getInitials(currentUser);
-    // }
+    if (currentUser != null) {
+        getInitials(currentUser);
+    } else {
+        iniGuest();
+    }
 };
 
 
-// function getInitials(currentUser) {
-//     const names = currentUser.split(' ');
-//     const initials = names.map(name => name.charAt(0).toUpperCase());
-//     const newInitials = initials.join(' ');
-//     logedInUserInitials.push(newInitials);
-//     loadUserInitials();
-// }
+    function getInitials(currentUser) {
+    const names = currentUser.split(' ');
+    const initials = names.map(name => name.charAt(0).toUpperCase());
 
-// async function loadUserInitials() {
-//     let box = document.querySelector('.initialsBox');
-//     box.innerHTML = '';
+    const newInitials = initials.join(' ');
+    const withoutSpaces = newInitials.replace(/\s/g, '');
+
+    logedInUserInitials.push(withoutSpaces);
+    loadUserInitials();
+}
+
+async function loadUserInitials() {
+    let box = document.querySelector('.userInitials');
+    box.innerHTML = '';
     
-//     for (let i = 0; i < logedInUserInitials.length; i++) {
-//         const element = logedInUserInitials[i];
-//         box.innerHTML =  `<span>${element}</span>`;
+    for (let i = 0; i < logedInUserInitials.length; i++) {
+        const element = logedInUserInitials[i];
+        box.innerHTML =  `<span>${element}</span>`;
         
-//     }
-// }
+    }
+}
 
 
 

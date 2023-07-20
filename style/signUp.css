@@ -217,6 +217,21 @@ form button {
         margin-right: 5%;
     }
 
+    .linkTo {
+        position: absolute;
+        top: 51px;
+        left: 41px;
+        width: 32px;
+        height: 32px;
+        z-index: 1;
+    }
+
+    .arrowLeft {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
 
     form h1 {
         color: #000;
@@ -229,7 +244,9 @@ form button {
         /* 56.4px */
     }
 
+    
     form input {
         width: 100%;
     }
+
 }
