@@ -594,7 +594,7 @@ async function loadUserData() {
     if (currentUser != null) {
         getInitials(currentUser);
     } else {
-        iniGuest();
+        // iniGuest();
     }
 };
 
