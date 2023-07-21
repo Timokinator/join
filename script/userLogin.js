@@ -124,7 +124,6 @@ function failedLogIn(email, password) {
         counter++
         email.value = '';
         password.value = '';
-        console.log(counter);
     } else {
         window.location.href = 'forgetPassword.html';
         counter = 0;
@@ -172,4 +171,5 @@ function resetPassword() {
         confirmPassword.value = '';
     }
 }
+
 

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../style/style.css">
 </head>
 
-<body onload="includeHtml()">
+<body onload="includeHtml(); loadUserData()">
     <div w3-include-html="frame.html"></div>
     <div class="container-content">
         <a class="arrow-back" href="javascript:history.back()">
@@ -155,7 +155,8 @@
 
 
 
-
+            <script src="../script/storage.js"></script>
+            <script src="../script/summary.js"></script>
         </div>
 
     </div>

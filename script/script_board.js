@@ -1060,6 +1060,8 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+let logedInUserInitials4 = [];
+
 /**
  * Loads the user data for the logged-in user.
  * Updates the user initials display.
@@ -1080,9 +1082,7 @@ async function loadUserData() {
 
     if (currentUser != null) {
         getInitials(currentUser);
-    } else {
-        iniGuest();
-    };
+    } ;
 };
 
 /**

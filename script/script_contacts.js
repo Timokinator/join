@@ -599,7 +599,7 @@ async function loadUserData() {
 };
 
 
-    function getInitials(currentUser) {
+function getInitials(currentUser) {
     const names = currentUser.split(' ');
     const initials = names.map(name => name.charAt(0).toUpperCase());
 
@@ -613,14 +613,14 @@ async function loadUserData() {
 async function loadUserInitials() {
     let box = document.querySelector('.userInitials');
     box.innerHTML = '';
-    
-    if(logedInUserInitials3 != null) {
+
+    if (logedInUserInitials3 != null) {
         for (let i = 0; i < logedInUserInitials3.length; i++) {
             const element = logedInUserInitials3[i];
-            box.innerHTML =  `<span>${element}</span>`;   
+            box.innerHTML = `<span>${element}</span>`;
         }
     } else {
-        box.innerHTML =  `<span>G</span>`; 
+        box.innerHTML = `<span>G</span>`;
     }
 }
 

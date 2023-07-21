@@ -68,6 +68,7 @@ async function initSummary() {
     loadTasksDone();
     loadTasksGreeteng();
     loadUserData();
+    loadUserData();
 };
 
 /**
@@ -86,19 +87,21 @@ async function loadUserData() {
     logedInUser = [];
     logedInUser = JSON.parse(await getItem('user'));
     let currentUser = logedInUser.name;
+    let box = document.getElementById('summary_username');
+    console.log(currentUser);
 
-    let userBox = document.getElementById('summary_username');
+
+    let userBox = document.querySelector('.userInitials');
 
     if (currentUser) {
-        userBox.innerHTML = capitalizeFirstLetter(currentUser);
+        box.innerHTML = capitalizeFirstLetter(currentUser);
     } else {
         userBox.innerHTML = 'Guest';
+        userBox.innerHTML = 'G';
     }
 
     if (currentUser != null) {
         getInitials(currentUser);
-    } else {
-        iniGuest();
     }
 };
 
@@ -133,6 +136,14 @@ async function loadUserInitials() {
         box.innerHTML = `<span>G</span>`;
     }
 }
+
+async function closeSubmenu() {
+    logedInUser = JSON.parse(await getItem('user'));
+    logedInUser = [];
+    logedInUser = JSON.stringify(await setItem('user'));
+    window.location.href = 'login.html';
+}
+
 
 /**
  * Loads the total number of tasks and displays it on the board.
