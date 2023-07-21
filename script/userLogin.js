@@ -7,8 +7,8 @@ let guestUser = [];
 async function loadSavedUsers() {
     if (users != null) {
         users = JSON.parse(await getItem('users'));
-    }
-}
+    };
+};
 
 
 async function register() {
@@ -33,18 +33,16 @@ async function register() {
         password.value = '';
         confirmPassword.value = '';
         return;
-    }
+    };
+};
 
-
-
-
-}
 
 function resetForm(userName, email, password) {
     email.value = '';
     password.value = '';
     userName.value = '';
-}
+};
+
 
 function loadLogInHTML() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -64,9 +62,8 @@ function loadLogInHTML() {
         msgBox.innerHTML = 'Du hast dein Password erfolgreich zurückgesetzt';
     } else {
         msgBox.classList.add('visible');
-    }
-
-}
+    };
+};
 
 
 async function init() {
@@ -88,8 +85,8 @@ async function loadUsers() {
         users = JSON.parse(await getItem('users'));
     } catch (e) {
         console.error('Loading error:', e);
-    }
-}
+    };
+};
 
 
 /**
@@ -110,8 +107,9 @@ async function logIn() {
         password.value = '';
     } else {
         failedLogIn(email, password);
-    }
-}
+    };
+};
+
 
 let counter = 0;
 
@@ -127,8 +125,9 @@ function failedLogIn(email, password) {
     } else {
         window.location.href = 'forgetPassword.html';
         counter = 0;
-    }
-}
+    };
+};
+
 
 async function guestLogIn() {
     if (guestUser != null) {
@@ -139,8 +138,8 @@ async function guestLogIn() {
         window.location.href = 'summary.html';
     } else {
         window.location.href = 'summary.html';
-    }
-}
+    };
+};
 
 
 async function sendEmail() {
@@ -153,8 +152,8 @@ async function sendEmail() {
     } else {
         window.location.href = 'resetPassword.html'
         console.log(user);
-    }
-}
+    };
+};
 
 
 function resetPassword() {
@@ -169,7 +168,7 @@ function resetPassword() {
         document.querySelector('.resetBox').style.display = 'block';
         newPassword.value = '';
         confirmPassword.value = '';
-    }
-}
+    };
+};
 
 

@@ -96,7 +96,6 @@ async function loadUserData() {
     if (currentUser) {
         box.innerHTML = capitalizeFirstLetter(currentUser);
     } else {
-        userBox.innerHTML = 'Guest';
         userBox.innerHTML = 'G';
     }
 

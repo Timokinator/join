@@ -1077,7 +1077,7 @@ async function loadUserData() {
     if (currentUser) {
         userBox.innerHTML = capitalizeFirstLetter(currentUser);
     } else {
-        userBox.innerHTML = 'Guest';
+        userBox.innerHTML = 'G';
     }
 
     if (currentUser != null) {
@@ -1113,6 +1113,6 @@ async function loadUserInitials() {
             box.innerHTML = `<span>${element}</span>`;
         }
     } else {
-        box.innerHTML = `<span>G</span>`;
+        box.innerHTML = 'G';
     };
 };

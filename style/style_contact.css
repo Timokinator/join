@@ -115,7 +115,7 @@
     position: relative;
     margin-left: 16px;
     margin-top: 82px;
-    width: 60vw;
+    /* width: 60vw; */
     height: 85vh;
 }
 
@@ -152,7 +152,7 @@
     border-radius: 8px;
     position: absolute;
     bottom: -250px;
-    right: 352px;
+    /* right: 352px; */
 }
 
 .newContactMobile {

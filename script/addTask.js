@@ -406,13 +406,13 @@ async function loadUserData() {
     if (currentUser) {
         userBox.innerHTML = capitalizeFirstLetter(currentUser);
     } else {
-        userBox.innerHTML = 'Guest';
+        userBox.innerHTML = 'G';
     }
 
     if (currentUser != null) {
         getInitials(currentUser);
     } else {
-        iniGuest();
+        // iniGuest();
     }
 };
 
