@@ -71,7 +71,6 @@ async function addContact() {
     let phone = document.getElementById('phone').value;
 
     sortedalphabetically = [];
-
     if (name != '' && email != '' && phone != '') {
         pushToArray(name, email, phone);
         await safeContacts();
@@ -118,6 +117,7 @@ function hideMobileAddContactCard() {
  * Function shows "Add Contact Container"
  */
 function showAddContactCard() {
+    document.getElementById('form_add_contact').reset();
     document.getElementById("addContactCard").style.display = "flex";
     document.getElementById("overlay_add_contact").style.display = "flex";
 }
@@ -125,6 +125,7 @@ function showAddContactCard() {
  * Function shows "MOBILE Contact Container"
  */
 function showMobileAddContactCard() {
+    document.getElementById('form_add_contact_mobile').reset();
     document.getElementById("addContactCard_mobile").style.display = "flex";
     document.getElementById("overlay_add_contact_mobile").style.display = "flex";
     if (matchMedia('only screen and (max-width: 1050px)').matches) {
@@ -363,13 +364,13 @@ function renderEditContact(i) {
 
     editContactForm.innerHTML +=/*html*/`
     <img onclick="hideEditContactCard();closeOverlay()" class="close_symbol_edit" src="../assets/icons/icon_add_contact_X.svg">
-                    <form id="form_edit_contact" class="editContactRight_right" onsubmit="return false">
-                        <input class="inputDesktop" id="edit-name" type="text" value="${name}" required>
+                    <form id="form_edit_contact" class="editContactRight_right" onsubmit="editContact(${i});closeOverlay();return false;">
+                        <input class="inputDesktop" id="edit-name" type="text" value="${name}" required pattern="[A-Z][a-zA-Z ]*">
                         <input class="inputDesktop" id="edit-email" type="email" value="${email}" required>
-                        <input class="inputDesktop" id="edit-phone" type="tel"  value="${phone}" required>
+                        <input class="inputDesktop" id="edit-phone" type="tel"  value="${phone}" required pattern="[0-9]+">
                             <div class="flex">
                                 <button onclick="deleteContact(${i});closeOverlay()" class="delete_btn">Delete</button>
-                                <button onclick="editContact(${i});closeOverlay()" class="save_btn">Save</button>
+                                <button type="submit" class="save_btn">Save</button>
                             </div>
                             <img class="icon-name-add-contact" src="../assets/icons/icon_add_contact_user.svg" alt="">
                             <img class="icon-email-add-contact" src="../assets/icons/icon_add_contact_mail.svg" alt="">
@@ -396,13 +397,13 @@ function renderEditContactMobile(i) {
     editContactRight_left.innerHTML += `<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact addContactImg">${initial}</div>`;
 
     editContactForm.innerHTML +=/*html*/`
-                    <form id="form_edit_contact_mobile" class="editContactBottomMobileDown" onsubmit="return false">
-                        <input class="inputMobile" id="edit-name" type="text" value="${name}" required>
+                    <form id="form_edit_contact_mobile" class="editContactBottomMobileDown" onsubmit="editContact(${i});closeOverlay();return false;">
+                        <input class="inputMobile" id="edit-name" type="text" value="${name}" required pattern="[A-Z][a-zA-Z ]*">
                         <input class="inputMobile" id="edit-email" type="email" value="${email}" required>
-                        <input class="inputMobile" id="edit-phone" type="tel"  value="${phone}" required>
+                        <input class="inputMobile" id="edit-phone" type="tel"  value="${phone}" required pattern="[0-9]+">
                             <div class="btn_mobile_edit_contact">
                                 <button onclick="deleteContact(${i});closeOverlayMobile()" class="delete_btn">Delete</button>
-                                <button onclick="editContact(${i});closeOverlayMobile()" class="save_btn">Save</button>
+                                <button type="submit" class="save_btn">Save</button>
                             </div>
                             <img class="icon-name-edit-contact-mobile" src="../assets/icons/icon_add_contact_user.svg" alt="">
                             <img class="icon-email-edit-contact-mobile" src="../assets/icons/icon_add_contact_mail.svg" alt="">

@@ -40,13 +40,13 @@
                     <div>
                         <img onclick="hideAddContactCard()" class="close_symbol"
                             src="../assets/icons/icon_add_contact_X.svg">
-                        <form id="form_add_contact" class="addContactRight_right" onsubmit="return false">
-                            <input class="inputDesktop" id="name" type="text" placeholder="Name" required>
+                        <form id="form_add_contact" class="addContactRight_right" onsubmit="addContact(); return false;">
+                            <input class="inputDesktop" id="name" type="text" placeholder="Name" required pattern="[A-Z][a-zA-Z ]*">
                             <input class="inputDesktop" id="email" type="email" placeholder="Email" required>
-                            <input class="inputDesktop" id="phone" type="tel" placeholder="Phone" required>
+                            <input class="inputDesktop" id="phone" type="tel" placeholder="Phone" required pattern="[0-9]+">
                             <div class="flex">
                                 <button onclick="hideAddContactCard()" type="button" class="cancel_btn">Cancel</button>
-                                <button onclick="addContact()" class="create_btn">Create contact</button>
+                                <button type="submit" class="create_btn">Create contact</button>
                             </div>
                             <img class="icon-name-add-contact" src="../assets/icons/icon_add_contact_user.svg" alt="">
                             <img class="icon-email-add-contact" src="../assets/icons/icon_add_contact_mail.svg" alt="">
@@ -72,13 +72,13 @@
                         <img class="addContactImg" src="../assets/img/logo_contact.svg">
                     </div>
                     <div>
-                        <form id="form_add_contact_mobile" class="addContactBottom" onsubmit="return false">
-                            <input class="inputMobile" id="name_mobile" type="text" placeholder="Name" required>
+                        <form id="form_add_contact_mobile" class="addContactBottom" onsubmit="addContactMobile(); return false;">
+                            <input class="inputMobile" id="name_mobile" type="text" placeholder="Name" required pattern="[A-Z][a-zA-Z ]*">
                             <input class="inputMobile" id="email_mobile" type="email" placeholder="Email" required>
-                            <input class="inputMobile" id="phone_mobile" type="tel" placeholder="Phone" required>
+                            <input class="inputMobile" id="phone_mobile" type="tel" placeholder="Phone" required pattern="[0-9]+">
 
 
-                            <button onclick="addContactMobile()" class="create_btn_mobile">Create contact<img
+                            <button type="submit" class="create_btn_mobile">Create contact<img
                                     src="../assets/icons/icon_add_contact_mobile_check.svg"></button>
 
                             <img class="icon-name-add-contact_mobile" src="../assets/icons/icon_add_contact_user.svg"
