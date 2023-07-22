@@ -517,7 +517,7 @@ function templateFormAddTaskBoard(stati) {
 
 <span class="title-formular-on-board">Add Task</span>
 
-<form id="form_add_task" class="form-add-task" onsubmit="return false">
+<form id="form_add_task" class="form-add-task" onsubmit="addTaskAndCloseForm('${stati}'); return false">
 
     <div class="left_side_desktop-add-task">
 
@@ -612,7 +612,7 @@ function templateFormAddTaskBoard(stati) {
             <img src="../assets/icons/icon_cross_dark.svg" alt="">
         </button>
 
-        <button onclick="addTaskAndCloseForm('${stati}')" class="btn-create-task" id="btn_add_task_on_board_submit">
+        <button type="submit" class="btn-create-task" id="btn_add_task_on_board_submit">
             <span>Create Task</span>
             <img src="../assets/icons/icon_check_bright.svg" alt="">
         </button>

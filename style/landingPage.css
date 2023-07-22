@@ -313,7 +313,7 @@ checkbox {
 
 @media (max-width: 1050px) {
     .signUpNav {
-        bottom: 64px;
+        bottom: 24px;
         right: 0;
         left: 0;
         top: unset;
@@ -332,10 +332,10 @@ checkbox {
     }
 
     .logoImg {
-        width: 64px;
+        width: 48px;
         height: 78px;
-        top: 37px;
-        left: 38px;
+        top: 8px;
+        left: 16px;
     }
 
 
@@ -343,7 +343,7 @@ checkbox {
     #register {
         display: flex;
         max-width: 360px;
-        padding: 32px 0px;
+        padding: 8px 0px;
         flex-direction: column;
         align-items: center;
         gap: 32px;
