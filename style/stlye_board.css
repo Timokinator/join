@@ -353,6 +353,23 @@ header {
     font-weight: 700;
 }
 
+.detail-task-subtasks {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 24px;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+
+.detail-task-subtasks span {
+    font-weight: 700;
+}
+
 .test {
     color: white;
 }
