@@ -29,7 +29,7 @@ async function initBoard() {
  */
 function renderTasksBoard() {
     // Get the value of the search input field.
-    let search = document.getElementById('search_input_board').value;
+    let search = document.getElementById('search_input_board').value.toLowerCase();
 
     // Loop through all task statuses (defined in the 'stati' array).
     for (let i = 0; i < stati.length; i++) {
