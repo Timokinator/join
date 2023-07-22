@@ -16,14 +16,16 @@ body {
 
 .impressum,
 .help {
-    padding-left: 120px;
-    padding-right: 16px;
+    padding: 16px 32px;
+    /*padding-left: 120px;
+    padding-right: 16px;*/
 }
 
 .container-impressum,
 .container-help {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
 }
 
 /* help-html */
