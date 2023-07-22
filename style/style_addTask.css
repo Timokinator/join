@@ -282,7 +282,7 @@ option {
 @media (max-width: 1050px) {
     .form-add-task {
         flex-direction: column;
-        padding-left: 32px;
+        padding-left: 0;
     }
 
     .line-icon-add-task {
@@ -297,7 +297,7 @@ option {
 
     .headline-menu,
     .title-mobile {
-        padding-left: 32px;
+        padding-left: 0;
     }
 
     .btn-container-add-task {
@@ -312,6 +312,14 @@ option {
         left: 5%;
         right: 5%;
     }
+
+    .container-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
 }
 
 @media (max-width: 500px) {

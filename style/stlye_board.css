@@ -127,6 +127,7 @@ header {
     gap: 4px;
     width: 25%;
     padding: 4px 8px;
+    box-sizing: border-box;
 }
 
 .headline-row-status-board {
@@ -177,6 +178,7 @@ header {
     padding: 16px;
     gap: 16px;
     box-sizing: border-box;
+    position: relative;
 }
 
 .single-task:hover {
@@ -656,23 +658,24 @@ header {
     }
 
     .container-content {
-        width: 95%;
+        width: 100%;
     }
 
     .single-task {
         width: 100%;
+        padding-right: 64px;
     }
 
     header {
         flex-direction: column;
         justify-content: flex-start;
-        align-items: flex-start;
+        align-items: center;
         gap: 24px;
     }
 
     .container-search-and-add-task {
         scale: 1;
-        padding-left: 32px;
+        /*padding-left: 32px;*/
     }
 
     .container-single-tasks-board {
@@ -730,7 +733,7 @@ header {
 }
 
 @media (max-width: 350px) {
-    .container-search-and-add-task {
+    /*.container-search-and-add-task {
         padding-left: 4px;
-    }
+    }*/
 }
