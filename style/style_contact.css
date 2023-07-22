@@ -1,4 +1,10 @@
 /*global CSS*/
+
+html {
+    font-family: 'Inter', sans-serif;
+}
+
+
 .flex {
     display: flex;
 }
