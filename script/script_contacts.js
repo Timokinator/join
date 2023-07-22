@@ -363,13 +363,13 @@ function renderEditContact(i) {
     editContactRight_left.innerHTML += `<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact">${initial}</div>`;
 
     editContactForm.innerHTML +=/*html*/`
-    <img onclick="hideEditContactCard();closeOverlay()" class="close_symbol_edit" src="../assets/icons/icon_add_contact_X.svg">
+    <img onsubmit="hideEditContactCard();closeOverlay();" class="close_symbol_edit" src="../assets/icons/icon_add_contact_X.svg">
                     <form id="form_edit_contact" class="editContactRight_right" onsubmit="editContact(${i});closeOverlay();return false;">
                         <input class="inputDesktop" id="edit-name" type="text" value="${name}" required pattern="[A-Z][a-zA-Z ]*">
                         <input class="inputDesktop" id="edit-email" type="email" value="${email}" required>
                         <input class="inputDesktop" id="edit-phone" type="tel"  value="${phone}" required pattern="[0-9]+">
                             <div class="flex">
-                                <button onclick="deleteContact(${i});closeOverlay()" class="delete_btn">Delete</button>
+                                <button type="button" onclick="deleteContact(${i});closeOverlay()" class="delete_btn">Delete</button>
                                 <button type="submit" class="save_btn">Save</button>
                             </div>
                             <img class="icon-name-add-contact" src="../assets/icons/icon_add_contact_user.svg" alt="">
@@ -397,7 +397,7 @@ function renderEditContactMobile(i) {
     editContactRight_left.innerHTML += `<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact addContactImg">${initial}</div>`;
 
     editContactForm.innerHTML +=/*html*/`
-                    <form id="form_edit_contact_mobile" class="editContactBottomMobileDown" onsubmit="editContact(${i});closeOverlay();return false;">
+                    <form id="form_edit_contact_mobile" class="editContactBottomMobileDown" onsubmit="editContact(${i});hideMobileEditContactCard();return false;">
                         <input class="inputMobile" id="edit-name" type="text" value="${name}" required pattern="[A-Z][a-zA-Z ]*">
                         <input class="inputMobile" id="edit-email" type="email" value="${email}" required>
                         <input class="inputMobile" id="edit-phone" type="tel"  value="${phone}" required pattern="[0-9]+">
