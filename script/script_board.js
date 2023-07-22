@@ -245,6 +245,8 @@ function openTask(j) {
     content.innerHTML = templateDetailsTask(j);
     addPrioToDetailTask(j);
     addMemberTaskDetail(j);
+    addSubtasksTaskDetail(j);
+
 };
 
 /**
@@ -322,6 +324,12 @@ function templateDetailsTask(j) {
             <div class="detail-task-prio">
                 <span>Priority:</span>
                 <div id="detail_task_prio_img"></div>
+            </div>
+
+
+            <div class="detail-task-subtasks">
+                <span>Subtasks</span>
+                <div class="detail-task-subtasks-container" id="detail_task_subtasks"></div>
             </div>
 
             <div class="detail-task-member">
@@ -411,6 +419,28 @@ function renderMemberTaskDetail(member, k, j) {
     </div>
     `;
 };
+
+
+function addSubtasksTaskDetail(j) {
+    let content = document.getElementById('detail_task_subtasks');
+    content.innerHTML = '';
+
+    for (let k = 0; k < tasks[j]['subtasks'].length; k++) {
+        const subtask = tasks[j]['subtasks'][k];
+
+        content.innerHTML += renderSubtasksTaskDetail(subtask, k, j);
+    };
+};
+
+
+function renderSubtasksTaskDetail(subtask, k, j) {
+    return /*html*/`
+        <div class="text-subtask">
+            ${subtask}
+        </div>
+    `;
+};
+
 
 /**
  * Deletes the task at the specified index (j).
@@ -1082,7 +1112,7 @@ async function loadUserData() {
 
     if (currentUser != null) {
         getInitials(currentUser);
-    } ;
+    };
 };
 
 /**
