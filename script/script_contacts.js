@@ -3,8 +3,6 @@ let initials = [];
 let sortedalphabetically = [];
 let letters = [];
 let logedInUserInitials3 = [];
-
-
 /**
  * Asynchronous function that initializes all necessary functions when loading the page
  */
@@ -207,7 +205,6 @@ function renderContact(i) {
  * @param {number} i - This is the index of an existing contact
  */
 function renderContactMobile(i) {
-
     if (matchMedia('only screen and (max-width: 1050px)').matches) {
         document.getElementById("contacts-left").style.position = "fixed";
         document.getElementById("addContactBtn").style.display = "none";
@@ -216,7 +213,6 @@ function renderContactMobile(i) {
     let contactsboxbigmobile = document.getElementById('contactsboxbigmobile');
     contactsboxbigmobile.innerHTML = '';
     contactsboxbigmobile.innerHTML += renderContactTemplateMobile (i);
-
 }
 /**
  * Asynchronous function renders all existing contacts
@@ -296,8 +292,8 @@ function renderEditContact(i) {
 function renderEditContactMobile(i) {
     editContactForm = document.getElementById('editContactForm_mobile');
     editContactForm.innerHTML = '';
-    editContactForm.innerHTML +=renderEditContactMobileTemplate(i); 
-    }
+    editContactForm.innerHTML +=renderEditContactMobileTemplate(i);    
+}
 /**
  * Function which deletes a specific contact in the array "contacts" at position [i].
  * @param {number} i - This is the index of an existing contact
@@ -305,6 +301,7 @@ function renderEditContactMobile(i) {
 async function deleteContact(i) {
     if (contacts.length > 9) {
         contacts.splice(i, 1);
+        deletedContactSuccessfully();
     } else {
         alert("For Testreasons we can´t delete a contact if there is only 10 or less available.");
     }
@@ -321,9 +318,23 @@ function createdContactSuccessfully() {
     document.getElementById('success').style.display = '';
     document.getElementById('success').classList.add("animate-contact");
     setTimeout(() => {
-        document.getElementById('success').style.display = 'none';
-    }
-        , 2000);
+        document.getElementById('success').style.display = 'none';}, 2000);
+}
+/**
+ * Function shows a popup for a certain time "edited contact successfully"
+ */
+function editedContactSuccessfully() {
+    document.getElementById('successEdit').style.display = '';
+    document.getElementById('successEdit').classList.add("animate-contact");
+    setTimeout(() => {document.getElementById('successEdit').style.display = 'none';}, 2000);
+}
+/**
+ * Function shows a popup for a certain time "deleted contact successfully"
+ */
+function deletedContactSuccessfully() {
+    document.getElementById('successDelete').style.display = '';
+    document.getElementById('successDelete').classList.add("animate-contact");
+    setTimeout(() => {document.getElementById('successDelete').style.display = 'none';}, 2000);
 }
 /**
  * Edit function Overwrites the values from the "contacts" array insofar as new data is entered
@@ -333,20 +344,18 @@ async function editContact(i) {
     const nameInput = document.getElementById('edit-name');
     const emailInput = document.getElementById('edit-email');
     const phoneInput = document.getElementById('edit-phone');
-
     const newName = nameInput.value;
     const newEmail = emailInput.value;
     const newPhone = phoneInput.value;
-
     // Update the existing entry in the array
     contacts[i].name = newName;
     contacts[i].email = newEmail;
     contacts[i].phone = newPhone;
-
     // Do more actions after array update
     document.getElementById("editContactCard").style.display = "none";
     await refresh();
     hideMobileContactView();
+    editedContactSuccessfully();
 }
 /**
  * Extracts the uppercase initials from the array "contacts"['name']
@@ -373,10 +382,8 @@ function assignRandomColorToDiv(i) {
         var hue = Math.floor(Math.random() * 361); // Random hue between 0 and 360
         var saturation = Math.floor(Math.random() * 51) + 50; // Random saturation between 50 and 100
         var lightness = Math.floor(Math.random() * 26) + 35; // Random lightness between 35 and 60
-
         // Convert HSL values to a color string
         var color = "hsl(" + hue + ", " + saturation + "%, " + lightness + "%)";
-
         // Update the corresponding contact object in the "contacts" array with the color
         contacts[i].color = color;
     }
@@ -390,7 +397,6 @@ function assignRandomColorToDiv(i) {
  * @returns - Return -1 & 1 is used to alphabetically sort the contacts inside the "contacts" Array
  */
 function sortContactsAlphabetically(contacts) {
-
     // Sort the contacts by the first capital letter of the name
     contacts.sort((a, b) => {
         const nameA = a.name.charAt(0).toUpperCase();
@@ -403,7 +409,6 @@ function sortContactsAlphabetically(contacts) {
         }
         return 0;
     });
-
     // Add the sorted contacts to the "alphabeticallySorted" array
     contacts.forEach(contact => {
         sortedalphabetically.push(contact);
@@ -415,10 +420,8 @@ function sortContactsAlphabetically(contacts) {
  */
 function measureBrowserWidth() {
     const maxWidth = 1050;
-
     function checkWidth() {
         const browserWidth = window.innerWidth;
-
         if (browserWidth >= maxWidth) {
             hideMobileAddContactCard();
             hideMobileEditContactCard();

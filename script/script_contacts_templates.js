@@ -42,7 +42,6 @@ function renderContactTemplateMobile (i) {
     let phone = contacts[i]['phone'];
     let color = contacts[i]['color'];
     let initial = initials[i];
-    
     return /*html*/`
     <div class="contact_big_mobile flex juststart fdc">
             <div class="flex align fdr">
@@ -106,11 +105,9 @@ function renderEditContactMobileTemplate(i) {
     let phone = contacts[i]['phone'];
     let initial = initials[i];
     let color = contacts[i]['color'];
-
     editContactRight_left = document.getElementById('editContactRight_mobile_usercircle');
     editContactRight_left.innerHTML = '';
     editContactRight_left.innerHTML += `<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact addContactImg">${initial}</div>`;
-
     return /*html*/`
     <form id="form_edit_contact_mobile" class="editContactBottomMobileDown" onsubmit="editContact(${i});hideMobileEditContactCard();return false;">
         <input class="inputMobile" id="edit-name" type="text" value="${name}" required pattern="[A-Z][a-zA-Z ]*">
@@ -140,7 +137,6 @@ function renderContactsTemplate (i) {
         color = assignRandomColorToDiv(i);
         element.color = color;
     }
-
     return /*html*/`
     <div style="background-color:${color}" id="usercircle${i}" class="usercircle_small">${initial}</div>
     <div>
