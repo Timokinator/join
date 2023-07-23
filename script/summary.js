@@ -53,6 +53,7 @@ function linkToBoardHTML() {
     window.location.href = '../html/board.html';
 };
 
+
 /**
  * Initializes the summary view by loading tasks and user data.
  */
@@ -71,6 +72,7 @@ async function initSummary() {
     loadUserData();
 };
 
+
 /**
  * Capitalizes the first letter of a string.
  * @param {string} string - The input string.
@@ -78,7 +80,8 @@ async function initSummary() {
  */
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-}
+};
+
 
 /**
  * Loads the logged-in user's data and displays the username on the summary view.
@@ -109,6 +112,7 @@ async function loadUserData() {
     }
 };
 
+
 /**
  * Extracts initials from the current user's name and stores them.
  * @param {string} currentUser - The current user's name.
@@ -122,7 +126,8 @@ function getInitials(currentUser) {
 
     logedInUserInitials.push(withoutSpaces);
     loadUserInitials();
-}
+};
+
 
 /**
  * Loads the logged-in user's initials and displays them on the summary view.
@@ -138,15 +143,16 @@ async function loadUserInitials() {
         }
     } else {
         box.innerHTML = `<span>G</span>`;
-    }
-}
+    };
+};
+
 
 async function closeSubmenu() {
     logedInUser = JSON.parse(await getItem('user'));
     logedInUser = [];
     logedInUser = JSON.stringify(await setItem('user'));
     window.location.href = 'login.html';
-}
+};
 
 
 /**
@@ -158,6 +164,7 @@ function loadTasksInBoard() {
     content.innerHTML = amountTasks;
 };
 
+
 /**
  * Loads the number of tasks in progress and displays it on the summary view.
  */
@@ -166,6 +173,7 @@ function loadTasksInProgress() {
     let amountTasks = tasksInProgress.length;
     content.innerHTML = amountTasks;
 };
+
 
 /**
  * Loads the number of tasks awaiting feedback and displays it on the summary view.
@@ -176,6 +184,7 @@ function loadTasksAwaitingFeedback() {
     content.innerHTML = amountTasks;
 };
 
+
 /**
  * Loads the number of tasks with an urgent priority and displays it on the summary view.
  */
@@ -184,6 +193,7 @@ function loadTasksUrgent() {
     let amountTasks = tasksUrgent.length;
     content.innerHTML = amountTasks;
 };
+
 
 /**
  * Loads the due date of the first task and displays it on the summary view.
@@ -194,6 +204,7 @@ function loadTasksDueDates() {
     content.innerHTML = dueDate;
 };
 
+
 /**
  * Loads the number of tasks to be done and displays it on the summary view.
  */
@@ -202,6 +213,7 @@ function loadTasksToDo() {
     let amountTasks = tasksToDo.length;
     content.innerHTML = amountTasks;
 };
+
 
 /**
  * Loads the number of tasks already done and displays it on the summary view.
@@ -212,13 +224,15 @@ function loadTasksDone() {
     content.innerHTML = amountTasks;
 };
 
+
 /**
  * Loads the greeting message and updates it every minute.
  */
 function loadTasksGreeteng() {
     implementCurrentTime();
     setInterval(implementCurrentTime, 60000);
-}
+};
+
 
 /**
  * Implements the current time greeting message based on the hour of the day.
@@ -236,8 +250,9 @@ function implementCurrentTime() {
     }
     if (dateHours >= 18 && dateHours <= 24) {
         timeBox.innerHTML = 'Good Evening, ';
-    }
-}
+    };
+};
+
 
 /**
  * Array to store unique logged-in users.
@@ -263,8 +278,9 @@ async function loadLoagedInUser() {
         userBox.innerHTML = capitalizeFirstLetter(logedInUser);
     } else {
         userBox.innerHTML = 'Guest';
-    }
-}
+    };
+};
+
 
 // window.addEventListener("offline", (event) => {
 //     newUser = [];

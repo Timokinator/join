@@ -6,5 +6,5 @@ function removeLandingImg() {
     landingPageImg.classList.add('d-none');
     landingImg.classList.add('d-none');
     window.location.href = '../html/login.html';
-}
+};
 

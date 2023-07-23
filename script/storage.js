@@ -25,6 +25,7 @@ async function setItem(key, value) {
         .then(res => res.json());
 };
 
+
 /**
  * Function to retrieve a value from the external Storage API based on a key.
  * @param {string} key - The key associated with the value to be retrieved.

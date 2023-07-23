@@ -27,12 +27,14 @@ async function includeHtml() {
     };
 };
 
+
 /**
  * Function to navigate to the summary page.
  */
 function toSummary() {
     window.location.href = '../html/summary.html';
 };
+
 
 /**
  * Function to open the submenu based on the given "resolution" parameter (desktop or mobile).
@@ -54,6 +56,7 @@ function openSubmenu(resolution) {
     };
 };
 
+
 /**
  * Function that creates and returns the HTML content for the desktop submenu.
  * @returns {string} - The HTML content for the desktop submenu.
@@ -65,6 +68,7 @@ function renderSubmenuDesktop() {
         </div >
     `;
 };
+
 
 /**
  * Function that creates and returns the HTML content for the mobile submenu.
@@ -79,6 +83,7 @@ function renderSubmenuMobile() {
         </div >
     `;
 };
+
 
 /**
  * Function to close the submenu.

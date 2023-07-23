@@ -80,6 +80,7 @@ function pushTaskToArray(title, description, category, member, dueDate, prio, su
     });
 };
 
+
 /**
  * Function to add members to the memberAssignedTo array.
  */
@@ -89,6 +90,7 @@ function pushMemberToArrayAssignedTo() {
         memberAssignedTo.push(contact['name']);
     };
 };
+
 
 /**
  * Function to add colors to the colorsAssignedTo array.
@@ -100,12 +102,14 @@ function pushColorToArrayAssignedTo() {
     };
 };
 
+
 /**
  * Asynchronous function to save the tasks array to Local Storage.
  */
 async function safeTasks() {
     await setItem('task_array', JSON.stringify(tasks));
 };
+
 
 /**
  * Asynchronous function to initialize adding a task.
@@ -119,12 +123,14 @@ async function initAddTask() {
     loadUserData();
 };
 
+
 /**
  * Asynchronous function to load tasks from Local Storage.
  */
 async function loadTasks() {
     tasks = JSON.parse(await getItem('task_array'));
 };
+
 
 /**
  * Function to load contacts into the form.
@@ -141,16 +147,6 @@ function loadContactsToForm() {
     };
 };
 
-/**
- * Function to create the HTML template for the members' options in the form.
- * @param {Object} contact - The contact object.
- * @returns {string} - The HTML template for the member option.
- */
-function templateMembersChose(contact) {
-    return /*html*/`
-        <option value="${contact['name']}">${contact['name']}</option>
-    `;
-};
 
 /**
  * Function to set the priority value.
@@ -173,6 +169,7 @@ function resetPrioValue() {
     document.getElementById('prio_btn_low').classList.remove('prio-selected');
 };
 
+
 /**
  * Function to reset the subtask array and its container.
  */
@@ -180,6 +177,7 @@ function resetSubtaskArray() {
     subtasks = [];
     document.getElementById('container_subtasks').innerHTML = '';
 };
+
 
 /**
  * Function to add a new subtask.
@@ -190,6 +188,7 @@ function addSubtask() {
     subtask.value = '';
     renderSubtasks();
 };
+
 
 /**
  * Function to render the subtasks.
@@ -204,19 +203,6 @@ function renderSubtasks() {
     };
 };
 
-/**
- * Function to create the HTML template for a subtask element.
- * @param {number} i - The index of the subtask.
- * @returns {string} - The HTML template for the subtask element.
- */
-function templateSubtasks(i) {
-    return /*html*/`
-        <div class="text-subtask">
-            ${subtasks[i]}
-            <img onclick="deleteSubtask(${i})" class="hover" id="delete_btn_subtasks${i}" src="../assets/icons/trash.png" alt="">
-        </div>
-    `;
-};
 
 /**
  * Function to delete a subtask.
@@ -226,6 +212,7 @@ function deleteSubtask(i) {
     subtasks.splice(i, 1);
     renderSubtasks();
 };
+
 
 /**
  * Function to add a task.
@@ -275,6 +262,7 @@ function addMember() {
     renderMembers()
 };
 
+
 /**
  * Function to render the selected members.
  */
@@ -297,6 +285,7 @@ function renderMembers() {
     };
 };
 
+
 /**
  * Function to reset the selected members.
  */
@@ -306,6 +295,7 @@ function resetAssignedTo() {
     assignedToInitials = [];
     renderMembers();
 };
+
 
 /**
  * Function to reset the arrays for the selected members, subtasks, and priorities.
@@ -318,12 +308,14 @@ function resetAssignedToArrays() {
     resetAssignedToColors();
 };
 
+
 /**
  * Function to reset the initialsMembers array.
  */
 function resetAssignedToInitials() {
     assignedToInitials = [];
 };
+
 
 /**
  * Function to reset the colors array.
@@ -332,18 +324,6 @@ function resetAssignedToColors() {
     assignedToColors = [];
 };
 
-/**
- * Function to create the HTML template for the selected members.
- * @param {number} i - The index of the selected member.
- * @returns {string} - The HTML template for the selected member element.
- */
-function templateMembers(i) {
-    return /*html*/`
-      <div style="background-color: ${assignedToColors[i]}" onclick=deleteMember(${i}) class="member-add-task">
-        <span>${assignedToInitials[i]}</span>
-      </div>
-    `;
-};
 
 /**
  * Function to delete a member.
@@ -356,6 +336,7 @@ function deleteMember(i) {
     renderMembers();
     document.getElementById('assignedTo_form').value = '';
 };
+
 
 /**
  * Function to display a pop-up notification that the task has been added.
@@ -370,18 +351,6 @@ function taskAddedPopUp() {
     }, 2000);
 };
 
-/**
- * Function to create the HTML template for the pop-up notification.
- * @returns {string} - The HTML template for the pop-up notification.
- */
-function templatePopUpTaskAdded() {
-    return /*html*/`
-        <div class="pop-up-task-added" id="pop_up_task_added">
-                <span class="pop-up-task-added-text">Task added to board</span>
-                <img class="pop-up-task-added-img" src="../assets/icons/icon_sidebar_board.svg" alt="">
-        </div>
-    `;
-};
 
 /**
  * Function to capitalize the first letter of a string.
@@ -390,7 +359,8 @@ function templatePopUpTaskAdded() {
  */
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-}
+};
+
 
 /**
  * Asynchronous function to load user data.
@@ -416,6 +386,7 @@ async function loadUserData() {
     }
 };
 
+
 /**
  * Function to get the initials of the current user.
  * @param {string} currentUser - The current user's name.
@@ -429,7 +400,8 @@ function getInitials(currentUser) {
 
     logedInUserInitials2.push(withoutSpaces);
     loadUserInitials();
-}
+};
+
 
 /**
  * Asynchronous function to load the user initials.
