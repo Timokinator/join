@@ -525,3 +525,6 @@ function templateSubtasksTaskDetail(subtask, k, j) {
         </div>
     `;
 };
+
+
+
