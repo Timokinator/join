@@ -87,14 +87,14 @@ async function loadUserData() {
     logedInUser = [];
     logedInUser = JSON.parse(await getItem('user'));
     let currentUser = logedInUser.name;
-    let box = document.getElementById('summary_username');
     console.log(currentUser);
-
-
     let userBox = document.querySelector('.userInitials');
+    let box = document.getElementById('summary_username');
 
     if (currentUser) {
+        userBox.innerHTML = capitalizeFirstLetter(currentUser);
         box.innerHTML = capitalizeFirstLetter(currentUser);
+
     } else {
         userBox.innerHTML = 'G';
     }
