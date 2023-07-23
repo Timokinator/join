@@ -47,7 +47,7 @@ function renderTasksBoard() {
         } else {
             // If there's a search query, render tasks with filtering based on the query.
             renderTasksBoardWithSearch(content, status, search);
-        }
+        };
     };
 };
 
@@ -66,10 +66,8 @@ function renderTasksBoardWithSearch(content, status, search) {
             if (task['title'].toLowerCase().includes(search) || task['description'].toLowerCase().includes(search)) {
                 // If the search query matches, render the single task.
                 content.innerHTML += templateSingleTask(task, j);
-
                 // Add the member assigned to the task and their initials.
                 addMemberToSingleTask(task, j);
-
                 // Add the priority (prio) indicator to the single task.
                 addPrioToSingleTask(task, j);
             };
@@ -87,7 +85,6 @@ function renderTasksBoardWithoutSearch(content, status) {
     // Loop through all tasks.
     for (let j = 0; j < tasks.length; j++) {
         const task = tasks[j];
-
         // Check if the task belongs to the specified status.
         if (task['status'] == status) {
             // If the task belongs to the status, render the task on the board.
@@ -155,7 +152,6 @@ function addMemberToSingleTask(task, j) {
     // Loop through all assigned members for the task.
     for (let k = 0; k < task['assignedTo'].length; k++) {
         const member = task['assignedTo'][k];
-
         // Add a member element with their initials and background color to the task.
         content.innerHTML += /*html*/`
             <div style="background-color: ${task['colors'][k]}" class="single-task-member-member">${task['initials'][k]}</div>
@@ -270,26 +266,11 @@ function addPrioToDetailTask(j) {
     let content = document.getElementById('detail_task_prio_img');
     content.innerHTML = '';
     if (tasks[j]['prio'] == 'urgent') {
-        content.innerHTML += /*html*/`
-            <div class="border-urgent">
-                <span>${tasks[j]['prio'].slice(0, 1).toUpperCase()}${tasks[j]['prio'].slice(1)}</span>
-                <img src="../assets/icons/icon_prio_high.svg" alt="">
-            </div>
-        `;
+        content.innerHTML += templateDetailTaskPrioUrgent(j);
     } else if (tasks[j]['prio'] == 'medium') {
-        content.innerHTML += /*html*/`
-            <div class="border-medium">
-                <span>${tasks[j]['prio'].slice(0, 1).toUpperCase()}${tasks[j]['prio'].slice(1)}</span>         
-                <img class="test" src="../assets/icons/icon_prio_medium.svg" alt="">
-            </div>  
-        `;
+        content.innerHTML += templateDetailTaskPrioMedium(j);
     } else if (tasks[j]['prio'] == 'low') {
-        content.innerHTML += /*html*/`
-            <div class="border-low">
-                <span>${tasks[j]['prio'].slice(0, 1).toUpperCase()}${tasks[j]['prio'].slice(1)}</span>
-                <img src="../assets/icons/icon_prio_low.svg" alt="">
-            </div>
-        `;
+        content.innerHTML += templateDetailTaskPrioLow(j);
     };
 };
 
@@ -302,51 +283,20 @@ function addPrioToDetailTask(j) {
 function addMemberTaskDetail(j) {
     let content = document.getElementById('detail_task_member');
     content.innerHTML = '';
-
     for (let k = 0; k < tasks[j]['assignedTo'].length; k++) {
         const member = tasks[j]['assignedTo'][k];
-
-        content.innerHTML += renderMemberTaskDetail(member, k, j);
+        content.innerHTML += templateMemberTaskDetail(member, k, j);
     };
-};
-
-
-/**
- * Renders a single member assigned to the task in the task details view.
- *
- * @param {string} member - The name of the member.
- * @param {number} k - The index of the member in the assignedTo array of the task.
- * @param {number} j - The index of the task in the tasks array.
- * @returns {string} The HTML template for the single member in the task details view.
- */
-function renderMemberTaskDetail(member, k, j) {
-    return /*html*/`
-    <div class="container-initials-and-name-member-task-detail">
-        <div style="background-color: ${tasks[j]['colors'][k]}" class="font-size-16 single-task-member-member">${tasks[j]['initials'][k]}</div> 
-        <span class="font-weight-400">${member.slice(0, 1).toUpperCase()}${member.slice(1)}</span>
-    </div>
-    `;
 };
 
 
 function addSubtasksTaskDetail(j) {
     let content = document.getElementById('detail_task_subtasks');
     content.innerHTML = '';
-
     for (let k = 0; k < tasks[j]['subtasks'].length; k++) {
         const subtask = tasks[j]['subtasks'][k];
-
-        content.innerHTML += renderSubtasksTaskDetail(subtask, k, j);
+        content.innerHTML += templateSubtasksTaskDetail(subtask, k, j);
     };
-};
-
-
-function renderSubtasksTaskDetail(subtask, k, j) {
-    return /*html*/`
-        <div class="text-subtask">
-            ${subtask}
-        </div>
-    `;
 };
 
 
@@ -445,261 +395,10 @@ function loadContactsToForm() {
     content.innerHTML = /*html*/`
      <option value="" disabled selected>Select contacts</option>   
     `;
-
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
-
         content.innerHTML += templateMembersChose(contact);
     };
-};
-
-
-/**
- * Sets the currently dragged element's index to 'j'.
- * @param {number} j - The index of the currently dragged task in the tasks array.
- */
-function startDragging(j) {
-    currentDraggedElement = j;
-};
-
-
-/**
- * Allows dropping elements during drag and drop operations.
- * @param {Event} ev - The drag event object.
- */
-function allowDrop(ev) {
-    ev.preventDefault();
-};
-
-
-/**
- * Moves the currently dragged task to the specified status and saves the updated tasks array.
- * @param {string} status - The status to which the task will be moved.
- */
-function moveTaskTo(status) {
-    tasks[currentDraggedElement]['status'] = status;
-    safeTasks(); // Save the updated tasks array to local storage.
-    document.getElementById('container_tasks_board_' + status).classList.remove('highlight');
-    renderTasksBoard();
-};
-
-
-/**
- * Highlights the container for the specified status to indicate the potential drop target during drag and drop.
- * @param {string} status - The status for which the container should be highlighted.
- */
-function highlight(status) {
-    let container = document.getElementById('container_tasks_board_' + status);
-    container.classList.add('highlight');
-};
-
-
-/**
- * Removes the highlight from the container for the specified status after the drag and drop operation.
- * @param {string} status - The status for which the container should have the highlight removed.
- */
-function unsetHighlight(status) {
-    let container = document.getElementById('container_tasks_board_' + status);
-    container.classList.remove('highlight');
-};
-
-
-/**
- * Closes the edit task form.
- */
-function closeEditTask() {
-    let content = document.getElementById('container_background_edit_task');
-    content.classList.add('d-none');
-};
-
-
-/**
- * Edits the task with the specified index (j) and opens the edit task form.
- * Closes the task details view before opening the edit task form.
- * @param {number} j - The index of the task in the tasks array to be edited.
- */
-async function editTask(j) {
-    closeTaskDetail();
-    await loadTasks();
-    editTaskAddCloseWithEscape();
-    let content = document.getElementById('container_background_edit_task');
-    content.classList.remove('d-none');
-    content.innerHTML = '';
-    content.innerHTML = templateEditTask(j);
-    loadContactsToForm();
-    renderMemberEditTask(j);
-    setPrioEditTask(j);
-    loadSubtasksEditTask(j);
-};
-
-
-/**
- * Loads subtasks for the task with index 'j' into the edit task form.
- * @param {number} j - The index of the task in the tasks array.
- */
-function loadSubtasksEditTask(j) {
-    let content = document.getElementById('container_subtasks');
-    content.innerHTML = '';
-
-    for (let i = 0; i < tasks[j]['subtasks'].length; i++) {
-        const subtask = tasks[j]['subtasks'][i];
-        content.innerHTML += templateSubtasksEditTask(j, i);
-    };
-};
-
-
-/**
- * Deletes the subtask at index 'i' from the task with index 'j' and reloads the subtasks in the edit task form.
- * @param {number} j - The index of the task in the tasks array.
- * @param {number} i - The index of the subtask to be deleted in the subtasks array.
- */
-function deleteSubtaskEditTask(j, i) {
-    tasks[j]['subtasks'].splice(i, 1);
-    loadSubtasksEditTask(j);
-};
-
-
-/**
- * Adds a new subtask to the task with index 'j' and updates the subtask container in the edit task form.
- * @param {number} j - The index of the task in the tasks array.
- */
-function addSubtaskEditTask(j) {
-    let subtask = document.getElementById('input_subtask');
-    tasks[j]['subtasks'].push(subtask.value);
-    subtask.value = '';
-    renderSubtasksEditTask(j);
-};
-
-
-/**
- * Renders the subtasks of the task with index 'j' in the edit task form.
- * @param {number} j - The index of the task in the tasks array.
- */
-function renderSubtasksEditTask(j) {
-    let content = document.getElementById('container_subtasks');
-    content.innerHTML = '';
-
-    for (let i = 0; i < tasks[j]['subtasks'].length; i++) {
-        const subtask = tasks[j]['subtasks'][i];
-        content.innerHTML += templateSubtasksEditTask(j, i);
-    };
-};
-
-
-/**
- * Sets the priority button for the task with index 'j' as selected in the edit task form.
- * @param {number} j - The index of the task in the tasks array.
- */
-function setPrioEditTask(j) {
-    let selectedPrio = tasks[j]['prio'];
-    let prioToSelect = document.getElementById('prio_btn_' + selectedPrio);
-    prioToSelect.classList.add('prio-selected');
-};
-
-
-/**
- * Renders the selected members for the task with index 'j' in the edit task form.
- * @param {number} j - The index of the task in the tasks array.
- */
-function renderMemberEditTask(j) {
-    let content = document.getElementById('selected_members_add_task');
-    let deleteArea = document.getElementById('click_to_delete_text');
-    content.innerHTML = '';
-
-    if (tasks[j]['assignedTo'].length > 0) {
-        deleteArea.innerHTML = /*html*/`
-            <span>Click to delete</span>
-        `;
-    } else {
-        deleteArea.innerHTML = '';
-    };
-
-    for (let i = 0; i < tasks[j]['assignedTo'].length; i++) {
-        const member = tasks[j]['assignedTo'][i];
-        content.innerHTML += templateMembersEditTask(i, j);
-    };
-};
-
-
-/**
- * Deletes the selected member at index 'i' from the task with index 'j'
- * and reloads the selected members in the edit task form.
- * @param {number} i - The index of the member in the assignedTo array to be deleted.
- * @param {number} j - The index of the task in the tasks array.
- */
-function deleteMemberEditTask(i, j) {
-    tasks[j]['assignedTo'].splice(i, 1);
-    tasks[j]['colors'].splice(i, 1);
-    tasks[j]['initials'].splice(i, 1);
-
-    renderMemberEditTask(j);
-    document.getElementById('assignedTo_form').value = '';
-};
-
-
-/**
- * Adds the selected member to the task with index 'j' in the edit task form.
- * @param {number} j - The index of the task in the tasks array.
- */
-function addMemberEditTask(j) {
-    let member = document.getElementById('assignedTo_form');
-    for (let i = 0; i < tasks[j]['assignedTo'].length; i++) {
-        const assignedMember = memberAssignedTo[i];
-
-        if (tasks[j]['assignedTo'].indexOf(member.value) == -1) {
-            tasks[j]['assignedTo'].push(member.value);
-            tasks[j]['initials'].push(initials[memberAssignedTo.indexOf(member.value)]);
-            tasks[j]['colors'].push(colorsAssignedTo[memberAssignedTo.indexOf(member.value)]);
-        };
-    };
-    renderMemberEditTask(j);
-};
-
-
-/**
- * Adds the possibility to close the edit task form with the escape key.
- */
-function editTaskAddCloseWithEscape() {
-    window.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape') {
-            closeEditTask();
-        };
-    });
-};
-
-
-/**
- * Sets the priority value of a task and updates the selected button style.
- * @param {number} j - The index of the task in the tasks array.
- * @param {string} prio - The priority value to set for the task (e.g., 'urgent', 'medium', 'low').
- */
-function setPrioValueEditTask(j, prio) {
-    tasks[j]['prio'] = prio;
-    let selectedButton = document.getElementById('prio_btn_' + prio);
-    resetPrioValue();
-    selectedButton.classList.add('prio-selected');
-};
-
-
-/**
- * Safely saves changes made to a task in the edit task form.
- * @param {number} j - The index of the task in the tasks array.
- */
-async function safeChangesEditTask(j) {
-    let category = document.getElementById('category_form');
-    let description = document.getElementById('description_form');
-    let dueDate = document.getElementById('dueDate_form');
-    let title = document.getElementById('title_form');
-
-    tasks[j]['category'] = category.value;
-    tasks[j]['description'] = description.value;
-    tasks[j]['dueDate'] = dueDate.value;
-    tasks[j]['title'] = title.value;
-
-    await safeTasks();
-
-    closeEditTask();
-    initBoard();
 };
 
 
@@ -727,22 +426,23 @@ async function loadUserData() {
     let userMobileBox = document.querySelector('.userInitialsMobile');
     let box = document.getElementById('summary_username');
 
-
     if (currentUser) {
         userBox.innerHTML = capitalizeFirstLetter(currentUser);
         userMobileBox.innerHTML = capitalizeFirstLetter(currentUser.charAt(0));
-       if(box){
-        box.innerHTML = capitalizeFirstLetter(currentUser);
-       } 
+        if (box) {
+            box.innerHTML = capitalizeFirstLetter(currentUser);
+        }
 
     } else {
         userBox.innerHTML = 'G';
-    }
+    };
 
     if (currentUser != null) {
         getInitials(currentUser);
-    }
+    };
 };
+
+
 /**
  * Extracts initials from the user's full name and stores them for display.
  * @param {string} currentUser - The full name of the logged-in user.
@@ -757,6 +457,7 @@ function getInitials(currentUser) {
     logedInUserInitials4.push(withoutSpaces);
     loadUserInitials();
 };
+
 
 /**
  * Loads the user initials for display.

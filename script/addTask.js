@@ -233,7 +233,6 @@ async function addTask(setStatus) {
     if (title != '' && category != '' && assignedTo != '' && dueDate != '') {
         pushTaskToArray(title, description, category, member, dueDate, prio, subtasks_task, status, colors, initialsMembers);
         await safeTasks();
-
         document.getElementById('form_add_task').reset();
         resetPrioValue();
         resetSubtaskArray();
@@ -383,7 +382,7 @@ async function loadUserData() {
         getInitials(currentUser);
     } else {
         // iniGuest();
-    }
+    };
 };
 
 

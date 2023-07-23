@@ -319,7 +319,7 @@ function templateSubtasksEditTask(j, i) {
  */
 function templateMembersEditTask(i, j) {
     return /*html*/`
-        <div style="background-color: ${tasks[j]['colors'][i]}" onclick=deleteMemberEditTask(${i}, ${j}) class="member-add-task">
+        <div style="background-color: ${tasks[j]['colors'][i]}" onclick=deleteMemberEditTask(${i},${j}) class="member-add-task">
             <span>${tasks[j]['initials'][i]}</span>
         </div>
     `;
@@ -443,7 +443,7 @@ function templateEditTask(j) {
                             alt="">
                         <!-- Container for displaying subtasks -->
                         <div class="container-subtasks" id="container_subtasks">
-
+                            
                         </div>
                     </div>
                 </div>
@@ -462,15 +462,66 @@ function templateEditTask(j) {
                         <span>Safe Changes</span>
                         <img src="../assets/icons/icon_check_bright.svg" alt="">
                     </button>
-
                 </div>
             </form>
         </div>
-        
     </div>
     `;
 };
 
 
+function templateDetailTaskPrioUrgent(j) {
+    return /*html*/`
+    <div class="border-urgent">
+        <span>${tasks[j]['prio'].slice(0, 1).toUpperCase()}${tasks[j]['prio'].slice(1)}</span>
+        <img src="../assets/icons/icon_prio_high.svg" alt="">
+    </div>
+    `;
+};
 
 
+function templateDetailTaskPrioMedium(j) {
+    return /*html*/`
+    <div class="border-medium">
+        <span>${tasks[j]['prio'].slice(0, 1).toUpperCase()}${tasks[j]['prio'].slice(1)}</span>         
+        <img class="test" src="../assets/icons/icon_prio_medium.svg" alt="">
+    </div>  
+    `;
+};
+
+
+function templateDetailTaskPrioLow(j) {
+    return /*html*/`
+    <div class="border-low">
+        <span>${tasks[j]['prio'].slice(0, 1).toUpperCase()}${tasks[j]['prio'].slice(1)}</span>
+        <img src="../assets/icons/icon_prio_low.svg" alt="">
+    </div>
+    `;
+};
+
+
+/**
+ * Renders a single member assigned to the task in the task details view.
+ *
+ * @param {string} member - The name of the member.
+ * @param {number} k - The index of the member in the assignedTo array of the task.
+ * @param {number} j - The index of the task in the tasks array.
+ * @returns {string} The HTML template for the single member in the task details view.
+ */
+function templateMemberTaskDetail(member, k, j) {
+    return /*html*/`
+    <div class="container-initials-and-name-member-task-detail">
+        <div style="background-color: ${tasks[j]['colors'][k]}" class="font-size-16 single-task-member-member">${tasks[j]['initials'][k]}</div> 
+        <span class="font-weight-400">${member.slice(0, 1).toUpperCase()}${member.slice(1)}</span>
+    </div>
+    `;
+};
+
+
+function templateSubtasksTaskDetail(subtask, k, j) {
+    return /*html*/`
+        <div class="text-subtask">
+            ${subtask}
+        </div>
+    `;
+};
