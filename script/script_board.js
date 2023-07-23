@@ -1105,20 +1105,26 @@ async function loadUserData() {
     logedInUser = JSON.parse(await getItem('user'));
     let currentUser = logedInUser.name;
     console.log(currentUser);
-
     let userBox = document.querySelector('.userInitials');
+    let userMobileBox = document.querySelector('.userInitialsMobile');
+    let box = document.getElementById('summary_username');
+
 
     if (currentUser) {
         userBox.innerHTML = capitalizeFirstLetter(currentUser);
+        userMobileBox.innerHTML = capitalizeFirstLetter(currentUser.charAt(0));
+       if(box){
+        box.innerHTML = capitalizeFirstLetter(currentUser);
+       } 
+
     } else {
         userBox.innerHTML = 'G';
     }
 
     if (currentUser != null) {
         getInitials(currentUser);
-    };
+    }
 };
-
 /**
  * Extracts initials from the user's full name and stores them for display.
  * @param {string} currentUser - The full name of the logged-in user.

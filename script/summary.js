@@ -89,11 +89,16 @@ async function loadUserData() {
     let currentUser = logedInUser.name;
     console.log(currentUser);
     let userBox = document.querySelector('.userInitials');
+    let userMobileBox = document.querySelector('.userInitialsMobile');
     let box = document.getElementById('summary_username');
+
 
     if (currentUser) {
         userBox.innerHTML = capitalizeFirstLetter(currentUser);
+        userMobileBox.innerHTML = capitalizeFirstLetter(currentUser.charAt(0));
+       if(box){
         box.innerHTML = capitalizeFirstLetter(currentUser);
+       } 
 
     } else {
         userBox.innerHTML = 'G';

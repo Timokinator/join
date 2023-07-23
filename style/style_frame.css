@@ -135,6 +135,13 @@ body {
     align-items: center;
 }
 
+.userInitialsMobile {
+    font-weight: bold;
+    font-size: 24px;
+    flex-shrink: 0;
+    font-family: Inter;
+    color: #29ABE2;
+}
 .userInitialsbox:hover {
     cursor: pointer;
     scale: 1.05;
