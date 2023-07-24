@@ -430,7 +430,7 @@ async function loadUserData() {
     logedInUser = [];
     logedInUser = JSON.parse(await getItem('user'));
     let currentUser = logedInUser.name;
-    console.log(currentUser);
+    /* console.log(currentUser); */
     let userBox = document.querySelector('.userInitials');
     let userMobileBox = document.querySelector('.userInitialsMobile');
     let box = document.getElementById('summary_username');
