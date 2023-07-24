@@ -3,17 +3,12 @@
  * @param {number} i - This is the index of an existing contact
  */
 function renderContactTemplate (i) {
-    let name = contacts[i]['name'];
-    let email = contacts[i]['email'];
-    let phone = contacts[i]['phone'];
-    let color = contacts[i]['color'];
-    let initial = initials[i];
     return /*html*/`
     <div class="contact_big">
     <div class="flex align fdr">
-        <div style="background-color:${color}" id="usercircle${i}" class="usercircle">${initial}</div>
+        <div style="background-color:${contacts[i]['color']}" id="usercircle${i}" class="usercircle">${initials[i]}</div>
             <div class="flex juststart alignstart fdc gap5">          
-                <div class="contactNameBig FS47-500">${name}</div>
+                <div class="contactNameBig FS47-500">${contacts[i]['name']}</div>
                 <div onclick="addNewTaskFromContacts(${i},'todo')" class="FS16-400 lightblue cursor">+ Add Task</div>
             </div>
     </div>
@@ -27,9 +22,9 @@ function renderContactTemplate (i) {
         </div>
     </div>
     <p class="FS16-700">Email</p>
-    <a class="FS16-400 lightblue" href="mailto:${email}">${email}</a>
+    <a class="FS16-400 lightblue" href="mailto:${contacts[i]['email']}">${contacts[i]['email']}</a>
     <p class="FS16-700">Phone</p>
-    <div class="FS16-400">${phone}</div>
+    <div class="FS16-400">${contacts[i]['phone']}</div>
 `;
 }
 /**
@@ -37,17 +32,12 @@ function renderContactTemplate (i) {
  * @param {number} i - This is the index of an existing contact
  */
 function renderContactTemplateMobile (i) {
-    let name = contacts[i]['name'];
-    let email = contacts[i]['email'];
-    let phone = contacts[i]['phone'];
-    let color = contacts[i]['color'];
-    let initial = initials[i];
     return /*html*/`
     <div class="contact_big_mobile flex juststart fdc">
             <div class="flex align fdr">
-                <div style="background-color:${color}" id="usercircle${i}" class="usercircle_Mobile">${initial}</div>
+                <div style="background-color:${contacts[i]['color']}" id="usercircle${i}" class="usercircle_Mobile">${initials[i]}</div>
                     <div class="flex juststart alignstart fdc gap5">          
-                        <div class="FS36-400">${name}</div>
+                        <div class="FS36-400">${contacts[i]['name']}</div>
                         <div onclick="addNewTaskFromContacts(${i},'todo')" class="FS16-400 lightblue cursor">+ Add Task</div>
                     </div>
             </div>
@@ -57,9 +47,9 @@ function renderContactTemplateMobile (i) {
                 </div>
             </div>
             <p class="FS16-700">Email</p>
-            <a class="FS16-400 lightblue" href="mailto:${email}">${email}</a>
+            <a class="FS16-400 lightblue" href="mailto:${contacts[i]['email']}">${contacts[i]['email']}</a>
             <p class="FS16-700">Phone</p>
-            <div class="FS16-400">${phone}</div>
+            <div class="FS16-400">${contacts[i]['phone']}</div>
             <div class="icon_container">
                 <div onclick="deleteContact(${i})" class="trash-container"><img class="icon_mobile_Trashcan"src="../assets/icons/icon_contact_trashcan.svg"></div>
                 <div onclick="showMobileEditContactCard(${i})" class="pencil-container"><img class="icon_mobile_Pencil" src="../assets/icons/icon_contact_pencil_white.svg"><div>
@@ -71,20 +61,15 @@ function renderContactTemplateMobile (i) {
  * @param {number} i - This is the index of an existing contact
  */
 function renderEditContactTemplate(i) {
-    let name = contacts[i]['name'];
-    let email = contacts[i]['email'];
-    let phone = contacts[i]['phone'];
-    let initial = initials[i];
-    let color = contacts[i]['color'];
     editContactRight_left = document.getElementById('editContactRight_left');
     editContactRight_left.innerHTML = '';
-    editContactRight_left.innerHTML += `<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact">${initial}</div>`;
+    editContactRight_left.innerHTML += `<div style="background-color:${contacts[i]['color']}" id="usercircle${i}" class="usercircle_edit_contact">${initials[i]}</div>`;
     return /*html*/`
     <img onclick="hideEditContactCard();closeOverlay();" class="close_symbol_edit" src="../assets/icons/icon_add_contact_X.svg">
                     <form id="form_edit_contact" class="editContactRight_right" onsubmit="editContact(${i});closeOverlay();return false;">
-                        <input class="inputDesktop" id="edit-name" type="text" value="${name}" required pattern="[A-Z][a-zA-Z ]*">
-                        <input class="inputDesktop" id="edit-email" type="email" value="${email}" required>
-                        <input class="inputDesktop" id="edit-phone" type="tel"  value="${phone}" required pattern="[0-9]+">
+                        <input class="inputDesktop" id="edit-name" type="text" value="${contacts[i]['name']}" required pattern="[A-Z][a-zA-Z ]*">
+                        <input class="inputDesktop" id="edit-email" type="email" value="${contacts[i]['email']}" required>
+                        <input class="inputDesktop" id="edit-phone" type="tel"  value="${contacts[i]['phone']}" required pattern="[0-9]+">
                             <div class="flex">
                                 <button type="button" onclick="deleteContact(${i});closeOverlay()" class="delete_btn">Delete</button>
                                 <button type="submit" class="save_btn">Save</button>
@@ -100,19 +85,14 @@ function renderEditContactTemplate(i) {
  * @param {number} i - This is the index of an existing contact
  */
 function renderEditContactMobileTemplate(i) {
-    let name = contacts[i]['name'];
-    let email = contacts[i]['email'];
-    let phone = contacts[i]['phone'];
-    let initial = initials[i];
-    let color = contacts[i]['color'];
     editContactRight_left = document.getElementById('editContactRight_mobile_usercircle');
     editContactRight_left.innerHTML = '';
-    editContactRight_left.innerHTML += `<div style="background-color:${color}" id="usercircle${i}" class="usercircle_edit_contact addContactImg">${initial}</div>`;
+    editContactRight_left.innerHTML += `<div style="background-color:${contacts[i]['color']}" id="usercircle${i}" class="usercircle_edit_contact addContactImg">${initials[i]}</div>`;
     return /*html*/`
     <form id="form_edit_contact_mobile" class="editContactBottomMobileDown" onsubmit="editContact(${i});hideMobileEditContactCard();return false;">
-        <input class="inputMobile" id="edit-name" type="text" value="${name}" required pattern="[A-Z][a-zA-Z ]*">
-        <input class="inputMobile" id="edit-email" type="email" value="${email}" required>
-        <input class="inputMobile" id="edit-phone" type="tel"  value="${phone}" required pattern="[0-9]+">
+        <input class="inputMobile" id="edit-name" type="text" value="${contacts[i]['name']}" required pattern="[A-Z][a-zA-Z ]*">
+        <input class="inputMobile" id="edit-email" type="email" value="${contacts[i]['email']}" required>
+        <input class="inputMobile" id="edit-phone" type="tel"  value="${contacts[i]['phone']}" required pattern="[0-9]+">
             <div class="btn_mobile_edit_contact">
                 <button onclick="deleteContact(${i});closeOverlayMobile()" class="delete_btn">Delete</button>
                 <button type="submit" class="save_btn">Save</button>
@@ -127,22 +107,17 @@ function renderEditContactMobileTemplate(i) {
  * Template for Asynchronous function renders all existing contacts
  */
 function renderContactsTemplate (i) {
-    const element = sortedalphabetically[i];
-        let name = element['name'];
-        let email = element['email'];
-        let phone = element['phone'];
-        let initial = initials[i];
-        let color = element.color;
+    let color = sortedalphabetically[i].color;
     if (!color) {
         color = assignRandomColorToDiv(i);
-        element.color = color;
+        sortedalphabetically[i].color = color;
     }
     return /*html*/`
-    <div style="background-color:${color}" id="usercircle${i}" class="usercircle_small">${initial}</div>
+    <div style="background-color:${sortedalphabetically[i].color}" id="usercircle${i}" class="usercircle_small">${initials[i]}</div>
     <div>
-        <div class="FS21-400">${name}</div>
+        <div class="FS21-400">${sortedalphabetically[i]['name']}</div>
         <div>
-        <a class="FS16-400" href="mailto:${email}">${email}</a>
+        <a class="FS16-400" href="mailto:${sortedalphabetically[i]['email']}">${sortedalphabetically[i]['email']}</a>
         </div>
     </div>`;
 }
