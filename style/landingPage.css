@@ -384,9 +384,9 @@ checkbox {
         width: 327px;
         padding: 0px 16px;
         flex-direction: column-reverse;
-        align-items: flex-start;
+        align-items: center;
         gap: 4px;
-        margin-left: -40px;
+       
     }
 
     .formBtnContainer {
