@@ -1,4 +1,11 @@
 /**
+ * Represents the current date.
+ * 
+ * @type {Date}
+ */
+let currentDate;
+
+/**
  * An array to store tasks.
  * @type {Array}
  */
@@ -121,6 +128,8 @@ async function initAddTask() {
     pushMemberToArrayAssignedTo();
     pushColorToArrayAssignedTo();
     loadUserData();
+    setDateToday();
+    setMinimumDateToday();
 };
 
 
@@ -418,4 +427,20 @@ async function loadUserInitials() {
         box.innerHTML =  `<span>G</span>`;
         box2.innerHTML = `<span>G</span>`; //Timo
     };
+};
+
+
+/**
+ * Sets the `currentDate` variable to the current date in ISO 8601 format (YYYY-MM-DD).
+ */
+function setDateToday() {
+    currentDate = new Date().toJSON().slice(0, 10);
+};
+
+/**
+ * Sets the minimum date for the `dueDate_form` input field to the `currentDate`.
+ */
+function setMinimumDateToday() {
+    let dateField = document.getElementById('dueDate_form');
+    dateField.min = currentDate;
 };

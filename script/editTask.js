@@ -25,6 +25,7 @@ async function editTask(j) {
     renderMemberEditTask(j);
     setPrioEditTask(j);
     loadSubtasksEditTask(j);
+    setMinimumDateToday();
 };
 
 

@@ -22,6 +22,7 @@ async function initBoard() {
     pushColorToArrayAssignedTo(); // Push colors to the assignedTo array.
     pushMemberToArrayAssignedTo(); // Push member names to the assignedTo array.
     loadUserData();
+    setDateToday();
 };
 
 
@@ -336,6 +337,7 @@ function addNewTask(stati) {
     addCloseTaskWithEscape();
     content.innerHTML = templateFormAddTaskBoard(stati);
     loadContactsToForm();
+    setMinimumDateToday();
 };
 
 
