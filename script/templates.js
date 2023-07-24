@@ -236,7 +236,7 @@ function templateFormAddTaskBoard(stati) {
                     <img src="../assets/icons/icon_prio_high.svg" alt="">
                 </div>
 
-                <div id="prio_btn_medium" class="prio-btn-add-task" onclick="setPrioValue('medium')">
+                <div id="prio_btn_medium" class="prio-btn-add-task prio-selected" onclick="setPrioValue('medium')">
                     <span class="text-btn-prio-add-task">Medium</span>
                     <img src="../assets/icons/icon_prio_medium.svg" alt="">
                 </div>
