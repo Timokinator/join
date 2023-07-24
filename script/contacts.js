@@ -463,87 +463,104 @@ function addNewTaskFromContacts(i, stati) {
 };
 
 
+/**
+ * Capitalizes the first letter of a given string.
+ * 
+ * @param {string} string - The input string to capitalize.
+ * @returns {string} The input string with the first letter capitalized.
+ */
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-// async function loadUserData() {
-//     logedInUser = [];
-//     logedInUser = JSON.parse(await getItem('user'));
-//     let currentUser = logedInUser.name;
-//     console.log(currentUser);
+};
 
 
-//     let userBox = document.querySelector('.userInitials');
-
-//     if (currentUser) {
-//         userBox.innerHTML = capitalizeFirstLetter(currentUser);
-//     } else {
-//         userBox.innerHTML = 'G';
-//     }
-
-//     if (currentUser != null) {
-//         getInitials(currentUser);
-//     } else {
-//         // iniGuest();
-//     }
-// };
-
-
+/**
+ * Loads user data and displays the user's initials in various UI elements.
+ * 
+ * @returns {void}
+ */
 async function loadUserData() {
     logedInUser = [];
     logedInUser = JSON.parse(await getItem('user'));
     let currentUser = logedInUser.name;
-    /* console.log(currentUser); */
     let userBox = document.querySelector('.userInitials');
     let userMobileBox = document.querySelector('.userInitialsMobile');
     let box = document.getElementById('summary_username');
 
-
     if (currentUser) {
         userBox.innerHTML = capitalizeFirstLetter(currentUser);
-        userMobileBox.innerHTML = capitalizeFirstLetter(currentUser/*.charAt(0)*/); //Timo auskommentiert
-       if(box) {
-        box.innerHTML = capitalizeFirstLetter(currentUser);
-       }
-
+        userMobileBox.innerHTML = capitalizeFirstLetter(currentUser);
+        if (box) {
+            box.innerHTML = capitalizeFirstLetter(currentUser);
+        };
     } else {
         userBox.innerHTML = 'G';
-        userMobileBox.innerHTML = 'G'; //Timo
-    }
+        userMobileBox.innerHTML = 'G';
+    };
 
     if (currentUser != null) {
         getInitials(currentUser);
-    }
+    };
 };
 
 
+/**
+ * Extracts the initials from the given full name and stores them in the logedInUserInitials3 array.
+ * Then, it calls the loadUserInitials function to update the user initials in the UI.
+ * 
+ * @param {string} currentUser - The full name of the current user.
+ * @returns {void}
+ */
 function getInitials(currentUser) {
+    // Split the full name into individual names by space
     const names = currentUser.split(' ');
+
+    // Map each name to its first character and convert to uppercase
     const initials = names.map(name => name.charAt(0).toUpperCase());
 
+    // Join the initials to form a new string
     const newInitials = initials.join(' ');
+
+    // Remove any spaces in the new initials string
     const withoutSpaces = newInitials.replace(/\s/g, '');
 
+    // Add the initials to the logedInUserInitials3 array
     logedInUserInitials3.push(withoutSpaces);
-    loadUserInitials();
-}
 
+    // Call the loadUserInitials function to update the user initials in the UI
+    loadUserInitials();
+};
+
+
+/**
+ * Updates the user initials in the UI by populating the user initials elements with the data from the logedInUserInitials3 array.
+ * If the logedInUserInitials3 array is empty or null, it sets the user initials to 'G'.
+ * 
+ * @returns {void}
+ */
 async function loadUserInitials() {
+    // Get the elements with the classes 'userInitials' and 'userInitialsMobile'
     let box = document.querySelector('.userInitials');
-    let box2 = document.querySelector('.userInitialsMobile'); //Timo
+    let box2 = document.querySelector('.userInitialsMobile');
+
+    // Clear the previous content of the elements
     box.innerHTML = '';
     box2.innerHTML = '';
 
+    // Check if the logedInUserInitials3 array is not null
     if (logedInUserInitials3 != null) {
+        // Loop through the logedInUserInitials3 array and update the user initials in the UI
         for (let i = 0; i < logedInUserInitials3.length; i++) {
             const element = logedInUserInitials3[i];
+            // Update the content of both user initials elements with the current initials
             box.innerHTML = `<span>${element}</span>`;
-            box2.innerHTML = `<span>${element}</span>`; //Timo
-        }
+            box2.innerHTML = `<span>${element}</span>`;
+        };
     } else {
+        // If the logedInUserInitials3 array is null or empty, set the user initials to 'G'
         box.innerHTML = `<span>G</span>`;
-        box2.innerHTML = `<span>G</span>`; //Timo
-    }
-}
+        box2.innerHTML = `<span>G</span>`;
+    };
+};
+
 

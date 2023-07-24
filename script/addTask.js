@@ -368,8 +368,6 @@ async function loadUserData() {
     logedInUser = [];
     logedInUser = JSON.parse(await getItem('user'));
     let currentUser = logedInUser.name;
-    /*console.log(currentUser);*/
-
     let userBox = document.querySelector('.userInitials');
     let userBox2 = document.querySelector('.userInitialsMobile'); //Timo
 
@@ -382,8 +380,6 @@ async function loadUserData() {
 
     if (currentUser != null) {
         getInitials(currentUser);
-    } else {
-        // iniGuest();
     };
 };
 
@@ -395,7 +391,6 @@ async function loadUserData() {
 function getInitials(currentUser) {
     const names = currentUser.split(' ');
     const initials = names.map(name => name.charAt(0).toUpperCase());
-
     const newInitials = initials.join(' ');
     const withoutSpaces = newInitials.replace(/\s/g, '');
 

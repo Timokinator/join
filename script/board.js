@@ -430,21 +430,19 @@ async function loadUserData() {
     logedInUser = [];
     logedInUser = JSON.parse(await getItem('user'));
     let currentUser = logedInUser.name;
-    /* console.log(currentUser); */
     let userBox = document.querySelector('.userInitials');
     let userMobileBox = document.querySelector('.userInitialsMobile');
     let box = document.getElementById('summary_username');
 
     if (currentUser) {
         userBox.innerHTML = capitalizeFirstLetter(currentUser);
-        userMobileBox.innerHTML = capitalizeFirstLetter(currentUser/*.charAt(0)*/); //Timo auskommentiert
+        userMobileBox.innerHTML = capitalizeFirstLetter(currentUser);
         if (box) {
             box.innerHTML = capitalizeFirstLetter(currentUser);
-        }
-
+        };
     } else {
         userBox.innerHTML = 'G';
-        userMobileBox.innerHTML = 'G'; //Timo
+        userMobileBox.innerHTML = 'G';
     };
 
     if (currentUser != null) {
@@ -460,7 +458,6 @@ async function loadUserData() {
 function getInitials(currentUser) {
     const names = currentUser.split(' ');
     const initials = names.map(name => name.charAt(0).toUpperCase());
-
     const newInitials = initials.join(' ');
     const withoutSpaces = newInitials.replace(/\s/g, '');
 
@@ -474,7 +471,7 @@ function getInitials(currentUser) {
  */
 async function loadUserInitials() {
     let box = document.querySelector('.userInitials');
-    let box2 = document.querySelector('.userInitialsMobile'); //Timo
+    let box2 = document.querySelector('.userInitialsMobile');
     box.innerHTML = '';
     box2.innerHTML = '';
 
@@ -482,10 +479,10 @@ async function loadUserInitials() {
         for (let i = 0; i < logedInUserInitials4.length; i++) {
             const element = logedInUserInitials4[i];
             box.innerHTML = `<span>${element}</span>`;
-            box2.innerHTML = `<span>${element}</span>`; //Timo
+            box2.innerHTML = `<span>${element}</span>`;
         }
     } else {
         box.innerHTML = 'G';
-        box2.innerHTML = 'G'; //Timo
+        box2.innerHTML = 'G';
     };
 };
