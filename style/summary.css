@@ -91,7 +91,7 @@ html {
     align-items: center;
     justify-content: flex-start;
     gap: 64px;
-
+    padding-bottom: 64px;
 }
 
 .container-summary-urgent-date {
@@ -104,7 +104,6 @@ html {
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
     padding: 28px 48px;
     width: 100%;
-
 }
 
 .container-summary-urgent-date:hover {
@@ -317,6 +316,7 @@ html {
 
     .container_progress_and_welcome {
         padding-left: 0;
+ 
     }
 
     .greetingContainer {
