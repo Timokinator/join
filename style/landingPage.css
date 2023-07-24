@@ -323,6 +323,7 @@ checkbox {
         left: 0;
         top: unset;
         justify-content: center;
+        gap: 16px;
     }
 
     h1 {
@@ -364,7 +365,7 @@ checkbox {
         align-items: center;
         gap: 10px;
         align-self: stretch;
-        width: 340px;
+        width: 100%;
     }
 
     .loginTitle {
@@ -428,6 +429,12 @@ checkbox {
     .counter {
         font-size: 16px;
     
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
 

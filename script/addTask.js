@@ -371,11 +371,13 @@ async function loadUserData() {
     console.log(currentUser);
 
     let userBox = document.querySelector('.userInitials');
+    let userBox2 = document.querySelector('.userInitialsMobile'); //Timo
 
     if (currentUser) {
         userBox.innerHTML = capitalizeFirstLetter(currentUser);
     } else {
         userBox.innerHTML = 'G';
+        userBox2.innerHTML = 'G'; //Timo
     }
 
     if (currentUser != null) {
@@ -407,14 +409,18 @@ function getInitials(currentUser) {
  */
 async function loadUserInitials() {
     let box = document.querySelector('.userInitials');
+    let box2 = document.querySelector('.userInitialsMobile'); //Timo
     box.innerHTML = '';
-    
+    box2.innerHTML = ''; //Timo
+
     if (logedInUserInitials2 != null) {
         for (let i = 0; i < logedInUserInitials2.length; i++) {
             const element = logedInUserInitials2[i];
             box.innerHTML =  `<span>${element}</span>`;
+            box2.innerHTML = `<span>${element}</span>`; //Timo
         }
     } else {
         box.innerHTML =  `<span>G</span>`;
+        box2.innerHTML = `<span>G</span>`; //Timo
     };
 };
