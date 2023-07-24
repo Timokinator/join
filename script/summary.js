@@ -90,7 +90,7 @@ async function loadUserData() {
     logedInUser = [];
     logedInUser = JSON.parse(await getItem('user'));
     let currentUser = logedInUser.name;
-    console.log(currentUser);
+    /* console.log(currentUser);*/
     let userBox = document.querySelector('.userInitials');
     let userMobileBox = document.querySelector('.userInitialsMobile');
     let box = document.getElementById('summary_username');
@@ -282,12 +282,12 @@ let newUser = [];
  */
 async function loadLoagedInUser() {
     let currentUser = logedInUser['name'];
-    console.log(logedInUser);
+    /*console.log(logedInUser); */
     if (!newUser.includes(currentUser)) {
         newUser.push(currentUser);
     }
     let logedInUser = currentUser[0]['name'];
-    console.log(logedInUser);
+    /*console.log(logedInUser);*/
 
     let userBox = document.getElementById('summary_username');
 

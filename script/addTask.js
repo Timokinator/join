@@ -368,7 +368,7 @@ async function loadUserData() {
     logedInUser = [];
     logedInUser = JSON.parse(await getItem('user'));
     let currentUser = logedInUser.name;
-    console.log(currentUser);
+    /*console.log(currentUser);*/
 
     let userBox = document.querySelector('.userInitials');
     let userBox2 = document.querySelector('.userInitialsMobile'); //Timo
