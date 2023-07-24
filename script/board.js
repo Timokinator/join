@@ -290,11 +290,20 @@ function addMemberTaskDetail(j) {
 };
 
 
+/**
+ * Add subtasks to the task detail view.
+ *
+ * @param {number} j - The index of the task in the 'tasks' array.
+ */
 function addSubtasksTaskDetail(j) {
     let content = document.getElementById('detail_task_subtasks');
     content.innerHTML = '';
+
+    // Loop through each subtask of the task (indexed by 'k')
     for (let k = 0; k < tasks[j]['subtasks'].length; k++) {
         const subtask = tasks[j]['subtasks'][k];
+
+        // Generate the HTML template for displaying the subtask using the 'templateSubtasksTaskDetail' function
         content.innerHTML += templateSubtasksTaskDetail(subtask, k, j);
     };
 };

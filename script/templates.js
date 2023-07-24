@@ -470,6 +470,12 @@ function templateEditTask(j) {
 };
 
 
+/**
+ * Generate the HTML template for displaying a task's priority as "Urgent".
+ *
+ * @param {number} j - The index of the task in the 'tasks' array.
+ * @returns {string} The HTML template for displaying the task's priority as "Urgent".
+ */
 function templateDetailTaskPrioUrgent(j) {
     return /*html*/`
     <div class="border-urgent">
@@ -480,6 +486,12 @@ function templateDetailTaskPrioUrgent(j) {
 };
 
 
+/**
+ * Generate the HTML template for displaying a task's priority as "Medium".
+ *
+ * @param {number} j - The index of the task in the 'tasks' array.
+ * @returns {string} The HTML template for displaying the task's priority as "Medium".
+ */
 function templateDetailTaskPrioMedium(j) {
     return /*html*/`
     <div class="border-medium">
@@ -490,6 +502,12 @@ function templateDetailTaskPrioMedium(j) {
 };
 
 
+/**
+ * Generate the HTML template for displaying a task's priority as "Low".
+ *
+ * @param {number} j - The index of the task in the 'tasks' array.
+ * @returns {string} The HTML template for displaying the task's priority as "Low".
+ */
 function templateDetailTaskPrioLow(j) {
     return /*html*/`
     <div class="border-low">
@@ -518,6 +536,14 @@ function templateMemberTaskDetail(member, k, j) {
 };
 
 
+/**
+ * Generate the HTML template for displaying a subtask in the task detail view.
+ *
+ * @param {string} subtask - The text content of the subtask.
+ * @param {number} k - The index of the subtask in the 'subtasks' array of the task.
+ * @param {number} j - The index of the task in the 'tasks' array.
+ * @returns {string} The HTML template for displaying the subtask in the task detail view.
+ */
 function templateSubtasksTaskDetail(subtask, k, j) {
     return /*html*/`
         <div class="text-subtask">
@@ -525,6 +551,7 @@ function templateSubtasksTaskDetail(subtask, k, j) {
         </div>
     `;
 };
+
 
 
 
