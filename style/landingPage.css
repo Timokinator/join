@@ -172,7 +172,7 @@ form h1 {
 
 .inputBox {
     display: flex;
-    height: 152px;
+    /* height: 152px; */
     flex-direction: column;
     align-items: flex-start;
     gap: 32px;
@@ -346,7 +346,7 @@ checkbox {
         padding: 8px 0px;
         flex-direction: column;
         align-items: center;
-        gap: 32px;
+        gap: 24px;
     }
 
   
@@ -387,16 +387,16 @@ checkbox {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 21px;
+        gap: 4px;
     }
 
     .inputBox {
         display: flex;
         max-width: 360px;
-        height: 152px;
+        /* height: 152px; */
         flex-direction: column;
         align-items: center;
-        gap: 32px;
+        gap: 4px;
     }
 
     #logInBtn, #guestLogInBtn {
