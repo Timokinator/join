@@ -220,14 +220,10 @@ function renderContactMobile(i) {
 async function renderContacts() {
     let contact = document.getElementById('contactsboxsmall');
     contact.innerHTML = '';
-
     await loadContacts();
-
     sortedalphabetically = sortContactsAlphabetically(contacts);
     extractInitials(sortedalphabetically);
-
     const letters = [];
-
     for (let i = 0; i < sortedalphabetically.length; i++) {
         const element = sortedalphabetically[i];
         let name = element['name'];
@@ -235,46 +231,61 @@ async function renderContacts() {
         let phone = element['phone'];
         let initial = initials[i];
         let color = element.color;
-
-        const firstLetter = name.charAt(0).toUpperCase();
-
-        if (!letters.includes(firstLetter)) {
-            letters.push(firstLetter);
-
-            const containerId = `letter${firstLetter}`;
-            const container = document.createElement('div');
-            container.id = containerId;
-            contact.appendChild(container);
-
-            const letterContainer = document.createElement('div');
-            letterContainer.className = 'letter-container';
-            letterContainer.innerHTML = firstLetter;
-            container.appendChild(letterContainer);
-
-            const letterdevide = document.createElement('div');
-            letterdevide.className = 'letter-devide';
-            letterdevide.innerHTML = '<hr>';
-            container.appendChild(letterdevide);
-        }
-
-        if (!color) {
-            color = assignRandomColorToDiv(i);
-            element.color = color;
-        }
-
-        const containerId = `letter${firstLetter}`;
-        const container = document.getElementById(containerId);
-
-        const contactDiv = document.createElement('div');
-        contactDiv.onclick = function () {
-            renderContact(i), renderContactMobile(i);
-        };
-        contactDiv.id = i;
-        contactDiv.className = 'contact_small_content flex juststart align';
-        contactDiv.innerHTML = renderContactsTemplate (i);
-        container.appendChild(contactDiv);
-        container.classList.add('letterbox');
+    const firstLetter = name.charAt(0).toUpperCase();
+    if (!letters.includes(firstLetter)) {
+        letters.push(firstLetter);
+        createLetterContainer(contact, firstLetter);
+}
+    if (!color) {
+        color = assignRandomColorToDiv(i);
+        element.color = color;
     }
+    createContactDiv(contact, i, firstLetter, color);
+    }
+}
+/**
+   * Function to create the letter container
+   * @param {Array} contact - This parameter is a DOM element that is the parent element to which to add the letter container.
+   * @param {Array} firstLetter - This parameter is a character (a single letter) that represents the first letter of a name
+   */
+function createLetterContainer(contact, firstLetter) {
+    const containerId = `letter${firstLetter}`;
+    const container = document.createElement('div');
+    container.id = containerId;
+    contact.appendChild(container);
+
+    const letterContainer = document.createElement('div');
+    letterContainer.className = 'letter-container';
+    letterContainer.innerHTML = firstLetter;
+    container.appendChild(letterContainer);
+
+    const letterdevide = document.createElement('div');
+    letterdevide.className = 'letter-devide';
+    letterdevide.innerHTML = '<hr>';
+    container.appendChild(letterdevide);
+}
+/**
+ * Creates the contact div and appends it to the letter container.
+ *
+ * @param {HTMLElement} contact - The parent element to which the contact div will be added.
+ * @param {number} i - The index of the current contact.
+ * @param {string} firstLetter - The first letter of the name of the current contact.
+ * @param {string} color - The color of the current contact.
+ * @returns {void}
+ */
+function createContactDiv(contact, i, firstLetter, color) {
+    const containerId = `letter${firstLetter}`;
+    const container = document.getElementById(containerId);
+
+    const contactDiv = document.createElement('div');
+    contactDiv.onclick = function () {
+        renderContact(i), renderContactMobile(i);
+    };
+    contactDiv.id = i;
+    contactDiv.className = 'contact_small_content flex juststart align';
+    contactDiv.innerHTML = renderContactsTemplate(i);
+    container.appendChild(contactDiv);
+    container.classList.add('letterbox');
 }
 /**
  * Function renders the "Edit Contact" container
