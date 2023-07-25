@@ -87,68 +87,19 @@ function capitalizeFirstLetter(string) {
  * Loads the logged-in user's data and displays the username on the summary view.
  */
 async function loadUserData() {
-    logedInUser = [];
+    // logedInUser = [];
     logedInUser = JSON.parse(await getItem('user'));
     let currentUser = logedInUser.name;
-    let userBox = document.querySelector('.userInitials');
-    let userMobileBox = document.querySelector('.userInitialsMobile');
     let box = document.getElementById('summary_username');
 
-
-    if (currentUser) {
-        userBox.innerHTML = capitalizeFirstLetter(currentUser);
-        userMobileBox.innerHTML = capitalizeFirstLetter(currentUser);
-       if(box){
-        box.innerHTML = capitalizeFirstLetter(currentUser);
-       } 
-
+    if (currentUser && box) {
+        box.innerHTML = capitalizeFirstLetter(currentUser); 
     } else {
-        userBox.innerHTML = 'G';
-        userMobileBox.innerHTML = 'G';
-    }
-
-    if (currentUser != null) {
-        getInitials(currentUser);
+        box.innerHTML = 'Guest';
     }
 };
 
 
-/**
- * Extracts initials from the current user's name and stores them.
- * @param {string} currentUser - The current user's name.
- */
-function getInitials(currentUser) {
-    const names = currentUser.split(' ');
-    const initials = names.map(name => name.charAt(0).toUpperCase());
-
-    const newInitials = initials.join(' ');
-    const withoutSpaces = newInitials.replace(/\s/g, '');
-
-    logedInUserInitials.push(withoutSpaces);
-    loadUserInitials();
-};
-
-
-/**
- * Loads the logged-in user's initials and displays them on the summary view.
- */
-async function loadUserInitials() {
-    let box = document.querySelector('.userInitials');
-    let box2 = document.querySelector('.userInitialsMobile');
-    box.innerHTML = '';
-    box2.innerHTML = '';
-
-    if (logedInUserInitials != null) {
-        for (let i = 0; i < logedInUserInitials.length; i++) {
-            const element = logedInUserInitials[i];
-            box.innerHTML = `<span>${element}</span>`;
-            box2.innerHTML = `<span>${element}</span>`;
-        }
-    } else {
-        box.innerHTML = `<span>G</span>`;
-        box2.innerHTML = `<span>G</span>`;
-    };
-};
 
 
 /**
@@ -281,12 +232,10 @@ let newUser = [];
  */
 async function loadLoagedInUser() {
     let currentUser = logedInUser['name'];
-    /*console.log(logedInUser); */
     if (!newUser.includes(currentUser)) {
         newUser.push(currentUser);
     }
     let logedInUser = currentUser[0]['name'];
-    /*console.log(logedInUser);*/
 
     let userBox = document.getElementById('summary_username');
 
@@ -297,10 +246,6 @@ async function loadLoagedInUser() {
     };
 };
 
-
-// window.addEventListener("offline", (event) => {
-//     newUser = [];
-// });
 
 /**
  * Checks the status and priority of tasks and sorts them into appropriate arrays.
