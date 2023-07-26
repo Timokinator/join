@@ -93,28 +93,6 @@ async function loadUserData() {
 };
 
 
-
-
-/**
- * Closes the submenu and performs user logout.
- * Redirects the user to the login page after logout.
- * 
- */
-async function closeSubmenu() {
-    // Retrieve the logged-in user data from storage using 'getItem' function (not provided in this code)
-    logedInUser = JSON.parse(await getItem('user'));
-    
-    // Clear the 'logedInUser' variable (might be unintended as it overwrites the previous data)
-    logedInUser = [];
-
-    // Store an empty array as the logged-in user data using 'setItem' function (not provided in this code)
-    logedInUser = JSON.stringify(await setItem('user'));
-
-    // Redirect the user to the login page
-    window.location.href = 'login.html';
-};
-
-
 /**
  * Loads the total number of tasks and displays it on the board.
  */
