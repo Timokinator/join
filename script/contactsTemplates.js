@@ -26,7 +26,8 @@ function renderContactTemplate (i) {
     <p class="FS16-700">Phone</p>
     <div class="FS16-400">${contacts[i]['phone']}</div>
 `;
-}
+};
+
 /**
  * Template for the Function which returns HTML Block to render specific Contact of the mobile view
  * @param {number} i - This is the index of an existing contact
@@ -55,7 +56,8 @@ function renderContactTemplateMobile (i) {
                 <div onclick="showMobileEditContactCard(${i})" class="pencil-container"><img class="icon_mobile_Pencil" src="../assets/icons/icon_contact_pencil_white.svg"><div>
             </div>
         `;
-}
+};
+
 /**
  * Template for the Function which renders the "Edit Contact" container
  * @param {number} i - This is the index of an existing contact
@@ -79,7 +81,8 @@ function renderEditContactTemplate(i) {
                             <img class="icon-phone-add-contact" src="../assets/icons/icon_add_contact_phone.svg" alt="">
                     </form>
     `;
-}
+};
+
 /**
  * Template for the Function which renders the MOBILE "Edit Contact" container
  * @param {number} i - This is the index of an existing contact
@@ -102,7 +105,8 @@ function renderEditContactMobileTemplate(i) {
             <img class="icon-phone-edit-contact-mobile" src="../assets/icons/icon_add_contact_phone.svg" alt="">
     </form>
 `;
-}
+};
+
 /**
  * Template for Asynchronous function renders all existing contacts
  */
@@ -120,5 +124,4 @@ function renderContactsTemplate (i) {
         <a class="FS16-400" href="mailto:${sortedalphabetically[i]['email']}">${sortedalphabetically[i]['email']}</a>
         </div>
     </div>`;
-}
-
+};

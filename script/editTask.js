@@ -197,4 +197,3 @@ async function safeChangesEditTask(j) {
     closeEditTask();
     initBoard();
 };
-

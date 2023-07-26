@@ -24,4 +24,3 @@ function removeLandingImg() {
     // Redirect the user to the login page
     window.location.href = '../html/login.html';
 };
-
