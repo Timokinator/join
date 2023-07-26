@@ -127,7 +127,7 @@ async function initAddTask() {
     await loadContactsToForm();
     pushMemberToArrayAssignedTo();
     pushColorToArrayAssignedTo();
-    loadUserData();
+    //loadUserData();
     setDateToday();
     setMinimumDateToday();
 };
@@ -357,76 +357,6 @@ function taskAddedPopUp() {
     setTimeout(() => {
         popup.classList.add('d-none');
     }, 2000);
-};
-
-
-/**
- * Function to capitalize the first letter of a string.
- * @param {string} string - The input string.
- * @returns {string} - The input string with the first letter capitalized.
- */
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-};
-
-
-/**
- * Asynchronous function to load user data.
- */
-async function loadUserData() {
-    logedInUser = [];
-    logedInUser = JSON.parse(await getItem('user'));
-    let currentUser = logedInUser.name;
-    let userBox = document.querySelector('.userInitials');
-    let userBox2 = document.querySelector('.userInitialsMobile'); //Timo
-
-    if (currentUser) {
-        userBox.innerHTML = capitalizeFirstLetter(currentUser);
-    } else {
-        userBox.innerHTML = 'G';
-        userBox2.innerHTML = 'G'; //Timo
-    }
-
-    if (currentUser != null) {
-        getInitials(currentUser);
-    };
-};
-
-
-/**
- * Function to get the initials of the current user.
- * @param {string} currentUser - The current user's name.
- */
-function getInitials(currentUser) {
-    const names = currentUser.split(' ');
-    const initials = names.map(name => name.charAt(0).toUpperCase());
-    const newInitials = initials.join(' ');
-    const withoutSpaces = newInitials.replace(/\s/g, '');
-
-    logedInUserInitials2.push(withoutSpaces);
-    loadUserInitials();
-};
-
-
-/**
- * Asynchronous function to load the user initials.
- */
-async function loadUserInitials() {
-    let box = document.querySelector('.userInitials');
-    let box2 = document.querySelector('.userInitialsMobile'); //Timo
-    box.innerHTML = '';
-    box2.innerHTML = ''; //Timo
-
-    if (logedInUserInitials2 != null) {
-        for (let i = 0; i < logedInUserInitials2.length; i++) {
-            const element = logedInUserInitials2[i];
-            box.innerHTML =  `<span>${element}</span>`;
-            box2.innerHTML = `<span>${element}</span>`; //Timo
-        }
-    } else {
-        box.innerHTML =  `<span>G</span>`;
-        box2.innerHTML = `<span>G</span>`; //Timo
-    };
 };
 
 

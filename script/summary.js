@@ -5,12 +5,6 @@
 let logedInUser = [];
 
 /**
- * Array to store the logged-in user's initials.
- * @type {Array}
- */
-let logedInUserInitials = [];
-
-/**
  * Array to store tasks that are in progress.
  * @type {Array}
  */
@@ -68,7 +62,6 @@ async function initSummary() {
     loadTasksToDo();
     loadTasksDone();
     loadTasksGreeteng();
-    loadUserData();
     loadUserData();
 };
 

@@ -21,7 +21,7 @@ async function initBoard() {
     await loadContacts(); // Load contacts from storage.
     pushColorToArrayAssignedTo(); // Push colors to the assignedTo array.
     pushMemberToArrayAssignedTo(); // Push member names to the assignedTo array.
-    loadUserData();
+    await loadUserData();
     setDateToday();
 };
 
@@ -409,82 +409,5 @@ function loadContactsToForm() {
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
         content.innerHTML += templateMembersChose(contact);
-    };
-};
-
-
-/**
- * Capitalizes the first letter of a string.
- * @param {string} string - The input string.
- * @returns {string} The input string with the first letter capitalized.
- */
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-};
-
-let logedInUserInitials4 = [];
-
-/**
- * Loads the user data for the logged-in user.
- * Updates the user initials display.
- */
-async function loadUserData() {
-    logedInUser = [];
-    logedInUser = JSON.parse(await getItem('user'));
-    let currentUser = logedInUser.name;
-    let userBox = document.querySelector('.userInitials');
-    let userMobileBox = document.querySelector('.userInitialsMobile');
-    let box = document.getElementById('summary_username');
-
-    if (currentUser) {
-        userBox.innerHTML = capitalizeFirstLetter(currentUser);
-        userMobileBox.innerHTML = capitalizeFirstLetter(currentUser);
-        if (box) {
-            box.innerHTML = capitalizeFirstLetter(currentUser);
-        };
-    } else {
-        userBox.innerHTML = 'G';
-        userMobileBox.innerHTML = 'G';
-    };
-
-    if (currentUser != null) {
-        getInitials(currentUser);
-    };
-};
-
-
-/**
- * Extracts initials from the user's full name and stores them for display.
- * @param {string} currentUser - The full name of the logged-in user.
- */
-function getInitials(currentUser) {
-    const names = currentUser.split(' ');
-    const initials = names.map(name => name.charAt(0).toUpperCase());
-    const newInitials = initials.join(' ');
-    const withoutSpaces = newInitials.replace(/\s/g, '');
-
-    logedInUserInitials4.push(withoutSpaces);
-    loadUserInitials();
-};
-
-
-/**
- * Loads the user initials for display.
- */
-async function loadUserInitials() {
-    let box = document.querySelector('.userInitials');
-    let box2 = document.querySelector('.userInitialsMobile');
-    box.innerHTML = '';
-    box2.innerHTML = '';
-
-    if (logedInUserInitials4 != null) {
-        for (let i = 0; i < logedInUserInitials4.length; i++) {
-            const element = logedInUserInitials4[i];
-            box.innerHTML = `<span>${element}</span>`;
-            box2.innerHTML = `<span>${element}</span>`;
-        }
-    } else {
-        box.innerHTML = 'G';
-        box2.innerHTML = 'G';
     };
 };

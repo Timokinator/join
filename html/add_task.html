@@ -14,7 +14,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="includeHtml(); initAddTask()">
+<body onload="includeHtml(); initAddTask(); loadUserData()">
     <div w3-include-html="frame.html"></div>
 
     <div class="container-content">
@@ -134,11 +134,13 @@
 
     </div>
 
+    
     <script src="../script/frame.js"></script>
     <script src="../script/storage.js"></script>
     <script src="../script/addTask.js"></script>
     <script src="../script/contacts.js"></script>
     <script src="../script/templates.js"></script>
+    <script src="../script/loadInitialsToFrame.js"></script>
 </body>
 
 </html>
