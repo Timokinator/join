@@ -47,6 +47,7 @@ function openSubmenu(resolution) {
     if (resolution == 'desktop') {
         // If the resolution is "desktop", display the desktop submenu.
         content.innerHTML = renderSubmenuDesktop();
+        
     } else if (resolution == 'mobile') {
         // If the resolution is "mobile", display the mobile submenu and close it after 2.5 seconds.
         content.innerHTML = renderSubmenuMobile();

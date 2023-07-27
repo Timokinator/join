@@ -308,7 +308,7 @@ option {
     .btn-container-add-task {
         position: fixed;
         z-index: 2;
-        right: 100px;
+        right: 108px;
         height: 60px;
         top: 20px;
     }
@@ -330,14 +330,15 @@ option {
 @media (max-width: 500px) {
     .btn-container-add-task {
         scale: 0.6;
-        right: 32px;
+        right: 48px;
         top: 16px;
     }
 }
 
-@media (max-width: 364px) {
+@media (max-width: 381px) {
     .btn-container-add-task {
         top: -5px;
+        right: 56px;
     }
 }
 

@@ -268,8 +268,8 @@ body {
 
 .container-submenu-user {
     position: fixed;
-    top: 16px;
-    right: 32px;
+    top: 48px;
+    right: 38px;
     z-index: 999;
 }
 
